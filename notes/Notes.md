@@ -19,9 +19,8 @@ A document for general free form notes
 
 This is the Hahn-Mazurkiewicz theorem (pg. 106, Thm. 6.8 of Sagan).
 
-I think the point, here, is that the space filling curve to hit all points (compact), that
-points near it need to be part of the set (connected) and
-we can reach nearby points from any starting point (locally connected).
+I think the point, here, is that the space filling curves hit all points (compact), include
+points near it (connected) and can reach nearby points from any starting point (locally connected).
 
 The locally connected property precludes things like "scan line" curves as being space filling.
 
