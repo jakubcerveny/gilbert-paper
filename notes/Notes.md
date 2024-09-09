@@ -28,7 +28,7 @@ The locally connected property precludes things like "scan line" curves as being
 ---
 
 $$
-|| h(t _ 0) - h( t _ 1)|| _ 2 \le C | t _ 0 - t _ 1 |^{\frac{1}{d}}
+| h(t _ 0) - h( t _ 1) | _ 2 \le C | t _ 0 - t _ 1 |^{\frac{1}{d}}
 $$
 
 * $t _ 0$, $t _ 1$ positions along the curve
