@@ -17,9 +17,25 @@ A document for general free form notes
   - a "blob" is locally connected
   - $sin(\frac{1}{x})$ is not locally connected, even though it is connected near $0$, as the neighborhood (to the right, say) of a point shoots up rather than having a path to it ([so](https://math.stackexchange.com/questions/2589358/any-example-of-a-connected-space-that-is-not-locally-connected))
 
-This is basically the Hahn-Mazurkiewicz theorem (pg. 106, Thm. 6.8 of Sagan).
+This is the Hahn-Mazurkiewicz theorem (pg. 106, Thm. 6.8 of Sagan).
+
+I think the point, here, is that the space filling curve to hit all points (compact), that
+points near it need to be part of the set (connected) and
+we can reach nearby points from any starting point (locally connected).
+
+The locally connected property precludes things like "scan line" curves as being space filling.
 
 
+---
+
+$$
+|| h(t _ 0) - h( t _ 1)|| _ 2 \le C | t _ 0 - t _ 1 |^{\frac{1}{d}}
+$$
+
+* $t _ 0$, $t _ 1$ positions along the curve
+* $h(\cdot)$ the image
+* $C \in \mathbb{R}$, "measure of compactness"
+* $d$ the dimension
 
 
 
@@ -27,4 +43,6 @@ References
 ---
 
 * "Space-Filling Curves" by Hans Sagan
-
+* ["Space-Filling Curves" Encyclopedia of Parallel Computing ](https://link.springer.com/referenceworkentry/10.1007/978-0-387-09766-4_145)
+* [The Perfomance of Space-Filling Curves for Dimension Reduction](https://people.csail.mit.edu/jaffer/CNS/PSFCDR)
+* [Voxel Compression - Space-Filling Curves](https://eisenwave.github.io/voxel-compression-docs/rle/space_filling_curves.html)
