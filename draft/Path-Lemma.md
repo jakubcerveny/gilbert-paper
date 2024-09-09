@@ -1,20 +1,30 @@
-Call the point set $S = \{ (x,y,z) | 0 \le x < W, 0 \le y < H, 0 \le z < L, x,y,z \in \mathbb{N} \}$ of
-lattice points within the rectangular cuboid defined by $(W,H,L)$.
+Call the point set $S$ of lattice points within the rectangular cuboid defined by $(W,H,L)$:
 
-Consider a path in 3D space $ s = \{s _ 0, s _ 1 , s _ 2, \dots, s _ {n-1}\}$
-that fills a rectangular cuboid defined by $W, H, L \in \mathbb{N}$ ($n = W \cdot H \cdot L = |S|$)
-such that
-only axis aligned single unit steps are allowed ($|s _ i - s _ j| _ 1 = 1, i \ne j$).
+$$
+\begin{array}{l}
+ W, H, L \in \mathbb{N} \\
+ S = \\{ (x,y,z) | 0 \le x < W, 0 \le y < H, 0 \le z < L, x,y,z \in \mathbb{N} \\}
+\end{array}
+$$
+
+Call a path, $s$, an $S$ restricted Hamiltonian path in 3D space if $s$ fills a rectangular cuboid without
+going out of bounds and only allows cardinal direction changes.
+
+That is:
+
+$$
+\begin{array}{l}
+n = W \cdot H \cdot L \\
+s = (s _ 0, s _ 1 , s _ 2, \dots, s _ {n-1}) \\
+0 \le k < (n-1) \to s _ k \in S, |s _ k - s _ {k+1}| _ 1 = 1 \\
+i \ne j \to s _ i \ne s _ j \\
+\end{array}
+$$
 
 *Claim*:
 
-> No path, $s$, is possible that visits every point in
-> $S$, and no other points outside of $S$, that starts at $s _ 0 = (0,0,0)$ and ends
-> at $s _ {n-1} = (W-1, 0, 0)$ when $W$ is odd and $(W \cdot H \cdot L)$ is even.
-
-
-That is, a rectangular cuboid filling path is precluded when the width is odd and the number of points within
-the rectangular cuboid is even.
+> No $S$ restricted Hamiltonian path is possible that starts at $(0,0,0)$ and ends
+> at $(W-1, 0, 0)$ when $W$ is odd and $(W \cdot H \cdot L)$ is even.
 
 *Proof*:
 
