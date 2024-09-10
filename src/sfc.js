@@ -83,6 +83,42 @@ function printpoint(p) {
   console.log("\n");
 }
 
+function printa(p) {
+  for (let i=0; i<p.length; i++) {
+    console.log(i, p[i]);
+  }
+  console.log("\n");
+}
+
+
+function print_array_renorm(p, D) {
+  D = ((typeof D === "undefined") ? 1 : D);
+  let n = p.length;
+  let m = 0,
+      M = 0;
+  if (p.length == 0) { return; }
+
+  m = p[0];
+  M = p[0];
+
+  for (let i=1; i<p.length; i++) {
+    if (m > p[i]) { m = p[i]; }
+    if (M < p[i]) { M = p[i]; }
+  }
+
+  let R = M-m;
+
+  for (let i=1; i<n; i++) {
+    let t = i/n;
+    console.log( t, ((p[i] + m)/R) / Math.pow(i, 1/D));
+    
+    //console.log( i / n, (p[i] + m) / R );
+  }
+  console.log("\n");
+}
+
+
+
 function sfc_hilbert_r(M, lvl, pnt_template, pnt_list) {
   if (lvl==0) {
     let p = njs.transpose( njs.dot(M, njs.transpose(pnt_template)) );
@@ -356,29 +392,57 @@ function holder(sfc_f,lvl,p) {
   let count=0;
   let F = [];
 
-  //let pnt = sfc_hilbert(lvl);
   let pnt = sfc_f(lvl);
 
-  //console.log("#n:", pnt.length);
+  for (let i=0; i<pnt.length; i++) {
+    F.push(0);
+  }
 
-  for (let i=0; i<pnt.length; i++) { F.push(0); }
+  /*
+  let max_val =  0.5;
+  let min_val = -0.5;
+  for (let i=0; i<pnt.length; i++) {
+
+    if ((i==0) ||
+        (max_val < pnt[i][0]) || 
+        (max_val < pnt[i][1])) {
+      max_val = (( pnt[i][0] > pnt[i][1] ) ? pnt[i][0] : pnt[i][1] );
+    }
+
+    if ((i==0) ||
+        (min_val > pnt[i][0]) || 
+        (min_val > pnt[i][1])) {
+      min_val = (( pnt[i][0] < pnt[i][1] ) ? pnt[i][0] : pnt[i][1] );
+    }
+
+  }
+
+  let dxy = [ min_val, min_val ];
+  let sxy = [ (max_val - min_val), (max_val - min_val) ];
+  */
 
   for (let i=0; i<pnt.length; i++) {
     for (let j=0; j<pnt.length; j++) {
       let a = pnt[i];
       let b = pnt[j];
 
+      //a[0] = (a[0] + dxy[0]) / sxy[0];
+      //a[1] = (a[1] + dxy[1]) / sxy[1];
+
+      //b[0] = (b[0] + dxy[0]) / sxy[0];
+      //b[1] = (b[1] + dxy[1]) / sxy[1];
+
       F[ Math.abs(i-j) ] += pnorm_diff(a,b,p);
+
+      //console.log("#?", i, j, a, b, p, pnorm_diff(a,b,p));
+
       count++;
     }
   }
 
-  //console.log("# n:", pnt.length,  "p:", p);
   for (let i=0; i<pnt.length; i++) {
     F[i] /= count;
-    //console.log(i, F[i]);
   }
-  //console.log("\n");
 
   return F;
 }
@@ -388,7 +452,7 @@ if (typeof module !== "undefined") {
   function show_help() {
     console.log("usage:");
     console.log("");
-    console.log("  node sfc.js [hilbert|peano|meander|morton|moore] [<recursion_level>]");
+    console.log("  node sfc.js [hilbert|peano|meander|morton|moore] [<recursion_level>] [holder|snippet] [param]");
     console.log("");
     console.log("");
   }
@@ -407,9 +471,19 @@ if (typeof module !== "undefined") {
     printpoint( sfc_f_map[curve_name](recursion_level) );
   }
 
-  function main_holder(curve_name, recursion_level) {
+  function main_holder(curve_name, recursion_level, D) {
+    let _D = D;
+    if (typeof D === "undefined") { D = 2; _D = 1; }
+
     if (!(curve_name in sfc_f_map)) { return; }
-    printpoint( holder( sfc_f_map[curve_name](recursion_level), 2 ) );
+    //printa( holder( sfc_f_map[curve_name], recursion_level, 2 ) );
+    print_array_renorm( holder( sfc_f_map[curve_name], recursion_level, D ), _D );
+  }
+
+  function main_holder2(curve_name, recursion_level, D) {
+    if (!(curve_name in sfc_f_map)) { return; }
+    //printa( holder( sfc_f_map[curve_name], recursion_level, 2 ) );
+    print_array_renorm( holder( sfc_f_map[curve_name], recursion_level, D), D );
   }
 
   function idir(a,b) {
@@ -437,7 +511,7 @@ if (typeof module !== "undefined") {
     }
   }
 
-  let op = "hilbert";
+  let op = "help";
   let n = 4;
   let sub_op = "";
   let m = 8;
@@ -460,7 +534,7 @@ if (typeof module !== "undefined") {
 
   if (op == "help") { show_help(); }
   else if (sub_op == "holder") {
-    main_holder(op, n);
+    main_holder(op, n, m);
   }
   else if (sub_op == "snippet") {
     main_snippet(op, n, m);
