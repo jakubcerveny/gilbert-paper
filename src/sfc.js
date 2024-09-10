@@ -387,8 +387,9 @@ function pnorm_diff(pnta, pntb, p) {
   return Math.pow(s, 1/p);
 }
 
-function holder(sfc_f,lvl,p) {
+function holder_subsample(sfc_f,lvl,p, Q, len_factor) {
   sfc_f = ((typeof sfc_f === "undefined") ? sfc_hilbert : sfc_f);
+  len_factor = ((typeof len_factor === "undefined") ? 1.75 : len_factor);
   let count=0;
   let F = [];
 
@@ -398,44 +399,50 @@ function holder(sfc_f,lvl,p) {
     F.push(0);
   }
 
-  /*
-  let max_val =  0.5;
-  let min_val = -0.5;
-  for (let i=0; i<pnt.length; i++) {
+  //let s_pos = Math.floor(0.25*pnt.length);
+  //let e_pos = Math.floor(0.5*pnt.length);
 
-    if ((i==0) ||
-        (max_val < pnt[i][0]) || 
-        (max_val < pnt[i][1])) {
-      max_val = (( pnt[i][0] > pnt[i][1] ) ? pnt[i][0] : pnt[i][1] );
-    }
+  let dn = (1<<(Math.floor(len_factor*lvl)));
 
-    if ((i==0) ||
-        (min_val > pnt[i][0]) || 
-        (min_val > pnt[i][1])) {
-      min_val = (( pnt[i][0] < pnt[i][1] ) ? pnt[i][0] : pnt[i][1] );
-    }
+  console.log("#dn:", dn);
 
+  for (let it=0; it<Q; it++) {
+    let i = Math.floor(Math.random()*pnt.length);
+    let j = Math.floor(Math.random()*pnt.length);
+
+    j = Math.floor(Math.random()*dn) + i;
+    if (j >= pnt.length) { j = pnt.length-1; }
+
+    let a = pnt[i];
+    let b = pnt[j];
+    F[ Math.abs(i-j) ] += pnorm_diff(a,b,p);
+    count++;
   }
 
-  let dxy = [ min_val, min_val ];
-  let sxy = [ (max_val - min_val), (max_val - min_val) ];
-  */
+  for (let i=0; i<pnt.length; i++) {
+    F[i] /= count;
+  }
+
+  return F;
+}
+
+function holder(sfc_f,lvl,p) {
+  sfc_f = ((typeof sfc_f === "undefined") ? sfc_hilbert : sfc_f);
+  p = ((typeof p === "undefined") ? 1 : p);
+  let count=0;
+  let F = [];
+
+  let pnt = sfc_f(lvl);
+
+  for (let i=0; i<pnt.length; i++) {
+    F.push(0);
+  }
 
   for (let i=0; i<pnt.length; i++) {
     for (let j=0; j<pnt.length; j++) {
       let a = pnt[i];
       let b = pnt[j];
-
-      //a[0] = (a[0] + dxy[0]) / sxy[0];
-      //a[1] = (a[1] + dxy[1]) / sxy[1];
-
-      //b[0] = (b[0] + dxy[0]) / sxy[0];
-      //b[1] = (b[1] + dxy[1]) / sxy[1];
-
       F[ Math.abs(i-j) ] += pnorm_diff(a,b,p);
-
-      //console.log("#?", i, j, a, b, p, pnorm_diff(a,b,p));
-
       count++;
     }
   }
@@ -474,16 +481,13 @@ if (typeof module !== "undefined") {
   function main_holder(curve_name, recursion_level, D) {
     let _D = D;
     if (typeof D === "undefined") { D = 2; _D = 1; }
-
     if (!(curve_name in sfc_f_map)) { return; }
-    //printa( holder( sfc_f_map[curve_name], recursion_level, 2 ) );
     print_array_renorm( holder( sfc_f_map[curve_name], recursion_level, D ), _D );
   }
 
-  function main_holder2(curve_name, recursion_level, D) {
+  function main_holder_subsample(curve_name, recursion_level, D, Q, len_factor) {
     if (!(curve_name in sfc_f_map)) { return; }
-    //printa( holder( sfc_f_map[curve_name], recursion_level, 2 ) );
-    print_array_renorm( holder( sfc_f_map[curve_name], recursion_level, D), D );
+    print_array_renorm( holder_subsample( sfc_f_map[curve_name], recursion_level, D, Q, len_factor), D );
   }
 
   function idir(a,b) {
@@ -515,6 +519,7 @@ if (typeof module !== "undefined") {
   let n = 4;
   let sub_op = "";
   let m = 8;
+  let Q = -1;
 
   if (process.argv.length > 2) {
     op = process.argv[2];
@@ -527,6 +532,10 @@ if (typeof module !== "undefined") {
 
         if (process.argv.length > 5) {
           m = parseInt(process.argv[5]);
+
+          if (process.argv.length > 6) {
+            Q = parseInt(process.argv[6]);
+          }
         }
       }
     }
@@ -534,7 +543,15 @@ if (typeof module !== "undefined") {
 
   if (op == "help") { show_help(); }
   else if (sub_op == "holder") {
-    main_holder(op, n, m);
+    if (Q < 0) {
+      main_holder(op, n, m);
+    }
+    else {
+      let lf = 1.75;
+      if ((op == "hilbert") || (op == "morton") || (op == "moore")) { lf = 1.75; }
+      else if ((op == "meander") || (op == "peano") || (op == "")) { lf = 2.75; }
+      main_holder_subsample(op, n, m, Q, lf);
+    }
   }
   else if (sub_op == "snippet") {
     main_snippet(op, n, m);
