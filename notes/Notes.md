@@ -187,6 +187,22 @@ $$
 
 Where $\text{diam} _ {\infty} (S)$ is the diameter of $S$ in the $L _ {\infty}$ metric.
 
+Haverkort gives a table of values for various curves but I'm not sure the implications of the values or their relative orders.
+
+---
+
+Haverkort...
+
+The Arrwwid number:
+
+> The Arrwwid number is the smallest number, $a$,
+> such that there is a constant, $c$, such that any disk, $Q$,
+> that lies entirely in $U$ can be covered by a
+> curve fragments with total area at most $c \dot area(Q)$
+
+The maximum number of tiles (curve 2d segments) to cover any disk.
+$c$ is called the "cover ratio".
+
 
 
 
@@ -200,3 +216,4 @@ References
 * ["On the metric properties of discrete space-filling curves" by C. Gotsman  and M. Lindenbaum](https://www.researchgate.net/publication/5567343_On_the_metric_properties_of_discrete_space-filling_curves)
 * "Space-filling Curves and a Measure of Coherence" by D. Voorhies
 * "Locality and bounding-box quality of two-dimensional space-ﬁlling curves" by H. Haverkort and F. Walderveen
+* "Recursive Tilings and Space-Filling Curves with Little Fragmentation" by H. Haverkort
