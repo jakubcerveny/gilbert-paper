@@ -84,6 +84,111 @@ exit the hysteresis boundary.
 
 In some sense, this is like measure the 'flux' through a volume boundary.
 
+---
+
+Mokbel et all use the following metrics:
+
+
+| Function | Description |
+|---|---|
+| $Jump(k, N, d)$ | Counts the number of non orthogonal "jumps" in an axis aligned direction. $| d( h(t _ i), h(t _ {i+1}) ) _ k | > 1$ in axis dimension $k$, image dimension $d$, with side length $N$ |
+| $Contiguity(k, N, d)$ | Counts the number of orthogonal moves in an axis aligned direction. $| d( h(t _ i), h(t _ {i+1}) ) _ k | = 1$ in axis dimension $k$, image dimension $d$, with side length $N$ |
+| $Reverse(k, N, d)$ | Counts the number of decreasing moves in an axis aligned direction. $d( h(t _ i), h(t _ {i+1}) ) _ k < 0$ in axis dimension $k$, image dimension $d$ and side length $N$ |
+| $Forward(k, N, d)$ | Counts the number of increasing moves in an axis aligned direction. $d( h(t _ i), h(t _ {i+1}) ) _ k > 0$ in axis dimension $k$, image dimension $d$ and side length $N$ |
+| $Still(k, N, d)$ | Counts the number of unchanging moves in an axis aligned direction. $d( h(t _ i), h(t _ {i+1}) ) _ k = 0$ in axis dimension $k$, image dimension $d$ and side length $N$ |
+| $J _ T(N,d)$  | Total jumps in all directions |
+| $C _ T(N,d)$  | Total contiguity in all directions |
+| $R _ T(N,d)$  | Total reverse in all directions |
+| $F _ T(N,d)$  | Total forward in all directions |
+| $S _ T(N,d)$  | Total still in all directions |
+| $V _ T$  |  The vector $V _ T = ( J _ T, C _ T, R _ T, F _ T, S _ T)$ |
+
+There's a lot of redundant information stored between them.
+
+$$
+\begin{array}{c}
+Jump(k,N,d) + Contiguity(k,N,d) + Still(k,N,d) = N^d -1 \\
+Reverse(k,N,d) + Forward(k,N,d) + Still(k,N,d) = N^d - 1 \\
+J _t + C _ T + S _ T = D \cdot (N^D-1) \\
+R _t + F _ T + S _ T = D \cdot (N^D-1) \\
+\end{array}
+$$
+
+It looks like they focus on SFCs when as $D$ is large.
+
+
+---
+
+Haverkort defines GP-order (Giuseppe Peano order) to define the Peano curve that we commonly refer to as "the" Peano curve.
+Probably good to adopt this terminology to avoid confusion in the future as other authors have different ideas of what the definition of
+a Peano curve is.
+Further, the "meander" curve they define as "R-order".
+
+Define $C(a)$ ($0 \le a \le 1$) to be the position along the curve. I'm being sloppy, see the paper for a more precise defintion.
+
+$$
+\sum _ {i = 0} ^ {n-1} |C(i)| = |C| = 1
+$$
+
+Define $C(a,b)$ to be the area/volume traced out by the curve. For our purposes, $C(a,b)$ will always be discrete so we can
+do box counting but from the paper:
+
+$$
+|C(p,q)| := \lim _ {k \to \infty} \min _ {a,b \in n, s.t. p \in C(a), q \in C(b) } |C(a,b)|
+$$
+
+Worst case locality (WL):
+
+$$
+\text{WL} _ r := \lim _ {k \to \infty} \sup _ {a, b \in n} \frac{ d _ r( C(a), C(b) )^2 }{ |C(a,b)| }
+$$
+
+I assume the $2$ in the exponent is becuase the paper only considers the 2D case?
+
+The above implies $\text{WL} _ 1 \ge \text{WL} _ 2 \ge \text{WL} _ {\infty}$.
+
+Worst case bounding box area ratio (WBA):
+
+$$
+\text{WBA} := \lim _ {k \to \infty} \sum{ a,b \in n} \frac{ |\text{bbox}(C(a,b))| }{ |C(a,b)| }
+$$
+
+With $\text{peri}$ being the perimeter, the worst case bounding box square perimeter ratio (WBP):
+
+$$
+\text{WBP} := \frac{1}{16} \lim _ {k \to \infty} \sup _ {a,b \in n} \frac{ \peri(\bbox(C(a,b)))^2 }{ |C(a,b)| }
+$$
+
+Total bounding box area (TBA):
+
+$$
+\text{TBA} := \lim _ { k \to \infty } \sup _ { a_1 \prec a_2 \prec \cdots \prec a _ {m-1} \in n} \left( \sum _ {i=1}^{m} |\text{bbox}(C(a _ {i-1}, a_i) )|  \right)
+$$
+
+$a _ 0 = 0$, $a _ {m} = \emptyset$ (??)
+
+Average total bounding box area (ABA):
+
+$$
+\text{ABA} := \lim _ { k \to \infty } \text{avg} _ { a_1 \prec a_2 \prec \cdots \prec a _ {m-1} \in n} \left( \sum _ {i=1}^{m} |\text{bbox}(C(a _ {i-1}, a_i) )|  \right)
+$$
+
+Square average relative total bounding box perimeter (ABP):
+
+$$
+\text{ABP} := \lim _ { k \to \infty } \left( \text{avg} _ { a_1 \prec a_2 \prec \cdots \prec a _ {m-1} \in n} \frac{1}{4 \sqrt{m}} \left( \sum _ {i=1}^{m} |\text{peri}(\text{bbox}(C(a _ {i-1}, a_i) ))| \right)  \right)^2
+$$
+
+Square average relative total curve section diameter ($\text{AD} _ {\infty}$):
+
+$$
+\text{AD} _ {\infty} := \lim _ { k \to \infty } \left( \text{avg} _ { a_1 \prec a_2 \prec \cdots \prec a _ {m-1} \in n} \frac{1}{4 \sqrt{m}} \left( \sum _ {i=1}^{m} |\text{diam} _ {\infty} (C(a _ {i-1}, a_i) )| \right)  \right)^2
+$$
+
+Where $\text{diam} _ {\infty} (S)$ is the diameter of $S$ in the $L _ {\infty}$ metric.
+
+
+
 
 References
 ---
@@ -94,3 +199,4 @@ References
 * [Voxel Compression - Space-Filling Curves](https://eisenwave.github.io/voxel-compression-docs/rle/space_filling_curves.html)
 * ["On the metric properties of discrete space-filling curves" by C. Gotsman  and M. Lindenbaum](https://www.researchgate.net/publication/5567343_On_the_metric_properties_of_discrete_space-filling_curves)
 * "Space-filling Curves and a Measure of Coherence" by D. Voorhies
+* "Locality and bounding-box quality of two-dimensional space-ﬁlling curves" by H. Haverkort and F. Walderveen
