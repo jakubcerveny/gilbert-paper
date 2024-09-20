@@ -110,7 +110,8 @@ function print_array_renorm(p, D) {
 
   for (let i=1; i<n; i++) {
     let t = i/n;
-    console.log( t, ((p[i] + m)/R) / Math.pow(i, 1/D));
+    //console.log( t, ((p[i] + m)/R) / Math.pow(i, 1/D));
+    console.log( t, p[i] / Math.pow(i, 1/D) );
     
     //console.log( i / n, (p[i] + m) / R );
   }
@@ -118,6 +119,45 @@ function print_array_renorm(p, D) {
 }
 
 
+//---
+// https://rosettacode.org/wiki/Hilbert_curve#C
+//
+function _rot2(n, p, rx, ry) {
+  let t = 0;
+  if (ry != 0) { return; }
+  if (rx == 1) {
+    p[0] = n - 1 - p[0];
+    p[1] = n - 1 - p[1];
+  }
+  t = p[0];
+  p[0] = p[1];
+  p[1] = t;
+}
+
+// n - side dimension (hilbert curve will have n*n points)
+// d - index along curve (d={0 ... n*n})
+// p - resulting point
+//
+function sfc_hilbert_d2p(n, d, p) {
+  p = ((typeof p === "undefined") ? [0,0] : p);
+  let s=1, t=d, rx, ry;
+
+  p[0] = 0;
+  p[1] = 0;
+
+  while (s<n) {
+    rx = 1 & Math.floor(t/2);
+    ry = 1 & (t ^ rx);
+    _rot2(s, p, rx, ry);
+    p[0] += s*rx;
+    p[1] += s*ry;
+    t = Math.floor(t/4);
+    s *= 2;
+  }
+
+  return p;
+}
+//---
 
 function sfc_hilbert_r(M, lvl, pnt_template, pnt_list) {
   if (lvl==0) {
@@ -379,6 +419,57 @@ function sfc_morton(lvl) {
   return pnt_list;
 }
 
+function fisher_yates_shuffle(a) {
+  var t, n = a.length;
+  for (var i=0; i<(n-1); i++) {
+    var idx = i + Math.floor(Math.random()*(n-i));
+    t = a[i];
+    a[i] = a[idx];
+    a[idx] = t;
+  }
+}
+
+function sfc_random2x2_r(M, lvl, pnt_template, pnt_list) {
+  if (lvl==0) {
+    fisher_yates_shuffle(pnt_template);
+    let p = njs.transpose( njs.dot(M, njs.transpose(pnt_template)) );
+    for (let i=0; i<p.length; i++) { pnt_list.push(p[i]); }
+    return;
+  }
+
+
+  let sfc = sfc_random2x2_r;
+
+  let m0 = njs.dot( Mt([-1/2, 1/2, 1]), Ms(1/2) );
+  let m1 = njs.dot( Mt([ 1/2, 1/2, 1]), Ms(1/2) );
+  let m2 = njs.dot( Mt([-1/2,-1/2, 1]), Ms(1/2) );
+  let m3 = njs.dot( Mt([ 1/2,-1/2, 1]), Ms(1/2) );
+
+  let m_a = [ m0, m1, m2, m3 ];
+
+  fisher_yates_shuffle(m_a);
+
+  for (let i=0; i<m_a.length; i++) {
+    sfc(njs.dot(M, m_a[i]), lvl-1, pnt_template, pnt_list);
+  }
+
+}
+
+function sfc_random2x2(lvl) {
+  let pnt_template = [
+    [ -1/2,  1/2, 1, 1 ],
+    [  1/2,  1/2, 1, 1 ],
+    [ -1/2, -1/2, 1, 1 ],
+    [  1/2, -1/2, 1, 1 ]
+  ];
+
+  fisher_yates_shuffle(pnt_template);
+
+  let pnt_list = [];
+  sfc_random2x2_r( numeric.identity(4), lvl, pnt_template, pnt_list );
+  return pnt_list;
+}
+
 function pnorm_diff(pnta, pntb, p) {
   let s = 0;
   for (let i=0; i<pnta.length; i++) {
@@ -448,6 +539,7 @@ function holder(sfc_f,lvl,p) {
   }
 
   for (let i=0; i<pnt.length; i++) {
+    F[i] *= pnt.length;
     F[i] /= count;
   }
 
@@ -459,7 +551,7 @@ if (typeof module !== "undefined") {
   function show_help() {
     console.log("usage:");
     console.log("");
-    console.log("  node sfc.js [hilbert|peano|meander|morton|moore] [<recursion_level>] [holder|snippet] [param]");
+    console.log("  node sfc.js [hilbert|peano|meander|morton|moore|random] [<recursion_level>] [holder|snippet] [param]");
     console.log("");
     console.log("");
   }
@@ -470,7 +562,8 @@ if (typeof module !== "undefined") {
     "meander": sfc_peano_meander,
     "peano_meander": sfc_peano_meander,
     "morton": sfc_morton,
-    "moore": sfc_moore
+    "moore": sfc_moore,
+    "random": sfc_random2x2
   };
 
   function main(curve_name, recursion_level) {
