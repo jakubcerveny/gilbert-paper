@@ -22,6 +22,7 @@
 
 
 var numeric = require("numeric");
+var gilbert = require("./gilbert.js");
 var njs = numeric;
 
 function Mz(theta) {
@@ -546,6 +547,277 @@ function holder(sfc_f,lvl,p) {
   return F;
 }
 
+function renorm_point(pnt) {
+  let bbox = [[0,0],[0,0]];
+
+  bbox[0][0] = pnt[0][0];
+  bbox[0][1] = pnt[0][1];
+
+  bbox[1][0] = pnt[1][0];
+  bbox[1][1] = pnt[1][1];
+
+  for (let i=1; i<pnt.length; i++) {
+    if (bbox[0][0] > pnt[i][0]) { bbox[0][0] = pnt[i][0]; }
+    if (bbox[0][1] > pnt[i][1]) { bbox[0][1] = pnt[i][1]; }
+
+    if (bbox[1][0] < pnt[i][0]) { bbox[1][0] = pnt[i][0]; }
+    if (bbox[1][1] < pnt[i][1]) { bbox[1][1] = pnt[i][1]; }
+  }
+
+  for (let i=0; i<pnt.length; i++) {
+    pnt[i][0] = ((pnt[i][0] - bbox[0][0]) / (bbox[1][0] - bbox[0][0]));
+    pnt[i][1] = ((pnt[i][1] - bbox[0][1]) / (bbox[1][1] - bbox[0][1]));
+  }
+
+  return pnt;
+}
+
+//---
+
+
+function gilbert_xyz2d(x,y,z,w,h,d) {
+  let _q = {"x": x, "y": y, "z": z};
+  let _p = {"x": 0, "y": 0, "z": 0};
+  let _a = {"x": w, "y": 0, "z": 0};
+  let _b = {"x": 0, "y": h, "z": 0};
+  let _c = {"x": 0, "y": 0, "z": d};
+
+  if ((w >= h) && (w >= d)) {
+    return gilbert_xyz2d_r(0, _q, _p, _a, _b, _c);
+  }
+  else if ((h >= w) && (h >= d)) {
+    return gilbert_xyz2d_r(0, _q, _p, _b, _a, _c);
+  }
+  return gilbert_xyz2d_r(0, _q, _p, _c, _a, _b);
+}
+//---
+
+
+function coherence(sfc_f,lvl, r,R, n_it) {
+  let pnt = sfc_f(lvl);
+
+  let n = Math.sqrt(pnt.length);
+
+  renorm_point(pnt);
+
+  let pxy = [ Math.random(), Math.random() ];
+
+  console.log("##", "N:", pnt.length, "n:", n, "r:", r, "R:", R, "n_it:", n_it);
+
+  let circle_mask = [];
+
+  let mx = R,
+      my = R;
+
+  // init circle_mask
+  //
+  for (let i=0; i<(2*R); i++) {
+    circle_mask.push([]);
+    for (let j=0; j<(2*R); j++) {
+      circle_mask[i].push(0);
+    }
+  }
+
+  let tot_count = 0;
+
+  for (let it=0; it<n_it; it++) {
+
+    // clear circle_mask
+    //
+    for (let i=0; i<(2*R); i++) {
+      for (let j=0; j<(2*R); j++) {
+
+        circle_mask[i][j] = 0;
+
+        let x = i - mx;
+        let y = j - my;
+
+        let u = Math.sqrt( x*x + y*y );
+        if (u < r) { circle_mask[i][j] = 1; }
+        else if (u < R) { circle_mask[i][j] = 2; }
+      }
+    }
+
+    for (let i=0; i<circle_mask.length; i++) {
+      console.log("#", circle_mask[i].join(" "));
+    }
+
+    let px = Math.floor(Math.random() * n),
+        py = Math.floor(Math.random() * n);
+
+    let nseg = 32;
+    for (let i=0; i<=nseg; i++) {
+      console.log(r*Math.cos(2*Math.PI * i / nseg) + px, r*Math.sin(2*Math.PI * i / nseg) + py);
+    }
+    console.log("\n");
+
+    for (let i=0; i<=nseg; i++) {
+      console.log(R*Math.cos(2*Math.PI * i / nseg) + px, R*Math.sin(2*Math.PI * i / nseg) + py);
+    }
+    console.log("\n");
+
+    let count = 0;
+
+    let _test = 0;
+    for (let i=0; i<circle_mask.length; i++) {
+      for (let j=0; j<circle_mask.length; j++) {
+
+        if (circle_mask[i][j] != 1) { continue; }
+
+        //DEBUG
+        //if (_test != 0) { break; }
+        //_test = 1;
+
+        let x = Math.floor(i + px - mx),
+            y = Math.floor(j + py - my);
+
+        let idx = gilbert.xy2d(x,y, n,n);
+
+        console.log("#xy:", x,y, "idx:", idx);
+
+        circle_mask[i][j] = -1;
+
+        console.log(x,y);
+
+        let state = 0;
+        for (let u=idx+1; u<pnt.length; u++) {
+          let res = gilbert.d2xy(u, n,n);
+
+          console.log(res.x, res.y);
+
+          let rel_x = res.x - px + mx;
+          let rel_y = res.y - py + my;
+
+          let ix = Math.floor(rel_x),
+              iy = Math.floor(rel_y);
+
+          if ((ix >= 0) && (ix < circle_mask.length) &&
+              (iy >= 0) && (iy < circle_mask.length)) {
+            circle_mask[ix][iy] = -1;
+          }
+
+          console.log("#>>", rel_x, rel_y);
+
+          if ((rel_x < 0) ||
+              (rel_x >= circle_mask.length) ||
+              (rel_y < 0) ||
+              (rel_y >= circle_mask[0].length)) {
+            state = 2;
+            break;
+          }
+
+          let d = Math.sqrt( (res.x - px)*(res.x - px) + (res.y - py)*(res.y - py) );
+          if (d > R) { state = 2; break; }
+
+        }
+        console.log("\n");
+
+        console.log(x,y);
+        for (let u=idx-1; u>=0; u--) {
+          let res = gilbert.d2xy(u, n,n);
+
+          console.log(res.x, res.y);
+
+          let rel_x = res.x - px + mx;
+          let rel_y = res.y - py + my;
+
+          let ix = Math.floor(rel_x),
+              iy = Math.floor(rel_y);
+
+          if ((ix >= 0) && (ix < circle_mask.length) &&
+              (iy >= 0) && (iy < circle_mask.length)) {
+            circle_mask[ix][iy] = -1;
+          }
+
+          if ((rel_x < 0) ||
+              (rel_x >= circle_mask.length) ||
+              (rel_y < 0) ||
+              (rel_y >= circle_mask[0].length)) {
+            state = 2;
+            break;
+          }
+
+          let d = Math.sqrt( (res.x - px)*(res.x - px) + (res.y - py)*(res.y - py) );
+          if (d > R) { state = 2; break; }
+
+        }
+        console.log("\n");
+
+        console.log("#state:", state);
+
+        if (state == 2) { count++; }
+      }
+
+      //DEBUG
+      //if (_test != 0) { break; }
+
+    }
+
+    tot_count += count;
+
+    console.log("### count:", count);
+
+  }
+
+  if (tot_count == 0) { return 0; }
+
+  return 2*r / tot_count;
+}
+
+// state:
+//
+//  0 - within r
+//  1 - out of r, within R
+//
+function loopstat(sfc_f,lvl, L,r,R, n_it) {
+  let pnt = sfc_f(lvl);
+  let state = 0;
+
+  let n = Math.floor(Math.sqrt(pnt.length));
+
+  let count = [0,0,0];
+  for (let it = 0; it < n_it; it++) {
+
+    let p0_idx = Math.floor(Math.random() * pnt.length);
+    let p0 = pnt[p0_idx];
+
+    if ((p0_idx + L) >= pnt.length) { continue; }
+    if ((p0_idx - L) <  0) { continue; }
+
+    state = 0;
+
+    for (let t = 1; t < L; t++) {
+
+      let idx = p0_idx + t;
+
+      let x = pnt[idx][0];
+      let y = pnt[idx][1];
+
+      let _len = Math.sqrt( (x-p0[0])*(x-p0[0]) + (y-p0[1])*(y-p0[1]) );
+
+      if (_len <= r) {
+        if (state == 1) {
+          count[0]++;
+          break;
+        }
+
+      }
+      else if ((_len > r) &&
+               (_len <= R)) {
+        state = 1;
+      }
+      else if (_len > R) {
+        count[1]++;
+        break;
+      }
+
+    }
+
+  }
+
+  return count;
+}
+
 if (typeof module !== "undefined") {
 
   function show_help() {
@@ -635,6 +907,7 @@ if (typeof module !== "undefined") {
   }
 
   if (op == "help") { show_help(); }
+
   else if (sub_op == "holder") {
     if (Q < 0) {
       main_holder(op, n, m);
@@ -646,9 +919,31 @@ if (typeof module !== "undefined") {
       main_holder_subsample(op, n, m, Q, lf);
     }
   }
+
   else if (sub_op == "snippet") {
     main_snippet(op, n, m);
   }
+
+  else if (sub_op == "coherence") {
+
+    r = 0.5;
+
+    coherence(sfc_hilbert,n, m, 2*m, 2);
+  }
+
+  else if (sub_op == "loop") {
+
+    for (let r=5; r<20; r+=0.125) {
+      for (let R=(r+0.25); R<(r+10); R+=10.125) {
+        R = 30;
+        let c = loopstat(sfc_hilbert,4, 64,r,R, 1000000);
+        //console.log( r/R, c[0], c[1] );
+        console.log( r/R, c[0] );
+      }
+    }
+
+  }
+
   else {
     main(op, n);
   }
