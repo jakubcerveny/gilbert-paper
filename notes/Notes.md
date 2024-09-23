@@ -77,12 +77,40 @@ $$
 Voorhies cohesion:
 
 * $D _ C$ : object circle diameter
-* $D _ H$ : Hysteresis diameter
+* $D _ H$ : Hysteresis diameter ($D _ H = 2 \cdot D _ C$)
 
 Define $\text{Coherence}$ as the number of paths which go through the inner object circle and
 exit the hysteresis boundary.
 
 In some sense, this is like measure the 'flux' through a volume boundary.
+
+This is effectively measuring how curve segments, that fit within the hysteresis object, completely fill the object region.
+
+###### 2024-09-23
+
+I've started to implement this in the `sfc.js` tool.
+
+The algorithm I'm using is to generate the curve, then start randomly placing circles,
+making sure that they stay completely contained within the area (so no spillover,
+choosing centers to be distance $\frac{D _ C}{2}$ from the edge).
+
+Take a point on the inside of the inner circle and start tracing the path out along
+both directions till the path ends or it goes beyond the hysteresis circle, marking
+which cells have been traversed already.
+The diameter divided by the
+number of paths that it takes to completely fill the (discritized) circle is
+the coherence.
+
+I'm having trouble recreating the figure from the Voorhies paper but I'm still debugging.
+
+Some notes:
+
+* The Voorhies paper talks about not counting patsh that only go in the hysteresis and
+  not the object circle or go into the object circle but don't come out. This is equivalent
+  to just counting the number of curves starting at the hysteresis boundary that go through
+  object circle then out the hysteresis boundary again, with the count being off by one
+
+
 
 ---
 

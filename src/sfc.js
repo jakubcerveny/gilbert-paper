@@ -420,6 +420,32 @@ function sfc_morton(lvl) {
   return pnt_list;
 }
 
+function nonsfc_scanline(lvl, B) {
+  B = ((typeof B === "undefined") ? 2 : B);
+
+  let n = Math.floor(Math.pow(B, lvl));
+  let N = n*n;
+
+  let pnt = [];
+
+  let x = 0,
+      y = 0,
+      dx = 1,
+      dy = 1;
+  for (let i=0; i<n; i++) {
+    for (let j=0; j<n; j++) {
+      pnt.push([x,y]);
+      if (j<(n-1)) {
+        x += dx;
+      }
+    }
+    y += dy;
+    dx *= -1;
+  }
+
+  return pnt;
+}
+
 function fisher_yates_shuffle(a) {
   var t, n = a.length;
   for (var i=0; i<(n-1); i++) {
@@ -547,6 +573,8 @@ function holder(sfc_f,lvl,p) {
   return F;
 }
 
+// shift and rescale to be on integral points
+//
 function renorm_point(pnt) {
   let bbox = [[0,0],[0,0]];
 
@@ -565,8 +593,8 @@ function renorm_point(pnt) {
   }
 
   for (let i=0; i<pnt.length; i++) {
-    pnt[i][0] = ((pnt[i][0] - bbox[0][0]) / (bbox[1][0] - bbox[0][0]));
-    pnt[i][1] = ((pnt[i][1] - bbox[0][1]) / (bbox[1][1] - bbox[0][1]));
+    pnt[i][0] = ((pnt[i][0] - bbox[0][0]) / (bbox[1][0] - bbox[0][0] + 1));
+    pnt[i][1] = ((pnt[i][1] - bbox[0][1]) / (bbox[1][1] - bbox[0][1] + 1));
   }
 
   return pnt;
@@ -593,16 +621,30 @@ function gilbert_xyz2d(x,y,z,w,h,d) {
 //---
 
 
-function coherence(sfc_f,lvl, r,R, n_it) {
+function coherence(sfc_f,lvl, r,R, n_it, print_debug) {
+  print_debug = ((typeof print_debug === "undefined") ? false : print_debug);
   let pnt = sfc_f(lvl);
-
-  let n = Math.sqrt(pnt.length);
-
   renorm_point(pnt);
 
-  let pxy = [ Math.random(), Math.random() ];
+  let n = Math.floor(Math.sqrt(pnt.length));
+  let N = n*n;
 
-  console.log("##", "N:", pnt.length, "n:", n, "r:", r, "R:", R, "n_it:", n_it);
+  let map_d2p = {},
+      map_p2d = {};
+
+  for (let i=0; i<pnt.length; i++) {
+    pnt[i][0] *= n;
+    pnt[i][1] *= n;
+
+    map_d2p[i] = [pnt[i][0], pnt[i][1]];
+    map_p2d[ pnt[i][0].toString() + ":" + pnt[i][1].toString() ] = i;
+  }
+
+  //let print_debug = false;
+
+  if (print_debug) {
+    console.log("##", "N:", N, "n:", n, "r:", r, "R:", R, "n_it:", n_it);
+  }
 
   let circle_mask = [];
 
@@ -638,23 +680,35 @@ function coherence(sfc_f,lvl, r,R, n_it) {
       }
     }
 
-    for (let i=0; i<circle_mask.length; i++) {
-      console.log("#", circle_mask[i].join(" "));
+    if (print_debug) {
+      for (let i=0; i<circle_mask.length; i++) {
+        console.log("#", circle_mask[i].join(" "));
+      }
     }
 
-    let px = Math.floor(Math.random() * n),
-        py = Math.floor(Math.random() * n);
+    let px = Math.floor(Math.random() * (n - 2*R - 2) + R + 1),
+        py = Math.floor(Math.random() * (n - 2*R - 2) + R + 1);
 
-    let nseg = 32;
-    for (let i=0; i<=nseg; i++) {
-      console.log(r*Math.cos(2*Math.PI * i / nseg) + px, r*Math.sin(2*Math.PI * i / nseg) + py);
-    }
-    console.log("\n");
+    // jitter is causing problems
+    //
+    //px = (Math.random() * (n - 2*R - 2) + R + 1),
+    //py = (Math.random() * (n - 2*R - 2) + R + 1);
 
-    for (let i=0; i<=nseg; i++) {
-      console.log(R*Math.cos(2*Math.PI * i / nseg) + px, R*Math.sin(2*Math.PI * i / nseg) + py);
+
+    if (print_debug) {
+      console.log("#pxy:", px, py);
+
+      let nseg = 32;
+      for (let i=0; i<=nseg; i++) {
+        console.log(r*Math.cos(2*Math.PI * i / nseg) + px, r*Math.sin(2*Math.PI * i / nseg) + py);
+      }
+      console.log("\n");
+
+      for (let i=0; i<=nseg; i++) {
+        console.log(R*Math.cos(2*Math.PI * i / nseg) + px, R*Math.sin(2*Math.PI * i / nseg) + py);
+      }
+      console.log("\n");
     }
-    console.log("\n");
 
     let count = 0;
 
@@ -664,29 +718,40 @@ function coherence(sfc_f,lvl, r,R, n_it) {
 
         if (circle_mask[i][j] != 1) { continue; }
 
-        //DEBUG
-        //if (_test != 0) { break; }
-        //_test = 1;
-
         let x = Math.floor(i + px - mx),
             y = Math.floor(j + py - my);
 
-        let idx = gilbert.xy2d(x,y, n,n);
+        if ((x<0) || (x>=n) ||
+            (y<0) || (y>=n)) {
+          state = 1;
+          break;
+        }
 
-        console.log("#xy:", x,y, "idx:", idx);
+        //let idx = gilbert.xy2d(x,y, n,n);
+        let idx = map_p2d[ x.toString() + ":" + y.toString() ];
+
+        if (print_debug) {
+          console.log("#xy:", x,y, "idx:", idx);
+        }
 
         circle_mask[i][j] = -1;
 
-        console.log(x,y);
+        if (print_debug) {
+          console.log(x,y);
+        }
 
         let state = 0;
-        for (let u=idx+1; u<pnt.length; u++) {
-          let res = gilbert.d2xy(u, n,n);
+        for (let u=idx+1; u<N; u++) {
+          //let res = gilbert.d2xy(u, n,n);
+          let resa = map_d2p[u];
+          let res = { "x": resa[0], "y": resa[1] }
 
-          console.log(res.x, res.y);
+          if (print_debug) {
+            console.log(res.x, res.y);
+          }
 
-          let rel_x = res.x - px + mx;
-          let rel_y = res.y - py + my;
+          let rel_x = (res.x - px + mx);
+          let rel_y = (res.y - py + my);
 
           let ix = Math.floor(rel_x),
               iy = Math.floor(rel_y);
@@ -696,7 +761,9 @@ function coherence(sfc_f,lvl, r,R, n_it) {
             circle_mask[ix][iy] = -1;
           }
 
-          console.log("#>>", rel_x, rel_y);
+          if (print_debug) {
+            console.log("#+>>", rel_x, rel_y);
+          }
 
           if ((rel_x < 0) ||
               (rel_x >= circle_mask.length) ||
@@ -710,13 +777,21 @@ function coherence(sfc_f,lvl, r,R, n_it) {
           if (d > R) { state = 2; break; }
 
         }
-        console.log("\n");
+        if (print_debug) {
+          console.log("\n");
+        }
 
-        console.log(x,y);
+        if (print_debug) {
+          console.log(x,y);
+        }
         for (let u=idx-1; u>=0; u--) {
-          let res = gilbert.d2xy(u, n,n);
+          //let res = gilbert.d2xy(u, n,n);
+          let resa = map_d2p[u];
+          let res = { "x": resa[0], "y": resa[1] }
 
-          console.log(res.x, res.y);
+          if (print_debug) {
+            console.log(res.x, res.y);
+          }
 
           let rel_x = res.x - px + mx;
           let rel_y = res.y - py + my;
@@ -741,24 +816,27 @@ function coherence(sfc_f,lvl, r,R, n_it) {
           if (d > R) { state = 2; break; }
 
         }
-        console.log("\n");
+        if (print_debug) {
+          console.log("\n");
+          console.log("#state:", state);
+        }
 
-        console.log("#state:", state);
-
-        if (state == 2) { count++; }
+        if (state == 2) {
+          count++;
+        }
       }
-
-      //DEBUG
-      //if (_test != 0) { break; }
 
     }
 
     tot_count += count;
 
-    console.log("### count:", count);
+    if (print_debug) {
+      console.log("### count:", count);
+    }
 
   }
 
+  tot_count /= n_it;
   if (tot_count == 0) { return 0; }
 
   return 2*r / tot_count;
@@ -835,6 +913,7 @@ if (typeof module !== "undefined") {
     "peano_meander": sfc_peano_meander,
     "morton": sfc_morton,
     "moore": sfc_moore,
+    "scanline": nonsfc_scanline,
     "random": sfc_random2x2
   };
 
@@ -924,11 +1003,30 @@ if (typeof module !== "undefined") {
     main_snippet(op, n, m);
   }
 
+  else if (sub_op == "coherence_debug") {
+    let r = 20;
+    let c = coherence(sfc_hilbert,n, r, 2*r, 4, true);
+  }
+
   else if (sub_op == "coherence") {
 
-    r = 0.5;
+    let f = sfc_f_map[ op ];
 
-    coherence(sfc_hilbert,n, m, 2*m, 2);
+    if (typeof f === "undefined") {
+      console.log("provide function");
+      process.exit();
+    }
+
+    let N = f(n).length;
+    let l = Math.floor(Math.sqrt(N));
+    console.log("#", op, N, "(", l, l, ")");
+    console.log("##", 20, coherence(f,n, 20, 2*20, 4));
+
+    for (r=0.5; r<101; r+=0.5) {
+      let c = coherence(f,n, r, 2*r, 100);
+      console.log(r,c);
+    }
+
   }
 
   else if (sub_op == "loop") {
