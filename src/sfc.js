@@ -636,8 +636,13 @@ function coherence(sfc_f,lvl, r,R, n_it, print_debug) {
     pnt[i][0] *= n;
     pnt[i][1] *= n;
 
+    pnt[i][0] = Math.round(pnt[i][0]);
+    pnt[i][1] = Math.round(pnt[i][1]);
+
     map_d2p[i] = [pnt[i][0], pnt[i][1]];
     map_p2d[ pnt[i][0].toString() + ":" + pnt[i][1].toString() ] = i;
+
+    //console.log("#idx:", i, pnt[i][0], pnt[i][1]);
   }
 
   //let print_debug = false;
@@ -699,11 +704,14 @@ function coherence(sfc_f,lvl, r,R, n_it, print_debug) {
       console.log("#pxy:", px, py);
 
       let nseg = 32;
+
+      console.log("#inner circle, r:", r);
       for (let i=0; i<=nseg; i++) {
         console.log(r*Math.cos(2*Math.PI * i / nseg) + px, r*Math.sin(2*Math.PI * i / nseg) + py);
       }
       console.log("\n");
 
+      console.log("#hysteresis circle, R:", R);
       for (let i=0; i<=nseg; i++) {
         console.log(R*Math.cos(2*Math.PI * i / nseg) + px, R*Math.sin(2*Math.PI * i / nseg) + py);
       }
@@ -1004,14 +1012,19 @@ if (typeof module !== "undefined") {
   }
 
   else if (sub_op == "coherence_debug") {
+    let f = sfc_f_map[ op ];
+    if (typeof f === "undefined") {
+      console.log("provide function");
+      process.exit();
+    }
+
     let r = 20;
-    let c = coherence(sfc_hilbert,n, r, 2*r, 4, true);
+    let c = coherence(f,n, r, 2*r, 4, true);
   }
 
   else if (sub_op == "coherence") {
 
     let f = sfc_f_map[ op ];
-
     if (typeof f === "undefined") {
       console.log("provide function");
       process.exit();
