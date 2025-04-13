@@ -85,6 +85,43 @@ function toRGBAa(rgba) {
   return va;
 }
 
+var debug = {};
+
+function hackFixup(ele) {
+
+  if (("tagName" in ele) && (ele.tagName == "path")) {
+    //console.log(ele.id);
+
+    let _fill = ele.getAttribute("fill");
+    let _stroke = ele.getAttribute("stroke");
+    let _strokeWidth = ele.getAttribute("stroke-width");
+    let _strokeOpacity = ele.getAttribute("stroke-opacity");
+    let _fillOpacity = ele.getAttribute("fill-opacity");
+
+    ele.style.fill = _fill;
+    ele.style.stroke = _stroke;
+    ele.style.strokeWidth = _strokeWidth;
+    ele.style.strokeOpacity = _strokeOpacity;
+    ele.style.fillOpacity = _fillOpacity;
+
+  }
+
+
+  if ("children" in ele) {
+    for (let i=0; i<ele.children.length; i++) {
+      hackFixup(ele.children[i]);
+    }
+  }
+
+}
+
+function debughack() {
+  var ele = document.getElementById("simple_hampath_canvas");
+  hackFixup(ele);
+
+  debug = ele;
+}
+
 function _dl() {
   var ele = document.getElementById("simple_hampath_canvas");
   let defs = document.getElementById("custom_defs");
@@ -94,14 +131,18 @@ function _dl() {
   // Probably should define the patterns in this file and
   // use two.js to append them...
   //
-  let _defs = "<defs>";
+  //let _defs = "<defs>";
   let svg_txt = ele.innerHTML;
-  let pos = svg_txt.search("<defs>");
+  //let pos = svg_txt.search("<defs>");
 
-  let fin_txt = svg_txt.slice(0,pos);
-  fin_txt +=  "<defs>";
-  fin_txt += defs.innerHTML;
-  fin_txt += svg_txt.slice(pos + _defs.length);
+  //let fin_txt = svg_txt.slice(0,pos);
+  //fin_txt +=  "<defs>";
+  //fin_txt += defs.innerHTML;
+  //fin_txt += svg_txt.slice(pos + _defs.length);
+
+  let fin_txt = svg_txt;
+
+  debug = ele;
 
   var b = new Blob([ fin_txt ]);
   saveAs(b, "fig.svg");
@@ -161,6 +202,11 @@ function mk_checkerboard_path(opt) {
     //"rgba(255,200,200,0.9)"
   ];
 
+  color = [
+    "rgb(152,119,182)",
+    "rgb(228,220,242)"
+  ];
+
   let _p = opt.path;
 
   //let _p = [ [0,0], [0,1], [1,1], [1,0], [2,0], [2,1] ];
@@ -179,10 +225,18 @@ function mk_checkerboard_path(opt) {
       let y = sy + iy*y_len;
       let rect = new Two.Rectangle( x,y, x_len, y_len );
       rect.linewidth = 0.5;
+
+
       rect.stroke = "rgba(0,0,0,0.4)";
       //rect.fill = "rgba(255, 200, 200, 1)";
       rect.fill = "rgba(255, 200, 200, 1)";
       rect.fill = color[ parity ];
+
+
+      rect.stroke = "rgb(0,0,0)";
+      rect.fill = color[parity];
+      rect.opacity = 0.5;
+
       two.add(rect);
 
     }
@@ -197,6 +251,7 @@ function mk_checkerboard_path(opt) {
   // this
   //path_color = "rgba(118,114,223,1)";
   path_color = "rgba(80,80,140,1)";
+  path_color = "rgb(80,80,140)";
 
   //path_color = "rgba(159,226,235,1)";
   //path_color = "rgba(107,202,215,1)";
@@ -223,7 +278,8 @@ function mk_checkerboard_path(opt) {
 
   let tv_path = makeTwoVector(w_p);
   let t_path = two.makePath(tv_path, true);
-  t_path.fill = "rgba(0,0,0,0)";
+  //t_path.fill = "rgba(0,0,0,0)";
+  t_path.noFill();
   t_path.linewidth = 10;
   t_path.stroke = path_color;
   t_path.cap = 'round';
@@ -271,6 +327,7 @@ function mk_checkerboard_path(opt) {
     co  = "rgba(190,0,41,1)";
 
     co = "rgba(252,37,3,0.95)"; //!
+    co = "rgb(252,37,3)"; //!
 
     let lw = 4.5;
 
@@ -282,7 +339,10 @@ function mk_checkerboard_path(opt) {
 
     let ca = two.makePath(cross_a);
     ca.linewidth = lw;
+
     ca.stroke = co;
+    //ca.opacity = 0.95;
+
     ca.cap = 'round';
     ca.join = 'round';
 
