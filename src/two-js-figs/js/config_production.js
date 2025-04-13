@@ -86,7 +86,7 @@ function toRGBAa(rgba) {
 }
 
 function _dl() {
-  var ele = document.getElementById("fig");
+  var ele = document.getElementById("config_production_canvas");
   let defs = document.getElementById("custom_defs");
 
   // very hacky, find the defs definition, take the defs
