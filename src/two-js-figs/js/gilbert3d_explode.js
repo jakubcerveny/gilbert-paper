@@ -266,41 +266,48 @@ function mk_square_lozenge() {
   two.update();
 }
 
-function _Line(x0,y0, x1,y1, lco, lw) {
+function _Line(x0,y0, x1,y1, lco, lw, alpha) {
   lw = ((typeof lw === "undefined") ? 2 : lw);
+  alpha = ((typeof alpha === "undefined") ? 1 : alpha);
 
   let two = g_fig_ctx.two;
 
   let _l = two.makeLine(x0,y0, x1,y1);
   _l.linewidth = lw;
-  _l.fill = "rgba(0,0,0,0)";
+  _l.fill = "rgb(0,0,0)";
   _l.stroke = lco;
   //_l.cbp = 'round';
   _l.join = 'bevel';
   _l.cap = 'square';
 
+  _l.opacity = alpha;
+
   return _l;
 }
 
-function _Line1(x0,y0, x1,y1, lco, lw) {
+function _Line1(x0,y0, x1,y1, lco, lw, alpha) {
   lw = ((typeof lw === "undefined") ? 2 : lw);
+  alpha = ((typeof alpha === "undefined") ? 1 : alpha);
 
   let two = g_fig_ctx.two;
 
   let _l = two.makeLine(x0,y0, x1,y1);
   _l.linewidth = lw;
-  _l.fill = "rgba(0,0,0,0)";
+  _l.fill = "rgb(0,0,0)";
   _l.stroke = lco;
   _l.cap = 'round';
   _l.dashes = [8, 8];
+
+  _l.opacity = alpha;
 
   return _l;
 }
 
 
-function _mk_iso_cuboid(x0,y0,s, lco, fco, lXYZ, lw) {
+function _mk_iso_cuboid(x0,y0,s, lco, fco, lXYZ, lw, alpha) {
   lXYZ = ((typeof lXYZ === "undefined") ? [1,1,1] : lXYZ);
   lw = ((typeof lw === "undefined") ? 2 : lw);
+  alpha = ((typeof alpha === "undefined") ? 1 : alpha);
   let two = g_fig_ctx.two;
 
   let q = s*Math.sqrt(3)/2;
@@ -329,11 +336,16 @@ function _mk_iso_cuboid(x0,y0,s, lco, fco, lXYZ, lw) {
 
         let v = makeTwoVector(_p);
         let p = two.makePath(v);
-        p.linewidth = lw;
-        p.stroke = "rgba(0,0,0,0)";
+
+        //p.linewidth = lw;
+        //p.stroke = "rgba(0,0,0,0)";
+        p.noStroke();
+
         p.fill = fco;
         p.cbp = 'round';
         p.join = 'round';
+
+        p.opacity = alpha;
 
       }
     }
@@ -558,7 +570,9 @@ function block3d_fig(x0,y0,s0) {
     //
     if (i == 3) {
       let li = proj_cxy.length-3;
-      _Line( proj_cxy[li][0], proj_cxy[li][1], proj_cxy[li+1][0], proj_cxy[li+1][1], "rgba(0,0,0,0.9)", 2.8 );
+      //_Line( proj_cxy[li][0], proj_cxy[li][1], proj_cxy[li+1][0], proj_cxy[li+1][1], "rgba(0,0,0,0.9)", 2.8 );
+      //_Line( proj_cxy[li][0], proj_cxy[li][1], proj_cxy[li+1][0], proj_cxy[li+1][1], "rgb(0,0,0)", 2.8, 0.9 );
+      _Line( proj_cxy[li][0], proj_cxy[li][1], proj_cxy[li+1][0], proj_cxy[li+1][1], "rgb(60,60,60)", 2.8, 0.9 );
     }
 
 
@@ -575,23 +589,39 @@ function block3d_fig(x0,y0,s0) {
 
     if (i==(dock_xyz.length-2)) { continue; }
 
-    mk_iso_cuboid( jxy[0],jxy[1],js, "rgba(0,0,0,0)", "rgba(0,0,0,0.3)", [1,1,1], 0, vr, theta);
+    //mk_iso_cuboid( jxy[0],jxy[1],js, "rgba(0,0,0,0)", "rgba(0,0,0,0.3)", [1,1,1], 0, vr, theta);
+    mk_iso_cuboid( jxy[0],jxy[1],js, "rgb(0,0,0)", "rgb(0,0,0)", [1,1,1], 0, vr, theta, 0.3);
 
     let _c = two.makeCircle( cxy[0], cxy[1],  4 );
-    _c.stroke = "rgba(0,0,0,0)";
-    _c.linewidth = 0;
+    //_c.stroke = "rgba(0,0,0,0)";
+    //_c.linewidth = 0;
+    _c.noStroke();
+
+    _c.opacity = 0.9;
     if ((i==0) || (i==(dock_xyz.length-1))) {
-      _c.fill = "rgba(255,255,255,0.9)";
+      //_c.fill = "rgba(255,255,255,0.9)";
+      _c.fill = "rgb(255,255,255)";
     }
     else {
-      _c.fill = "rgba(0,0,0,0.9)";
+      //_c.fill = "rgba(0,0,0,0.9)";
+      _c.fill = "rgb(0,0,0)";
+    }
+
+    if (i==0) { _c.fill = "rgb(0,0,0)"; }
+    else if (i==(dock_xyz.length-1)) { _c.fill = "rgb(255,255,255)"; }
+    else {
+      _c.fill = "rgb(60,60,60)";
+      //let _v = Math.floor( 256 * i / dock_xyz.length ).toString();
+      //_c.fill = "rgb(" + _v + "," + _v + "," + _v + ")";
     }
 
   }
 
   for (let i=1; i<(proj_cxy.length-1); i+=2) {
     if (i==(proj_cxy.length-3)) { continue; }
-    _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgba(0,0,0,0.9)", 2.8);
+    //_Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgba(0,0,0,0.9)", 2.8);
+    //_Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgb(0,0,0)", 2.8, 0.9);
+    _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgb(60,60,60)", 2.8, 0.9);
   }
 
 
@@ -618,6 +648,14 @@ function block3d_fig(x0,y0,s0) {
     "rgba(16,16,16,1)",
     "rgba(16,16,16,1)",
     "rgba(255,255,255,1)"
+  ];
+
+  text_co = [
+    "rgb(255,255,255)",
+    "rgb(16,16,16)",
+    "rgb(16,16,16)",
+    "rgb(16,16,16)",
+    "rgb(255,255,255)"
   ];
 
   let text_ = [ "A", "B", "C", "D", "E" ];
@@ -736,7 +774,9 @@ function curve3d_fig(x0,y0,s) {
   }
 
   let jp = join_points[3];
-  _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgba(16,16,16,0.7)", 4);
+  //_Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgba(16,16,16,0.7)", 4);
+  //_Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(16,16,16)", 4, 0.7);
+  _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(60,60,60)", 4, 0.7);
 
   for (let _gidx=0; _gidx< curve_points.length; _gidx++) {
 
@@ -747,7 +787,10 @@ function curve3d_fig(x0,y0,s) {
     let p = two.makePath(v);
     p.linewidth = 4;
     p.stroke = col[gidx];
-    p.fill = "rgba(0,0,0,0)";
+
+    //p.fill = "rgba(0,0,0,0)";
+    p.noFill();
+
     p.join = "round";
     p.cap = "round";
     p.closed = false;
@@ -758,13 +801,18 @@ function curve3d_fig(x0,y0,s) {
     let c = two.makeCircle( endpoint[i][0], endpoint[i][1], 4 );
     c.linewidth = 1;
     c.stroke = '#000';
-    c.fill = 'rgba(250,250,250,1.0)';
+    //c.fill = 'rgba(250,250,250,1.0)';
+    //c.fill = 'rgb(250,250,250)';
+    //
+    c.fill = 'rgb(250,250,250)';
+    if (i==0) { c.fill = "rgb(0,0,0)"; }
   }
 
   for (let gidx=0; gidx<join_points.length; gidx++) {
     let jp = join_points[gidx];
     if (gidx != 3) {
-      _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgba(16,16,16,0.7)", 4);
+      //_Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgba(16,16,16,0.7)", 4);
+      _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(60,60,60)", 4, 0.7);
     }
 
     let _r = 3.5;
@@ -772,12 +820,16 @@ function curve3d_fig(x0,y0,s) {
     let _c0 = two.makeCircle( jp[0][0], jp[0][1], _r);
     _c0.linewidth = 0;
     _c0.stroke = "#000"
-    _c0.fill = "rgba(16,16,16,0.8)";
+    //_c0.fill = "rgba(16,16,16,0.8)";
+    _c0.fill = "rgb(60,60,60)";
+    _c0.opacity = 0.8;
 
     let _c1 = two.makeCircle( jp[1][0], jp[1][1], _r);
     _c1.linewidth = 0;
     _c1.stroke = "#000"
-    _c1.fill = "rgba(16,16,16,0.8)";
+    //_c1.fill = "rgba(16,16,16,0.8)";
+    _c1.fill = "rgb(60,60,60)";
+    _c1.opacity = 0.8;
   }
 
   two.update();
@@ -813,9 +865,10 @@ function curve3d_fig(x0,y0,s) {
 
 }
 
-function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta) {
+function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
   theta = ((typeof theta === "undefined") ? (-Math.PI/16) : theta);
+  alpha = ((typeof alpha === "undefined") ? 1 : alpha);
 
 
   let two = g_fig_ctx.two;
@@ -860,6 +913,7 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta) {
     P.push( p );
 
     p.fill = fco;
+    p.opacity = alpha;
     p.closed = true;
     p.join = "round";
 

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for fn in `ls *.svg` ; do
+  bn=`basename ${fn} .svg`
+  inkscape ${fn} --export-filename=${bn}.pdf
+done

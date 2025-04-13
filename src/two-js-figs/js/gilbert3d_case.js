@@ -307,6 +307,12 @@ function small_axis_fig(x0,y0,ord,sdir,s) {
     "rgba(100,100,100,1)",
   ];
 
+  co = [
+    "rgb(100,100,100)",
+    "rgb(100,100,100)",
+    "rgb(100,100,100)",
+  ];
+
   let tdxyz = [
     [  0, 0.5,   0 ],
     [-0.5,   0,   0 ],
@@ -332,14 +338,20 @@ function small_axis_fig(x0,y0,ord,sdir,s) {
       if (sdir[idx] > 0) {
         let _l = two.makeLine( x0,y0, x0+vxy[0], y0+vxy[1], 10);
         _l.linewidth = lw;
-        _l.fill = "rgba(0,0,0,0)";
+
+        //_l.fill = "rgba(0,0,0,0)";
+        _l.noFill();
+
         _l.cap = 'round';
         _l.stroke = co[xyz];
       }
       else {
         let _l = two.makeLine( x0,y0, x0-vxy[0], y0-vxy[1], 10);
         _l.linewidth = lw;
-        _l.fill = "rgba(0,0,0,0)";
+
+        //_l.fill = "rgba(0,0,0,0)";
+        _l.noFill();
+
         _l.cap = 'round';
         _l.stroke = co[xyz];
       }
@@ -786,6 +798,18 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
   theta = ((typeof theta === "undefined") ? (-Math.PI/16) : theta);
   alpha = ((typeof alpha === "undefined") ? 1 : alpha);
 
+  // inkscape has problems with rgba fill, so back out of fill color rgba
+  // to explicitly provide rgb and opacity
+  //
+  if (fco.match('rgba')) {
+    let new_opa = fco.split("(")[1].split(",")[3].split(")")[0];
+    let new_fco = "rgb(" + fco.split('(')[1].split(',').slice(0,3).join(',') + ")";
+
+    alpha = new_opa;
+    fco = fco;
+  }
+
+
 
   let two = g_fig_ctx.two;
 
@@ -829,6 +853,7 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
     P.push( p );
 
     p.fill = fco;
+    //p.opacity = opacity;
     p.closed = true;
     p.join = "round";
 
@@ -1320,23 +1345,31 @@ function gilbert3d_case() {
 
       // docking circles for each of the sub-blocks
       //
-      let dock_co = [ "rgba(0,0,0,0", "rgba(0,0,0,0.3)" ];
+      //let dock_co = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.3)" ];
+      let dock_co = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.4)" ];
       for (let _di=0; _di<2; _di++) {
         let dock_pos = jsplit_dock[_di];
 
         let _dd = 1/3;
         let jxyz = njs.mul(jsplit_scale, rodrigues([ dock_pos[0],dock_pos[1],dock_pos[2]], vr, theta));
         let jxy = njs.add( tsxy, _project( jxyz[0], jxyz[1], jxyz[2]) );
-        mk_iso_cuboid(jxy[0],jxy[1],jsplit_scale*_dd, dock_co[0], dock_co[1], [1,1,1], 2, vr, theta);
+        //mk_iso_cuboid(jxy[0],jxy[1],jsplit_scale*_dd, dock_co[0], dock_co[1], [1,1,1], 2, vr, theta);
+        mk_iso_cuboid(jxy[0],jxy[1],jsplit_scale*_dd, dock_co[0], dock_co[1], [1,1,1], 0, vr, theta);
 
         let dc_xyz = njs.mul(jsplit_scale, rodrigues([dock_pos[3],dock_pos[4],dock_pos[5]], vr, theta));
         let dc_xy = njs.add( tsxy, _project( dc_xyz[0], dc_xyz[1], dc_xyz[2]) );
 
         let _c = two.makeCircle( dc_xy[0], dc_xy[1],  4 );
-        _c.stroke = "rgba(0,0,0,0)";
-        _c.linewidth = 0;
-        if (_di==1) { _c.fill = "rgba(255,255,255,0.9)"; }
-        else        { _c.fill = "rgba(0,0,0,0.9)"; }
+        //_c.stroke = "rgba(0,0,0,0)";
+        //_c.stroke = "rgb(0,0,0)";
+        _c.noStroke();
+        //_c.linewidth = 0;
+
+        //if (_di==1) { _c.fill = "rgba(255,255,255,0.9)"; }
+        //else        { _c.fill = "rgba(0,0,0,0.9)"; }
+        _c.opacity = 0.9;
+        if (_di==1) { _c.fill = "rgb(255,255,255)"; }
+        else        { _c.fill = "rgb(0,0,0)"; }
       }
 
     }
@@ -1368,7 +1401,7 @@ function gilbert3d_case() {
     let order_legend = false;
     if (order_legend) {
       let _smsc = 4;
-      mkfullblock( njs.add(tsxy, [-30, 30]), pc.opos, pc.cuboid_size, pc.disp_order, _smsc, 0, 0.2);
+      mkfullblock( njs.add(tsxy, [-30, 30]), pc.opos, pc.cuboid_size, pc.disp_order, _smsc, 0, 0.8);
       mkfullblock( njs.add(tsxy, [-10, 30]), pc.opos, pc.cuboid_size, pc.disp_order, _smsc, 1, 0.2);
 
       mkfullblock( njs.add(tsxy, [ 10, 30]), pc.opos, pc.cuboid_size, pc.disp_order, _smsc, 2, 0.015);
@@ -1493,23 +1526,29 @@ function gilbert3d_case() {
 
       // docking circles for each of the sub-blocks
       //
-      let dock_co = [ "rgba(0,0,0,0", "rgba(0,0,0,0.3)" ];
+      let dock_co = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.4)" ];
       for (let _di=0; _di<2; _di++) {
         let dock_pos = pc.endpoint[idx][_di];
 
         let _dd = 1/3;
         let jxyz = njs.mul(scale, rodrigues([ dock_pos[0],dock_pos[1],dock_pos[2]], vr, theta));
         let jxy = njs.add( [cxy[0], cxy[1]], _project( jxyz[0], jxyz[1], jxyz[2]) );
-        mk_iso_cuboid(jxy[0],jxy[1],scale*_dd, dock_co[0], dock_co[1], [1,1,1], 2, vr, theta);
+        //mk_iso_cuboid(jxy[0],jxy[1],scale*_dd, dock_co[0], dock_co[1], [1,1,1], 2, vr, theta);
+        mk_iso_cuboid(jxy[0],jxy[1],scale*_dd, dock_co[0], dock_co[1], [1,1,1], 0, vr, theta);
 
         let dc_xyz = njs.mul(scale, rodrigues([dock_pos[3],dock_pos[4],dock_pos[5]], vr, theta));
         let dc_xy = njs.add( [cxy[0], cxy[1]], _project( dc_xyz[0], dc_xyz[1], dc_xyz[2]) );
 
         let _c = two.makeCircle( dc_xy[0], dc_xy[1],  4 );
-        _c.stroke = "rgba(0,0,0,0)";
-        _c.linewidth = 0;
-        if (_di==1) { _c.fill = "rgba(255,255,255,0.9)"; }
-        else        { _c.fill = "rgba(0,0,0,0.9)"; }
+        //_c.stroke = "rgba(0,0,0,0)";
+        //_c.linewidth = 0;
+        _c.noStroke();
+
+        //if (_di==1) { _c.fill = "rgba(255,255,255,0.9)"; }
+        //else        { _c.fill = "rgba(0,0,0,0.9)"; }
+        _c.opacity = 0.9;
+        if (_di==1) { _c.fill = "rgb(255,255,255)"; }
+        else        { _c.fill = "rgb(0,0,0)"; }
       }
 
     }
@@ -1537,22 +1576,30 @@ function gilbert3d_case() {
 
   let h0 = 215;
   let hline0 = two.makeLine(0, h0, W, h0);
-  hline0.stroke = "rgba(0,0,0,0.8)";
+  //hline0.stroke = "rgba(0,0,0,0.8)";
+  hline0.stroke = "rgb(0,0,0)";
+  hline0.opacity = 0.8;
   hline0.linewidth = sep_lw;
 
   let h1 = h0+155;
   let hline1 = two.makeLine(0, h1, W, h1);
-  hline1.stroke = "rgba(0,0,0,0.8)";
+  //hline1.stroke = "rgba(0,0,0,0.8)";
+  hline1.stroke = "rgb(0,0,0)";
+  hline1.opacity = 0.8;
   hline1.linewidth = sep_lw;
 
   let h2 = h1+155;
   let hline2 = two.makeLine(0, h2, W, h2);
-  hline2.stroke = "rgba(0,0,0,0.8)";
+  //hline2.stroke = "rgba(0,0,0,0.8)";
+  hline2.stroke = "rgb(0,0,0)";
+  hline2.opacity = 0.8;
   hline2.linewidth = sep_lw;
 
   let h3 = h2+155;
   let hline3 = two.makeLine(0, h3, W, h3);
-  hline3.stroke = "rgba(0,0,0,0.8)";
+  //hline3.stroke = "rgba(0,0,0,0.8)";
+  hline3.stroke = "rgb(0,0,0)";
+  hline3.opacity = 0.8;
   hline3.linewidth = sep_lw;
 
   let h_s = 65;
@@ -1561,16 +1608,22 @@ function gilbert3d_case() {
 
   let mid_x = W/2 - 45;
   let vline = two.makeLine(mid_x, h_s, mid_x, h_e);
-  vline.stroke = "rgba(0,0,0,0.8)";
+  //vline.stroke = "rgba(0,0,0,0.8)";
+  vline.stroke = "rgb(0,0,0)";
+  vline.opacity = 0.8;
   vline.linewidth = sep_lw;
 
   let w0 = 90;
   let vline0 = two.makeLine(w0, h_s, w0, h_e);
-  vline0.stroke= "rgba(0,0,0,0.3)";
+  //vline0.stroke= "rgba(0,0,0,0.3)";
+  vline0.stroke = "rgb(0,0,0)";
+  vline0.opacity = 0.3;
 
   let w1 = mid_x+85;
   let vline1 = two.makeLine(w1, h_s, w1, h_e);
-  vline1.stroke= "rgba(0,0,0,0.3)";
+  //vline1.stroke= "rgba(0,0,0,0.3)";
+  vline1.stroke = "rgb(0,0,0)";
+  vline1.opacity = 0.3;
 
   axis_fig(50, 50, 20);
   //block3d_fig(50, 160, 40);
