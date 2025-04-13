@@ -329,6 +329,7 @@ function mkbox(opt) {
   };
 
   let path_color = "rgba(80,80,140,1)";
+  let path_color_p = "rgba(120,180,180,1)";
 
   //---
   let square_size = x_len / opt.nx;
@@ -376,7 +377,7 @@ function mkbox(opt) {
   else {
     let circle_e = two.makeCircle(cx + (x_len/2) - c_offset, cy + (y_len/2) - c_offset, radius);
     circle_e.linewidth = 0;
-    circle_e.fill = path_color;
+    circle_e.fill = path_color_p;
   }
 
 
@@ -409,7 +410,6 @@ function mkbox_subdiv(opt) {
   };
 
   let path_color = "rgba(80,80,140,1)";
-
   let path_color_p = "rgba(120,180,180,1)";
 
 
@@ -453,6 +453,11 @@ function mkbox_subdiv(opt) {
   let fo_off_x = [
     - 2*font_offset[0] - (1.5*opt.text_h[0].length),
     - 2*font_offset[0] - (1.5*opt.text_h[1].length)
+  ];
+
+  fo_off_x = [
+    - 2*font_offset[0] - (1.9*opt.text_h[0].length),
+    - 2*font_offset[0] - (1.9*opt.text_h[1].length)
   ];
 
 
@@ -828,6 +833,12 @@ function config_production_init() {
   var ele = document.getElementById("config_production_canvas");
   two.appendTo(ele);
 
+  g_fig_ctx.width = two.width;
+  g_fig_ctx.height = two.height;
+
+  let W = g_fig_ctx.width;
+  let H = g_fig_ctx.height;
+
   let start_x = 150,
       start_y = 100;
 
@@ -843,6 +854,12 @@ function config_production_init() {
   let box_opt = {},
       box_subdiv_opt = {};
 
+  let font_style = {
+    "size": 18,
+    "family": "Libertine, Linux Libertine 0"
+  };
+
+
   //TODO make diviisions, region identification
   //and legend
 
@@ -850,19 +867,43 @@ function config_production_init() {
   cur_y = start_y + 30;
   mk_oe(cur_x, cur_y, x_len, y_len, dx, dy);
 
+  two.makeText("odd/even", cur_x - 80, cur_y - 100, font_style );
+
+
+  //---
+  //---
+
   cur_x = start_x + 4*dx - 30;
   cur_y = start_y + 30;
   mk_oo(cur_x, cur_y, x_len, y_len, dx, dy);
+
+  two.makeText("odd/odd", cur_x - 80, cur_y - 100, font_style );
+
+  let _vl = two.makeLine(cur_x-160, 0, cur_x-160, H);
+  _vl.linewidth = 4;
+  _vl.stroke = "rgba(160,160,160,1.0)";
+
+  //---
+  //---
 
   cur_x = start_x + 4*dx - 30;
   cur_y = start_y + dy;
   mk_eo(cur_x, cur_y, x_len, y_len, dx, dy);
 
-  // 
+  two.makeText("even/odd", cur_x - 80, cur_y - 100, font_style );
+
+  let _hl = two.makeLine(0, cur_y - 120, W, cur_y - 115);
+  _hl.linewidth = 4;
+  _hl.stroke = "rgba(160,160,160,1.0)";
+
+  //---
+  //---
+
   cur_x = start_x ;
   cur_y = start_y + dy;
   mk_ee(cur_x, cur_y, x_len, y_len, dx, dy);
 
+  two.makeText("even/even", cur_x - 80, cur_y - 100, font_style );
 
   two.update();
   return;

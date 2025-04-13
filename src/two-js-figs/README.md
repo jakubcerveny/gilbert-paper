@@ -33,3 +33,25 @@ To view the various figures, point your web page to one of the following pages:
 * [3D Eccentric Recursion Figure](http://localhost:8000/gilbert3d_eccentric.html)
 
 
+Overview
+===
+
+Each HTML page has a corresponding Javascript in the `js/` directory.
+
+Mathjax is used to render some LaTeX equations.
+I've had big problems getting `two.js` and Mathjax to play well together.
+The solution I came up with was to pre-render the LaTeX elements I wanted as
+SVG elements in the HTML and, after they've been loaded and rendered,
+use them in `two.js`.
+
+This has problems and some subscripts don't render right (at least on Firefox
+that I'm using), so I've had to hack together some post processing
+that traverses the SVG and does some selective rescaling.
+
+There's a `js/FileSaverjs` script that should allow for SVG export.
+I'm not sure what the status is on the export
+(as of this writing, the figures are still
+a work in progress) but there should be a `_dl` function that saves
+the appropriate SVG elements into a blob and then allows for an SVG file download.
+
+
