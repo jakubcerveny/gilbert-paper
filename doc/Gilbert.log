@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  13 APR 2025 13:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  14 APR 2025 03:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1565,32 +1565,23 @@ Underfull \hbox (badness 1515) in paragraph at lines 34--35
 ) (./02-Related-Work.tex) (./03-Algorithm.tex
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/n' will be
 (Font)              scaled to size 8.21255pt on input line 3.
-<gilbert3d_explode.pdf, id=19, 188.20313pt x 316.18124pt>
-File: gilbert3d_explode.pdf Graphic file (type pdf)
-<use gilbert3d_explode.pdf>
-Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 5.
-(pdftex.def)             Requested size: 214.48395pt x 360.35869pt.
-LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 8.21255pt on input line 6.
-LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
-(Font)              scaled to size 8.21255pt on input line 6.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<simple_hampath.pdf, id=20, 414.04688pt x 338.76563pt>
+<simple_hampath.pdf, id=19, 414.04688pt x 338.76563pt>
 File: simple_hampath.pdf Graphic file (type pdf)
 <use simple_hampath.pdf>
-Package pdftex.def Info: simple_hampath.pdf  used on input line 12.
+Package pdftex.def Info: simple_hampath.pdf  used on input line 5.
 (pdftex.def)             Requested size: 214.48395pt x 175.49231pt.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 8.21255pt on input line 7.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
+(Font)              scaled to size 8.21255pt on input line 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--14
-[][]\T1/LibertinusSans-TLF/b/n/8.21255 (+20) Figure 2:[] \T1/LibertinusSans-TLF
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
+[][]\T1/LibertinusSans-TLF/b/n/8.21255 (+20) Figure 1:[] \T1/LibertinusSans-TLF
 /m/n/8.21255 (+20) Il-lus-tra-tive ex-am-ples of Hamil-to-nian paths
  []
 
 
-Underfull \hbox (badness 3635) in paragraph at lines 14--14
+Underfull \hbox (badness 3635) in paragraph at lines 7--7
 \T1/LibertinusSans-TLF/m/n/8.21255 (+20) height/width that are even/even, even/
 odd and odd-/odd,
  []
@@ -1598,80 +1589,123 @@ odd and odd-/odd,
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+<gilbert3d_explode.pdf, id=20, 188.20313pt x 316.18124pt>
+File: gilbert3d_explode.pdf Graphic file (type pdf)
+<use gilbert3d_explode.pdf>
+Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 14.
+(pdftex.def)             Requested size: 214.48395pt x 360.35869pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 <gilbert3d_case.pdf, id=21, 752.8125pt x 526.96875pt>
 File: gilbert3d_case.pdf Graphic file (type pdf)
 <use gilbert3d_case.pdf>
-Package pdftex.def Info: gilbert3d_case.pdf  used on input line 21.
+Package pdftex.def Info: gilbert3d_case.pdf  used on input line 22.
 (pdftex.def)             Requested size: 452.9679pt x 317.08426pt.
 ) (./04-Results.tex) (./05-Conclusion.tex) (./Gilbert.bbl
 
 Package natbib Warning: Empty `thebibliography' environment on input line 15.
 
-) (./07-Appendix.tex)
-LaTeX Font Info:    Calculating math sizes for size <8.21255> on input line 95.
+) (./07-Appendix.tex
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 10.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 5.0pt on input line 10.
+LaTeX Font Info:    Calculating math sizes for size <8.21255> on input line 18.
 
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.10628> not available
-(Font)              size <5> substituted on input line 95.
+(Font)              size <5> substituted on input line 18.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.10628> not available
-(Font)              size <5> substituted on input line 95.
+(Font)              size <5> substituted on input line 18.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.10628> not available
-(Font)              size <5> substituted on input line 95.
+(Font)              size <5> substituted on input line 18.
 
 [1
 
 
  </usr/share/texlive/texmf-dist/tex/latex/doclicense/images/doclicense-CC-by-88
-x31.pdf>] [2
+x31.pdf>]
 
- <./gilbert3d_explode.pdf> <./simple_hampath.pdf
+LaTeX Warning: Reference `fig:eccentric' on page 2 undefined on input line 51.
 
-pdfTeX warning: pdflatex (file ./simple_hampath.pdf): PDF inclusion: multiple p
-dfs with page group included in a single page
->] [3 <./gilbert3d_case.pdf>] (./Gilbert.aux)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 71.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 71.
+
+[2 <./simple_hampath.pdf> <./gilbert3d_explode.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert3d_explode.pdf): PDF inclusion: multipl
+e pdfs with page group included in a single page
+>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 101.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 101.
+
+) [3
+
+ <./gilbert3d_case.pdf>] (./Gilbert.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.24995pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 41902 strings out of 480171
- 813323 string characters out of 5894489
- 1209611 words of memory out of 5000000
- 58804 multiletter control sequences out of 15000+600000
- 604940 words of font info for 237 fonts, out of 8000000 for 9000
+ 41970 strings out of 480171
+ 815431 string characters out of 5894489
+ 1211610 words of memory out of 5000000
+ 58813 multiletter control sequences out of 15000+600000
+ 619748 words of font info for 273 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 122i,20n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_mfadfl.e
-nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands1.enc}{
-/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{/usr/s
-hare/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_rlktsf.enc}{/usr/
-share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_nufysp.enc}{/usr
-/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_75t36g.enc}</us
-r/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-R
-egular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/FontA
-wesome5Free-Solid.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/liberti
-nus-type1/LibertinusSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/libertinus-type1/LibertinusSans-Regular.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/libertinus-type1/LibertinusSerif-Italic.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Regular.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb>
-Output written on Gilbert.pdf (3 pages, 1066331 bytes).
+ 122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_sfissr.e
+nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_mfadfl.
+enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands1.enc}
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{/usr/
+share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_rlktsf.enc}{/usr
+/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_nufysp.enc}{/us
+r/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_75t36g.enc}</u
+sr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Brands-
+Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/Font
+Awesome5Free-Solid.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libert
+inus-type1/LibertinusSans-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/libertinus-type1/LibertinusSans-Regular.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/libertinus-type1/LibertinusSerif-Bold.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSerif-Italic.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSer
+if-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmext
+ra/cmex9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/symbols/msbm10.pfb>
+Output written on Gilbert.pdf (3 pages, 1197870 bytes).
 PDF statistics:
- 892 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
- 78465 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 935 PDF objects out of 1000 (max. 8388607)
+ 20 named destinations out of 1000 (max. 500000)
+ 86689 words of extra memory for PDF output out of 89155 (max. 10000000)
 

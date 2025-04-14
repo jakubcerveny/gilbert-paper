@@ -1,2 +1,103 @@
 \section{Appendix}
 
+
+\subsection{Defect}
+
+Call the \textit{defect} a function $\lambda _ d : \mathbb{N}^d \mapsto \mathbb{N}$:
+
+$$
+\begin{array}{l}
+\lambda _ 2 (w,h) = \frac{ w \cdot h }{ \text{min}(w,h)^2 } \\
+\lambda _ 3 (w,h,d) = \frac{ w \cdot h \cdot d }{ \text{min}(w,h,d)^3 }
+\end{array}
+$$
+
+If there is a disjoint subdivision of a volume $V_0$ to $V_1  = ( V _ {0,0}, V _ {0,1}, \dots, V _ {0,m-1} )$,
+$V _ 0  = \cup _ {k} V _ {0,k}$,
+define the \textit{average defect} of the subdivided volume to be:
+
+$$
+\begin{array}{l}
+  \lambda _ {s} ( V _ 1 ) = \sum _ {k} \frac{ \text{Vol}(V _ {0,k}) }{ \text{Vol}( V _ 0 ) } \cdot \lambda( V _ {0,k} )
+\end{array}
+$$
+
+This weights the defect of each subdivided cuboid by its proportional volume.
+
+The defect gives us a coarse idea of how lopsided or \textit{eccentric} a cuboid region is.
+If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
+
+\subsection{Eccentric Split Threshold}
+
+Calculations in this section will justify what threshold value to pick of when to choose an
+eccentric split over a J-split.
+Our concern is to find a simple ratio of when each of $w$, $h$ or $d$ are considered
+"small enough" or "large enough", relative to the other dimensions, to split on.
+
+An enumeration of what conditions lead to an eccentric split are as follows:
+
+$$
+\begin{array}{l}
+  w >> h \sim d (1) \\
+  h >> w \sim d (2) \\
+  d >> w \sim h (3) \\
+  h << w \sim d (4) \\
+  w << h \sim d (5) \\
+  d << w \sim h (6) \\
+\end{array}
+$$
+
+
+A representation of the eccentric splits are enumerated in figure \ref{fig:eccentric}.
+The eccentric split differs from the J-split as it's only splitting in one or two
+dimensions, not the full three that the J-split would be doing.
+
+For each of the six cases, we want to know what relative difference in sizes should be used
+to determine when an eccentric split is used and how to subdivide the cuboids so as to make progress.
+
+Specifically, we want to find the ratio, $\sigma$ or $\eta$, of when one dimension is proportionally larger or smaller,
+respectively, than the others and the ratio, $\rho$, of where to choose the split point of subdivision.
+For simplicity, we might want to subdivide at the half way point ($\rho = \frac{1}{2}$) but as we
+will see, this might give lopsided sub-cuboid regions and using a better split point is desirable.
+
+In what follows, our goal is to choose a subdivision that will reduce the average defect.
+We assume that the start and end of the path lie in the $w$ dimension with the local start point at $(0,0,0)$
+and endpoint at $(w-1,0,0)$.
+
+Because we want to avoid adding unnecessary notches, we are forced split in the $w$ axis.
+We commit to always splitting the $w$ axis in two.
+If we want to subdivide into three cuboid regions, we also need to pick the split point in the other dimensionin another dimension
+
+\subsection{$w >> h \sim d$}
+
+Take $w = \sigma s$ and $h = d = s$.
+We commit to splitting the width dimension in half, subdividing the original volume into two equal volumes.
+
+The defect of the original volume is $\lambda(w,h,d) = \sigma$.
+
+If $w > 2h = 2s$, then $\text{min}(\frac{w}{2},h,d) = s$ and we have an average defect $\lambda_s(V_1) = \frac{\sigma}{2}$.
+Intuitively, this is validation that if the width is more than twice the length of the depth and height, we make progress
+if we split the width in half and recursively process each sub-cuboid.
+
+If $w < 2h$ but $\text{min}(\frac{w}{2},h,d) = \frac{w}{2}$,
+the average defect $\lambda_s(V_1) = 2 (\frac{1}{2}) \frac{ \frac{\sigma}{2} \cdot s^3 }{ (\frac{\sigma}{2} s)^3 } = \frac{4}{\sigma^2}$.
+We want to reduce the average defect relative to the original defect, so:
+
+$$
+\begin{array}{ll}
+  & \lambda_s (V_1) < \lambda(V_0) \\
+  \to & \frac{4}{\sigma^2} < \sigma \\
+  \to & \sigma > 4^{\frac{1}{3}} \\
+  \to & \frac{5}{3} > \sigma > 4^{\frac{1}{3}} = 1.58740\dots \\
+\end{array}
+$$
+
+We've chosen the constant $\frac{5}{3}$ as a simple fraction above $4^{\frac{1}{3}}$ to know when
+to split $w$.
+
+For this case, $\sigma = \frac{5}{3}$ and $\rho = \frac{1}{2}$.
+That is, we split the $w$ axis by half when the width axis exceed $\frac{5}{3}$ of both the depth, $d$, and height, $h$, dimension.
+
+\subsection{$h >> w \sim d$}
+
+
