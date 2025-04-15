@@ -1,11 +1,80 @@
 \section{Algorithm}
 
+\subsection{Overview}
+
+For both the 2D and 3D generalized Hilbert (Gilbert) curve, a template is chosen
+to recursively subdivide the area or volume.
+When recursively descending the sub-volumes, we will need to translate to
+a new reference point and rotate by increments of $(\pi/2)$ radians, maintaining
+cuboid regions that are axis-aligned.
+We use the convention of labelling $\alpha, \beta, \gamma \in \mathbb{Z}^3$ for
+the width-like, height-like and depth-like dimension vectors, respectively.
+
+Each of $\alpha$, $\beta$ and $\gamma$ start off as axis-aligned vectors of integral
+length and are only rotated by units of $(\pi/2)$ radians, remaining axis aligned throughout.
+$\alpha$, $\beta$ and $\gamma$ represent the dimensions of the sub-cuboid region
+and the local basis when tracing out a curve.
+
+The next sub-section discusses parity arguments for when a valid curve can be
+traced out in a sub-region.
+We then discuss the 2D Gilbert curve and end with the 3D Gilbert curve.
+
+When talking about the 2D Gilbert curves, we assume vectors are in $\mathbb{Z}^3$
+so they can be used in the more general 3D.
+
+%In what follows, a path is assumed to start at the local reference point $(0,0,0)$
+%and end at the far edge of the the width like dimension, $\alpha$ (e.g. $(w-1,0,0)$).
+
+\subsection{Valid Paths from Grid Parity}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{simple_hampath.pdf}
+  \caption{ Illustrative examples of Hamiltonian paths height/width that are even/even, even/odd and odd/odd, respectively,
+            when starting from the lower left hand corner }
+  \label{fig:exampleHampath}
+\end{figure}
+
+We consider a labelling of grid cell points in the volume with alternating 0 and 1 labels, representing the parity,
+with every axis-aligned single step move changing parity in the grid.
+%colors, starting with white at $p_s$ and changing color for every axis-aligned single step move.
+Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
+volume is odd or different parity if the volume is even.
+Figure \ref{fig:exampleHampath} illustrates this for starting poisition $(0,0)$ and volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
+with a red cross indicating a precluded endpoint.
+
+Without loss of generality, we will assume a curve starts from position $p_s=(0,0,0)$ and has proposed
+endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
+From this, we know that a Hamiltonian path is precluded if $( ((|\beta| \cdot |\gamma|) \bmod{2}) \not\equiv 1)$.
+That is, a Hamiltonian from $p_s$ to $p_e$ is precluded when $\alpha$ is odd and at least one of $\beta$ or $\gamma$ is even.
+
+We will show that a Hamiltonian path is possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when $|\alpha|$, $|\beta|$ and $|\gamma|$
+are all odd.
+
+%% TODO!!!!
+
+\subsection{2D Generalized Hilbert Function (Gilbert2D)}
+
+For the 2D Gilbert curve, a $C$-split template is used, highlighted in figure \ref{fig:csplit}.
+The $C$-split breaks the region into three sub-blocks, labelled $A$, $B$ and $C$, where the
+$A$ is chosen to be half the width like dimension, $\alpha$, and half the height like dimension, $\beta$,
+with a preference to make the height like dimension, $\beta$, of even length.
+
+Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
+Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
+can be ignored if a purely 2D curve is desired.
+The generalization to 3D allows the Gilbert2D function to be used unaltered when the
+3D Gilbert curve needs to trace out in-plane sub-curves.
+
+%The $A$ block is chosen to to have a preference for even height dimension
+
 
 \begin{algorithm}
   \caption{\hskip0.5em 2D Generalized Hilbert Function (Gilbert2D) } %($p$, $\alpha$, $\beta$) \\ \hskip3.0em $p, \alpha, \beta \in \mathbb{Z}^3$ }
   \label{alg:gilbert2d}
   \begin{algorithmic}
 
+    \State \textit{\# $p, \alpha, \beta \in \mathbb{Z}^3$}
     \Function{Gilbert2D}{$p$, $\alpha$, $\beta$}
       \State
       \State $\alpha_2, \beta_2  = (\alpha // 2), (\beta // 2)$
@@ -44,8 +113,8 @@
   \end{algorithmic}
 \end{algorithm}
 
-\floatname{algorithm}{Procedure}
 
+\floatname{algorithm}{Procedure}
 \begin{algorithm}
   \caption{ \hskip0.5em $S_0$-Split function (eccentric split) }
   \label{alg:procS0}
@@ -64,8 +133,10 @@
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
+\floatname{algorithm}{Algorithm}
 
 
+\floatname{algorithm}{Procedure}
 \begin{algorithm}
   \caption{ \hskip0.5em $S_1$-Split functions (eccentric split) }
   \label{alg:procS1}
@@ -89,8 +160,10 @@
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
+\floatname{algorithm}{Algorithm}
 
 
+\floatname{algorithm}{Procedure}
 \begin{algorithm}
   \caption{ \hskip0.5em $S_2$-Split function (eccentric split) }
   \label{alg:procS2}
@@ -114,8 +187,10 @@
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
+\floatname{algorithm}{Algorithm}
 
 
+\floatname{algorithm}{Procedure}
 \begin{algorithm}
   \caption{ \hskip0.5em $J_0$-Split function }
   \label{alg:procJ0}
@@ -143,8 +218,10 @@
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
+\floatname{algorithm}{Algorithm}
 
 
+\floatname{algorithm}{Procedure}
 \begin{algorithm}
   \caption{ \hskip0.5em $J_1$-Split function }
   \label{alg:procJ2}
@@ -172,8 +249,10 @@
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
+\floatname{algorithm}{Algorithm}
 
 
+\floatname{algorithm}{Procedure}
 \begin{algorithm}
   \caption{ \hskip0.5em $J_2$-Split function }
   \label{alg:procJ2}
@@ -201,13 +280,31 @@
     \EndFunction
   \end{algorithmic}
 \end{algorithm}
-
 \floatname{algorithm}{Algorithm}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
+  \caption{ The $J_0$-split subdivision, representing the main subdivision of the bulk recursion for the 3D Gilbert curve case. }
+  \label{fig:gilbert3DJSplit}
+\end{figure}
+
+
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{gilbert3d_case.pdf}
+  \caption{ Bulk recursion J-split atlas for the 3D Gilbert algorithm }
+  \label{fig:gilbert3DCase}
+\end{figure*}
+
+
 
 \begin{algorithm}
   \caption{ \hskip0.5em 3D Generalized Hilbert Function (Gilbert3D) } %($p$, $\alpha$, $\beta$, $\gamma$) \\ \hskip3.0em $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$ }
   \label{alg:gilbert3d}
   \begin{algorithmic}
+    \State \textit{\# $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$}
     \Function{Gilbert3D}{$p$, $\alpha$, $\beta$, $\gamma$}
 
     \State
@@ -245,30 +342,5 @@
 
   \end{algorithmic}
 \end{algorithm}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{simple_hampath.pdf}
-  \caption{ Illustrative examples of Hamiltonian paths height/width that are even/even, even/odd and odd/odd, respectively,
-            when starting from the lower left hand corner }
-  \label{fig:exampleHampath}
-\end{figure}
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
-  \caption{ The J-split subdivision, representing the main subdivision of the build recursion for the 3D Gilbert curve case }
-  \label{fig:gilbert3DJSplit}
-\end{figure}
-
-
-\begin{figure*}[ht]
-  \centering
-  \includegraphics[width=\textwidth]{gilbert3d_case.pdf}
-  \caption{ Bulk recursion J-split atlas for the 3D Gilbert algorithm }
-  \label{fig:gilbert3DCase}
-\end{figure*}
-
 
 
