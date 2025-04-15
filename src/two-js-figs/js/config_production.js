@@ -157,8 +157,10 @@ function mk_checkerboard_path(opt) {
     //"rgba(152,119,182,0.5)",
     //"rgba(228,220,242,0.5)"
 
-    "rgba(152,119,182,0.375)",
-    "rgba(228,220,242,0.375)"
+    //"rgba(152,119,182,0.375)",
+    //"rgba(228,220,242,0.375)"
+    "rgb(152,119,182)",
+    "rgb(228,220,242)"
 
     //"rgba(200,255,200,0.7)",
     //"rgba(255,200,200,0.9)"
@@ -179,8 +181,12 @@ function mk_checkerboard_path(opt) {
       let y = sy + iy*y_len;
       let rect = new Two.Rectangle( x,y, x_len, y_len );
       rect.linewidth = 0.5;
-      rect.stroke = "rgba(0,0,0,0.4)";
+      //rect.stroke = "rgba(0,0,0,0.4)";
+      rect.stroke = "rgb(0,0,0)";
       rect.fill = color[ parity ];
+
+      rect.opacity = 0.375;
+
       two.add(rect);
 
     }
@@ -274,6 +280,7 @@ function mk_checkerboard_path(opt) {
       co  = "rgba(190,0,41,1)";
 
       co = "rgba(252,37,3,0.95)"; //!
+      co = "rgb(252,37,3)"; //!
 
       let lw = 4.5;
 
@@ -328,8 +335,10 @@ function mkbox(opt) {
     "family": "Libertine, Linux Libertine 0"
   };
 
-  let path_color = "rgba(80,80,140,1)";
-  let path_color_p = "rgba(120,180,180,1)";
+  //let path_color = "rgba(80,80,140,1)";
+  //let path_color_p = "rgba(120,180,180,1)";
+  let path_color = "rgb(80,80,140)";
+  let path_color_p = "rgb(120,180,180)";
 
   //---
   let square_size = x_len / opt.nx;
@@ -343,7 +352,8 @@ function mkbox(opt) {
 
 
   let box = two.makeRectangle(cx,cy, x_len,y_len);
-  box.fill = "rgba(0,0,0,0)";
+  //box.fill = "rgba(0,0,0,0)";
+  box.noFill();
 
   let fo_off_x = -2*font_offset[0] - 1.5*opt.text_h.length;
 
@@ -365,12 +375,14 @@ function mkbox(opt) {
 
     let cross_0 = two.makeLine( lc[0] - radius, lc[1] + radius, lc[0] + radius, lc[1] - radius );
     cross_0.linewidth = 1.5;
-    cross_0.stroke = "rgba(252,37,3,0.95)";
+    //cross_0.stroke = "rgba(252,37,3,0.95)";
+    cross_0.stroke = "rgb(252,37,3)";
     cross_0.join = "round";
 
     let cross_1 = two.makeLine( lc[0] + radius, lc[1] + radius, lc[0] -radius, lc[1] - radius );
     cross_1.linewidth = 1.5;
-    cross_1.stroke = "rgba(252,37,3,0.95)";
+    //cross_1.stroke = "rgba(252,37,3,0.95)";
+    cross_1.stroke = "rgb(252,37,3)";
     cross_1.join = "round";
 
   }
@@ -409,8 +421,11 @@ function mkbox_subdiv(opt) {
     "family": "Libertine, Linux Libertine 0"
   };
 
-  let path_color = "rgba(80,80,140,1)";
-  let path_color_p = "rgba(120,180,180,1)";
+  //let path_color = "rgba(80,80,140,1)";
+  //let path_color_p = "rgba(120,180,180,1)";
+
+  let path_color = "rgb(80,80,140)";
+  let path_color_p = "rgb(120,180,180)";
 
 
 
@@ -427,7 +442,8 @@ function mkbox_subdiv(opt) {
 
 
   let box = two.makeRectangle(cx,cy, x_len,y_len);
-  box.fill = "rgba(0,0,0,0)";
+  //box.fill = "rgba(0,0,0,0)";
+  box.noFill();
 
 
   let dh = 0;
@@ -441,14 +457,18 @@ function mkbox_subdiv(opt) {
   let line_hor = two.makeLine( cx - (x_len/2), cy + dh,
                                cx + (x_len/2), cy + dh);
   line_hor.linewidth = 3;
-  line_hor.stroke = "rgba(20,20,20,1)";
-  line_hor.fill = "rgba(0,0,0,0)";
+  //line_hor.stroke = "rgba(20,20,20,1)";
+  line_hor.stroke = "rgb(20,20,20)";
+  //line_hor.fill = "rgba(0,0,0,0)";
+  line_hor.noFill();
 
   let line_ver = two.makeLine( cx + dw, cy + dh,
                                cx + dw, cy + (y_len/2) );
   line_ver.linewidth = 3;
-  line_ver.stroke = "rgba(20,20,20,1)";
-  line_ver.fill = "rgba(0,0,0,0)";
+  //line_ver.stroke = "rgba(20,20,20,1)";
+  //line_ver.fill = "rgba(0,0,0,0)";
+  line_ver.stroke = "rgb(20,20,20)";
+  line_ver.noFill();
 
   let fo_off_x = [
     - 2*font_offset[0] - (1.5*opt.text_h[0].length),
@@ -881,7 +901,8 @@ function config_production_init() {
 
   let _vl = two.makeLine(cur_x-160, 0, cur_x-160, H);
   _vl.linewidth = 4;
-  _vl.stroke = "rgba(160,160,160,1.0)";
+  //_vl.stroke = "rgba(160,160,160,1.0)";
+  _vl.stroke = "rgb(160,160,160)";
 
   //---
   //---
@@ -894,7 +915,8 @@ function config_production_init() {
 
   let _hl = two.makeLine(0, cur_y - 120, W, cur_y - 115);
   _hl.linewidth = 4;
-  _hl.stroke = "rgba(160,160,160,1.0)";
+  //_hl.stroke = "rgba(160,160,160,1.0)";
+  _hl.stroke = "rgb(160,160,160)";
 
   //---
   //---

@@ -53,9 +53,26 @@ are all odd.
 
 %% TODO!!!!
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            _ ____              __ ___       __
+%     ____ _(_) / /_  ___  _____/ /|__ \ ____/ /
+%    / __ `/ / / __ \/ _ \/ ___/ __/_/ // __  / 
+%   / /_/ / / / /_/ /  __/ /  / /_/ __// /_/ /  
+%   \__, /_/_/_.___/\___/_/   \__/____/\__,_/   
+%  /____/                                       
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \subsection{2D Generalized Hilbert Function (Gilbert2D)}
 
-For the 2D Gilbert curve, a $C$-split template is used, highlighted in figure \ref{fig:csplit}.
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{config_production.pdf}
+  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
+  \label{fig:production2d}
+\end{figure*}
+
+For the 2D Gilbert curve, a $C$-split template is used, highlighted in figure \ref{fig:production2d}.
 The $C$-split breaks the region into three sub-blocks, labelled $A$, $B$ and $C$, where the
 $A$ is chosen to be half the width like dimension, $\alpha$, and half the height like dimension, $\beta$,
 with a preference to make the height like dimension, $\beta$, of even length.
@@ -113,6 +130,31 @@ The generalization to 3D allows the Gilbert2D function to be used unaltered when
   \end{algorithmic}
 \end{algorithm}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            _ ____              __ _____     __
+%     ____ _(_) / /_  ___  _____/ /|__  /____/ /
+%    / __ `/ / / __ \/ _ \/ ___/ __//_ </ __  / 
+%   / /_/ / / / /_/ /  __/ /  / /____/ / /_/ /  
+%   \__, /_/_/_.___/\___/_/   \__/____/\__,_/   
+%  /____/                             
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{3D Generalized Hilbert Function (Gilbert3D)}
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{gilbert3d_case.pdf}
+  \caption{ Bulk recursion J-split atlas for the 3D Gilbert algorithm }
+  \label{fig:gilbert3DCase}
+\end{figure*}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
+  \caption{ The $J_0$-split subdivision, representing the main subdivision of the bulk recursion for the 3D Gilbert curve case. }
+  \label{fig:gilbert3DJSplit}
+\end{figure}
 
 \floatname{algorithm}{Procedure}
 \begin{algorithm}
@@ -281,23 +323,6 @@ The generalization to 3D allows the Gilbert2D function to be used unaltered when
   \end{algorithmic}
 \end{algorithm}
 \floatname{algorithm}{Algorithm}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
-  \caption{ The $J_0$-split subdivision, representing the main subdivision of the bulk recursion for the 3D Gilbert curve case. }
-  \label{fig:gilbert3DJSplit}
-\end{figure}
-
-
-
-\begin{figure*}[ht]
-  \centering
-  \includegraphics[width=\textwidth]{gilbert3d_case.pdf}
-  \caption{ Bulk recursion J-split atlas for the 3D Gilbert algorithm }
-  \label{fig:gilbert3DCase}
-\end{figure*}
-
 
 
 \begin{algorithm}
