@@ -1,9 +1,6 @@
 // LICENSE: CC0
 //
 
-
-
-
 var CANVAS_ID = 'gilbert2d_mainsubdiv';
 var g_fig_ctx = {};
 
@@ -13,13 +10,11 @@ var LINE_COLOR = "rgb(81,166,10)";
 var BEG_COLOR = "rgb(80,80,140)";
 var END_COLOR = "rgb(120,180,180)";
 
-
 function _dl() {
   var ele = document.getElementById(CANVAS_ID);
   var b = new Blob([ ele.innerHTML ]);
   saveAs(b, "fig.svg");
 }
-
 
 function makeTwoAnchor(_pnt) {
   let pnt = [];
@@ -28,7 +23,6 @@ function makeTwoAnchor(_pnt) {
   }
   return pnt;
 }
-
 
 // so very hacky
 // somehow we managed to shoehorn
@@ -57,7 +51,6 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
   sgr.scale.x =  s;
   sgr.scale.y = -s;
 
-  /*
   // rescale subscript HACK
   //
   if (_id.slice(0,2) == "m_") {
@@ -91,7 +84,6 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
     }
 
   }
-  */
 
   //yep, needed, so we can then get the make element
   //
@@ -382,8 +374,14 @@ function gilbert2d_mainsubdiv() {
   mathjax2twojs("mj_a", s0_x+_w/2, s0_y+30,s, 1);
 
   mathjax2twojs("mj_levelnpp", s1_x+_w/2-50, s1_y-_h-15, s, 1);
-  mathjax2twojs("mj_b2", s1_x-45, s1_y-_h/2+50, s, 1);
-  mathjax2twojs("mj_a2", s1_x+_w/4-20, s1_y+30,s, 1);
+  mathjax2twojs("mj_b2", s1_x-35, s1_y-_h/2+50, s);
+  mathjax2twojs("mj_a2", s1_x+_w/4-10, s1_y+30,s);
+
+
+  two.makeText( "A", s1_x + _w/4 + 30, s1_y - _h/8 - 30 , font_style );
+  two.makeText( "C", s1_x + (3*_w/4) - 20, s1_y - _h/8 - 30 , font_style );
+
+  two.makeText( "B", s1_x + _w/2, s1_y - (7*_h/8) + 10 , font_style );
 
   //----
   // fin

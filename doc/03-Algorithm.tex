@@ -27,6 +27,36 @@ so they can be used in the more general 3D.
 
 \subsection{Valid Paths from Grid Parity}
 
+The feasibility of determining whether there exists a Hamiltonian path in a rectangular cuboid
+grid region can be accomplished through parity arguments.
+Label grid cell points in a volume as 0 or 1,
+alternativing between labels with every axis-aligned single step move.
+Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
+volume is odd, or different parity if the volume is even.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}[t]{cr|cc}
+    \multicolumn{2}{c}{ \multirow{2}{*}{Path Possible} } & \multicolumn{2}{c}{Volume} \\
+    & & \textit{even} & \textit{odd} \\
+    \hline
+			%\multirow{2}{*}{$|\alpha| \bmod 2$} & \textit{even} & Yes & Yes \\
+      \multirow{2}{*}{ $|\alpha|$ } & \textit{even} & Yes & Yes \\
+       & \textit{odd} & \textbf{No} & Yes \\
+     \hline
+  \end{tabular}
+  \caption{ Table showing when a Hamiltonian cycle is possbile. Here, $|\alpha|$ is the absolute difference in start and end position of the path which
+            coincides with one of the axis aligned side length of the cuboid volume. A Hamiltonian path is not possible on only in the case
+            when $|\alpha|$ is odd and the volume is even. }
+  \label{table:pathTable}
+\end{table}
+
+
+For a path starting at $(0,0,0)$ and ending at $|\alpha| \in \mathbb{N}$ away in one of the axis-aligned dimensions,
+then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
+Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
+where a red cross indicating a precluded endpoint.
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{simple_hampath.pdf}
@@ -35,23 +65,16 @@ so they can be used in the more general 3D.
   \label{fig:exampleHampath}
 \end{figure}
 
-We consider a labeling of grid cell points in the volume with alternating 0 and 1 labels, representing the parity,
-with every axis-aligned single step move changing parity in the grid.
-%colors, starting with white at $p_s$ and changing color for every axis-aligned single step move.
-Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
-volume is odd or different parity if the volume is even.
-Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ and volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
-with a red cross indicating a precluded endpoint.
-
 Without loss of generality, we will assume a curve starts from position $p_s=(0,0,0)$ and has proposed
 endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
-From this, we know that a Hamiltonian path is precluded if $( ((|\beta| \cdot |\gamma|) \bmod{2}) \not\equiv 1)$.
-That is, a Hamiltonian from $p_s$ to $p_e$ is precluded when $\alpha$ is odd and at least one of $\beta$ or $\gamma$ is even.
+We know a Hamiltonian path is precluded if $(|\beta| \cdot |\gamma| \bmod{2} \not\equiv 1)$.
+That is, a Hamiltonian from $p_s$ to $p_e$ is precluded when $\alpha$ is odd and at least one of $|\beta|$ or $|\gamma|$ is even.
 
 We will show that a Hamiltonian path is possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when $|\alpha|$, $|\beta|$ and $|\gamma|$
 are all odd.
 
-%% TODO!!!!
+\textbf{TODO!!!}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            _ ____              __ ___       __
@@ -65,6 +88,16 @@ are all odd.
 
 \subsection{2D Generalized Hilbert Function (Gilbert2D)}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert2d_mainsubdiv.pdf}
+  \caption{ For the 2D Gilbert curve, the main rectangle is subdivided into three sub regions, making sure their paths connect
+            and preferring even side lengths for the first rectangular subdivision.
+            Partitioning the rectangle in this way is what we call a $U$-split.  }
+  \label{fig:main2dsubdiv}
+\end{figure}
+
+
 \begin{figure*}[ht]
   \centering
   \includegraphics[width=\linewidth]{config_production.pdf}
@@ -72,10 +105,12 @@ are all odd.
   \label{fig:production2d}
 \end{figure*}
 
-For the 2D Gilbert curve, a $C$-split template is used, highlighted in figure \ref{fig:production2d}.
-The $C$-split breaks the region into three sub-blocks, labeled $A$, $B$ and $C$, where the
+For the 2D Gilbert curve, a $U$-split template is used, highlighted in figure \ref{fig:main2dsubdiv}.
+The $U$-split breaks the region into three sub-blocks, labeled $A$, $B$ and $C$, where the
 $A$ is chosen to be half the width like dimension, $\alpha$, and half the height like dimension, $\beta$,
 with a preference to make the height like dimension, $\beta$, of even length.
+
+\ref{fig:production2d}.
 
 Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
 Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
