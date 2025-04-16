@@ -367,6 +367,15 @@ function mk_checkerboard_path(opt) {
 function simple_hampath_init() {
   let two = g_fig_ctx.two;
 
+  let y_extra = 20;
+  y_extra = 0;
+
+  let fs = 18;
+  let font_style = {
+    "size": fs,
+    "family": "Libertine, Linux Libertine 0"
+  };
+
   var ele = document.getElementById("simple_hampath_canvas");
   two.appendTo(ele);
 
@@ -390,6 +399,9 @@ function simple_hampath_init() {
 
   //cur_x += dx;
   cur_x = sx;
+
+  //two.makeText("i)", cur_x - square_size/2-10, cur_y-square_size/2 - 10, font_style, font_style);
+
   let opt_2x2_ul = {
     "sx": cur_x, "sy": cur_y,
     "nx": 2, "ny": 2,
@@ -417,6 +429,11 @@ function simple_hampath_init() {
     //"path": [ [0,1], [0,0], [1,0], [1,1] ]
   };
   mk_checkerboard_path(opt_2x2_np);
+
+
+
+
+
   //cur_x += dx - square_size;
 
   /*
@@ -457,7 +474,11 @@ function simple_hampath_init() {
 
 
   cur_x = sx;
-  cur_y += dy - (3*square_size/2);
+  cur_y += dy - (3*square_size/2) + y_extra;
+
+  //two.makeText("ii)", cur_x - square_size/2-10, cur_y-square_size/2 - 10, font_style, font_style);
+
+
   let opt_3x2_ur = {
     "sx": cur_x, "sy": cur_y,
     "nx": 3, "ny": 2,
@@ -490,7 +511,10 @@ function simple_hampath_init() {
 
 
   cur_x = sx;
-  cur_y += dy - (3*square_size/2);
+  cur_y += dy - (3*square_size/2) + y_extra;
+
+  //two.makeText("iii)", cur_x - square_size/2-10, cur_y-square_size/2 - 10, font_style, font_style);
+
   let opt_3x3_ur = {
     "sx": cur_x, "sy": cur_y,
     "nx": 3, "ny": 3,
@@ -527,6 +551,7 @@ function simple_hampath_init() {
   };
   mk_checkerboard_path(opt_3x3_lr);
 
+  
 
 }
 
