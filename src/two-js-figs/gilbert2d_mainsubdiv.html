@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gilbert2D Main Subdivision</title>
+
+
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, 
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+  };
+  </script>
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/gilbert2d_mainsubdiv.js'></script>
+
+</head>
+
+<body>
+
+  <div id='mj_leveln' style='display:none;'>$\text{level } n$</div>
+  <div id='mj_levelnpp' style='display:none;'>$\text{level } n+1$</div>
+  <!--
+  <div id='mj_n' style='display:none;'>$n$</div>
+  <div id='mj_npp' style='display:none;'>$n+1$</div>
+  -->
+  <div id='mj_a' style='display:none;'>$a$</div>
+  <div id='mj_b' style='display:none;'>$b$</div>
+  <div id='mj_a2' style='display:none;'>$a/2$</div>
+  <div id='mj_b2' style='display:none;'>$b/2$</div>
+  <div id='mj_a2_' style='display:none;'>$\frac{a}{2}$</div>
+  <div id='mj_b2_' style='display:none;'>$\frac{b}{2}$</div>
+
+
+  <div id='gilbert2d_mainsubdiv' style='width:800px;height:600px;'> </div>
+</body>
+
+<script>
+  function mathjax_ready() {
+    gilbert2d_mainsubdiv();
+  }
+</script>
+<html>
+

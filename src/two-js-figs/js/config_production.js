@@ -501,12 +501,14 @@ function mkbox_subdiv(opt) {
 
     let cross_0 = two.makeLine( lc[0] - radius, lc[1] + radius, lc[0] + radius, lc[1] - radius );
     cross_0.linewidth = 1.5;
-    cross_0.stroke = "rgba(252,37,3,0.95)";
+    //cross_0.stroke = "rgba(252,37,3,0.95)";
+    cross_0.stroke = "rgb(252,37,3)";
     cross_0.join = "round";
 
     let cross_1 = two.makeLine( lc[0] + radius, lc[1] + radius, lc[0] -radius, lc[1] - radius );
     cross_1.linewidth = 1.5;
-    cross_1.stroke = "rgba(252,37,3,0.95)";
+    //cross_1.stroke = "rgba(252,37,3,0.95)";
+    cross_1.stroke = "rgb(252,37,3)";
     cross_1.join = "round";
 
   }

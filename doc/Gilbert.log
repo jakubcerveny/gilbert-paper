@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  15 APR 2025 02:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  16 APR 2025 02:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1398,9 +1398,9 @@ Package caption Info: End \AtBeginDocument code.
 \openout7 = `Gilbert.abs'.
 
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 15.55197pt on input line 76.
+(Font)              scaled to size 15.55197pt on input line 78.
 LaTeX Font Info:    Trying to load font information for T1+LibertinusSans-TLF o
-n input line 76.
+n input line 78.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/T1LibertinusSans-TLF.
 fd
@@ -1408,18 +1408,18 @@ File: T1LibertinusSans-TLF.fd 2020/08/22 (autoinst) Font definitions for T1/Lib
 ertinusSans-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/n' will be
-(Font)              scaled to size 15.55197pt on input line 76.
+(Font)              scaled to size 15.55197pt on input line 78.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LibertinusSans-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
-(Font)              scaled to size 15.55197pt on input line 76.
+(Font)              scaled to size 15.55197pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 76.
+(Font)              scaled to size 9.0pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 10.79997pt on input line 76.
-LaTeX Font Info:    Calculating math sizes for size <10.79997> on input line 76
+(Font)              scaled to size 10.79997pt on input line 78.
+LaTeX Font Info:    Calculating math sizes for size <10.79997> on input line 78
 .
 <<ot1.cmap>> (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
@@ -1427,20 +1427,20 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.55994> not available
-(Font)              size <8> substituted on input line 76.
+(Font)              size <8> substituted on input line 78.
 
 <<oml.cmap>>
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.55994> not available
-(Font)              size <8> substituted on input line 76.
+(Font)              size <8> substituted on input line 78.
 
 <<oms.cmap>>
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.55994> not available
-(Font)              size <8> substituted on input line 76.
+(Font)              size <8> substituted on input line 78.
 
 <<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 76.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
 
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1448,7 +1448,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 76.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1458,79 +1458,77 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 7.55994pt on input line 76.
-LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
-(Font)              scaled to size 7.55994pt on input line 76.
+(Font)              scaled to size 7.55994pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 12.96002pt on input line 76.
+(Font)              scaled to size 12.96002pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 7.50009pt on input line 76.
+(Font)              scaled to size 7.50009pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
-(Font)              scaled to size 7.50009pt on input line 76.
+(Font)              scaled to size 7.50009pt on input line 78.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 76.
+(Font)              scaled to size 9.0pt on input line 78.
  (./Gilbert.abs)
-LaTeX Font Info:    Calculating math sizes for size <7.50009> on input line 76.
+LaTeX Font Info:    Calculating math sizes for size <7.50009> on input line 78.
 
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.50009> not available
-(Font)              size <8> substituted on input line 76.
+(Font)              size <8> substituted on input line 78.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75005> not available
-(Font)              size <5> substituted on input line 76.
+(Font)              size <5> substituted on input line 78.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.50009> not available
-(Font)              size <8> substituted on input line 76.
+(Font)              size <8> substituted on input line 78.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75005> not available
-(Font)              size <5> substituted on input line 76.
+(Font)              size <5> substituted on input line 78.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.50009> not available
-(Font)              size <8> substituted on input line 76.
+(Font)              size <8> substituted on input line 78.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75005> not available
-(Font)              size <5> substituted on input line 76.
+(Font)              size <5> substituted on input line 78.
 
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 5.25003pt on input line 76.
+(Font)              scaled to size 5.25003pt on input line 78.
 
-Package hyperref Warning: Ignoring empty anchor on input line 76.
+Package hyperref Warning: Ignoring empty anchor on input line 78.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 76.
+Package hyperref Warning: Ignoring empty anchor on input line 78.
 
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
-nput line 76.
+nput line 78.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd)
 
-Package hyperref Warning: Ignoring empty anchor on input line 76.
+Package hyperref Warning: Ignoring empty anchor on input line 78.
 
 LaTeX Font Info:    Trying to load font information for U+fontawesomebrands1 on
- input line 76.
+ input line 78.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomebrands1.fd)
 LaTeX Font Info:    Font shape `U/fontawesomebrands1/solid/n' in size <7.50009>
  not available
 (Font)              Font shape `U/fontawesomebrands1/regular/n' tried instead o
-n input line 76.
+n input line 78.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 76.
+Package hyperref Warning: Ignoring empty anchor on input line 78.
 
 <doclicense-CC-by-88x31.pdf, id=18, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-88x31.pdf  used on input line 76.
+Package pdftex.def Info: doclicense-CC-by-88x31.pdf  used on input line 78.
 (pdftex.def)             Requested size: 32.37479pt x 11.33087pt.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 4.5pt on input line 76.
+(Font)              scaled to size 4.5pt on input line 78.
 LaTeX Font Info:    Trying to load font information for TS1+LibertinusSerif-TLF
- on input line 76.
+ on input line 78.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/TS1LibertinusSerif-TL
 F.fd
@@ -1538,13 +1536,13 @@ File: TS1LibertinusSerif-TLF.fd 2020/08/22 (autoinst) Font definitions for TS1/
 LibertinusSerif-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 4.5pt on input line 76.
+(Font)              scaled to size 4.5pt on input line 78.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LibertinusSerif-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (3.75005pt too wide) in paragraph at lines 76--76
+Overfull \hbox (3.75005pt too wide) in paragraph at lines 78--78
 [][][][]||$[]$ $[]$|  
  []
 
@@ -1556,7 +1554,7 @@ LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
 (Font)              scaled to size 10.79997pt on input line 3.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
-(Font)              scaled to size 9.0pt on input line 7.
+(Font)              scaled to size 9.0pt on input line 5.
 LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/m/n' will be
 (Font)              scaled to size 9.0pt on input line 12.
 
@@ -1680,11 +1678,11 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42077 strings out of 480171
- 817762 string characters out of 5894489
+ 42051 strings out of 480171
+ 816878 string characters out of 5894489
  1235610 words of memory out of 5000000
- 58870 multiletter control sequences out of 15000+600000
- 626310 words of font info for 294 fonts, out of 8000000 for 9000
+ 58868 multiletter control sequences out of 15000+600000
+ 618992 words of font info for 279 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_cb34qf.e
@@ -1716,9 +1714,9 @@ ublic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on Gilbert.pdf (6 pages, 1261919 bytes).
+Output written on Gilbert.pdf (6 pages, 1261608 bytes).
 PDF statistics:
  1002 PDF objects out of 1200 (max. 8388607)
  36 named destinations out of 1000 (max. 500000)
- 90822 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 86726 words of extra memory for PDF output out of 89155 (max. 10000000)
 

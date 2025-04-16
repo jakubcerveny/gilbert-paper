@@ -1,18 +1,20 @@
-The two and three dimensional Hilbert curves are fractal space filling curve that
+The two and three dimensional Hilbert curves are fractal space filling curves that
 map the unit interval to the unit square or unit cube.
 Hilbert curves preserve locality, keeping distance from the unit interval
-in their respective higher dimensional embedding and, for this reason,
-find applications in scene rendering to job scheduling.
+to their respective higher dimensional embeddings.
 Finite approximations of the Hilbert curve can be constructed in stages
-by stopping the recursive construction at a specified depth.
+by stopping the recursive construction at a specified depth, providing locality
+from a discrete array of points to points in the embedded dimension.
+The locality property of the Hilbert curve can help with caching optimizations based on order
+and finds uses as a companion method in applications ranging from job scheduling
+to scene rendering.
 One limitation of the Hilbert curve approximation construction is that the regions need
-to be exact powers of two, making it difficult to work in many real world
+to be exact powers of two, making it difficult to work with in many real world
 scenarios.
 In this paper, we present the Gilbert curve,
-a conceptually straight forward generalization of the Hilbert curve
+a conceptually straight forward generalization of the Hilbert curve,
 that works on arbitrary rectangular regions.
 The construction provides reasonable worst case run-time guarantees for random
-access forward and back lookup from the unit interval to the embedded 2 or 3 dimensional
-space.
+access lookups for both two and three dimensions.
 We also provide comparisons to other Hilbert curve generalization methods
 and investigate overall quality metrics of the Gilbert curve construction.

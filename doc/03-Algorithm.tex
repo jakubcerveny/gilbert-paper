@@ -7,7 +7,7 @@ to recursively subdivide the area or volume.
 When recursively descending the sub-volumes, we will need to translate to
 a new reference point and rotate by increments of $(\pi/2)$ radians, maintaining
 cuboid regions that are axis-aligned.
-We use the convention of labelling $\alpha, \beta, \gamma \in \mathbb{Z}^3$ for
+We use the convention of labeling $\alpha, \beta, \gamma \in \mathbb{Z}^3$ for
 the width-like, height-like and depth-like dimension vectors, respectively.
 
 Each of $\alpha$, $\beta$ and $\gamma$ start off as axis-aligned vectors of integral
@@ -35,12 +35,12 @@ so they can be used in the more general 3D.
   \label{fig:exampleHampath}
 \end{figure}
 
-We consider a labelling of grid cell points in the volume with alternating 0 and 1 labels, representing the parity,
+We consider a labeling of grid cell points in the volume with alternating 0 and 1 labels, representing the parity,
 with every axis-aligned single step move changing parity in the grid.
 %colors, starting with white at $p_s$ and changing color for every axis-aligned single step move.
 Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
 volume is odd or different parity if the volume is even.
-Figure \ref{fig:exampleHampath} illustrates this for starting poisition $(0,0)$ and volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
+Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ and volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
 with a red cross indicating a precluded endpoint.
 
 Without loss of generality, we will assume a curve starts from position $p_s=(0,0,0)$ and has proposed
@@ -73,7 +73,7 @@ are all odd.
 \end{figure*}
 
 For the 2D Gilbert curve, a $C$-split template is used, highlighted in figure \ref{fig:production2d}.
-The $C$-split breaks the region into three sub-blocks, labelled $A$, $B$ and $C$, where the
+The $C$-split breaks the region into three sub-blocks, labeled $A$, $B$ and $C$, where the
 $A$ is chosen to be half the width like dimension, $\alpha$, and half the height like dimension, $\beta$,
 with a preference to make the height like dimension, $\beta$, of even length.
 

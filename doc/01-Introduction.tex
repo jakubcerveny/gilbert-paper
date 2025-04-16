@@ -2,17 +2,17 @@
 
 \subsection{Overview}
 
-We present a generalized Hilbert curve for 2D and 3D curves
+We present the \textit{Gilbert curve}, a generalized Hilbert curve for 2D and 3D,
 that works on arbitrary rectangular regions.
-We call our realization of the generalized Hilbert curve a \textit{Gilbert curve}.
+%We call our realization of the generalized Hilbert curve a \textit{Gilbert curve}.
 
 An overview of the benefits of the Gilbert curve are that it is:
 
 \begin{itemize}
   \item Valid on arbitrary rectangular regions
   \item Equivalent to the Hilbert curve when dimensions are exact powers of 2
-  \item Efficient at random access lookup
-  \item Algorithmically conceptually straight forward
+  \item Efficient at random access lookups ($O(\lg N)$)
+  \item A conceptually straight forward algorithm
   \item Able to realize curves without notches unnecessarily and limits the resulting curve
         to a single notch when forced
   \item Similar in measures of locality to the Hilbert curve
@@ -21,8 +21,8 @@ An overview of the benefits of the Gilbert curve are that it is:
 Some drawbacks are that:
 
 \begin{itemize}
-  \item Our implementation involves a recursive solution for random access lookup
-        which might be too slow for applications that require better than $O( \lg N)$
+  \item Our implementation is recursive,
+        which may undesirable for some applications that require better than $O( \lg N)$
         runtime and memory usage
   \item Might not adequately capture some features of a Hilbert curve
 \end{itemize}
@@ -31,22 +31,21 @@ Further, we show:
 
 \begin{itemize}
   \item Measures of locality are preserved (Section X)
-  \item Trivial extensions to create generalized Moore curves (\textit{Gore curve}, Section X)
-  \item Other metrics to quantify qualities of the curve and their comparison to some other
-        space filling curves
+  \item Trivial extensions to create generalized Moore curves (Section X)
+  \item Comparison metrics to other space filling curves (Section X)
 \end{itemize}
 
 
 Generalizations of the Hilbert curve to non power of two rectangular cuboid regions
 has been explored before but are overly complicated algorithmically, create unbalanced
 curves and often don't generalize well to 3D.
-Our realization focuses on algorithmic conceptual simplicity, provides balanced
+Our realization focuses on a conceptually simple algorithm which creates pleasing
 resulting curves and works in both 2D and 3D.
 
 Space filling curves are a specialization of a more general Hamiltonian path,
 but have a more stringent requirement of local connectivity.
 The local connectivity, or locality, preserves a measure of nearness, where
-points from the source unit line are near in the embedded space.
+points from the source unit line remain close in the embedded space.
 
 The local connectivity requirements
 preclude things like \textit{zig-zag} Hamiltonian
@@ -57,14 +56,12 @@ paths, as nearby points in the embedded dimension can be far from the origin lin
 
 The Gilbert curve algorithm works by choosing sub rectangular cuboid regions, or blocks,
 to recursively find a connecting path.
-During the course of subdivision, if the cuboid block regions stray too far from being
-cube like, a simpler subdivision is done to try and bring the subdivision closer to being
-cube like.
-The subdivision is done until a base case is reached and the lowest unit of the curve
+If one extent of the cuboid becomes too large or small relative to the other lengths,
+a special subdivison is performed to try make further subdivisions more cube-like.
+Subdivisions are performed until a base case is reached and the lowest unit of the curve
 can be realized.
 
-For a specified path start and end position with certain side dimensions, a Hamiltonian
-path is not always possible.
+A Hamiltonian path is not always realizable for certain side lengths and endpoint constraints.
 In such a case, the Gilbert curve will introduce a single diagonal path move, called a \textit{notch}.
 
 
