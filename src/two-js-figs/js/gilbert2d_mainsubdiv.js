@@ -1,3 +1,5 @@
+// LICENSE: CC0
+//
 
 
 
@@ -8,6 +10,17 @@ var g_fig_ctx = {};
 var RECT_COLOR = "rgb(100,100,100)";
 var LINE_COLOR = "rgb(81,166,10)";
 
+var BEG_COLOR = "rgb(80,80,140)";
+var END_COLOR = "rgb(120,180,180)";
+
+
+function _dl() {
+  var ele = document.getElementById(CANVAS_ID);
+  var b = new Blob([ ele.innerHTML ]);
+  saveAs(b, "fig.svg");
+}
+
+
 function makeTwoAnchor(_pnt) {
   let pnt = [];
   for (let ii=0; ii<_pnt.length; ii++) {
@@ -15,6 +28,7 @@ function makeTwoAnchor(_pnt) {
   }
   return pnt;
 }
+
 
 // so very hacky
 // somehow we managed to shoehorn
@@ -167,6 +181,10 @@ function gilbert2d_mainsubdiv() {
       e1_x = 300,
       e1_y = 300;
 
+  s1_x = 370;
+
+
+
   let _h = 230;
   let _w = e0_x - s0_x;
 
@@ -179,11 +197,17 @@ function gilbert2d_mainsubdiv() {
   // level (n) Rect
   //---------------
 
+  let _fudge = 10;
+
+  let _Ltx = 15,
+      _Lty = 15;
 
   let cp_f_s = 30;
   let baseLine = new Two.Path([
-    new Two.Anchor(s0_x,s0_y,       0,       0,  cp_f_x, -cp_f_y,   Two.Commands.curve),
-    new Two.Anchor(e0_x,e0_y, -cp_f_x, -cp_f_y,       0,       0,   Two.Commands.curve)
+    //new Two.Anchor(s0_x,s0_y,       0,       0,  cp_f_x, -cp_f_y,   Two.Commands.curve),
+    //new Two.Anchor(e0_x,e0_y, -cp_f_x, -cp_f_y,       0,       0,   Two.Commands.curve)
+    new Two.Anchor(s0_x + _Ltx,s0_y-_Lty,       0,       0,  cp_f_x, -cp_f_y,   Two.Commands.curve),
+    new Two.Anchor(e0_x - _Ltx,e0_y-_Lty, -cp_f_x, -cp_f_y,       0,       0,   Two.Commands.curve)
   ], false, false, true);
   baseLine.cap = "round"
   baseLine.linewidth = 3;
@@ -191,13 +215,9 @@ function gilbert2d_mainsubdiv() {
   baseLine.stroke = LINE_COLOR;
   baseLine.noFill();
   baseLine.opacity = 1;
-
   two.add(baseLine);
 
-  let _arrow0 = mkarrow(e0_x, e0_y, cp_f_x, cp_f_y, 12, 18);
-
-
-  let _fudge = 10;
+  let _arrow0 = mkarrow(e0_x - _Ltx + 3, e0_y - _Lty + 3, cp_f_x, cp_f_y, 12, 18);
 
   let rect_n = two.makeRectangle(s0_x+_w/2,s0_y-_h/2,_w+_fudge,_h+_fudge);
   rect_n.noFill();
@@ -205,6 +225,16 @@ function gilbert2d_mainsubdiv() {
   rect_n.stroke = RECT_COLOR;
   rect_n.opacity = 1;
   rect_n.join = "round";
+
+  let _circle_s = two.makeCircle(s0_x + _fudge/2, s0_y - _fudge/2, 6);
+  _circle_s.noStroke();
+  _circle_s.fill = BEG_COLOR;
+
+  let _circle_e = two.makeCircle(s0_x+_w - _fudge/2, s0_y - _fudge/2, 6);
+  _circle_e.noStroke();
+  _circle_e.fill = END_COLOR;
+
+
 
   //-----------------
   // level (n+1) Rect
@@ -256,26 +286,83 @@ function gilbert2d_mainsubdiv() {
     [ hm1[0], s1_y ]
   ];
 
+  let _tx = 5, _ty = 5;
 
-  let A_circle_s = two.makeCircle(A_endpoint[0][0], A_endpoint[0][1], 5);
-  let A_circle_e = two.makeCircle(A_endpoint[1][0], A_endpoint[1][1], 5);
+  let _R = 5;
+
+  let A_circle_s = two.makeCircle(A_endpoint[0][0] + _tx, A_endpoint[0][1] - _ty, _R);
+  let A_circle_e = two.makeCircle(A_endpoint[1][0] + _tx, A_endpoint[1][1] + _ty + _fudge/2, _R);
 
   A_circle_s.noStroke();
-  //A_circle_s.fill = 
+  A_circle_s.fill = BEG_COLOR;
 
-  let B_circle_s = two.makeCircle(B_endpoint[0][0], B_endpoint[0][1], 5);
-  let B_circle_e = two.makeCircle(B_endpoint[1][0], B_endpoint[1][1], 5);
+  A_circle_e.noStroke();
+  A_circle_e.fill = END_COLOR;
 
-  let C_circle_s = two.makeCircle(C_endpoint[0][0], C_endpoint[0][1], 5);
-  let C_circle_e = two.makeCircle(C_endpoint[1][0], C_endpoint[1][1], 5);
+  let B_circle_s = two.makeCircle(B_endpoint[0][0] + _tx, B_endpoint[0][1] - _ty - _fudge/2, _R);
+  let B_circle_e = two.makeCircle(B_endpoint[1][0] - _tx - _fudge/2, B_endpoint[1][1] - _ty - _fudge/2, _R);
 
-  let cp1a_f_x = 10, cp1a_f_y = 10,
-      cp1b_f_x = 10, cp1b_f_y = 10,
-      cp1c_f_x = 10, cp1c_f_y = 10;
+  B_circle_s.noStroke();
+  B_circle_s.fill = BEG_COLOR;
 
-  let _arrow1a = mkarrow(A_endpoint[1][0], A_endpoint[1][1], cp1a_f_x, cp1a_f_y, 12, 18);
-  let _arrow1b = mkarrow(B_endpoint[1][0], B_endpoint[1][1], cp1b_f_x, cp1b_f_y, 12, 18);
-  let _arrow1c = mkarrow(C_endpoint[1][0], C_endpoint[1][1], cp1c_f_x, cp1c_f_y, 12, 18);
+  B_circle_e.noStroke();
+  B_circle_e.fill = END_COLOR;
+
+  let C_circle_s = two.makeCircle(C_endpoint[0][0] - _tx - _fudge/2, C_endpoint[0][1] + _ty + _fudge/2, _R);
+  let C_circle_e = two.makeCircle(C_endpoint[1][0] - _tx - _fudge/2, C_endpoint[1][1] - _ty, _R);
+
+  C_circle_s.noStroke();
+  C_circle_s.fill = BEG_COLOR;
+
+  C_circle_e.noStroke();
+  C_circle_e.fill = END_COLOR;
+
+  cp_f_x = 60;
+  cp_f_y = 45;
+
+
+  let cp1a_f_x = -45/2, cp1a_f_y = -60/2,
+      cp1b_f_x = 60, cp1b_f_y = 45/2,
+      cp1c_f_x = 45/2, cp1c_f_y = 60/2;
+
+  let _fu_x = 6, _fu_y = 12;
+
+  let _arrow1a = mkarrow(A_endpoint[1][0] + _tx + _fu_x, A_endpoint[1][1] + _ty + _fu_y, cp1a_f_x, cp1a_f_y, 9, 14);
+  let _arrow1b = mkarrow(B_endpoint[1][0] - _tx - _R - _fu_x, B_endpoint[1][1] - _ty - 2*_R , cp1b_f_x, cp1b_f_y, 9, 14);
+  let _arrow1c = mkarrow(C_endpoint[1][0] - _tx - _R - _fu_x, C_endpoint[1][1] - _ty -2 -_fudge/2 , cp1c_f_x, cp1c_f_y, 9, 14);
+
+  let ALine = new Two.Path([
+    new Two.Anchor(A_endpoint[0][0] + _tx + _fu_x, A_endpoint[0][1] - _ty - _fu_y,       0,       0,  -cp1a_f_x,  cp1a_f_y,   Two.Commands.curve),
+    new Two.Anchor(A_endpoint[1][0] + _tx + _fu_x, A_endpoint[1][1] + _ty + _fu_y, -cp1a_f_x, -cp1a_f_y,       0,       0,   Two.Commands.curve)
+  ], false, false, true);
+  ALine.cap = "round"
+  ALine.linewidth = 3;
+  ALine.stroke = LINE_COLOR;
+  ALine.noFill();
+  ALine.opacity = 1;
+  two.add(ALine);
+
+  let BLine = new Two.Path([
+    new Two.Anchor(B_endpoint[0][0] + _tx + _fu_x, B_endpoint[0][1] - _ty - _fu_y,       0,       0,   cp1b_f_x,  -cp1b_f_y,   Two.Commands.curve),
+    new Two.Anchor(B_endpoint[1][0] - _tx - _fu_x - _fudge/2 - 3, B_endpoint[1][1] - _ty - _fu_y, -cp1b_f_x, -cp1b_f_y,       0,       0,   Two.Commands.curve)
+  ], false, false, true);
+  BLine.cap = "round"
+  BLine.linewidth = 3;
+  BLine.stroke = LINE_COLOR;
+  BLine.noFill();
+  BLine.opacity = 1;
+  two.add(BLine);
+
+  let CLine = new Two.Path([
+    new Two.Anchor(C_endpoint[0][0] - _tx - _fu_x - _fudge, C_endpoint[0][1] + _ty + _fu_y,       0,       0,   -cp1c_f_x,   cp1c_f_y,   Two.Commands.curve),
+    new Two.Anchor(C_endpoint[1][0] - _tx - _fu_x - _fudge, C_endpoint[1][1] - _ty - _fu_y, -cp1c_f_x, -cp1c_f_y,       0,       0,   Two.Commands.curve)
+  ], false, false, true);
+  CLine.cap = "round"
+  CLine.linewidth = 3;
+  CLine.stroke = LINE_COLOR;
+  CLine.noFill();
+  CLine.opacity = 1;
+  two.add(CLine);
 
 
   //------------
