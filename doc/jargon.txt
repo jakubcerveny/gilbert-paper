@@ -1,11 +1,13 @@
-personal_ws-1.1 en 10 
+personal_ws-1.1 en 12 
 Algorithmically
 algorithmically
 breaklines
+cr
 embeddings
 forall
 lookups
 rl
 runtime
+sgn
 zag
 zig
