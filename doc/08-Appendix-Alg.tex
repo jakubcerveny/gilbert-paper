@@ -1,0 +1,209 @@
+\section{Auxiliary Algorithms and Procedures}
+
+\subsection{Helper Functions}
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{\hskip0.5em $\delta(\cdot)$ directional vector function }
+  \label{alg:delta}
+  \begin{algorithmic}
+
+    \State
+    \State \textit{\# integral sign function}
+    \Function{$\text{sgn}$}{$w \in \mathbb{Z}$}
+      %\State $(w < 0) ? (-1) : ((w > 0) ? 1 : 0)$
+      \State \textbf{if} $(w < 0)$ \Return $-1$
+      \State \textbf{if} $(w > 0)$ \Return $1$
+      \State \Return 0
+    \EndFunction
+
+    \State
+    \State \textit{\# directional vector}
+    \Function{$\delta$}{$v \in \mathbb{Z}^3$}
+      \State \Return $[ \text{sgn}(v_0), \text{sgn}(v_1), \text{sgn}(v_2) ]$
+    \EndFunction
+
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+\subsection{Gilbert3D S-Split Functions}
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{ \hskip0.5em $S_0$-Split function (eccentric split) }
+  \label{alg:procS0}
+  \begin{algorithmic}
+    \State
+    \State \textit{\# split halfway on $\alpha$ }
+    \Function{$S_0$}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State $\alpha_2 \leftarrow (\alpha // 2)$
+      \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
+        \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
+      \EndIf
+      \State
+      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\alpha_{2}$, $\beta$, $\gamma$ )
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha_{2}$, \\ \hskip8.25em $(\alpha - \alpha_{2})$, $\beta$, $\gamma$ )
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{ \hskip0.5em $S_1$-Split functions (eccentric split) }
+  \label{alg:procS1}
+  \begin{algorithmic}
+    \State
+    \State \textit{\# split $\frac{1}{3}$ on $\gamma$ and halfway on $\alpha$ }
+    \Function{$S_1$}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State $\alpha_2, \gamma_3 \leftarrow (\alpha // 2), (\gamma // 3)$
+      \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
+        \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
+      \EndIf
+      \If{ $(|\gamma| > 2)$ and $((|\gamma_3| \bmod{2}) \equiv 1)$ }
+        \State $\gamma_3 \leftarrow \gamma_3 + \delta(\gamma)$
+      \EndIf
+      \State
+      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\gamma_3$, $\alpha_2$, $\beta$)
+      \State
+      \State \textbf{yield} Gilbert3D($p + \gamma_3$, \\ \hskip8.25em $\alpha$, $\beta$, $(\gamma - \gamma_3)$)
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \gamma_{3} - \delta(\gamma)$, \\ \hskip8.25em $\gamma_3$, $(\alpha - \alpha_2)$, $\beta$)
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{ \hskip0.5em $S_2$-Split function (eccentric split) }
+  \label{alg:procS2}
+  \begin{algorithmic}
+    \State
+    \State \textit{\# split $\frac{1}{3}$ on $\beta$ and halfway on $\alpha$ }
+    \Function{$S_2$}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State $\alpha_2, \beta_3 \leftarrow (\alpha // 2), (\beta // 3)$
+      \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
+        \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
+      \EndIf
+      \If{ $(|\beta| > 2)$ and $((|\beta_3| \bmod{2}) \equiv 1)$ }
+        \State $\beta_3 \leftarrow \beta_3 + \delta(\beta)$
+      \EndIf
+      \State
+      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_{3}$, $\gamma$, $\alpha_2$ )
+      \State
+      \State \textbf{yield} Gilbert3D($p + \beta_{3}$, \\ \hskip8.25em $\alpha$, $(\beta - \beta_{3})$, $\gamma$ )
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_{3} - \delta(\beta)$, \\ \hskip8.25em $-\beta_{3}$, $\gamma$, $-\alpha$)
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+\subsection{Gilbert3D J-Split Functions}
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{ \hskip0.5em $J_0$-Split function }
+  \label{alg:procJ0}
+  \begin{algorithmic}
+    \State
+    \State \textit{\# $|\gamma|$ even }
+    \Function{$J_0$}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State
+      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
+      \State
+      \State \textit{\# prefer initial block even}
+      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 1)$
+      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
+      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
+      \State
+      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_2$, $\gamma_2$, $\alpha_2$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\beta_2$, \\ \hskip8.25em $\gamma$, $\alpha_2$, $\beta - \beta_2$)
+      \State
+      \State \textbf{yield} Gilbert3D($p + \beta_2 - \delta(\beta_2) + \gamma - \delta(\gamma)$, \\ \hskip8.25em $\alpha$, $-\beta_2$, $-(\gamma - \gamma_2)$)
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_2 + \gamma - \delta(\gamma)$, \\ \hskip8.25em $-\gamma$, $-(\alpha - \alpha_2)$, $(\beta - \beta_2)$)
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$, \\ \hskip8.25em $-\beta_2$, $\gamma_2$, $-(\alpha - \alpha_2)$)
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{ \hskip0.5em $J_1$-Split function }
+  \label{alg:procJ2}
+  \begin{algorithmic}
+    \State
+    \State \textit{\# $|\gamma|$ odd, one of $|\alpha|$ or $|\beta|$ even }
+    \Function{$J_1$}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State
+      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
+      \State
+      \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
+      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
+      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
+      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
+      \State
+      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\gamma2$, $\alpha_2$, $\beta_2$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\gamma_2$, \\ \hskip8.25em $\beta$, $\gamma - \gamma_2$, $\alpha_2$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\gamma_2 - \delta(\gamma) + \beta - \delta(\beta)$, \\ \hskip8.25em $\alpha$, $-(\beta - \beta_2)$, $-\gamma_2$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\alpha - \delta(\alpha) + \beta - \delta(\beta) + \gamma_2 - \delta(\gamma)$, \\ \hskip8.25em $\beta$, $\gamma - \gamma_2$, $-(\alpha - \alpha_2)$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\alpha - \delta(\alpha) + \gamma_2 - \delta(\gamma)$, \\ \hskip8.25em $-\gamma_2$, $-(\alpha - \alpha_2)$, $\beta_2$)
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{ \hskip0.5em $J_2$-Split function }
+  \label{alg:procJ2}
+  \begin{algorithmic}
+    \State
+    \State \textit{\# $|\alpha|, |\beta|, |\gamma|$ odd }
+    \Function{$J_2$}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State
+      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
+      \State
+      \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
+      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
+      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
+      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
+      \State
+      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_2$, $\gamma$, $\alpha_2$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\beta_2$, \\ \hskip8.25em $\gamma_2$, $\alpha$, $(\beta - \beta_2)$)
+      \State
+      \State \textbf{yield} Gilbert3D($p+\beta_2 + \gamma_2$, \\ \hskip8.25em $\alpha$, $(\beta - \beta_2)$, $(\gamma - \gamma_2)$)
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta) + \gamma_2$, \\ \hskip8.25em $-\beta_2$, $(\gamma- \gamma_2)$, $-(\alpha - \delta(\alpha))$) 
+      \State
+      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \gamma_2 - \delta(\gamma)$, \\ \hskip8.25em $-\gamma_2$, $-(\alpha - \alpha_2)$, $\beta_2$)
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+
+
+
+
+
+
+
+
