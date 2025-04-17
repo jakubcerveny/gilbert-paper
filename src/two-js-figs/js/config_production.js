@@ -113,6 +113,115 @@ function _dl() {
 //----
 //----
 
+//arrow
+var LINE_COLOR = "rgb(81,166,10)";
+LINE_COLOR = "rgb(71,145,55)";
+
+function mkarrow(px, py, dx, dy, w, h) {
+  let two = g_fig_ctx.two;
+
+  let theta = Math.atan2(-dy,dx);
+  theta += Math.PI/2;
+
+  let ct = Math.cos(theta);
+  let st = Math.sin(theta);
+
+  let w2 = w/2;
+
+  let q0 = [  ct*w2 - st*h, -st*w2 - ct*h ];
+  let q1 = [ -ct*w2 - st*h,  st*w2 - ct*h ];
+
+  let hh = h*0.95;
+
+  let qm = [  ct*0  - st*hh, -st*0  - ct*hh ];
+
+  q0[0] += px;
+  q0[1] += py;
+
+  q1[0] += px;
+  q1[1] += py;
+
+  qm[0] += px;
+  qm[1] += py;
+
+  let anch = makeTwoAnchor( [ [px,py], q0, qm, q1 ] );
+
+  let _p = two.makePath( anch );
+
+  _p.linewidth = 3;
+  _p.stroke = LINE_COLOR;
+  _p.fill = LINE_COLOR;
+  _p.join = "round";
+  _p.opacity = 1;
+
+  return _p;
+}
+
+function mkarrowarc(pxy, qxy, cp_p_xy, awh) {
+  awh = ((typeof awh === "undefined") ? [12,18] : awh);
+
+  let two = g_fig_ctx.two;
+
+  let s0_x = pxy[0],
+      s0_y = pxy[1],
+      e0_x = qxy[0],
+      e0_y = qxy[1];
+  let cp_f_x = cp_p_xy[0],
+      cp_f_y = cp_p_xy[1];
+
+  let _line = new Two.Path([
+    new Two.Anchor(s0_x, s0_y,       0,       0,  cp_f_x, -cp_f_y,   Two.Commands.curve),
+    new Two.Anchor(e0_x, e0_y, -cp_f_x, -cp_f_y,       0,       0,   Two.Commands.curve)
+  ], false, false, true);
+  _line.cap = "round"
+  _line.linewidth = 3;
+  _line.stroke = LINE_COLOR;
+  _line.noFill();
+  _line.opacity = 1;
+  two.add(_line);
+
+  // fudge
+  //let _fu = [ cp_p_xy[0]/16, 0*cp_p_xy[1]/8 ];
+  //let _arrow0 = mkarrow(e0_x+_fu[0],e0_y+3+_fu[1], cp_f_x,cp_f_y, awh[0], awh[1]);
+
+  let _fu = [  cp_p_xy[0]/16, cp_p_xy[1]/8 ];
+  let _arrow0 = mkarrow(e0_x+_fu[0],e0_y+_fu[1], cp_f_x,cp_f_y, awh[0], awh[1]);
+
+}
+
+function mkarrowarc_vertical(pxy, qxy, cp_p_xy, awh) {
+  awh = ((typeof awh === "undefined") ? [12,18] : awh);
+
+  let two = g_fig_ctx.two;
+
+  let s0_x = pxy[0],
+      s0_y = pxy[1],
+      e0_x = qxy[0],
+      e0_y = qxy[1];
+  let cp_f_x = cp_p_xy[0],
+      cp_f_y = cp_p_xy[1];
+
+  let _line = new Two.Path([
+    new Two.Anchor(s0_x, s0_y,       0,       0,  cp_f_x, -cp_f_y,   Two.Commands.curve),
+    new Two.Anchor(e0_x, e0_y,  cp_f_x,  cp_f_y,       0,       0,   Two.Commands.curve)
+  ], false, false, true);
+  _line.cap = "round"
+  _line.linewidth = 3;
+  _line.stroke = LINE_COLOR;
+  _line.noFill();
+  _line.opacity = 1;
+  two.add(_line);
+
+  // fudge
+  let _fu = [ cp_p_xy[0]/16, 0*cp_p_xy[1]/8 ];
+
+  _fu = [ -cp_f_x/32, -cp_f_y/32];
+  //let _arrow0 = mkarrow(e0_x+_fu[0],e0_y+3+_fu[1], -cp_f_x,-cp_f_y, awh[0], awh[1]);
+  let _arrow0 = mkarrow(e0_x+_fu[0],e0_y+_fu[1], -cp_f_x,-cp_f_y, awh[0], awh[1]);
+
+}
+
+
 function makeTwoVector(_pnt) {
   let pnt = [];
   for (let ii=0; ii<_pnt.length; ii++) {
@@ -394,6 +503,17 @@ function mkbox(opt) {
 
 
 
+  // fudge
+  let _fu = [ 10 ,10];
+
+  mkarrowarc(
+    [ cx - (x_len/2) + c_offset + _fu[0], cy + (y_len/2) - c_offset - _fu[1]],
+    [ cx + (x_len/2) - c_offset - _fu[0], cy + (y_len/2) - c_offset - _fu[1]],
+    [ x_len/6, y_len/6 ],
+    [10,16]
+  );
+
+
   //two.update();
 }
 
@@ -501,13 +621,11 @@ function mkbox_subdiv(opt) {
 
     let cross_0 = two.makeLine( lc[0] - radius, lc[1] + radius, lc[0] + radius, lc[1] - radius );
     cross_0.linewidth = 1.5;
-    //cross_0.stroke = "rgba(252,37,3,0.95)";
     cross_0.stroke = "rgb(252,37,3)";
     cross_0.join = "round";
 
     let cross_1 = two.makeLine( lc[0] + radius, lc[1] + radius, lc[0] -radius, lc[1] - radius );
     cross_1.linewidth = 1.5;
-    //cross_1.stroke = "rgba(252,37,3,0.95)";
     cross_1.stroke = "rgb(252,37,3)";
     cross_1.join = "round";
 
@@ -518,9 +636,20 @@ function mkbox_subdiv(opt) {
     circle_a1_e.fill = path_color_p;
   }
 
-  let circle_e = two.makeCircle(cx + (x_len/2) - c_offset, cy + (y_len/2) - c_offset, radius);
-  circle_e.linewidth = 0;
-  circle_e.fill = path_color;
+  // C block - left middle to right middle
+  //
+  let awh = [1.15*opt.ny, 1.15*10*opt.ny/6 ];
+  let _fu = [ 10,-10];
+  mkarrowarc(
+
+    [ cx - (x_len/2) + c_offset + _fu[0], cy  - c_offset + dh + _fu[1]],
+    [ cx + (x_len/2) - c_offset - _fu[0], cy  - c_offset + dh + _fu[1]],
+    [  x_len/6,  y_len/6 ],
+    awh
+    //[8,14]
+  );
+
+
 
   let circle_a0_e = two.makeCircle(cx - (x_len/2) + c_offset, cy  + c_offset + dh, radius);
   circle_a0_e.linewidth = 0;
@@ -529,11 +658,70 @@ function mkbox_subdiv(opt) {
 
   let circle_a1_s = two.makeCircle(cx - (x_len/2) + c_offset, cy  - c_offset + dh, radius);
   circle_a1_s.linewidth = 0;
-  circle_a1_s.fill = path_color_p;
+  circle_a1_s.fill = path_color;
+
+  // A block - left arrow from bottom left to middle
+  //
+  let f_cp = [1,1.5];
+  f_cp[0] *= y_len / 9;
+  f_cp[1] *= y_len / 9;
+
+  awh = [1.15*opt.ny, 1.15*10*opt.ny/6 ];
+
+  if ( opt.ny <= 5) {
+    f_cp = [ 4, 12 ];
+    awh = [.95*opt.ny, .95*10*opt.ny/6 ];
+  }
+  //f_cp = [ 1/ (Math.abs(dh)), 1/ 
+  _fu = [ 6, -6 ];
+  mkarrowarc_vertical(
+    [ cx - (x_len/2) + c_offset + _fu[0], cy + (y_len/2) - c_offset + _fu[1]],
+    [ cx - (x_len/2) + c_offset + _fu[0], cy  + c_offset + dh - _fu[1]],
+    //[  x_len/10,  y_len/10 ],
+    //[  f_cp[0]*x_len,  f_cp[1]*x_len ],
+    f_cp,
+    awh
+    //[6,10]
+  );
+
+
 
   let circle_b1_s = two.makeCircle(cx + (x_len/2) - c_offset, cy  + c_offset + dh, radius);
   circle_b1_s.linewidth = 0;
-  circle_b1_s.fill = path_color_p;
+  circle_b1_s.fill = path_color;
+
+  let circle_e = two.makeCircle(cx + (x_len/2) - c_offset, cy + (y_len/2) - c_offset, radius);
+  circle_e.linewidth = 0;
+  circle_e.fill = path_color_p;
+
+
+
+  // C block - right arrow from middle right to bottom right
+  //
+  //f_cp = [-10, -24];
+  //f_cp = [-14, -14];
+  awh = [1.15*opt.ny, 1.15*10*opt.ny/6 ];
+
+  f_cp = [-1,-1.5];
+  f_cp[0] *= y_len / 9;
+  f_cp[1] *= y_len / 9;
+
+
+  if ( opt.ny <= 5) {
+    f_cp = [ -4, -12 ];
+    awh = [.95*opt.ny, .95*10*opt.ny/6 ];
+  }
+  _fu = [ -6,  6 ];
+  mkarrowarc_vertical(
+    [ cx + (x_len/2) - c_offset + _fu[0], cy  + c_offset + dh + _fu[1]],
+    [ cx + (x_len/2) - c_offset + _fu[0], cy + (y_len/2) - c_offset - _fu[1]],
+    f_cp,
+    awh
+    //[ -x_len/10, -y_len/10 ],
+    //[6,10]
+  );
+
+
 }
 
 function mk_oo(cur_x, cur_y, x_len, y_len, dx, dy) {

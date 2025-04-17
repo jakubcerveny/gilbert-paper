@@ -27,6 +27,15 @@ so they can be used in the more general 3D.
 
 \subsection{Valid Paths from Grid Parity}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{simple_hampath.pdf}
+  \caption{ Illustrative examples of Hamiltonian paths height/width that are even/even, even/odd and odd/odd, respectively,
+            when starting from the lower left hand corner }
+  \label{fig:exampleHampath}
+\end{figure}
+
+
 The feasibility of determining whether there exists a Hamiltonian path in a rectangular cuboid
 grid region can be accomplished through parity arguments.
 Label grid cell points in a volume as 0 or 1,
@@ -52,28 +61,21 @@ volume is odd, or different parity if the volume is even.
 \end{table}
 
 
-For a path starting at $(0,0,0)$ and ending at $|\alpha| \in \mathbb{N}$ away in one of the axis-aligned dimensions,
+For a path starting at $(0,0,0)$ and ending $|\alpha| \in \mathbb{N}$ steps in one of the axis-aligned dimensions,
 then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
 Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
 where a red cross indicating a precluded endpoint.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{simple_hampath.pdf}
-  \caption{ Illustrative examples of Hamiltonian paths height/width that are even/even, even/odd and odd/odd, respectively,
-            when starting from the lower left hand corner }
-  \label{fig:exampleHampath}
-\end{figure}
 
 Without loss of generality, we will assume a curve starts from position $p_s=(0,0,0)$ and has proposed
 endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
 We know a Hamiltonian path is precluded if $(|\beta| \cdot |\gamma| \bmod{2} \not\equiv 1)$.
 That is, a Hamiltonian from $p_s$ to $p_e$ is precluded when $\alpha$ is odd and at least one of $|\beta|$ or $|\gamma|$ is even.
 
-We will show that a Hamiltonian path is possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when $|\alpha|$, $|\beta|$ and $|\gamma|$
+We state, without proof, that
+a Hamiltonian path is always possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when $|\alpha|$, $|\beta|$ and $|\gamma|$
 are all odd.
-
-\textbf{TODO!!!}
+With this condition, any cuboid subdivision will always have a Hamiltonian path within it and we can recreate a Hamiltonian
+path in the larger cuboid by connecting endpoints appropriately.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,17 +108,35 @@ are all odd.
 \end{figure*}
 
 For the 2D Gilbert curve, a $U$-split template is used, highlighted in figure \ref{fig:main2dsubdiv}.
-The $U$-split breaks the region into three sub-blocks, labeled $A$, $B$ and $C$, where the
-$A$ is chosen to be half the width like dimension, $\alpha$, and half the height like dimension, $\beta$,
-with a preference to make the height like dimension, $\beta$, of even length.
+The $U$-split breaks the region into three sub-blocks, labeled $A$, $B$ and $C$.
+Each of the $A$, $B$ and $C$ regions have local coordinate systems that are resized, rotated and
+new endpoints chosen so the process can be recursively re-applied.
 
-\ref{fig:production2d}.
+The sides of the subdivided blocks $A$, $B$ and $C$ are chosen to remain integral.
+The width-like dimension for subdivided block $A$ is chosen to be even ($\beta_2$ in Figure \ref{fig:main2dsubdiv})
+by dividing the width-like dimension by two and by adding one if need be.
+Since the width-like length of the subdivided $A$ and $C$ block is even, there is still a valid Hamiltonian path 
+in both.
 
-Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
-Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
-can be ignored if a purely 2D curve is desired.
-The generalization to 3D allows the Gilbert2D function to be used unaltered when the
-3D Gilbert curve needs to trace out in-plane sub-curves.
+Should the original width-like be even ($\alpha$ in \ref{fig:main2subdiv}), the $C$ block will continue to have 
+a valid Hamiltonian path.
+If the original width-like dimension is odd, there is a forced notch that will appear in the subdivided block $C$.
+
+Figure \ref{fig:production2d} gives examples of the different parity conditions for the original area,
+as well as the different conditions when the $A$ and $C$ subdivided areas are force even parity.
+Figure \ref{fig:production2d} also shows when a Hamiltonian
+path is not possible, indicated by a red cross, and illustrates how the notch is pushed into the $C$ block
+under these conditions.
+
+If a subdivided block becomes too long in its width-like dimension, the block is divided in half and the recursion
+proceeds as normal.
+Even sides are only enforced if the length is larger than 2, with a length 2 or smaller representing the base
+case.
+The base case enumerates paths in the non trivial direction.
+
+Since $A$ and $C$ are chosen to have width-like local axis even, no new notches are introduced and notch
+that is forced is effectively ``pushed'' into the $C$ block.
+
 
 %The $A$ block is chosen to to have a preference for even height dimension
 
@@ -165,6 +185,46 @@ The generalization to 3D allows the Gilbert2D function to be used unaltered when
   \end{algorithmic}
 \end{algorithm}
 
+Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
+Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
+can be ignored if a purely 2D curve is desired.
+The generalization to 3D allows the Gilbert2D function to be used unaltered when the
+3D Gilbert curve needs to trace out in-plane sub-curves.
+
+\floatname{algorithm}{Procedure}
+\begin{algorithm}
+  \caption{\hskip0.5em $\delta(\cdot)$ directional vector function }
+  \label{alg:delta}
+  \begin{algorithmic}
+
+    \State
+    \State \textit{\# integral sign function}
+    \Function{$\text{sgn}$}{$w \in \mathbb{Z}$}
+      %\State $(w < 0) ? (-1) : ((w > 0) ? 1 : 0)$
+      \State \textbf{if} $(w < 0)$ \Return $-1$
+      \State \textbf{if} $(w > 0)$ \Return $1$
+      \State \Return 0
+    \EndFunction
+
+    \State
+    \State \textit{\# directional vector}
+    \Function{$\delta$}{$v \in \mathbb{Z}^3$}
+      \State \Return $[ \text{sgn}(v_0), \text{sgn}(v_1), \text{sgn}(v_2) ]$
+    \EndFunction
+
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
+
+The $\delta(\cdot)$ is a function returning one of the six directional vectors indicating which of
+the major signed axis aligned directions the input vector points.
+For completeness, the function is defined in Procedure \ref{alg:delta}.
+
+Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
+and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to [ i \cdot v_0, i \cdot v_1, i \cdot v_2 ]$).
+where the context is clear.
+
+Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig:gilbert2d_examples}, showing a $(4 \times 4)$, $(10 \times 4)$ and $(7 \times 4)$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            _ ____              __ _____     __
