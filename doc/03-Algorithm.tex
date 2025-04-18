@@ -25,17 +25,18 @@ The orientations of the subdivided cuboid regions are chosen so that the recursi
 will start and end at pre-specified endpoints, connecting neighboring cuboid regions
 after a path is realized.
 
-If a cuboid becomes too oblong, or \textit{eccentric}, a different subdivision scheme is chosen
-to create subdivisions that are closer to being cube like.
+If a cuboid becomes too oblong, or \textit{eccentric}, a subdivision shape template scheme is chosen
+in an attempt to create subdivisions that are closer to being cube like.
 
 %The cuboid region is represented by an origion point, $p \in \mathbb{Z}^3$,
 %and a local coordinate system of three vectors $\alpha, \beta, \gamma \in \mathbb{Z}^3$.
 
 The subdivided cuboid region is processed by the Gilbert curve algorithm,
-with virtual origin point $p$ and local coordinate system $[ \alpha, \beta, \gamma ]$.
+with virtual origin point $p \in \mathbb{Z}^3$ and local coordinate system $[ \alpha, \beta, \gamma ]$,
+with $\alpha, \beta, \gamma \in \mathbb{Z}^3$.
 Each of $\alpha$, $\beta$ and $\gamma$ are axis aligned and orthogonal.
 
-In a cuboid region, the start of the Hamiltonian path is at $p$ and end at $p + \alpha$.
+In a cuboid region, the the Hamiltonian path start at $p$ and ends at $p + \alpha$.
 For this reason, we call $\alpha$ the ``width-like'' dimension, with $\beta$ and $\gamma$
 called the ``height-like'' dimension and ``depth-like'' dimension, respectively.
 
@@ -55,7 +56,7 @@ of the subdivided cuboids are chosen
 so that all but one will preserve the possibility of a Hamiltonian path.
 In this case, since only a single cuboid absorbs the impossibility of a Hamiltonian path,
 and this process is recursively applied, there will be a single jump, or \textit{notch},
-in the resulting curve.
+in the resulting curve, globally.
 
 %Each of $\alpha$, $\beta$ and $\gamma$ start off as axis-aligned vectors of integral
 %length and are only rotated by units of $(\pi/2)$ radians, remaining axis aligned throughout.
@@ -64,7 +65,7 @@ in the resulting curve.
 
 The next sub-section discusses parity arguments for when a valid curve can be
 traced out in a sub-region.
-We then give detailed discuss the 2D Gilbert curve and end with the 3D Gilbert curve.
+We then discuss in detailed the 2D Gilbert curve algorithm and end with a discussion of the 3D Gilbert curve.
 
 When talking about the 2D Gilbert curves, we assume vectors are in $\mathbb{Z}^3$
 so they can be used without alteration for algorithms working in 3D.
@@ -121,7 +122,8 @@ are all odd  $(|\alpha| \cdot (1 - |\beta| \cdot |\gamma|) \equiv 0 \bmod 2)$.
 
 With this condition, any cuboid subdivision will always have a Hamiltonian path within it and we can recreate a Hamiltonian
 path in the larger cuboid by connecting endpoints from the ending point of one cuboid to the starting point of the succeeding cuboid.
-For cuboids that violate this condition, there will be a required notch and we will show that an admissible cuboid subdivision is possible
+For cuboids that violate this condition, there will be a required notch and
+an admissible cuboid subdivision is possible
 for all but one of the cuboid subdivisions, recursively limiting the notch violation to a single point.
 
 
@@ -154,23 +156,23 @@ for all but one of the cuboid subdivisions, recursively limiting the notch viola
   \label{fig:production2d}
 \end{figure*}
 
-For the 2D Gilbert curve, a $U$-split template is used, highlighted in figure \ref{fig:main2dsubdiv}.
+For the 2D Gilbert curve, a $U$-split template is used, highlighted in Figure \ref{fig:main2dsubdiv}.
 The $U$-split breaks the region into three sub-blocks, labeled $A$, $B$ and $C$.
 Each of the $A$, $B$ and $C$ regions have local coordinate systems that are resized, rotated and
 new endpoints chosen so the process can be recursively re-applied.
 
 The sides of the subdivided blocks $A$, $B$ and $C$ are chosen to remain integral.
 The width-like dimension for subdivided block $A$ is chosen to be even ($\beta_2$ in Figure \ref{fig:main2dsubdiv})
-by dividing the width-like dimension by two and by adding one if need be.
-Since the width-like length of the subdivided $A$ and $C$ block is even, there is still a valid Hamiltonian path 
+by dividing the height-like dimension of the original region ($\beta$ in Figure \ref{fig:main2dsubdiv}) by two and by adding one if need be.
+Since the width-like length of the subdivided $A$ and $C$ block is even ($\beta_2$), there is a guaranteed valid Hamiltonian path 
 in both.
 
-Should the original width-like be even ($\alpha$ in \ref{fig:main2subdiv}), the $C$ block will continue to have 
+Should the original width-like length be even ($\alpha$ in Figure \ref{fig:main2dsubdiv}), the $C$ block will continue to have 
 a valid Hamiltonian path.
-If the original width-like dimension is odd, there is a forced notch that will appear in the subdivided block $C$.
+If the original width-like dimension is odd, a Hamiltonian path is not possible and there is a forced notch that will appear in the subdivided block $C$.
 
 Figure \ref{fig:production2d} gives examples of the different parity conditions for the original area,
-as well as the different conditions when the $A$ and $C$ subdivided areas are force even parity.
+as well as the different conditions when the $A$ and $C$ subdivided areas are coerced into having even parity.
 Figure \ref{fig:production2d} also shows when a Hamiltonian
 path is not possible, indicated by a red cross, and illustrates how the notch is pushed into the $C$ block
 under these conditions.
@@ -179,8 +181,9 @@ If a subdivided block becomes too long in its width-like dimension, the block is
 proceeds as normal.
 Even sides are only enforced if the length is larger than 2, with a length 2 or smaller representing the base
 case.
-The base case enumerates paths in the non trivial direction.
+The base case enumerates paths in the axis direction of length greater than one.
 
+% redundant...
 Since $A$ and $C$ are chosen to have an even width-like local axis length, no new notches are introduced and any
 obligatory notch is effectively ``pushed'' into the $C$ block.
 
@@ -293,7 +296,7 @@ Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig
 
 
 The concept of a $U$-split is extended into 3D by constructing a $J$-split.
-An exploded view of a $J$-split is showing in Figure \ref{fig:gilbert3DJSplit}.
+An exploded view of a $J$-split is shown in Figure \ref{fig:gilbert3DJSplit}.
 
 Side lengths of the subdivided cuboids are chosen to try and not preclude a
 Hamiltonian path.
