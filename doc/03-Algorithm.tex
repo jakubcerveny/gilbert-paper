@@ -2,22 +2,69 @@
 
 \subsection{Overview}
 
-For both the 2D and 3D generalized Hilbert (Gilbert) curve, a template is chosen
-to recursively subdivide the area or volume.
-When recursively descending the sub-volumes, we will need to translate to
-a new reference point and rotate by increments of $(\pi/2)$ radians, maintaining
-cuboid regions that are axis-aligned.
-We use the convention of labeling $\alpha, \beta, \gamma \in \mathbb{Z}^3$ for
-the width-like, height-like and depth-like dimension vectors, respectively.
+We discuss one possible generalization of the Hilbert curve, which we call the Gilbert curve,
+to arbitrary axis-aligned cuboid regions.
 
-Each of $\alpha$, $\beta$ and $\gamma$ start off as axis-aligned vectors of integral
-length and are only rotated by units of $(\pi/2)$ radians, remaining axis aligned throughout.
-$\alpha$, $\beta$ and $\gamma$ represent the dimensions of the sub-cuboid region
-and the local basis when tracing out a curve.
+The design of the Gilbert curve is done to provide a:
+
+\begin{itemize}
+  \item Conceptually simple algorithm
+  \item Harmonious realization
+  \item Resulting curve with good locality conditions
+\end{itemize}
+
+The discretized Hilbert curve recursively traces out a Hamiltonian path through a square
+region whose sides are powers of two.
+The Gilbert curve extends this idea to trace out Hamiltonian paths through to arbitrary axis-aligned
+cuboid regions.
+
+The Gilbert curve recursively subdivides a larger cuboid region into smaller cuboid
+regions of different sizes and orientations.
+The subdivision scheme uses a shape template that will be explained in more detail in subsequent sections.
+The orientations of the subdivided cuboid regions are chosen so that the recursive path
+will start and end at pre-specified endpoints, connecting neighboring cuboid regions
+after a path is realized.
+
+If a cuboid becomes too oblong, or \textit{eccentric}, a different subdivision scheme is chosen
+to create subdivisions that are closer to being cube like.
+
+%The cuboid region is represented by an origion point, $p \in \mathbb{Z}^3$,
+%and a local coordinate system of three vectors $\alpha, \beta, \gamma \in \mathbb{Z}^3$.
+
+The subdivided cuboid region is processed by the Gilbert curve algorithm,
+with virtual origin point $p$ and local coordinate system $[ \alpha, \beta, \gamma ]$.
+Each of $\alpha$, $\beta$ and $\gamma$ are axis aligned and orthogonal.
+
+In a cuboid region, the start of the Hamiltonian path is at $p$ and end at $p + \alpha$.
+For this reason, we call $\alpha$ the ``width-like'' dimension, with $\beta$ and $\gamma$
+called the ``height-like'' dimension and ``depth-like'' dimension, respectively.
+
+When processing the subdivided cuboid regions, the coordinate system is updated
+with new integral lengths and rotated.
+Since rotations are only in units of $(\pi/2)$ radians and $\alpha$, $\beta$, $\gamma$ start
+off as axis-aligned and orthogonal, they remain axis aligned and orthogonal throughout.
+
+%Using parity arguments, the possibility of a Hamiltonian path it's not difficult to show that
+%if a Hamiltonian path is possible or not.
+%for a given side lengths along with a start and end point,
+%combined with certain cuboid side lengths,
+When applying the shape template to choose the subdivided cuboid regions during the coarse of the
+algorithm, side lengths are chosen so as to preserve the possibility of a Hamiltonian path.
+Should the lengths of the cuboid being subdivided preclude a Hamiltonian path from occurring, the lengths
+of the subdivided cuboids are chosen
+so that all but one will preserve the possibility of a Hamiltonian path.
+In this case, since only a single cuboid absorbs the impossibility of a Hamiltonian path,
+and this process is recursively applied, there will be a single jump, or \textit{notch},
+in the resulting curve.
+
+%Each of $\alpha$, $\beta$ and $\gamma$ start off as axis-aligned vectors of integral
+%length and are only rotated by units of $(\pi/2)$ radians, remaining axis aligned throughout.
+%$\alpha$, $\beta$ and $\gamma$ represent the dimensions of the sub-cuboid region
+%and the local basis when tracing out a curve.
 
 The next sub-section discusses parity arguments for when a valid curve can be
 traced out in a sub-region.
-We then discuss the 2D Gilbert curve and end with the 3D Gilbert curve.
+We then give detailed discuss the 2D Gilbert curve and end with the 3D Gilbert curve.
 
 When talking about the 2D Gilbert curves, we assume vectors are in $\mathbb{Z}^3$
 so they can be used without alteration for algorithms working in 3D.
@@ -54,7 +101,7 @@ volume is odd, or different parity if the volume is even.
        & \textit{odd} & \textbf{No} & Yes \\
      \hline
   \end{tabular}
-  \caption{ Table showing when a Hamiltonian cycle is possible. Here, $|\alpha|$ is the absolute difference in start and end position of the path which
+  \caption{ Table showing when a Hamiltonian path is possible. Here, $|\alpha|$ is the absolute difference in start and end position of the path which
             coincides with one of the axis aligned side length of the cuboid volume. A Hamiltonian path is not possible on only in the case
             when $|\alpha|$ is odd and the volume is even. }
   \label{table:pathTable}
