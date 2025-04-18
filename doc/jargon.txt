@@ -1,0 +1,16 @@
+personal_ws-1.1 en 15 
+Algorithmically
+TODO
+algorithmically
+breaklines
+cr
+discretized
+embeddings
+forall
+lookups
+pre
+rl
+runtime
+sgn
+zag
+zig

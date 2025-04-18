@@ -1,0 +1,99 @@
+%% The first command in your LaTeX source must be the \documentclass command.
+%%
+%% Options:
+%% twocolumn : Two column layout.
+%% hf: enable header and footer.
+\documentclass[
+twocolumn,
+% hf,
+]{ceurart}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+
+%\usepackage{svg}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{amssymb}
+
+%\usepackage[semicolon]{natbib}
+
+%%
+%% One can fix some overfulls
+\sloppy
+
+%%
+%% Minted listings support 
+%% Need pygment <http://pygments.org/> <http://pypi.python.org/pypi/Pygments>
+\usepackage{listings}
+%% auto break lines
+\lstset{breaklines=true}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+%%
+%% Rights management information.
+%% CC-BY is default license.
+\copyrightyear{2025}
+\copyrightclause{Copyright for this paper by its authors.
+  Use permitted under Creative Commons License Attribution 4.0
+  International (CC BY 4.0).}
+
+%%
+%% This command is for the conference information
+%\conference{EXAG 2024: AIIDE Workshop on Experimental AI in Games, November 18--22, 2024, Lexington, KY, USA}
+\input{CONFERENCE.tex}
+
+\title{ A Generalized 2D and 3D Hilbert Curve }
+
+\input{AUTHOR.tex}
+
+\begin{abstract}
+The two and three dimensional Hilbert curves are fractal space filling curves that
+map the unit interval to the unit square or unit cube.
+Hilbert curves preserve locality, keeping distance from the unit interval
+to their respective higher dimensional embeddings.
+Finite approximations of the Hilbert curve can be constructed in stages
+by stopping the recursive construction at a specified depth, providing locality
+from a discrete array of points to points in the embedded dimension.
+The locality property of the Hilbert curve can help with caching optimizations based on order
+and finds uses as a companion method in applications ranging from job scheduling
+to scene rendering.
+One limitation of the Hilbert curve approximation construction is that the regions need
+to be exact powers of two, making it difficult to work with in many real world
+scenarios.
+In this paper, we present the Gilbert curve,
+a conceptually straight forward generalization of the Hilbert curve,
+that works on arbitrary rectangular regions.
+The construction provides reasonable worst case run-time guarantees for random
+access lookups for both two and three dimensions.
+We also provide comparisons to other Hilbert curve generalization methods
+and investigate overall quality metrics of the Gilbert curve construction.
+\end{abstract}
+
+\maketitle
+
+\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\newcommand{\specialcellCenter}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\input{01-Introduction.tex}
+\input{02-Related-Work.tex}
+\input{03-Algorithm.tex}
+\input{04-Results.tex}
+\input{05-Conclusion.tex}
+
+
+%\bibliographystyle{unsrtnat}
+\bibliography{06-References}
+
+\appendix
+\input{07-Appendix.tex}
+\input{08-Appendix-Alg.tex}
+
+
+\end{document}
+

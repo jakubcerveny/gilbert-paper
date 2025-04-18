@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <title>fig</title>
+
+  <script type='text/javascript' src='js/gilbert.js'></script>
+  <script type='text/javascript' src='js/numeric.js'></script>
+  <script type='text/javascript' src='js/FileSaver.js'></script>
+
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/mp_path.js'></script>
+
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+  };
+  </script>
+
+  <!-- <script type='text/javascript' src='js/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script> -->
+  <!-- <script id='MathJax-script' async src='js/mathjax/es5/tex-chtml.js'></script> -->
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+  <script type='text/javascript' src='js/gilbert3d_case.js'></script>
+
+</head>
+
+<body>
+
+  <div id='alpha' style='display:none;'>$\alpha$</div>
+  <div id='beta' style='display:none;'>$\beta$</div>
+  <div id='gamma' style='display:none;'>$\gamma$</div>
+
+  <div id='alpha2' style='display:none;'>$\alpha_{2}$</div>
+  <div id='beta2' style='display:none;'>$\beta_{2}$</div>
+  <div id='gamma2' style='display:none;'>$\gamma_{2}$</div>
+
+  <div id='alpha2p' style='display:none;'>$\alpha_{2+}$</div>
+  <div id='beta2p' style='display:none;'>$\beta_{2+}$</div>
+  <div id='gamma2p' style='display:none;'>$\gamma_{2+}$</div>
+
+  <div id='alpha2e' style='display:none;'>$\alpha_{2e}$</div>
+  <div id='beta2e' style='display:none;'>$\beta_{2e}$</div>
+  <div id='gamma2e' style='display:none;'>$\gamma_{2e}$</div>
+
+  <div id='alpha2u' style='display:none;'>$\alpha_{2u}$</div>
+  <div id='beta2u' style='display:none;'>$\beta_{2u}$</div>
+  <div id='gamma2u' style='display:none;'>$\gamma_{2u}$</div>
+
+  <div id='alpha2up' style='display:none;'>$\alpha_{2u+}$</div>
+  <div id='beta2up' style='display:none;'>$\beta_{2u+}$</div>
+  <div id='gamma2up' style='display:none;'>$\gamma_{2u+}$</div>
+
+  <div id='alpha2s' style='display:none;'>$\alpha_{2 * }$</div>
+  <div id='beta2s' style='display:none;'>$\beta_{2 * }$</div>
+  <div id='gamma2s' style='display:none;'>$\gamma_{2 * }$</div>
+
+  <div id='m_alpha' style='display:none;'>$-\alpha$</div>
+  <div id='m_beta' style='display:none;'>$-\beta$</div>
+  <div id='m_gamma' style='display:none;'>$-\gamma$</div>
+
+  <div id='m_alpha2' style='display:none;'>$-\alpha_{2}$</div>
+  <div id='m_beta2' style='display:none;'>$-\beta_{2}$</div>
+  <div id='m_gamma2' style='display:none;'>$-\gamma_{2}$</div>
+
+  <div id='m_alpha2p' style='display:none;'>$-\alpha_{ 2 + }$</div>
+  <div id='m_beta2p' style='display:none;'>$-\beta_{2+}$</div>
+  <div id='m_gamma2p' style='display:none;'>$-\gamma_{2+}$</div>
+
+  <div id='m_alpha2e' style='display:none;'>$-\alpha_{2e}$</div>
+  <div id='m_beta2e' style='display:none;'>$-\beta_{2e}$</div>
+  <div id='m_gamma2e' style='display:none;'>$-\gamma_{2e}$</div>
+
+  <div id='m_alpha2u' style='display:none;'>$-\alpha_{2u}$</div>
+  <div id='m_beta2u' style='display:none;'>$-\beta_{2u}$</div>
+  <div id='m_gamma2u' style='display:none;'>$-\gamma_{2u}$</div>
+
+  <div id='m_alpha2up' style='display:none;'>$-\alpha_{2u+}$</div>
+  <div id='m_beta2up' style='display:none;'>$-\beta_{2u+}$</div>
+  <div id='m_gamma2up' style='display:none;'>$-\gamma_{2u+}$</div>
+
+  <div id='m_alpha2s' style='display:none;'>$-\alpha_{2 * }$</div>
+  <div id='m_beta2s' style='display:none;'>$-\beta_{2 * }$</div>
+  <div id='m_gamma2s' style='display:none;'>$-\gamma_{2 * }$</div>
+
+  <div id='A_P0' style='display:none;'>$(\beta_{2e},\gamma_{2e},\alpha_{2e})$</div>
+  <div id='B_P0' style='display:none;'>$(\gamma,\alpha_{2e},\beta_{2*})$</div>
+  <div id='C_P0' style='display:none;'>$(\alpha,-\beta_{2*},-\gamma_{2*})$</div>
+  <div id='D_P0' style='display:none;'>$(-\gamma,-\alpha_{2*},\beta_{2*})$</div>
+  <div id='E_P0' style='display:none;'>$(-\beta_{2e},\gamma_{2e},-\alpha_{2*})$</div>
+
+  <div id='A_P1' style='display:none;'>$(\gamma_{2e},\alpha_{2e},\beta_{2e})$</div>
+  <div id='B_P1' style='display:none;'>$(\beta,\gamma_{2*},\alpha_{2*})$</div>
+  <div id='C_P1' style='display:none;'>$(\alpha,-\beta_{2*},-\gamma_{2*})$</div>
+  <div id='D_P1' style='display:none;'>$(-\beta,\gamma_{2*},-\alpha_{2*})$</div>
+  <div id='E_P1' style='display:none;'>$(-\gamma_{2e},-\alpha_{2*},\beta_{2e})$</div>
+
+  <div id='A_P1_011' style='display:none;'>$(\gamma_{2e},\alpha_{2u},\beta_{2e})$</div>
+  <div id='B_P1_011' style='display:none;'>$(\beta,\gamma_{2*},\alpha_{2u})$</div>
+  <div id='C_P1_011' style='display:none;'>$(\alpha,-\beta_{2*},-\gamma_{2e})$</div>
+  <div id='D_P1_011' style='display:none;'>$(-\beta,\gamma_{2*},-\alpha_{2u+})$</div>
+  <div id='E_P1_011' style='display:none;'>$(-\gamma_{2e},-\alpha_{2u+},\beta_{2e})$</div>
+
+  <div id='A_P2' style='display:none;'>$(\beta_{2e},\gamma,\alpha_{2e})$</div>
+  <div id='B_P2' style='display:none;'>$(\gamma_{2e},\alpha,\beta_{2*})$</div>
+  <div id='C_P2' style='display:none;'>$(\alpha,\beta_{2*},\gamma_{2*})$</div>
+  <div id='D_P2' style='display:none;'>$(-\beta_{2e},\gamma_{2*},-\alpha_{2*})$</div>
+  <div id='E_P2' style='display:none;'>$(-\gamma_{2e},-\alpha_{2*},\beta_{2e})$</div>
+
+  <div id='gilbert3d_case_canvas' style='width:1000px;height:700px;'> </div>
+
+</body>
+
+  <script>
+    function mathjax_ready() {
+      gilbert3d_case();
+    }
+  </script>
+
+<html>
+
