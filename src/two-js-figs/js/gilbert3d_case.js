@@ -396,6 +396,8 @@ function small_axis_fig(x0,y0,ord,sdir,s) {
 function axis_fig(x0,y0,s) {
   let two = g_fig_ctx.two;
 
+let use_abg = true;
+
   let vr = [0,0,1];
   let theta = -Math.PI/16;
 
@@ -432,6 +434,8 @@ function axis_fig(x0,y0,s) {
   let _txt = ["x", "y", "z"];
   _txt = [ "X", "Y", "Z" ];
 
+  let _latex_id = [ "alpha", "beta", "gamma" ];
+
   let tdxyz = [
     [  0, 0.5,   0 ],
     [-0.5,   0,   0 ],
@@ -465,9 +469,18 @@ function axis_fig(x0,y0,s) {
     let txyz = njs.mul(s, rodrigues( njs.add(v0xyz[xyz] , tdxyz[xyz]), vr, theta ));
     let txy = _project( txyz[0], txyz[1], txyz[2] );
 
-    let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
-    label.fill = "rgba(16,16,16,1)";
-    two.add(label);
+    if (use_abg) {
+      mathjax2twojs( _latex_id[xyz], x0+txy[0]-5, y0+txy[1], 0.018 );
+    }
+    else {
+      let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+      label.fill = "rgba(16,16,16,1)";
+      two.add(label);
+    }
+
+    //let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+    //label.fill = "rgba(16,16,16,1)";
+    //two.add(label);
 
   }
 

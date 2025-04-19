@@ -384,6 +384,8 @@ function small_axis_fig(x0,y0,ord,sdir,s) {
 function axis_fig(x0,y0,s) {
   let two = g_fig_ctx.two;
 
+  let use_abg = true;
+
   let vr = [0,0,1];
   let theta = -Math.PI/16;
 
@@ -420,6 +422,8 @@ function axis_fig(x0,y0,s) {
   let _txt = ["x", "y", "z"];
   _txt = [ "X", "Y", "Z" ];
 
+  let _latex_id = [ "alpha", "beta", "gamma" ];
+
   let tdxyz = [
     [  0, 0.5,   0 ],
     [-0.5,   0,   0 ],
@@ -443,9 +447,14 @@ function axis_fig(x0,y0,s) {
     let txyz = njs.mul(s, rodrigues( njs.add(v0xyz[xyz] , tdxyz[xyz]), vr, theta ));
     let txy = _project( txyz[0], txyz[1], txyz[2] );
 
-    let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
-    label.fill = "rgba(16,16,16,1)";
-    two.add(label);
+    if (use_abg) {
+      mathjax2twojs( _latex_id[xyz], x0+txy[0]-5, y0+txy[1], 0.018 );
+    }
+    else {
+      let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+      label.fill = "rgba(16,16,16,1)";
+      two.add(label);
+    }
 
   }
 
@@ -771,13 +780,20 @@ function curve3d_fig(x0,y0,s) {
 // vr rotation axis
 // theta rotation angle
 //
-function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta) {
+function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
   theta = ((typeof theta === "undefined") ? (-Math.PI/16) : theta);
+  alpha = ((typeof alpha === "undefined") ? 1 : alpha);
 
+  if (fco.match('rgba')) {
+    let new_opa = fco.split("(")[1].split(",")[3].split(")")[0];
+    let new_fco = "rgb(" + fco.split('(')[1].split(',').slice(0,3).join(',') + ")";
+
+    alpha = new_opa;
+    fco = fco;
+  }
 
   let two = g_fig_ctx.two;
-
   let faces3d = [
     [
       [0,0,0],
@@ -792,14 +808,6 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta) {
       [0,lXYZ[1], lXYZ[2]],
       [0,lXYZ[1],0]
     ],
-    /*
-    [
-      [lXYZ[0],0,0],
-      [lXYZ[0],0,lXYZ[2]],
-      [lXYZ[0],lXYZ[1],lXYZ[2]],
-      [lXYZ[0],lXYZ[1],0]
-    ],
-    */
 
     [
       [0,0,lXYZ[2]],
@@ -831,8 +839,9 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta) {
 
     p.stroke = lco;
     p.linewidth = lw;
-  }
 
+    p.opacity = alpha;
+  }
 
   two.update();
 }
@@ -858,6 +867,28 @@ function mkfullblock(start_xy, opos, cuboid_size, disp_order, scale) {
   }
 
   //two.update();
+}
+
+function mkdockconn(cxy, dock_pos, scale, dock_co, vr, theta) {
+  let two = g_fig_ctx.two;
+
+  let diam = 4*scale/25;
+
+  let _dd = 1/3;
+  let jxyz = njs.mul(scale, rodrigues([ dock_pos[0],dock_pos[1],dock_pos[2]], vr, theta));
+  let jxy = njs.add( [cxy[0], cxy[1]], _project( jxyz[0], jxyz[1], jxyz[2]) );
+  mk_iso_cuboid(jxy[0],jxy[1],scale*_dd, dock_co[0], dock_co[1], [1,1,1], 0, vr, theta);
+
+  let dc_xyz = njs.mul(scale, rodrigues([dock_pos[3],dock_pos[4],dock_pos[5]], vr, theta));
+  let dc_xy = njs.add( [cxy[0], cxy[1]], _project( dc_xyz[0], dc_xyz[1], dc_xyz[2]) );
+
+  let _c = two.makeCircle( dc_xy[0], dc_xy[1],  diam );
+  _c.noStroke();
+
+  _c.opacity = 0.9;
+  _c.fill = dock_co[2];
+  //_c.fill = "rgb(0,0,0)";
+
 }
 
 function gilbert3d_eccentric() {
@@ -921,8 +952,12 @@ function gilbert3d_eccentric() {
   let latex_name_scale = 0.0175;
   let latex_eqn_scale = 0.016;
 
+  let dock_co_a = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.3)", "rgb(0,0,0)" ];
+  let dock_co_b = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.3)", "rgb(255,255,255)" ];
+
   // S_0
-  // w >>
+  // w >> ...
+  // |\alpha| >> ...
   //
 
   let cxy = [75,110];
@@ -932,8 +967,18 @@ function gilbert3d_eccentric() {
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
   mk_iso_cuboid( cxy[0]       , cxy[1]        , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
 
+  _D = 1/3;
+  _d = _D/2;
+  mkdockconn(cxy, [1,0,0, 1+_d,_d,_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [1-_D,0,0, 1-_d,_d,_d], scale, dock_co_b, vr, theta);
+
   mathjax2twojs("S0", cxy[0]+10, cxy[1]+30, latex_name_scale);
   mathjax2twojs("wgg", cxy[0]-37, cxy[1]+50, latex_eqn_scale);
+
+
 
 
   //------
@@ -942,6 +987,7 @@ function gilbert3d_eccentric() {
 
   // S_2
   // h >> ...
+  // |\beta| >> ...
   //
 
   cxy = [200,110];
@@ -961,6 +1007,15 @@ function gilbert3d_eccentric() {
 
   mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
 
+  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale/2, dock_co_a, vr, theta);
+  //mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale/2, dock_co_a, vr, theta);
+  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale/2, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale/2, dock_co_b, vr, theta);
+
+
   mathjax2twojs("S2", cxy[0]-5, cxy[1]+30, latex_name_scale);
   mathjax2twojs("hgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
 
@@ -971,6 +1026,7 @@ function gilbert3d_eccentric() {
 
   // S_1
   // d >> ...
+  // |\gamma| >> ...
   //
 
   cxy = [310,110];
@@ -987,6 +1043,16 @@ function gilbert3d_eccentric() {
   cs = njs.mul( scale, [1,1,1] );
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
 
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale/2, dock_co_a, vr, theta);
+  mkdockconn(cxy, [0,0,1-_D, _d,_d,1-_d], scale/2, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [2-_D,0,1-_D, 2-_d,_d,1-_d], scale/2, dock_co_a, vr, theta);
+  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale/2, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [0,0,1, _d,_d,1+_d], scale/2, dock_co_a, vr, theta);
+  mkdockconn(cxy, [2-_D,0,1, 2-_d,_d,1+_d], scale/2, dock_co_b, vr, theta);
+
+
   mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
   mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
 
@@ -997,6 +1063,7 @@ function gilbert3d_eccentric() {
 
   // S_2
   // w << ...
+  // |\alpha| << ...
   //
 
   cxy = [100,280];
@@ -1013,6 +1080,14 @@ function gilbert3d_eccentric() {
 
   mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
 
+  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale, dock_co_a, vr, theta);
+
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [1-_D,0,0, 1-_d,_d,_d], scale, dock_co_b, vr, theta);
+
+
   mathjax2twojs("S2", cxy[0]-15, cxy[1]+30, latex_name_scale);
   mathjax2twojs("wll", cxy[0]-60, cxy[1]+50, latex_eqn_scale);
 
@@ -1023,6 +1098,7 @@ function gilbert3d_eccentric() {
 
   // S_1
   // h << ...
+  // |\beta| << ...
   //
 
   cxy = [200,280];
@@ -1040,6 +1116,16 @@ function gilbert3d_eccentric() {
   cs = njs.mul( scale, [2,1,1.5] );
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
 
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [0,0,1-_D, _d,_d,1-_d], scale, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [2-_D,0,1-_D, 2-_d,_d,1-_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [0,0,1, _d,_d,1+_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [2-_D,0,1, 2-_d,_d,1+_d], scale, dock_co_b, vr, theta);
+
+
   mathjax2twojs("S1", cxy[0]-5+15, cxy[1]+30, latex_name_scale);
   mathjax2twojs("hll", cxy[0]-35+5, cxy[1]+50, latex_eqn_scale);
 
@@ -1052,6 +1138,7 @@ function gilbert3d_eccentric() {
 
   // S_2
   // d << ...
+  // |\gamma| << ...
   //
 
   cxy = [310,280];
@@ -1068,6 +1155,16 @@ function gilbert3d_eccentric() {
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
 
   mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
+
+
+  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale, dock_co_a, vr, theta);
+
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale, dock_co_b, vr, theta);
+
+  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
+
+
 
   mathjax2twojs("S2", cxy[0]-5, cxy[1]+30, latex_name_scale);
   mathjax2twojs("dll", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
