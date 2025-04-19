@@ -287,11 +287,19 @@ Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig
 
 \subsection{3D Generalized Hilbert Function (Gilbert3D)}
 
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
   \caption{ The $J_0$-split subdivision, representing the main subdivision of the bulk recursion for the 3D Gilbert curve case. }
   \label{fig:gilbert3DJSplit}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_eccentric.pdf}
+  \caption{ Eccentric cases for recursion. When the cuboid is too far from being cube-like, an $S$-split shape template is used to try and subdivide the cuboids into elements that are more cube like. Here $\alpha$, $\beta$, $\gamma$ are the width-like, height-like and depth-like dimensions. See the text or the algorithm description for the constant ratios used to determine what makes the  cuboid lengths eccentric. }
+  \label{fig:gilbert3DEccentricCase}
 \end{figure}
 
 
