@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  19 APR 2025 13:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  20 APR 2025 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1680,39 +1680,46 @@ e pdfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./gilbert3d_eccentric.pdf): PDF inclusion: multi
 ple pdfs with page group included in a single page
->]
+>] [5
 
-LaTeX Warning: Reference `fig:eccentric' on page 5 undefined on input line 51.
+ <./gilbert3d_case.pdf>]
 
-[5 <./gilbert3d_case.pdf>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 71.
+LaTeX Warning: Reference `fig:eccentric' on page 6 undefined on input line 54.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 71.
+(hyperref)                removing `math shift' on input line 74.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 101.
+(hyperref)                removing `math shift' on input line 74.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 101.
+(hyperref)                removing `math shift' on input line 104.
 
-) (./08-Appendix-Alg.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 104.
+
+) (./08-Appendix-Alg.tex [6
+
+]
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
-(Font)              scaled to size 6.0pt on input line 13.
+(Font)              scaled to size 6.0pt on input line 16.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/LibertinusSerif-TLF/m/sc/6'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
-(Font)              scaled to size 5.0pt on input line 13.
+(Font)              scaled to size 5.0pt on input line 16.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/LibertinusSerif-TLF/m/sc/5'.
 (microtype)             Ignoring protrusion settings for this character.
-) [6] [7] (./Gilbert.aux)
+ [7
+
+]) [8
+
+] (./Gilbert.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.24995pt have occurred.
@@ -1727,13 +1734,13 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42161 strings out of 480171
- 820030 string characters out of 5894489
- 1227611 words of memory out of 5000000
+ 42162 strings out of 480171
+ 820036 string characters out of 5894489
+ 1210611 words of memory out of 5000000
  58900 multiletter control sequences out of 15000+600000
  637036 words of font info for 320 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 122i,20n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_cb34qf.e
 nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_hvvyjb.
 enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_mfadfl
@@ -1766,9 +1773,9 @@ s/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/symbols/msbm10.pfb>
-Output written on Gilbert.pdf (7 pages, 1433534 bytes).
+Output written on Gilbert.pdf (8 pages, 1433760 bytes).
 PDF statistics:
- 1135 PDF objects out of 1200 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
+ 1139 PDF objects out of 1200 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
  94960 words of extra memory for PDF output out of 106986 (max. 10000000)
 
