@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gilbert2D Examples</title>
+
+
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, 
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+  };
+  </script>
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+
+  <script type='text/javascript' src='js/gilbert.js'></script>
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/gilbert2d_examples.js'></script>
+
+  <script type='text/javascript' src='js/FileSaver.js'></script>
+
+
+</head>
+
+<body>
+
+
+  <div id='gilbert2d_examples' style='width:400px;height:300px;'> </div>
+</body>
+
+<script>
+  function mathjax_ready() {
+    gilbert2d_examples();
+  }
+</script>
+<html>
+
