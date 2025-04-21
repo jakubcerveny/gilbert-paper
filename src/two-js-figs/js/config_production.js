@@ -149,6 +149,8 @@ function mkarrow(px, py, dx, dy, w, h) {
   let _p = two.makePath( anch );
 
   _p.linewidth = 3;
+  _p.linewidth = 5;
+
   _p.stroke = LINE_COLOR;
   _p.fill = LINE_COLOR;
   _p.join = "round";
@@ -174,7 +176,10 @@ function mkarrowarc(pxy, qxy, cp_p_xy, awh) {
     new Two.Anchor(e0_x, e0_y, -cp_f_x, -cp_f_y,       0,       0,   Two.Commands.curve)
   ], false, false, true);
   _line.cap = "round"
+
   _line.linewidth = 3;
+  _line.linewidth = 5;
+
   _line.stroke = LINE_COLOR;
   _line.noFill();
   _line.opacity = 1;
@@ -206,7 +211,10 @@ function mkarrowarc_vertical(pxy, qxy, cp_p_xy, awh) {
     new Two.Anchor(e0_x, e0_y,  cp_f_x,  cp_f_y,       0,       0,   Two.Commands.curve)
   ], false, false, true);
   _line.cap = "round"
+
   _line.linewidth = 3;
+  _line.linewidth = 5;
+
   _line.stroke = LINE_COLOR;
   _line.noFill();
   _line.opacity = 1;
