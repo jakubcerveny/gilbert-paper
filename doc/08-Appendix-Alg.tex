@@ -1,7 +1,7 @@
 
 \clearpage
 
-\section{Auxiliary Algorithms and Procedures}
+\section{Auxiliary Algorithms and Procedures} \label{ProcedureAppendix}
 
 \subsection{Auxiliary Functions}
 
@@ -24,6 +24,19 @@
     \State \textit{\# directional vector}
     \Function{$\delta$}{$v \in \mathbb{Z}^3$}
       \State \Return $[ \text{sgn}(v_0), \text{sgn}(v_1), \text{sgn}(v_2) ]$
+    \EndFunction
+
+    \State
+    \State \textit{\# base case}
+    \Function{Hilbert2x2x2}{$p$, $\alpha$, $\beta$, $\gamma$}
+      \State \textbf{yield} $p$
+      \State \textbf{yield} $p + \delta(\beta)$
+      \State \textbf{yield} $p + \delta(\beta) + \delta(\gamma)$
+      \State \textbf{yield} $p + \delta(\gamma)$
+      \State \textbf{yield} $p + \delta(\alpha) + \delta(\gamma)$
+      \State \textbf{yield} $p + \delta(\alpha) + \delta(\beta) + \delta(\gamma)$
+      \State \textbf{yield} $p + \delta(\alpha) + \delta(\beta)$
+      \State \textbf{yield} $p + \delta(\alpha)$
     \EndFunction
 
   \end{algorithmic}
@@ -123,9 +136,9 @@
       \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
       \State
       \State \textit{\# prefer initial block even}
-      \State $\alpha_2 = \alpha_2 + \delta(\alpha)$ \textbf{if} $(| \alpha_2 | > 2)$and$(| \alpha_2 | \bmod{2} \equiv 1)$
-      \State $\beta_2 = \beta_2 + \delta(\beta)$ \textbf{if} $(| \beta_2 | > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
-      \State $\gamma_2 = \gamma_2 + \delta(\gamma)$ \textbf{if} $(| \gamma_2 | > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
+      \State $\alpha_2 = \alpha_2 + \delta(\alpha)$ \textbf{if} $(| \alpha | > 2)$and$(| \alpha_2 | \bmod{2} \equiv 1)$
+      \State $\beta_2 = \beta_2 + \delta(\beta)$ \textbf{if} $(| \beta | > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
+      \State $\gamma_2 = \gamma_2 + \delta(\gamma)$ \textbf{if} $(| \gamma | > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
       \State
       \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_2$, $\gamma_2$, $\alpha_2$)
       \State
@@ -155,9 +168,9 @@
       \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
       \State
       \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
-      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
-      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
-      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
+      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
+      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
+      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
       \State
       \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\gamma_2$, $\alpha_2$, $\beta_2$)
       \State
@@ -186,9 +199,9 @@
       \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
       \State
       \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
-      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
-      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
-      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
+      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
+      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
+      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
       \State
       \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_2$, $\gamma$, $\alpha_2$)
       \State
