@@ -1,0 +1,30 @@
+#!/bin/bash
+#
+
+
+testtype="xyz"
+
+if [[ "$testtype" == "xyzp" ]] ; then
+
+  for z in `seq 1 8` ; do
+    for y in `seq 1 8` ; do
+      for x in `seq 1 8` ; do
+        echo "## $x $y $z"
+        node ./gilbert3dpp.js xyzp $x $y $z | ./gilbert-check-curve
+      done
+    done
+  done
+
+elif [[ "$testtype" == "xyz" ]] ; then
+
+  for z in `seq 1 10` ; do
+    for y in `seq 1 10` ; do
+      for x in `seq 1 10` ; do
+        echo "## $x $y $z"
+        node ./gilbert3dpp.js xyz $x $y $z | ./gilbert-check-curve
+      done
+    done
+  done
+
+fi
+
