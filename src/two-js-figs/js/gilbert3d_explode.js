@@ -418,6 +418,8 @@ function _mk_iso_cuboid(x0,y0,s, lco, fco, lXYZ, lw, alpha) {
 function axis_fig(x0,y0,s) {
   let two = g_fig_ctx.two;
 
+  let use_abg = true;
+
   let vr = [0,0,1];
   let theta = -Math.PI/16;
 
@@ -454,6 +456,8 @@ function axis_fig(x0,y0,s) {
   let _txt = ["x", "y", "z"];
   _txt = [ "X", "Y", "Z" ];
 
+  let _latex_id = [ "alpha", "beta", "gamma" ];
+
   let tdxyz = [
     [  0, 0.5,   0 ],
     [-0.5,   0,   0 ],
@@ -477,9 +481,19 @@ function axis_fig(x0,y0,s) {
     let txyz = njs.mul(s, rodrigues( njs.add(v0xyz[xyz] , tdxyz[xyz]), vr, theta ));
     let txy = _project( txyz[0], txyz[1], txyz[2] );
 
-    let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
-    label.fill = "rgba(16,16,16,1)";
-    two.add(label);
+
+    if (use_abg) {
+      mathjax2twojs( _latex_id[xyz], x0+txy[0]-5, y0+txy[1], 0.018 );
+    }
+    else {
+      let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+      label.fill = "rgba(16,16,16,1)";
+      two.add(label);
+    }
+
+    //let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+    //label.fill = "rgba(16,16,16,1)";
+    //two.add(label);
 
   }
 
@@ -833,36 +847,6 @@ function curve3d_fig(x0,y0,s) {
   }
 
   two.update();
-
-  return;
-
-  let _p = [];
-  for (let idx=0; idx<64; idx++) {
-    let _xyz = gilbert_d2xyz(idx, N,N,N);
-
-    let xyz = rodrigues( [N-_xyz.y, _xyz.x, _xyz.z], rotaxis, rotangle );
-
-    let ridx = 0;
-    for (ridx=0; ridx<idx_region_xy.length; ridx++) {
-      if ((idx_region_xy[ridx][0] <= idx) &&
-          (idx < idx_region_xy[ridx][1])) {
-        break;
-      }
-    }
-
-    let dxy = idx_region_xy[ridx][2];
-
-    let xy = njs.add( _project(xyz[0], xyz[1], xyz[2], s), [x0,y0] );
-    xy[0] += dxy[0];
-    xy[1] += dxy[1];
-    _p.push(xy);
-
-  }
-
-
-
-  two.update();
-
 }
 
 function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
@@ -931,9 +915,74 @@ function gilbert3d_explode() {
   var ele = document.getElementById("gilbert3d_explode_canvas");
   two.appendTo(ele);
 
-  axis_fig(200, 50, 20);
-  block3d_fig(50, 160, 40);
-  curve3d_fig(15, 300, 20);
+  axis_fig(215, 50, 20);
+  block3d_fig(100, 160, 40);
+  curve3d_fig(15, 250, 20);
+}
+
+
+function mathjax2twojs(_id,x,y,s,s_sub) {
+  s = ((typeof s === "undefined") ? 0.02 : s);
+  s_sub = ((typeof s_sub === "undefined") ? 0.7 : s_sub);
+
+  let two = g_fig_ctx.two;
+
+  let ele = document.querySelector("#" + _id + " svg");
+  let ser = new XMLSerializer();
+  let str = ser.serializeToString(ele);
+
+  let parser = new DOMParser();
+  let sge = parser.parseFromString(str, "image/svg+xml").documentElement;
+
+  let sgr = two.interpret(sge);
+
+  sgr.position.x = x;
+  sgr.position.y = y;
+  sgr.scale.x =  s;
+  sgr.scale.y = -s;
+
+  // rescale subscript HACK
+  //
+  if (_id.slice(0,2) == "m_") {
+
+    if (true) {
+
+    if (sgr.children.length > 0) {
+    if (sgr.children[0].children.length > 0) {
+    if (sgr.children[0].children[0].children.length > 1) {
+    if (sgr.children[0].children[0].children[1].children.length > 1) {
+        sgr.children[0].children[0].children[1].children[1].scale.x = s_sub;
+        sgr.children[0].children[0].children[1].children[1].scale.y = s_sub;
+    }
+    }
+    }
+    }
+
+    }
+  }
+  else {
+
+    if (sgr.children.length > 0) {
+    if (sgr.children[0].children.length > 0) {
+    if (sgr.children[0].children[0].children.length > 0) {
+    if (sgr.children[0].children[0].children[0].children.length > 1) {
+        sgr.children[0].children[0].children[0].children[1].scale.x = s_sub;
+        sgr.children[0].children[0].children[0].children[1].scale.y = s_sub;
+    }
+    }
+    }
+    }
+
+  }
+
+  //yep, needed, so we can then get the make element
+  //
+  two.update();
+
+  let mask = document.getElementById(sgr.mask.id);
+  mask.firstChild.setAttribute("d", "M -4000 -4000 L 4000 -4000 L 4000 4000 L -4000 4000 Z");
+
+  two.update();
 }
 
 

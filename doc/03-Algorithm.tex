@@ -103,8 +103,8 @@ volume is odd, or different parity if the volume is even.
      \hline
   \end{tabular}
   \caption{ Table showing when a Hamiltonian path is possible. Here, $|\alpha|$ is the absolute difference in start and end position of the path which
-            coincides with one of the axis aligned side length of the cuboid volume. A Hamiltonian path is not possible on only in the case
-            when $|\alpha|$ is odd and the volume is even. }
+            coincides with one of the axis aligned side length of the cuboid volume. A Hamiltonian path is possible only when $|\alpha|$ even of both
+            $|\alpha|$ and the volume are odd. }
   \label{table:pathTable}
 \end{table}
 
@@ -241,33 +241,8 @@ can be ignored if a purely 2D curve is desired.
 The generalization to 3D allows the Gilbert2D function to be used unaltered when the
 3D Gilbert curve needs to trace out in-plane sub-curves.
 
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{\hskip0.5em $\delta(\cdot)$ directional vector function }
-%  \label{alg:delta}
-%  \begin{algorithmic}
-%
-%    \State
-%    \State \textit{\# integral sign function}
-%    \Function{$\text{sgn}$}{$w \in \mathbb{Z}$}
-%      %\State $(w < 0) ? (-1) : ((w > 0) ? 1 : 0)$
-%      \State \textbf{if} $(w < 0)$ \Return $-1$
-%      \State \textbf{if} $(w > 0)$ \Return $1$
-%      \State \Return 0
-%    \EndFunction
-%
-%    \State
-%    \State \textit{\# directional vector}
-%    \Function{$\delta$}{$v \in \mathbb{Z}^3$}
-%      \State \Return $[ \text{sgn}(v_0), \text{sgn}(v_1), \text{sgn}(v_2) ]$
-%    \EndFunction
-%
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
-
 The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
-the major signed axis aligned directions the input vector points to ($[\pm1,0,0], [0,\pm1,0],[0,0,\pm1]$).
+the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
 For completeness, the function is defined in Procedure \ref{alg:delta}.
 
 Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
@@ -287,6 +262,7 @@ Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig
 
 \subsection{3D Generalized Hilbert Function (Gilbert3D)}
 
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
@@ -295,193 +271,16 @@ Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig
 \end{figure}
 
 
-The concept of a $U$-split is extended into 3D by constructing a $J$-split.
+The concept of a $U$-split is extended to 3D by constructing a $J$-split.
 An exploded view of a $J$-split is shown in Figure \ref{fig:gilbert3DJSplit}.
 
-Side lengths of the subdivided cuboids are chosen to try and not preclude a
-Hamiltonian path.
-If a path starts at the local $[0,0,0]$, a Hamiltonian path that ends
-at $[(w-1),0,0]$ is only possible when $w$ is even or when all lengths are odd, including $w$.
-
-
-\begin{figure*}[ht]
-  \centering
-  \includegraphics[width=\textwidth]{gilbert3d_case.pdf}
-  \caption{ Bulk recursion J-split atlas for the 3D Gilbert algorithm }
-  \label{fig:gilbert3DCase}
-\end{figure*}
-
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{ \hskip0.5em $S_0$-Split function (eccentric split) }
-%  \label{alg:procS0}
-%  \begin{algorithmic}
-%    \State
-%    \State \textit{\# split halfway on $\alpha$ }
-%    \Function{$S_0$}{$p$, $\alpha$, $\beta$, $\gamma$}
-%      \State $\alpha_2 \leftarrow (\alpha // 2)$
-%      \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
-%        \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
-%      \EndIf
-%      \State
-%      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\alpha_{2}$, $\beta$, $\gamma$ )
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha_{2}$, \\ \hskip8.25em $(\alpha - \alpha_{2})$, $\beta$, $\gamma$ )
-%    \EndFunction
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
-%
-%
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{ \hskip0.5em $S_1$-Split functions (eccentric split) }
-%  \label{alg:procS1}
-%  \begin{algorithmic}
-%    \State
-%    \State \textit{\# split $\frac{1}{3}$ on $\gamma$ and halfway on $\alpha$ }
-%    \Function{$S_1$}{$p$, $\alpha$, $\beta$, $\gamma$}
-%      \State $\alpha_2, \gamma_3 \leftarrow (\alpha // 2), (\gamma // 3)$
-%      \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
-%        \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
-%      \EndIf
-%      \If{ $(|\gamma| > 2)$ and $((|\gamma_3| \bmod{2}) \equiv 1)$ }
-%        \State $\gamma_3 \leftarrow \gamma_3 + \delta(\gamma)$
-%      \EndIf
-%      \State
-%      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\gamma_3$, $\alpha_2$, $\beta$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \gamma_3$, \\ \hskip8.25em $\alpha$, $\beta$, $(\gamma - \gamma_3)$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \gamma_{3} - \delta(\gamma)$, \\ \hskip8.25em $\gamma_3$, $(\alpha - \alpha_2)$, $\beta$)
-%    \EndFunction
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
-%
-%
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{ \hskip0.5em $S_2$-Split function (eccentric split) }
-%  \label{alg:procS2}
-%  \begin{algorithmic}
-%    \State
-%    \State \textit{\# split $\frac{1}{3}$ on $\beta$ and halfway on $\alpha$ }
-%    \Function{$S_2$}{$p$, $\alpha$, $\beta$, $\gamma$}
-%      \State $\alpha_2, \beta_3 \leftarrow (\alpha // 2), (\beta // 3)$
-%      \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
-%        \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
-%      \EndIf
-%      \If{ $(|\beta| > 2)$ and $((|\beta_3| \bmod{2}) \equiv 1)$ }
-%        \State $\beta_3 \leftarrow \beta_3 + \delta(\beta)$
-%      \EndIf
-%      \State
-%      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_{3}$, $\gamma$, $\alpha_2$ )
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \beta_{3}$, \\ \hskip8.25em $\alpha$, $(\beta - \beta_{3})$, $\gamma$ )
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_{3} - \delta(\beta)$, \\ \hskip8.25em $-\beta_{3}$, $\gamma$, $-\alpha$)
-%    \EndFunction
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
-%
-%
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{ \hskip0.5em $J_0$-Split function }
-%  \label{alg:procJ0}
-%  \begin{algorithmic}
-%    \State
-%    \State \textit{\# $|\gamma|$ even }
-%    \Function{$J_0$}{$p$, $\alpha$, $\beta$, $\gamma$}
-%      \State
-%      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
-%      \State
-%      \State \textit{\# prefer initial block even}
-%      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 1)$
-%      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
-%      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
-%      \State
-%      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_2$, $\gamma_2$, $\alpha_2$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\beta_2$, \\ \hskip8.25em $\gamma$, $\alpha_2$, $\beta - \beta_2$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \beta_2 - \delta(\beta_2) + \gamma - \delta(\gamma)$, \\ \hskip8.25em $\alpha$, $-\beta_2$, $-(\gamma - \gamma_2)$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_2 + \gamma - \delta(\gamma)$, \\ \hskip8.25em $-\gamma$, $-(\alpha - \alpha_2)$, $(\beta - \beta_2)$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$, \\ \hskip8.25em $-\beta_2$, $\gamma_2$, $-(\alpha - \alpha_2)$)
-%    \EndFunction
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
-
-
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{ \hskip0.5em $J_1$-Split function }
-%  \label{alg:procJ2}
-%  \begin{algorithmic}
-%    \State
-%    \State \textit{\# $|\gamma|$ odd, one of $|\alpha|$ or $|\beta|$ even }
-%    \Function{$J_1$}{$p$, $\alpha$, $\beta$, $\gamma$}
-%      \State
-%      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
-%      \State
-%      \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
-%      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
-%      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
-%      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
-%      \State
-%      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\gamma2$, $\alpha_2$, $\beta_2$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\gamma_2$, \\ \hskip8.25em $\beta$, $\gamma - \gamma_2$, $\alpha_2$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\gamma_2 - \delta(\gamma) + \beta - \delta(\beta)$, \\ \hskip8.25em $\alpha$, $-(\beta - \beta_2)$, $-\gamma_2$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\alpha - \delta(\alpha) + \beta - \delta(\beta) + \gamma_2 - \delta(\gamma)$, \\ \hskip8.25em $\beta$, $\gamma - \gamma_2$, $-(\alpha - \alpha_2)$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\alpha - \delta(\alpha) + \gamma_2 - \delta(\gamma)$, \\ \hskip8.25em $-\gamma_2$, $-(\alpha - \alpha_2)$, $\beta_2$)
-%    \EndFunction
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
-
-
-%\floatname{algorithm}{Procedure}
-%\begin{algorithm}
-%  \caption{ \hskip0.5em $J_2$-Split function }
-%  \label{alg:procJ2}
-%  \begin{algorithmic}
-%    \State
-%    \State \textit{\# $|\alpha|, |\beta|, |\gamma|$ odd }
-%    \Function{$J_2$}{$p$, $\alpha$, $\beta$, $\gamma$}
-%      \State
-%      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
-%      \State
-%      \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
-%      \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha_2| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
-%      \State $\beta_2=\beta_2+\delta(\beta)$ \textbf{if} $(|\beta_2| > 2)$and$(|\beta_2| \bmod{2} \equiv 1)$
-%      \State $\gamma_2=\gamma_2+\delta(\gamma)$ \textbf{if} $(|\gamma_2| > 2)$and$(|\gamma_2| \bmod{2} \equiv 1)$
-%      \State
-%      \State \textbf{yield} Gilbert3D($p$, \\ \hskip8.25em $\beta_2$, $\gamma$, $\alpha_2$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\beta_2$, \\ \hskip8.25em $\gamma_2$, $\alpha$, $(\beta - \beta_2)$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p+\beta_2 + \gamma_2$, \\ \hskip8.25em $\alpha$, $(\beta - \beta_2)$, $(\gamma - \gamma_2)$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta) + \gamma_2$, \\ \hskip8.25em $-\beta_2$, $(\gamma- \gamma_2)$, $-(\alpha - \delta(\alpha))$)
-%      \State
-%      \State \textbf{yield} Gilbert3D($p + \alpha - \delta(\alpha) + \gamma_2 - \delta(\gamma)$, \\ \hskip8.25em $-\gamma_2$, $-(\alpha - \alpha_2)$, $\beta_2$)
-%    \EndFunction
-%  \end{algorithmic}
-%\end{algorithm}
-%\floatname{algorithm}{Algorithm}
+As discussed in section 3.1, we consider $p \in \mathbb{Z}^3$ to be the local origin point in the cuboid with
+$\alpha, \beta, \gamma \in \mathbb{Z}^3$ to be the local basis whose lengths encode the size of the cuboid.
+The generalized 3D Hilbert algorithm (\textit{Gilbert3D}) is shown in Algorithm \ref{alg:gilbert3d}.
 
 
 \begin{algorithm}
-  \caption{ \hskip0.5em 3D Generalized Hilbert Function (Gilbert3D) } %($p$, $\alpha$, $\beta$, $\gamma$) \\ \hskip3.0em $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$ }
+  \caption{ \hskip0.5em 3D Generalized Hilbert Function (Gilbert3D) }
   \label{alg:gilbert3d}
   \begin{algorithmic}
     \State \textit{\# $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$}
@@ -522,5 +321,114 @@ at $[(w-1),0,0]$ is only possible when $w$ is even or when all lengths are odd, 
 
   \end{algorithmic}
 \end{algorithm}
+
+
+Side lengths of the subdivided cuboids are chosen to try and not preclude a
+Hamiltonian path, if possible.
+If a path starts at the local $(0,0,0)$, a Hamiltonian path that ends
+at $((w-1),0,0)$ is only possible when $w$ is even or when all lengths are odd, including $w$.
+That is, when $(|\alpha| \cdot ( 1 - |\beta| \cdot |\gamma| ) \equiv 0 \bmod 2)$ will a Hamiltonian
+path be possible through the cuboid region.
+
+Should a Hamiltonian path not be possible, all but one sub-cuboid regions are chosen to allow a Hamiltonian
+path.
+The sub-cuboid where a Hamiltonian path is not possible will be further subdivided as necessary, recursively
+ensuring that the inadmissible Hamiltonian path region will eventually be resolved at a single point.
+
+When considering a cuboid region to trace out a Gilbert curve on, there are conceptually three main guides:
+
+\begin{itemize}
+  \item One of $|\alpha|, |\beta|, |\gamma|$ is of length 1 or all are of length 2 (\textit{base case})
+  \item One of $|\alpha|, |\beta|, |\gamma|$ are significantly larger or smaller than the other two dimension (\textit{eccentric case})
+  \item The cuboid region defined by $\alpha, \beta, \gamma$ is sufficiently cube-like (\textit{bulk recursion case})
+\end{itemize}
+
+
+\begin{figure*}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{gilbert3d_case.pdf}
+  \caption{ Bulk recursion J-split atlas for the 3D Gilbert algorithm. A subscript of $2e$ is used to denote a preference
+  to coerce the length even where as the subscript $2u$ is used to denote a preference to coerce the length odd.
+  The subscript $2e+$ is the remainder of the axis after removing the $2e$ portion (e.g. $\alpha_{2e+} = \alpha - \alpha_{2e}$.
+  The subscript $2u+$ is the remainder of the axis after removing the $2u$ portion (e.g. $\beta_{2u+} = \beta - \beta_{2u}$.
+  The parity of the original cuboid volume are shown in the left most, assembled, volume, for each of the rows.
+  The local axis for each of the subdivided cuboid regions is shown underneath them, with a white dot
+  denoting the ``width-like'' axis, a solid line denoting the ``height-like'' dimension and a dotted line
+  denoting the ``depth-like'' dimension. For each of the cuboids, the block dot denotes the start of the path
+  and the white dot denotes the path end. A red cross is used to show when a Hamiltonian path is inadmissible within a cuboid volume.  }
+  \label{fig:gilbert3DCase}
+\end{figure*}
+
+
+For the \textit{bulk recursion case}, there are three main shape templates, $J_0$, $J_1$ and $J_2$.
+An atlas of which $J$-split to choose, what parity each of the subdivided cuboid regions and how
+to connect each of the subdivisions is shown in Figure \ref{fig:gilbert3DCase}.
+Figure \ref{fig:gilbert3DCase} also enumerates the local coordinate system for each of the sub-cuboid
+regions, displayed under each of the exploded sub-cuboid region volumes.
+When a Hamiltonian path is inadmissible,
+a red cross is shown on the cuboid region where the notch will be directed to.
+
+For many of the subdivisions, there is some choice of parity for non-constrained sides.
+For example, if all sides start out even (parity $0$), the $J_0$ template would be used, constraining
+$\beta_2$ to be even but otherwise allowing $\gamma_2$ and $\beta_2$ to be chosen as even or odd parity.
+
+For conceptual simplicity, $|\beta_2|$ and $|\gamma_2|$ are preferred even.
+Should $|\alpha|$ be even, $|\alpha_2|$ is preferred even.
+Otherwise, in the case $|\alpha|$ odd, $|\alpha_2|$ is preferred odd.
+
+When $|\alpha|$, $|\beta|$ or $|\gamma|$ become smaller than 2, coercing the respective sub-cuboid
+side lengths to be odd or even is not done, as the sub-cuboid region can be safely reduced to its
+lower dimensional base case.
+
+The \textit{base case} reduces to \textit{Gilbert2D} if at least one of the dimensions is 1 or a straight forward call to a Hilbert curve
+procedure in the case all dimensions have length 2 (\textit{Hilbert2x2x2} in Appendix \ref{ProcedureAppendix}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_eccentric.pdf}
+  \caption{ Eccentric cases for recursion. When the cuboid is too far from being cube-like, an $S$-split shape template is used to try and subdivide the cuboids into elements that are more cube like. Here $\alpha$, $\beta$, $\gamma$ are the width-like, height-like and depth-like dimensions. See the text or the algorithm description for the ratios used to determine eccentricity. }
+  \label{fig:gilbert3DEccentricCase}
+\end{figure}
+
+In the \textit{eccentric case}, where a cuboid region is too lopsided or oblong, an $S$-split is used to try to shape
+sub-cuboid regions to be more cube-like.
+Figure \ref{fig:gilbert3DEccentricCase} shows the three shape templates, $S_0$, $S_1$, $S_2$, along with the connecting
+points, for the different conditions when one axis length is significantly different from the others.
+
+When $|\alpha| > \frac{5}{3} \max(|\beta|, |\gamma|)$, the $S_0$ template is used to partition the cuboid the $\alpha$ axis.
+In the other cases, when $|\gamma| > \frac{3}{2} \max(|\alpha|, |\beta|)$ or $|\beta| < \frac{2}{3} \min(|\alpha|, |\gamma|)$ the $S_1$
+template is used and the $S_2$ template is used when
+$|\alpha| < \frac{2}{3} \min(|\beta|, |\gamma|)$,
+$|\gamma| < \frac{2}{3} \min(|\alpha|, |\beta|)$ or
+$|\beta| > \frac{3}{2} \max(|\alpha|, |\gamma|)$.
+
+The constants used to determine eccentricity are chosen by considering the \textit{average defect} of the subdivided cuboid volumes.
+We use the term \textit{defect} to mean the ratio of volume of a cuboid region to the cube of its smallest length.
+That is:
+
+$$
+\begin{array}{l}
+  \text{defect}(|\alpha|, |\beta|, |\gamma|) \overset{\mathrm{def}}{=} \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ \min(|\alpha|, |\beta|, |\gamma|) }
+\end{array}
+$$
+
+For a cube, the defect will be 1, with an increasing defect the larger a side length becomes relative to the other two.
+
+The \textit{average defect} is defined to be the sum of the individual sub-cuboid defect, weighted by each sub-cuboids proportional
+volume.
+
+The concept of defect is ad hoc and has potential problems. A better definition might be recursive.
+Regardless, with this ad hoc definition, we can justify constants used for the eccentric cases by showing a defect reduction, relative
+to the bulk recursion case.
+
+For the $S_0$ template, the two subdivided cuboids are chosen to be roughly half $|\alpha|$.
+For the other templates making the obvious choice of subdividing the ``height-like'' axis by half does
+not lead to a defect reduction.
+That is, choosing a roughly half subdivision of $|\gamma|$ for $S_1$ or a roughly half subdivision of $|\beta|$ for $S_2$, does
+not always yield a defect reduction.
+
+A constant of $\frac{1}{3}$ is chosen to split the ``height-like'' dimensions for the $S_0$ and $S_1$ case,
+while the other split is chosen at the halfway mark.
+The calculations showing that the constants chosen yield a defect reduction in each of the three eccentric $S$-splits is provided in Appendix \ref{appendix:defect}.
 
 

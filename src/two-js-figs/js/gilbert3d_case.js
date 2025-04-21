@@ -396,6 +396,8 @@ function small_axis_fig(x0,y0,ord,sdir,s) {
 function axis_fig(x0,y0,s) {
   let two = g_fig_ctx.two;
 
+let use_abg = true;
+
   let vr = [0,0,1];
   let theta = -Math.PI/16;
 
@@ -432,6 +434,8 @@ function axis_fig(x0,y0,s) {
   let _txt = ["x", "y", "z"];
   _txt = [ "X", "Y", "Z" ];
 
+  let _latex_id = [ "alpha", "beta", "gamma" ];
+
   let tdxyz = [
     [  0, 0.5,   0 ],
     [-0.5,   0,   0 ],
@@ -465,9 +469,18 @@ function axis_fig(x0,y0,s) {
     let txyz = njs.mul(s, rodrigues( njs.add(v0xyz[xyz] , tdxyz[xyz]), vr, theta ));
     let txy = _project( txyz[0], txyz[1], txyz[2] );
 
-    let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
-    label.fill = "rgba(16,16,16,1)";
-    two.add(label);
+    if (use_abg) {
+      mathjax2twojs( _latex_id[xyz], x0+txy[0]-5, y0+txy[1], 0.018 );
+    }
+    else {
+      let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+      label.fill = "rgba(16,16,16,1)";
+      two.add(label);
+    }
+
+    //let label = new Two.Text(_txt[xyz], x0+txy[0], y0+txy[1], style);
+    //label.fill = "rgba(16,16,16,1)";
+    //two.add(label);
 
   }
 
@@ -975,7 +988,10 @@ function gilbert3d_case() {
       "order" : [2,0,1],
       "orientation" : [1,1,1],
       "x": { "t": "alpha2e", "xy": [10,5]  },
-      "y": { "t": "beta2s", "xy": [-25,0]  },
+
+      //"y": { "t": "beta2s", "xy": [-25,0]  },
+      "y": { "t": "beta2s", "xy": [-33,0]  },
+
       "z": { "t": "gamma", "xy": [-30,-20]  }
     },
 
@@ -984,21 +1000,29 @@ function gilbert3d_case() {
       "orientation" : [1,-1,-1],
       "x": { "t": "alpha", "xy": [10,5]  },
       "y": { "t": "m_beta2e", "xy": [-25,0]  },
-      "z": { "t": "m_gamma2s", "xy": [-37,-20]  }
+      //"z": { "t": "m_gamma2s", "xy": [-37,-20]  }
+      "z": { "t": "m_gamma2s", "xy": [-43,-20]  }
     },
 
     {
       "order" : [2,0,1],
       "orientation" : [-1,-1,1],
-      "x": { "t": "m_alpha2s", "xy": [10,5]  },
-      "y": { "t": "beta2s", "xy": [-25,0]  },
+
+      //"x": { "t": "m_alpha2s", "xy": [10,5]  },
+      "x": { "t": "m_alpha2s", "xy": [5,5]  },
+
+      //"y": { "t": "beta2s", "xy": [-25,0]  },
+      "y": { "t": "beta2s", "xy": [-33,0]  },
+
       "z": { "t": "m_gamma", "xy": [-30,-20]  }
     },
 
     {
       "order" : [1,2,0],
       "orientation" : [-1,1,-1],
-      "x": { "t": "m_alpha2s", "xy": [10,5]  },
+      //"x": { "t": "m_alpha2s", "xy": [10,5]  },
+      "x": { "t": "m_alpha2s", "xy": [5,8]  },
+
       "y": { "t": "m_beta2e", "xy": [-25,0]  },
       "z": { "t": "gamma2e", "xy": [-38,-20]  }
     }
@@ -1022,15 +1046,19 @@ function gilbert3d_case() {
       //"x": { "t": "alpha2", "xy": [10,5]  },
       "x": { "t": "alpha2u", "xy": [10,5]  },
       "y": { "t": "beta", "xy": [-25,0]  },
-      "z": { "t": "gamma2s", "xy": [-55,-35]  }
+
+      //"z": { "t": "gamma2s", "xy": [-55,-35]  }
+      "z": { "t": "gamma2s", "xy": [-62,-43]  }
     },
 
     {
       "order": [0,1,2],
       "orientation" : [1,-1,-1],
       "x": { "t": "alpha", "xy": [10,5]  },
-      //"y": { "t": "m_beta2p", "xy": [-25,0]  },
-      "y": { "t": "m_beta2s", "xy": [-25,0]  },
+
+      //"y": { "t": "m_beta2s", "xy": [-25,0]  },
+      "y": { "t": "m_beta2s", "xy": [-32,0]  },
+
       "z": { "t": "m_gamma2e", "xy": [-37,-20]  }
     },
 
@@ -1040,7 +1068,9 @@ function gilbert3d_case() {
       //"x": { "t": "m_alpha2p", "xy": [10,5]  },
       "x": { "t": "m_alpha2up", "xy": [10,5]  },
       "y": { "t": "m_beta", "xy": [-25,0]  },
-      "z": { "t": "gamma2s", "xy": [-55,-40]  }
+
+      //"z": { "t": "gamma2s", "xy": [-55,-40]  }
+      "z": { "t": "gamma2s", "xy": [-62,-32]  }
     },
 
     {
@@ -1392,8 +1422,10 @@ function gilbert3d_case() {
 
 
 
-    two.makeText("Block", sxy[0]+5, sxy[1]+30, _st);
-    two.makeText("Axis", sxy[0]+5, sxy[1]+45, _st);
+    //two.makeText("Block", sxy[0]+5, sxy[1]+30, _st);
+    //two.makeText("Axis", sxy[0]+5, sxy[1]+45, _st);
+    let jsplit_name = "J" + whd2pconfig[whd].toString();
+    mathjax2twojs(jsplit_name, sxy[0]-10, sxy[1]+35);
 
 
     //EXPERIMENTAL
@@ -1490,7 +1522,7 @@ function gilbert3d_case() {
       let label_annotations = true;
       if (label_annotations) {
 
-        if (whd == 3) { _lbl = label_P1_011[idx]; }
+        //if (whd == 3) { _lbl = label_P1_011[idx]; }
 
         let _xt = _lbl.x.t;
         let _yt = _lbl.y.t;

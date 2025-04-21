@@ -15,6 +15,26 @@
 
   <script type='text/javascript' src='js/gilbert3d_explode.js'></script>
 
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+    };
+  </script>
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+
+
+
+
   <!-- https://patterns.helloyes.dev/ -->
   <svg  xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -277,12 +297,20 @@
 
 <body>
 
-  <div id='gilbert3d_explode_canvas' style='width:250px;height:420px;'> </div>
+  <div id='alpha' style='display:none;'>$\alpha$</div>
+  <div id='beta' style='display:none;'>$\beta$</div>
+  <div id='gamma' style='display:none;'>$\gamma$</div>
+
+
+  <div id='gilbert3d_explode_canvas' style='width:280px;height:360px;'> </div>
+
 
 </body>
 
   <script>
-    gilbert3d_explode();
+    function mathjax_ready() {
+      gilbert3d_explode();
+    }
   </script>
 
 <html>
