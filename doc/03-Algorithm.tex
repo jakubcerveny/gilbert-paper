@@ -249,7 +249,22 @@ Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{
 and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to [ i \cdot v_0, i \cdot v_1, i \cdot v_2 ]$).
 where the context is clear.
 
-Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig:gilbert2d_examples}, showing a $(4 \times 4)$, $(10 \times 4)$ and $(7 \times 4)$
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert2d_examples.pdf}
+  \caption{ Example outputs of the 2D Gilbert curve algorithm for width and heigth of i) $8 \times 8$ ii) $18 \times 6$ iii) $13 \times 8$ and iv) $14 \times 14$.
+            The $8 \times 8$ Gilbert curve (i) is identical to the Hilbert curve of length $8$.
+            For the 13x8 curve (iii), there is no Hamiltonian path possilbe from $(0,0)$ to $(12,0)$ resulting in the Gilbert curve algorithm inserting a notch
+            in the upper right hand corner. }
+  \label{fig:gilbert2d_examples}
+\end{figure}
+
+Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig:gilbert2d_examples}, showing realizations for dimensions
+$(8 \times 8)$, $(18 \times 6)$, $(13 \times 8)$ and $(14 \times 14)$.
+The $(8 \times 8)$ (\textit{i)} in Figure \ref{fig:gilbert2d_examples}) Gilbert curve is identical to the Hilbert curve of side length 8.
+The $(18 \times 6)$ curve highlights a horizontal split when the $\alpha$, or width-like, dimension becomes $\frac{3}{2}$ larger than the
+$\beta$, or height-like, dimension.
+For the $(13 \times 8)$ Gilbert curve, a Hamiltonian path is not possible and the algorithm inserts a notch in a best effort approach to realize the curve.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            _ ____              __ _____     __
