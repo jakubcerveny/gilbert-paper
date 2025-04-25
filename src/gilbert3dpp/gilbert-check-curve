@@ -15,6 +15,8 @@ import sys
 max_xyz = [-1,-1,-1]
 prv_xyz = [-1, 0, 0]
 
+VERBOSE_LEVEL = 0
+
 NOTCH_COUNT = 0
 LINE_NO = 0
 
@@ -23,6 +25,11 @@ dup_map = {}
 
 UNIQ_COUNT = 0
 CELL_TOTAL = 0
+
+if (len(sys.argv) > 1):
+  for arg in sys.argv[1:]:
+    if arg == "verbose":
+      VERBOSE_LEVEL += 1
 
 def _dist1(a,b):
   s = 0
@@ -59,7 +66,7 @@ for line in sys.stdin:
     cur_xyz[1] = int(tok[1])
     cur_xyz[2] = int(tok[2])
   else:
-    print("ERROR: expecting 2 or 3 coordinates, got", len(tok), ", line:", LINE_NO, "'" + line + "'")
+    sys.stderr.write("ERROR: expecting 2 or 3 coordinates, got" +  str(len(tok)) +  ", line:" + str(LINE_NO) +  "'" + line + "'")
     sys.exit(-1)
 
   max_xyz[0] = max(max_xyz[0], cur_xyz[0])
@@ -88,7 +95,14 @@ if ((DUP_COUNT > 0) or (NOTCH_COUNT  != parity) or (UNIQ_COUNT != CELL_TOTAL)):
 
 if (Nxyz[0] == 1): code = "unspec"
 
-print("#", code, ": N[", Nxyz[0], "x", Nxyz[1], "x", Nxyz[2], "], notch:", NOTCH_COUNT,
-      ", dup:", DUP_COUNT,
-      ", parity:", parity,
-      ", uniq:", UNIQ_COUNT, "(/", CELL_TOTAL, ")")
+if (code == "FAIL"):
+  if (VERBOSE_LEVEL > 0):
+    sys.stderr.write("#" + str(code) + ": N[" + str(Nxyz[0]) + "x" +  str(Nxyz[1]) +  "x" + str(Nxyz[2]) +  "], notch:" +  str(NOTCH_COUNT) + \
+          ", dup:" + str(DUP_COUNT) + ", parity:" + str(parity) + ", uniq:" + str(UNIQ_COUNT) + "(/" + str(CELL_TOTAL) +  ")\n")
+  sys.exit(-1)
+else:
+  if (VERBOSE_LEVEL > 0):
+    sys.stdout.write("#" + str(code) + ": N[" + str(Nxyz[0]) + "x" +  str(Nxyz[1]) +  "x" + str(Nxyz[2]) +  "], notch:" +  str(NOTCH_COUNT) + \
+          ", dup:" + str(DUP_COUNT) + ", parity:" + str(parity) + ", uniq:" + str(UNIQ_COUNT) + "(/" + str(CELL_TOTAL) +  ")\n")
+
+sys.exit(0)
