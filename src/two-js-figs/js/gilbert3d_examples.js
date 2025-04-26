@@ -470,13 +470,13 @@ function gilbert3d_examples() {
   two.makeText("v)", 25, 320, font_style);
   mkg3curve([40,420], [8, 4, 4], 30);
 
-  two.makeText("v)", 340, 320, font_style);
+  two.makeText("vi)", 340, 320, font_style);
   mkg3curve([350,400], [3, 5, 3], 30);
 
-  two.makeText("vi)", 500, 320, font_style);
+  two.makeText("vii)", 500, 320, font_style);
   mkg3curve([520,460], [3, 3, 5], 30);
 
-  two.makeText("vii)", 650, 320, font_style);
+  two.makeText("viii)", 650, 320, font_style);
   mkg3curve([650,460], [5, 4, 4], 30);
 
   axis_fig(40,45,20);
