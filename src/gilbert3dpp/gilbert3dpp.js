@@ -39,14 +39,15 @@ function _dprint() {
   }
 }
 
-function Gilbert3Dpp_d2xyz(idx, w,h,d) {
+function Gilbert3Dpp_d2xyz(idx, w,h,d, force_w) {
+  force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
   let d0 = (d%2);
 
   let p0 = [0,0,0];
 
-  if (w0 == 0) {
+  if (force_w || (w0 == 0)) {
     return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
   }
 
@@ -63,11 +64,12 @@ function Gilbert3Dpp_d2xyz(idx, w,h,d) {
 }
 
 function Gilbert3Dpp_xyz2d(q, w,h,d) {
+  force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
   let d0 = (d%2);
 
-  if (w0 == 0) {
+  if (force_w || (w0 == 0)) {
     return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]);
   }
 
@@ -84,13 +86,14 @@ function Gilbert3Dpp_xyz2d(q, w,h,d) {
 }
 
 
-function Gilbert2Dpp_d2xy(idx, w,h) {
+function Gilbert2Dpp_d2xy(idx, w,h, force_w) {
+  force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
 
   let p0 = [0,0,0];
 
-  if (w0 == 0) {
+  if (force_w || (w0 == 0)) {
     let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
     return [xyz[0], xyz[1]];
   }
@@ -105,13 +108,14 @@ function Gilbert2Dpp_d2xy(idx, w,h) {
 }
 
 function Gilbert2Dpp_xy2d(_q, w,h) {
+  force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
 
   let q = [_q[0],_q[1],0];
   let p0 = [0,0,0];
 
-  if (w0 == 0) {
+  if (force_w || (w0 == 0)) {
     return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]);
   }
 
