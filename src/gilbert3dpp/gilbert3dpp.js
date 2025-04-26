@@ -39,6 +39,89 @@ function _dprint() {
   }
 }
 
+function Gilbert3Dpp_d2xyz(idx, w,h,d) {
+  let w0 = (w%2);
+  let h0 = (h%2);
+  let d0 = (d%2);
+
+  let p0 = [0,0,0];
+
+  if (w0 == 0) {
+    return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
+  }
+
+  if (h0 == 0) {
+    return Gilbert3D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,d]);
+  }
+
+  if (d0 == 0) {
+    return Gilbert3D_d2xyz(idx, 0, p0, [0,0,d], [w,0,0], [0,h,0]);
+  }
+
+  return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
+
+}
+
+function Gilbert3Dpp_xyz2d(q, w,h,d) {
+  let w0 = (w%2);
+  let h0 = (h%2);
+  let d0 = (d%2);
+
+  if (w0 == 0) {
+    return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]);
+  }
+
+  if (h0 == 0) {
+    return Gilbert3D_xyz2d(0, q, [0,0,0], [0,h,0], [w,0,0], [0,0,d]);
+  }
+
+  if (d0 == 0) {
+    return Gilbert3D_xyz2d(0, q, [0,0,0], [0,0,d], [w,0,0], [0,h,0]);
+  }
+
+  return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]);
+
+}
+
+
+function Gilbert2Dpp_d2xy(idx, w,h) {
+  let w0 = (w%2);
+  let h0 = (h%2);
+
+  let p0 = [0,0,0];
+
+  if (w0 == 0) {
+    let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
+    return [xyz[0], xyz[1]];
+  }
+
+  if (h0 == 0) {
+    let xyz = Gilbert2D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,1]);
+    return [xyz[0], xyz[1]];
+  }
+
+  let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
+  return [xyz[0], xyz[1]];
+}
+
+function Gilbert2Dpp_xy2d(_q, w,h) {
+  let w0 = (w%2);
+  let h0 = (h%2);
+
+  let q = [_q[0],_q[1],0];
+  let p0 = [0,0,0];
+
+  if (w0 == 0) {
+    return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]);
+  }
+
+  if (h0 == 0) {
+    return Gilbert2D_xyz2d(0, q, p0, [0,h,0], [w,0,0], [0,0,1]);
+  }
+
+  return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]);
+}
+
 // Description:
 //
 // d2e    : divide by 2 but force even (by adding one if need be)
@@ -3118,7 +3201,10 @@ function _main(argv) {
   let op_list = [
     "xy", "xyz", "xyzp",
     "xy2d", "d2xy",
-    "xyz2d", "d2xyz"
+    "xyz2d", "d2xyz",
+
+    "xyz2dpp", "d2xyzpp",
+    "xy2dpp", "d2xypp"
   ];
 
 
@@ -3203,6 +3289,54 @@ function _main(argv) {
 
     }
 
+
+    // "dynamic" functions that adjust the endpoints to create a Hamiltonian path
+    //
+
+    else if (op == "d2xyzpp") {
+
+      for (let idx=0; idx<(w*h*d); idx++) {
+        let xyz = Gilbert3Dpp_d2xyz(idx, w,h,d);
+        console.log(xyz[0], xyz[1], xyz[2]);
+      }
+
+    }
+
+    else if (op == "xyz2dpp") {
+
+      for (let z=0; z<d; z++) {
+        for (let y=0; y<h; y++) {
+          for (let x=0; x<w; x++) {
+            let idx = Gilbert3Dpp_xyz2d([x,y,z], w,h,d);
+            console.log(idx, x,y,z);
+          }
+        }
+      }
+
+    }
+
+    else if (op == "d2xypp") {
+
+      for (let idx=0; idx<(w*h*d); idx++) {
+        let xyz = Gilbert2Dpp_d2xy(idx, w,h);
+        console.log(xyz[0], xyz[1]);
+      }
+
+    }
+
+    else if (op == "xy2dpp") {
+
+      for (let y=0; y<h; y++) {
+        for (let x=0; x<w; x++) {
+          let idx = Gilbert2Dpp_xy2d([x,y], w,h);
+          console.log(idx, x,y);
+        }
+      }
+
+    }
+
+    // legacy function
+    //
     else if (op == "xyzp") {
       g3d_p([0,0,0], [w,0,0], [0,h,0], [0,0,d]);
     }
