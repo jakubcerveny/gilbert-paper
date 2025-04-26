@@ -34,8 +34,8 @@ function hsl_lerp(p) {
   let sat = "95%";
   let lit = '35%';
 
-  //sat = '95%';
-  lit = '41%';
+  sat = '60%';
+  lit = '55%';
   return "hsl(" + [ hue,sat,lit ].join(",") + ")";
 }
 
@@ -454,17 +454,32 @@ function gilbert3d_examples() {
       ey = 250;
 
   //mkg3curve([lx+35,35], [4, 4, 4], 10, {"y":true, "x":false});
+  two.makeText("i)", 25, 60, font_style);
   mkg3curve([40,170], [4, 4, 4], 30);
+
+  two.makeText("ii)", 210, 60, font_style);
   mkg3curve([230,190], [4, 4, 5], 30);
-  mkg3curve([440,180], [5, 5, 5], 30);
+
+  two.makeText("iii)", 390, 60, font_style);
+  mkg3curve([410,180], [5, 5, 5], 30);
+
+  two.makeText("iv)", 630, 60, font_style);
+  mkg3curve([650,220], [6, 6, 6], 30);
 
   //mkg3curve([40,420], [8, 4, 4], 30);
+  two.makeText("v)", 25, 320, font_style);
   mkg3curve([40,420], [8, 4, 4], 30);
-  mkg3curve([350,370], [3, 5, 3], 30);
 
-  mkg3curve([520,420], [3, 3, 5], 30);
+  two.makeText("v)", 340, 320, font_style);
+  mkg3curve([350,400], [3, 5, 3], 30);
 
-  axis_fig(50,50,20);
+  two.makeText("vi)", 500, 320, font_style);
+  mkg3curve([520,460], [3, 3, 5], 30);
+
+  two.makeText("vii)", 650, 320, font_style);
+  mkg3curve([650,460], [5, 4, 4], 30);
+
+  axis_fig(40,45,20);
 
   two.update();
 
