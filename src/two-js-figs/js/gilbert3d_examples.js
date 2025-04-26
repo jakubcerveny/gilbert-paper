@@ -33,6 +33,9 @@ function hsl_lerp(p) {
   let hue = Math.floor(360*p).toString();
   let sat = "95%";
   let lit = '35%';
+
+  //sat = '95%';
+  lit = '41%';
   return "hsl(" + [ hue,sat,lit ].join(",") + ")";
 }
 
@@ -265,6 +268,39 @@ function squeeze(p, a,b) {
   return a + (b-a)*p;
 }
 
+// There's some trickery here.
+// The goals are to create a 3d gilbert curve figure that:
+//
+// - is rotated at a nice angle for good viewing
+// - is orthographic (non-perspective)
+// - has an outline for the edges to get a better sense of depth
+// - has 'dots' at vertex points to give a sense for where the
+//   verticies are
+// - is an SVG image
+//
+// All these machinations (custom projection, custom rotations, etc.)
+// are pretty much so we can save figures into SVG.
+// two.js is a 2d library, so we need to do some 3d stuff ourselves.
+//
+// To acheive this we:
+//
+// - generate a 3d gilbert curve
+// - rotate it in 3d appropriately
+// - project down to 2d
+// - keep the 3d, 2d and index points
+// - sort by the rotated vectors, depth first (see the 'sort' function below
+//   where we do the lazy projection, project onto the 'away' vector that's the
+//   cross product of the lazy projection vectors)
+// - draw the circle for the vertex and a white line, larger than the colored line,
+//   halfway from each source vertex to the neighbor (making sure to use 'butt' cap
+//   so no artifacts on the curve are seen)
+// - finally, draw the colored line, again drawing from the source vertex to halfway
+//   to each of it's neighboring verticies (rounded cap)
+//
+// The figure has alpha going up and to the right, beta going left and up and gamma
+// going up, so we need to do an extra x/y and x-flip for the returned gilbert curve
+// to be consistent with the displayed reference axis.
+//
 function mkg3curve(xy, whd, s) {
   s = ((typeof s === "undefined") ? 1 : s);
   //flipxy = ((typeof flipxy === "undefined") ? {"y":false, "x": false} : flipxy);
@@ -390,77 +426,8 @@ function mkg3curve(xy, whd, s) {
       l.cap = "round";
     }
 
-    continue;
-
-    /*
-    let co0 = hsl_lerp( (idx-1) / pnt2.length );
-    let co1 = hsl_lerp( idx / pnt2.length );
-
-    let sidx = pnt32[idx][2];
-    let co2 = hsl_lerp( sidx/pnt2.length );
-
-    let n = pnt2.length;
-
-    let v = Math.floor(squeeze(256*sidx/n, 0.1,0.9)).toString();
-
-
-    co2 = "rgb(" + v + "," + v + "," + v + ")";
-
-    let p_prv = pnt2[idx-1];
-    let p_cur = pnt2[idx];
-
-    let l = two.makeLine( p_prv[0], p_prv[1], p_cur[0], p_cur[1] );
-    l.noFill();
-    l.stroke = co1;
-
-    l.stroke = co2;
-
-    l.linewidth = 3;
-    */
   }
 
-
-
-  /*
-  return;
-
-  let two = g_fig_ctx.two;
-
-  let W = wh[0];
-  let H = wh[1];
-
-  let n = wh[0]*wh[1];
-  for (let idx=1; idx<n; idx++) {
-    let p = gilbert.d2xy(idx-1, wh[0], wh[1]);
-    let q = gilbert.d2xy(  idx, wh[0], wh[1]);
-
-    if (flipxy.y) {
-      p.y = H - p.y;
-      q.y = H - q.y;
-    }
-
-    if (flipxy.x) {
-      p.x = W - p.x;
-      q.x = W - q.x;
-    }
-
-    q.x *= s; q.x += xy[0];
-    q.y *= s; q.y += xy[1];
-
-    p.x *= s; p.x += xy[0];
-    p.y *= s; p.y += xy[1];
-
-    let hue = Math.floor(360*idx / (W*H)).toString();
-    let sat = "95%";
-    let lit = '35%';
-    let clr = "hsl(" + [ hue,sat,lit ].join(",") + ")";
-
-    let line = two.makeLine(p.x, p.y, q.x, q.y);
-    line.noFill();
-    line.stroke = clr;
-
-  }
-  */
 }
 
 
@@ -485,23 +452,6 @@ function gilbert3d_examples() {
 
   let ex = 250,
       ey = 250;
-
-  /*
-  let l0 = two.makeLine(50, 50, ex, ey);
-  l0.stroke = co;
-  l0.linewidth = 6;
-  l0.cap = "round";
-
-  let l1_bg = two.makeLine(50,ey, ex, 50);
-  l1_bg.stroke = "rgb(255,255,255)";
-  l1_bg.linewidth = 12;
-  l1_bg.cap = "round";
-
-  let l1 = two.makeLine(50,ey, ex, 50);
-  l1.stroke = co;
-  l1.linewidth = 6;
-  l1.cap = "round";
-  */
 
   //mkg3curve([lx+35,35], [4, 4, 4], 10, {"y":true, "x":false});
   mkg3curve([40,170], [4, 4, 4], 30);
