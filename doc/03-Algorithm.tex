@@ -199,7 +199,7 @@ obligatory notch is effectively ``pushed'' into the $C$ block.
     \State \textit{\# $p, \alpha, \beta \in \mathbb{Z}^3$}
     \Function{Gilbert2D}{$p$, $\alpha$, $\beta$}
       \State
-      \State $\alpha_2, \beta_2  = (\alpha // 2), (\beta // 2)$
+      \State $\alpha_2, \beta_2  = \text{div}(\alpha, 2), \text{div}(\beta, 2)$
 
       \State
       \If{ $(|\beta| \equiv 1)$ }
@@ -252,9 +252,9 @@ where the context is clear.
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{gilbert2d_examples.pdf}
-  \caption{ Example outputs of the 2D Gilbert curve algorithm for width and heigth of i) $8 \times 8$ ii) $18 \times 6$ iii) $13 \times 8$ and iv) $14 \times 14$.
+  \caption{ Example outputs of the 2D Gilbert curve algorithm for width and height of i) $8 \times 8$ ii) $18 \times 6$ iii) $13 \times 8$ and iv) $14 \times 14$.
             The $8 \times 8$ Gilbert curve (i) is identical to the Hilbert curve of length $8$.
-            For the 13x8 curve (iii), there is no Hamiltonian path possilbe from $(0,0)$ to $(12,0)$ resulting in the Gilbert curve algorithm inserting a notch
+            For the 13x8 curve (iii), there is no Hamiltonian path possible from $(0,0)$ to $(12,0)$ resulting in the Gilbert curve algorithm inserting a notch
             in the upper right hand corner. }
   \label{fig:gilbert2d_examples}
 \end{figure}
@@ -353,9 +353,9 @@ ensuring that the inadmissible Hamiltonian path region will eventually be resolv
 When considering a cuboid region to trace out a Gilbert curve on, there are conceptually three main guides:
 
 \begin{itemize}
-  \item One of $|\alpha|, |\beta|, |\gamma|$ is of length 1 or all are of length 2 (\textit{base case})
-  \item One of $|\alpha|, |\beta|, |\gamma|$ are significantly larger or smaller than the other two dimension (\textit{eccentric case})
-  \item The cuboid region defined by $\alpha, \beta, \gamma$ is sufficiently cube-like (\textit{bulk recursion case})
+  \item \textit{Bulk Recursion Case:} \\ The cuboid region defined by $\alpha, \beta, \gamma$ is sufficiently cube-like
+  \item \textit{Eccentric Case:} \\ One of $|\alpha|, |\beta|, |\gamma|$ are significantly larger or smaller than the other two dimension
+  \item \textit{Base Case:} \\ One of $|\alpha|, |\beta|, |\gamma|$ are length 1 or all are length 2
 \end{itemize}
 
 
@@ -382,6 +382,7 @@ Figure \ref{fig:gilbert3DCase} also enumerates the local coordinate system for e
 regions, displayed under each of the exploded sub-cuboid region volumes.
 When a Hamiltonian path is inadmissible,
 a red cross is shown on the cuboid region where the notch will be directed to.
+Pseudo-code for each of the $J$-split functions is provided in Appendix \ref{JSplitFunctions}
 
 For many of the subdivisions, there is some choice of parity for non-constrained sides.
 For example, if all sides start out even (parity $0$), the $J_0$ template would be used, constraining
@@ -396,7 +397,7 @@ side lengths to be odd or even is not done, as the sub-cuboid region can be safe
 lower dimensional base case.
 
 The \textit{base case} reduces to \textit{Gilbert2D} if at least one of the dimensions is 1 or a straight forward call to a Hilbert curve
-procedure in the case all dimensions have length 2 (\textit{Hilbert2x2x2} in Appendix \ref{ProcedureAppendix}).
+procedure in the case all dimensions have length 2 (\textit{Hilbert2x2x2} in Appendix \ref{AuxiliaryFunctions}).
 
 \begin{figure}[h]
   \centering
@@ -409,6 +410,7 @@ In the \textit{eccentric case}, where a cuboid region is too lopsided or oblong,
 sub-cuboid regions to be more cube-like.
 Figure \ref{fig:gilbert3DEccentricCase} shows the three shape templates, $S_0$, $S_1$, $S_2$, along with the connecting
 points, for the different conditions when one axis length is significantly different from the others.
+Pseudo-code is provided for each of the $S$-split functions in Appendix \ref{SSplitFunctions}.
 
 When $|\alpha| > \frac{5}{3} \max(|\beta|, |\gamma|)$, the $S_0$ template is used to partition the cuboid the $\alpha$ axis.
 In the other cases, when $|\gamma| > \frac{3}{2} \max(|\alpha|, |\beta|)$ or $|\beta| < \frac{2}{3} \min(|\alpha|, |\gamma|)$ the $S_1$
@@ -432,7 +434,10 @@ For a cube, the defect will be 1, with an increasing defect the larger a side le
 The \textit{average defect} is defined to be the sum of the individual sub-cuboid defect, weighted by each sub-cuboids proportional
 volume.
 
-The concept of defect is ad hoc and has potential problems. A better definition might be recursive.
+The concept of defect is ad hoc and has potential problems\footnote{For example,
+if one dimension is of length 1, the denominator will always be 1.
+Further, under this definition, the $J$-split will lead to an increase defect even though another recursion level for a $J$-split on the eccentric
+cuboids would lead to a near equal defect, indicating a recursive definition might be better.}.
 Regardless, with this ad hoc definition, we can justify constants used for the eccentric cases by showing a defect reduction, relative
 to the bulk recursion case.
 
@@ -448,7 +453,7 @@ The calculations showing that the constants chosen yield a defect reduction in e
 
 \subsection{Discussion}
 
-For applications that require a strict Hamiltonian path without a notch point but are unconstrained in endpoint location can choose
+Applications that require a strict Hamiltonian path without a notch point, but are unconstrained in endpoint location, can choose
 endpoints on the even length dimension so that a Gilbert curve with a Hamiltonian path realization is possible.
 Other options can include increasing one or more length dimensions with padding to make the major width-like axis ($\alpha$) even or
 by forcing all length dimensions to be odd.
