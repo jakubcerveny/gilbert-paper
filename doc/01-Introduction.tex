@@ -46,14 +46,17 @@ but have a more stringent requirement of local connectivity.
 The local connectivity, or locality, preserves a measure of nearness, where
 points from the source unit line remain close in the embedded space.
 
+% this section might be unncecessary
+%
 The local connectivity requirements
 preclude things like \textit{zig-zag} Hamiltonian
-paths, as nearby points in the embedded dimension can be far from the origin line.
+paths, paths that run straight from one side to another before turning around,
+as nearby points in the embedded dimension can be far from the origin line.
 
 % FIGURE DESCRIBING LOCALITY, LOCAL CONNECTIVITY
 
 
-The Gilbert curve algorithm works by choosing sub rectangular cuboid regions, or blocks,
+The Gilbert curve algorithm works by choosing sub rectangular cuboid regions
 to recursively find a connecting path.
 If one extent of the cuboid becomes too large or small relative to the other lengths,
 a special subdivision is performed to try and make further subdivisions more cube-like.
@@ -66,35 +69,49 @@ In such a case, the Gilbert curve will introduce a single diagonal path move, ca
 
 \subsection{Definitions}
 
-We concern ourselves with a space filling curve, $\omega = (\omega_0, \omega_1, \dots, \omega_{N-1})$,
-through a rectangular region $( N _ x, N _ y, N _ z)$,  $N = (N _ x \cdot N _ y \cdot N _ z)$.
+We concern ourselves with a curves
+that lie on the \textit{hypercubic lattice} $\mathbb{Z}^3$ graph,
+where vertices are the integral points in dimension $3$ with edges joined between them when they
+are unit distance away.
 
-%  = & \sqrt{ (x _ {k-1} - x _ k)^2 + (y _ {k-1} - y _ k)^2 + (z _ {k-1} - z _ k)^2 } = 1 \\
+We can represent the curve as, $\omega = (\omega_0, \omega_1, \dots, \omega_{N-1})$, where $w_i \in \mathbb{Z}^3$.
+A \textit{self avoiding curve} $\omega$, is one that does not visit a previously vertex ($i \ne j \to \omega_i \ne \omega_j$).
+A \textit{Hamiltonian path} is a valid path through a graph that visits every vertex exactly once, starting
+and ending at pre-specified points.
 
-$$
-\begin{array}{rl}
-  k \in & \{ 0 \dots (N-1) \}, \\
-  & x _ k, y _ k, z _ k \in \mathbb{N} \\
-  \omega _ k = & ( x _ k, y _ k, z _ k ) \\
-  \omega = & ( \omega _ 0, \omega _ 1, \dots, \omega _ {N-1} ) \\
-  k>1  & \to | \omega _ {k - 1} - \omega _ {k} | = 1 \\
-  \forall i,j \in & \{ 0 \dots (N-1) \}, i \ne j  \\
-  \to & \omega _ i \ne \omega _ j
-\end{array}
-$$
+A curve restricted to a rectangular region $( N _ x, N _ y, N _ z)$,  $N = (N _ x \cdot N _ y \cdot N _ z)$
+is said to have a Hamiltionian path \textit{feasible} if there exists a Hamitlonian path, with endpoints specified,
+that hits every vertex within the restricted the rectrangular region exactly once, starts at the specified start
+point, $\omega_0$ and ends at the specified endpoint $\omega_{N-1}$.
+A region that cannot have a Hamiltonian path, with the specified endpoints, is said to be \textit{infeasible}.
 
-For convenience, we use curves in 3D with the understanding that the 2D case is a specialization
-when $N_z = 1$ and drop the third dimension when convenient and context is clear.
+A consequence of the Hahn-Mazurkiewicz \cite{sagan_1994} one can map the unit interval to a three dimensional
+cube if and only if the mapped to space is compact, conneted and locally connected.
+We concern ourselves with the concept of \textit{local connectivity} with attention to approximations
+to finite realizations of curves on the 2D and 3D lattice.
 
-A \textit{Hamiltonian path} is a path through a graph such that every vertex is visited exactly once.
-In the context of this paper, we concern ourselves with Hamiltonian paths through the implied
-graph from integral points in 3D restricted to a cuboid region $(N_x, N_y, N_z)$.
-Each point in the cuboid represents a vertex in the implied graph, with vertices joined in the graph
-if points are (Euclidean) distance one away from a neighboring point restricted to the cuboid.
+We only provide some intuitive explanation for local connectivity here.
+For our purposes, \textit{local connectivity} denotes the idea that if $|i-j|$ is small, then $|w_i - w_j|$
+should also be small by some measure.
+That is, nearness in the line domain should relate to nearness in the three dimensional range.
+We use metrics to get a handle on local connectivity in a discrete and finite setting and leave
+their definition and usage until in Section 5.
 
-We also concern ourselves with Hamiltonian paths that specify a \textit{start} and \textit{end} point within
-a cuboid region.
-%If a Hamiltonian path is possible within a cuboid region, the region will be called \textit{feasible}.
+The concept of local connectivity gives is one of the key characteristics of a space filling curve
+and differentiates it from other curves that can fill rectangular regions but don't do so in a
+locally connected way \footnote{For example, the \textit{zig-zag} curve that creates a straight line until
+it hits the bounds of the region to turn around and increment in the other dimensional lengths to fill 
+a rectangular region.}.
+The local connectivity, or \textit{locality}, is the feature that allows features in one dimension to
+remain clustered in higher dimensions.
+
+We refer the reader to Sagan 1994 \cite{sagan_1994} for a more thorough introduction to local connectivity.
+
+
+%For simplicity, we focus on three dimensions with the understanding that
+%the two dimensional case can be reduced to a three dimensional case with at least one unit side length.
+
+
 
 
 \textbf{TODO}
