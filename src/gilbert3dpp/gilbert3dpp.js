@@ -6,16 +6,6 @@
 // work. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 //
 
-
-// WARNING WIP
-// WARNING WIP
-// WARNING WIP
-// Currently working on synchronous d2xyz and xyz2d
-// currently failing for 3d xyz2d 6 5 2 (and others)
-// WARNING WIP
-// WARNING WIP
-// WARNING WIP
-
 // This is a accompanying reference implementation for the
 // Gilbert2D and Gilbert3D functions referenced in the
 // paper https://github.com/jakubcerveny/gilbert-paper
@@ -39,7 +29,7 @@ function _dprint() {
   }
 }
 
-function Gilbert3Dpp_d2xyz(idx, w,h,d, force_w) {
+function Gilbert3DAdapt_d2xyz(idx, w,h,d, force_w) {
   force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
@@ -63,7 +53,7 @@ function Gilbert3Dpp_d2xyz(idx, w,h,d, force_w) {
 
 }
 
-function Gilbert3Dpp_xyz2d(q, w,h,d) {
+function Gilbert3DAdapt_xyz2d(q, w,h,d) {
   force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
@@ -86,7 +76,7 @@ function Gilbert3Dpp_xyz2d(q, w,h,d) {
 }
 
 
-function Gilbert2Dpp_d2xy(idx, w,h, force_w) {
+function Gilbert2DAdapt_d2xy(idx, w,h, force_w) {
   force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
@@ -107,7 +97,7 @@ function Gilbert2Dpp_d2xy(idx, w,h, force_w) {
   return [xyz[0], xyz[1]];
 }
 
-function Gilbert2Dpp_xy2d(_q, w,h) {
+function Gilbert2DAdapt_xy2d(_q, w,h) {
   force_w = ((typeof force_w === "undefined") ? false : force_w);
   let w0 = (w%2);
   let h0 = (h%2);
@@ -3171,17 +3161,21 @@ function Gilbert2D(w,h) {
   }
 }
 
+var OP_LIST = [
+  "xy", "xyz", "xyzp",
+  "xy2d", "d2xy",
+  "xyz2d", "d2xyz",
+
+  "xyz2da", "d2xyza",
+  "xy2da", "d2xya"
+];
+
 
 function _show_help(msg) {
   msg = ((typeof msg !== "undefined") ? msg : "");
   if (msg.length > 0) { console.log(msg, "\n"); }
 
-  let op_list = [
-    "xy", "xyz", "xyzp",
-    "xy2d", "d2xy",
-    "xyz2d", "d2xyz"
-  ];
-
+  let op_list = OP_LIST;
 
   console.log("usage:");
   console.log("");
@@ -3202,15 +3196,7 @@ function _main(argv) {
 
   let arg_idx = 1;
 
-  let op_list = [
-    "xy", "xyz", "xyzp",
-    "xy2d", "d2xy",
-    "xyz2d", "d2xyz",
-
-    "xyz2dpp", "d2xyzpp",
-    "xy2dpp", "d2xypp"
-  ];
-
+  let op_list = OP_LIST;
 
   if (argv.length <= 1) {
     _show_help();
@@ -3297,21 +3283,21 @@ function _main(argv) {
     // "dynamic" functions that adjust the endpoints to create a Hamiltonian path
     //
 
-    else if (op == "d2xyzpp") {
+    else if (op == "d2xyza") {
 
       for (let idx=0; idx<(w*h*d); idx++) {
-        let xyz = Gilbert3Dpp_d2xyz(idx, w,h,d);
+        let xyz = Gilbert3DAdapt_d2xyz(idx, w,h,d);
         console.log(xyz[0], xyz[1], xyz[2]);
       }
 
     }
 
-    else if (op == "xyz2dpp") {
+    else if (op == "xyz2da") {
 
       for (let z=0; z<d; z++) {
         for (let y=0; y<h; y++) {
           for (let x=0; x<w; x++) {
-            let idx = Gilbert3Dpp_xyz2d([x,y,z], w,h,d);
+            let idx = Gilbert3DAdapt_xyz2d([x,y,z], w,h,d);
             console.log(idx, x,y,z);
           }
         }
@@ -3319,20 +3305,20 @@ function _main(argv) {
 
     }
 
-    else if (op == "d2xypp") {
+    else if (op == "d2xya") {
 
       for (let idx=0; idx<(w*h*d); idx++) {
-        let xyz = Gilbert2Dpp_d2xy(idx, w,h);
+        let xyz = Gilbert2DAdapt_d2xy(idx, w,h);
         console.log(xyz[0], xyz[1]);
       }
 
     }
 
-    else if (op == "xy2dpp") {
+    else if (op == "xy2da") {
 
       for (let y=0; y<h; y++) {
         for (let x=0; x<w; x++) {
-          let idx = Gilbert2Dpp_xy2d([x,y], w,h);
+          let idx = Gilbert2DAdapt_xy2d([x,y], w,h);
           console.log(idx, x,y);
         }
       }
