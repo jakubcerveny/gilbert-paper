@@ -1,1 +1,63 @@
 \section{Related Work}
+
+Peano was the first to discover the first space filling curve, with Hilbert later discovering
+a space filling curve that we concern ourselves with in this paper \cite{hilbert2004david}
+Hilbert's curve takes a one dimensional line and maps it to a compact, connnected and locally connected
+set.
+For an introduction to space filling curves in addition to the necessary and sufficient
+conditions for a space filling curve, the reader is refered to Sagan \cite{sagan_1994}.
+
+As an artifact of the construction scheme, the Hilbert curve requires the side lengths to be exact powers of two.
+
+
+%---
+%
+%Rong, Zhang and Lin provide a modified Hilbert curve to arbitrary rectangular cuboid regions,
+%with an application towards image and video compression.
+%  - subdivide by lopping off largest power of two
+%  - can lead to long straight edges in normal conditions (7a) (?)
+%  - non-unique
+%  - complicated (?)
+%  - only works on $W \times H \times 2^d$ (?!)
+%
+%Zhang, Kamata, Ueshige, "pseudo-Hilbert scan for arbitrary-sized arrays"
+%  - 2d (only)
+%  - complicated (?)
+%  - doesn't generalize well to 3d (?)
+%  - aeshetically not so nice (see fig 7c, 7d)  (?)
+%
+%Voorhies coherence measure (graphics gems) seems pretty simple and reasoable?
+%
+%Dafner, Cohen-Or and Matias use a \textit{context-based} space filling curve that
+%uses an underlying image to ...????
+%
+%Lianyin etal. propose more efficient encoding and decoding algorithms for 3d Hilbert
+%curves ...
+%
+%Haverkort enumerates unique 3d Hilbert curves ... but doesn't require subdivided
+%cubes to be next to each other, so potentially has large skips/diagonal moves from
+%one to another?
+%
+%Haverkort also creates an 'inventory' of 3d Hilbert curves that "share the same properties"
+%as 2d Hilbert curves.
+%  - looks to be restricted to powers of 2
+%  - vertex continuous (which is what we want)
+%  - has many definitions of locality and others that might be interesting
+%
+%Haverkort and Walderveen define some "locality and bounding box quality" metrics,
+%presumably to measure sfcs
+%
+%Haverkort 'recursive tilings .. little frag' introduces Arrwwid numbers
+%
+%
+%B{\"o}hm, Perdacher and Plant propose Hilbert traversal order for problems
+%such as K-means, Cholesky decomposition and matrix multiplication so as to exploit
+%better cache utilization from the the locality of the Hilbert curve.
+%
+%Gotsman and Lindenbaum quantify locality and show Hilbert curves are optimal in relation
+%to their metric.
+%
+%Mokbel, Aref, Kamel define \textit{Jump, Contiguity, Reverse, Forward and Still}.
+%Incorrectly call scan and sweep curves/paths space filling.
+%
+%

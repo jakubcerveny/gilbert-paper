@@ -48,10 +48,10 @@ points from the source unit line remain close in the embedded space.
 
 % this section might be unncecessary
 %
-The local connectivity requirements
-preclude things like \textit{zig-zag} Hamiltonian
-paths, paths that run straight from one side to another before turning around,
-as nearby points in the embedded dimension can be far from the origin line.
+%The local connectivity requirements
+%preclude things like \textit{zig-zag} Hamiltonian
+%paths, paths that run straight from one side to another before turning around,
+%as nearby points in the embedded dimension can be far from the origin line.
 
 % FIGURE DESCRIBING LOCALITY, LOCAL CONNECTIVITY
 
@@ -69,58 +69,65 @@ In such a case, the Gilbert curve will introduce a single diagonal path move, ca
 
 \subsection{Definitions}
 
-We concern ourselves with a curves
-that lie on the \textit{hypercubic lattice} $\mathbb{Z}^3$ graph,
-where vertices are the integral points in dimension $3$ with edges joined between them when they
+A Gilbert curve, for a rectangular cuboid region, is
+%To describe the Gilbert curve algorithm, we concern ourselves with
+%finding
+a self avoiding path,
+restricted to the cubic lattice graph in a rectangular region, that also has locality.
+That is, we want to find a Hamiltonian path, with pre-specified start and end points, that hit
+every vertex within a cuboid rectangular region exactly once with any points close on the curve
+being appropriately close in the cubic lattice.
+
+Here, the \textit{cubic lattice graph} is a graph
+whose vertices are the integral points in $\mathbb{Z}^3$, with edges joined between them when they
 are unit distance away.
 
-We can represent the curve as, $\omega = (\omega_0, \omega_1, \dots, \omega_{N-1})$, where $w_i \in \mathbb{Z}^3$.
-A \textit{self avoiding curve} $\omega$, is one that does not visit a previously vertex ($i \ne j \to \omega_i \ne \omega_j$).
+A discrete \textit{path} is an array of points, $\omega = (\omega_0, \omega_1, \dots, \omega_{N-1})$, where each $w_i$ is on the
+cubic lattice graph ($w_i \in \mathbb{Z}^3$).
+A \textit{self avoiding path} $\omega$, is one that does not visit a previously vertex ($i \ne j \to \omega_i \ne \omega_j$).
 A \textit{Hamiltonian path} is a valid path through a graph that visits every vertex exactly once, starting
 and ending at pre-specified points.
 
-A curve restricted to a rectangular region $( N _ x, N _ y, N _ z)$,  $N = (N _ x \cdot N _ y \cdot N _ z)$
-is said to have a Hamiltonian path \textit{feasible} if there exists a Hamiltonian path, with endpoints specified,
-that hits every vertex within the restricted the rectangular region exactly once, starts at the specified start
+A \textit{cuboid} is a rectangular region of side lengths $( N _ x, N _ y, N _ z)$,  of total vertices $N = (N _ x \cdot N _ y \cdot N _ z)$.
+A cuboid region is said to have a \textit{feasible} Hamiltonian path if there exists a Hamiltonian path, with endpoints specified,
+that hits every vertex within the cuboid region exactly once, starts at the specified start
 point, $\omega_0$ and ends at the specified endpoint $\omega_{N-1}$.
-A region that cannot have a Hamiltonian path, with the specified endpoints, is said to be \textit{infeasible}.
+A cuboid region that cannot have a Hamiltonian path, with the specified endpoints, is said to be \textit{infeasible}.
 
-A consequence of the Hahn-Mazurkiewicz \cite{sagan_1994} one can map the unit interval to a three dimensional
-cube if and only if the mapped to space is compact, connected and locally connected.
-We concern ourselves with the concept of \textit{local connectivity} with attention to approximations
-to finite realizations of curves on the 2D and 3D lattice.
+A self avoiding path of length $N$ that is confined to the rectangular region $(N_x, N_y, N_z)$ is necessarily a Hamiltonian path.
 
-We only provide some intuitive explanation for local connectivity here.
-For our purposes, \textit{local connectivity} denotes the idea that if $|i-j|$ is small, then $|w_i - w_j|$
-should also be small by some measure.
-That is, nearness in the line domain should relate to nearness in the three dimensional range.
+A discrete realization of the Hilbert curve as a path within a cuboid region has an additional \textit{local connectivity} feature.
+For our purposes, \textit{local connectivity}, or \textit{locality}, denotes the idea that if $\text{dist}_1(i,j)$ is small, then $\text{dist}_d(w_i,w_j)$
+should also be small by some measure, where $\text{dist}_d(\cdot,\cdot)$ is a distance function defined for dimension $d$.
+The condition of a Hamiltonian path through a cuboid region doesn't address locality and the Gilbert curve
+has additional features to make its locality similar to the Hilbert curve.
+%We only provide some intuitive explanation for local connectivity here.
+%That is, nearness in the line domain should relate to nearness in the three dimensional range.
 We use metrics to get a handle on local connectivity in a discrete and finite setting and leave
-their definition and usage until in Section 5.
+their definition and usage until Section 5.
 
-The concept of local connectivity gives is one of the key characteristics of a space filling curve
+
+%A consequence of the Hahn-Mazurkiewicz \cite{sagan_1994} one can map the unit interval on the real line to a three dimensional
+%cube if and only if the mapped to space is compact, connected and locally connected.
+%We concern ourselves with the concept of \textit{local connectivity} with attention to approximations
+%to finite realizations of curves on the 2D and 3D lattice.
+
+%% sectoin might be too extraneous
+The concept of local connectivity gives one of the key characteristics of a space filling curve
 and differentiates it from other curves that can fill rectangular regions but don't do so in a
 locally connected way \footnote{For example, the \textit{zig-zag} curve that creates a straight line until
 it hits the bounds of the region to turn around and increment in the other dimensional lengths to fill 
 a rectangular region.}.
-The local connectivity, or \textit{locality}, is the feature that allows features in one dimension to
-remain clustered in higher dimensions.
+The local connectivity, or locality, is the feature that allows features in dimension one to
+remain clustered in higher dimensions \footnote{We refer the reader to
+Sagan \cite{sagan_1994} for a more thorough introduction to local connectivity.}.
 
-We refer the reader to Sagan 1994 \cite{sagan_1994} for a more thorough introduction to local connectivity.
+If a cuboid region has one side larger or smaller than the maximum or minimum of the remaining two, respectively,
+for a given ratio, $\rho$, it is said to be \textit{eccentric} or $\rho-\textit{eccentric}$.
+For example is, if $\rho=\frac{3}{2}$ and $N _ x > \frac{3}{2} \text{max}(N_y, N_z)$, the cuboid region is said to be eccentric.
 
+In this paper, we talk about \textit{shape templates} as cuboid subdivision schemes, often with some choice as to whether
+to make the side lengths of the subdivided regions even or odd.
 
 %For simplicity, we focus on three dimensions with the understanding that
 %the two dimensional case can be reduced to a three dimensional case with at least one unit side length.
-
-
-
-
-\textbf{TODO}
-
-\begin{itemize}
-  \item Define locality/local connectivity
-  \item Define space filling
-  \item Define admissible/feasible for Hamiltonian path?
-  \item Define ``eccentric'' (oblong?)
-\end{itemize}
-
-

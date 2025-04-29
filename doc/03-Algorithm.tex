@@ -123,7 +123,7 @@ are all odd  $(|\alpha| \cdot (1 - |\beta| \cdot |\gamma|) \equiv 0 \bmod 2)$.
 With this condition, any cuboid subdivision will always have a Hamiltonian path within it and we can recreate a Hamiltonian
 path in the larger cuboid by connecting endpoints from the ending point of one cuboid to the starting point of the succeeding cuboid.
 For cuboids that violate this condition, there will be a required notch and
-an admissible cuboid subdivision is possible
+an feasible cuboid subdivision is possible
 for all but one of the cuboid subdivisions, recursively limiting the notch violation to a single point.
 
 
@@ -261,10 +261,10 @@ where the context is clear.
 
 Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig:gilbert2d_examples}, showing realizations for dimensions
 $(8 \times 8)$, $(18 \times 6)$, $(13 \times 8)$ and $(14 \times 14)$.
-The $(8 \times 8)$ (\textit{i)} in Figure \ref{fig:gilbert2d_examples}) Gilbert curve is identical to the Hilbert curve of side length 8.
-The $(18 \times 6)$ curve highlights a horizontal split when the $\alpha$, or width-like, dimension becomes $\frac{3}{2}$ larger than the
+The $(8 \times 8)$ (i) in Figure \ref{fig:gilbert2d_examples}) Gilbert curve is identical to the Hilbert curve of side length 8.
+The $(18 \times 6)$ (ii) curve highlights a horizontal split when the $\alpha$, or width-like, dimension becomes $\frac{3}{2}$ larger than the
 $\beta$, or height-like, dimension.
-For the $(13 \times 8)$ Gilbert curve, a Hamiltonian path is not possible and the algorithm inserts a notch in a best effort approach to realize the curve.
+For the $(13 \times 8)$ (iii) Gilbert curve, a Hamiltonian path is not possible and the algorithm inserts a notch in a best effort approach to realize the curve.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            _ ____              __ _____     __
@@ -287,7 +287,7 @@ For the $(13 \times 8)$ Gilbert curve, a Hamiltonian path is not possible and th
 
 
 The concept of a $U$-split is extended to 3D by constructing a $J$-split.
-An exploded view of a $J$-split is shown in Figure \ref{fig:gilbert3DJSplit}.
+An exploded view of a $J$-split, the $J_0$ split, is shown in Figure \ref{fig:gilbert3DJSplit}.
 
 As discussed in section 3.1, we consider $p \in \mathbb{Z}^3$ to be the local origin point in the cuboid with
 $\alpha, \beta, \gamma \in \mathbb{Z}^3$ to be the local basis whose lengths encode the size of the cuboid.
@@ -342,13 +342,13 @@ Side lengths of the subdivided cuboids are chosen to try and not preclude a
 Hamiltonian path, if possible.
 If a path starts at the local $(0,0,0)$, a Hamiltonian path that ends
 at $((w-1),0,0)$ is only possible when $w$ is even or when all lengths are odd, including $w$.
-That is, when $(|\alpha| \cdot ( 1 - |\beta| \cdot |\gamma| ) \equiv 0 \bmod 2)$ will a Hamiltonian
+That is, only when $(|\alpha| \cdot ( 1 - |\beta| \cdot |\gamma| ) \equiv 0 \bmod 2)$ will a Hamiltonian
 path be possible through the cuboid region.
 
 Should a Hamiltonian path not be possible, all but one sub-cuboid regions are chosen to allow a Hamiltonian
 path.
 The sub-cuboid where a Hamiltonian path is not possible will be further subdivided as necessary, recursively
-ensuring that the inadmissible Hamiltonian path region will eventually be resolved at a single point.
+ensuring that the infeasiblie Hamiltonian path region will eventually be resolved at a single point.
 
 When considering a cuboid region to trace out a Gilbert curve on, there are conceptually three main guides:
 
@@ -380,7 +380,7 @@ An atlas of which $J$-split to choose, what parity each of the subdivided cuboid
 to connect each of the subdivisions is shown in Figure \ref{fig:gilbert3DCase}.
 Figure \ref{fig:gilbert3DCase} also enumerates the local coordinate system for each of the sub-cuboid
 regions, displayed under each of the exploded sub-cuboid region volumes.
-When a Hamiltonian path is inadmissible,
+When a Hamiltonian path is infeasible,
 a red cross is shown on the cuboid region where the notch will be directed to.
 Pseudo-code for each of the $J$-split functions is provided in Appendix \ref{JSplitFunctions}
 
