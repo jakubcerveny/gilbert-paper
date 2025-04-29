@@ -73,33 +73,27 @@ to subdivide the cuboid.
 In what follows, we always commit to splitting the $w$ cuboid region by half, with an
 additional coercion step to coerce the $A$ volume to be the desired parity.
 
+%%%%
+%%%%
+%%%%
+
 \subsection{$|\alpha| >> |\beta| \sim |\gamma|$}
 
 \begin{itemize}
   \item Shape template: $S_0$
   \item $\sigma = \frac{5}{3}$
   \item $\rho = \text{n/a}$
-  \item $\eta= \text{n/a}$
 \end{itemize}
 
 
-When $|\alpha|$ is much larger than $|\beta|$ or $|\gamma|$, we only need to split into two sub-cuboids,
+When $|\alpha|$ is much larger than $|\beta|$ or $|\gamma|$,
+we split into two sub-cuboids along the $\alpha$ axis,
 which we represent as an $S_0$ split.
 As stated above, we pick the midway point for $\alpha$.
 What's left is to decide how eccentric the cuboid should be to make the $S_0$ split.
 
-Take $\sigma > 1$:
-
-$$
-\begin{array}{l}
-  |\alpha| = \sigma s \\
-  |\beta| = |\gamma| = s
-\end{array}
-$$
-
-%Denote the defect of the original volume as $\lambda_0$:
+Take $\sigma > 1$ and $s = \text{min}(|\beta|,|\gamma|)$, $\sigma s = |\alpha|$.
 The defect of the original volume is:
-
 
 $$
 \begin{array}{ll}
@@ -139,36 +133,79 @@ For any $\sigma > 4^{\frac{1}{3}}$, we know the average defect will be reduced.
 For algorithmic simplicity, we've chosen the simple fraction $\frac{5}{3}$ (as $\frac{5}{3} > 4^{\frac{1}{3}}$)
 for the eccentric $S_0$ split ratio.
 
-\subsection{$|\gamma| >> |\alpha| \sim |\beta|$}
+%%%%
+%%%%
+%%%%
+
+\subsection{$|\gamma| >> |\alpha| \sim |\beta|$ or $|\beta| << |\alpha| \sim |\gamma|$}
 
 \begin{itemize}
   \item Shape template: $S_1$
   \item $\sigma = \frac{3}{2}$
   \item $\rho = \frac{1}{3}$
-  \item $\eta= \text{n/a}$
 \end{itemize}
 
-Here, we are trying to find two parameters, $\sigma$ as the ratio of when $|\gamma|$ to the minimum
-of $|\alpha|$ of $|\beta|$ that indicates we're in an eccentric case, and $\rho$,
-the proportion along the $\gamma$ direction of where to choose the split when subdividing the cuboid.
-
+Here, we are trying to validate two parameters, $\sigma$ and $\rho$.
+$\sigma$ is the ratio of when $|\gamma|$ (resp. $|\beta|$)
+is larger (resp. smaller) to the minimum (resp. maximum) of the remaining side lengths as the threshold to trigger an $S_1$
+template split.
+$\rho$ is the proportion along the $\gamma$ (resp. $\beta$) direction of where to choose the $\gamma$ direction split.
 The $S_1$ shape template has three subdivided cuboids, which we call $A$, $B$ and $C$, ordered by
 the path traversal through the cuboids.
 
-...
+We will show that there is an average defect reduction when choosing $\sigma = \frac{3}{2}$ and
+$\rho = \frac{1}{3}$.
+If we take $s = \text{min}(|\alpha|, |\beta|)$ and $|\gamma| = \sigma s$, then the defect of the original volume is:
 
+$$
+\lambda(V_0) = \sigma
+$$
 
+From our choice of $\sigma$ and $\rho$, $\text{min}( \sigma \rho s, \frac{s}{2} ) = \frac{s}{2}$,
+implying the minimum side length for $A$ and $C$ is $\frac{s}{2}$ and the minimum side length of $B$
+is $\text{min}( \sigma (1-\rho) s, s) = s$.
+From this, we can calculate the average defect of the subdivided cuboid:
 
+$$
+\begin{array}{ll}
+  \lambda_s (V_1) & = 2 \cdot (\frac{1}{2}) \rho [ \frac{ \rho \sigma s \cdot \frac{s}{2} \cdot s }{ (\frac{s}{2})^3 } ] \\
+        & + (1-\rho) [ \frac{ (1-\rho) \sigma s \cdot s \cdot s }{s^3} ] \\
+   & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
+  & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
+  & = \frac{8}{9} \sigma = \frac{4}{3} < \frac{3}{2} \\
+  \to & \lambda_s(V_1) < \lambda(V_0)
+\end{array}
+$$
 
+Showing there is an average defect reduction.
 
-\subsection{$|\beta| >> |\alpha| \sim |\gamma|$}
+\subsection{$|\beta| >> |\alpha| \sim |\gamma|$ or $|\alpha| << |\beta| \sim |\gamma|$}
 
 \begin{itemize}
   \item Shape template: $S_2$
   \item $\sigma = \frac{3}{2}$
-  \item $\rho = \frac{3}{2}$
-  \item $\eta= \text{n/a}$
+  \item $\rho = \frac{1}{3}$
 \end{itemize}
 
+As with the previous case, we are trying to validate two parameters, $\sigma$, the amount
+of eccentricity of one side length relative to the others, and $\rho$, where to subdivide the
+cuboid along the $\beta$ axis.
+
+Choosing $\sigma = \frac{3}{2}$ implies that the defect of the original volume is $\lambda(V_0) = \sigma = \frac{3}{2}$.
+Further, $\text{min}( \sigma \rho s, \frac{s}{2} ) = \frac{s}{2}$, implying the $A$ and $C$ volumes
+have minimum side length of $\frac{s}{2}$ and $\text{min}( (1-\rho) \sigma s, s) = s$, implying the
+minimum side length of volume $C$ is $s$.
+
+This allows us to calculate the average defect of the subdivided cuboid using an $S_2$ shape template:
+
+$$
+\begin{array}{ll}
+  \lambda_s (V_1) & = 2 (\frac{1}{2}) \rho [ \frac{ \rho \sigma s \cdot \frac{s}{2} \cdot s }{(\frac{s}{2})^3} ] \\
+  & + (1-\rho) \cdot [ \frac{ (1-\rho) \sigma s \cdot s \cdot s }{s^3} ] \\
+  & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
+  & = \frac{8}{9} \sigma = \frac{4}{3} < \frac{3}{2} \\
+  \to & \lambda_s(V_1) < \lambda(V_0) \\
+\end{array}
+$$
 
 
