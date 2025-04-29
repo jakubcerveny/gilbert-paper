@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  29 APR 2025 00:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  29 APR 2025 11:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1697,25 +1697,25 @@ des a proof-of-
 ) (./Gilbert.bbl) (./07-Appendix.tex [7 <./gilbert3d_eccentric.pdf>] [8 <./gilb
 ert3d_examples.pdf>]
 
-LaTeX Warning: Reference `fig:eccentric' on page 9 undefined on input line 54.
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 76.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 74.
+(hyperref)                removing `math shift' on input line 76.
+
+[9
+
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 143.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 74.
+(hyperref)                removing `math shift' on input line 143.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 104.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 104.
-
-) (./08-Appendix-Alg.tex [9
+) (./08-Appendix-Alg.tex [10
 
 ]
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
@@ -1728,14 +1728,14 @@ LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/LibertinusSerif-TLF/m/sc/5'.
 (microtype)             Ignoring protrusion settings for this character.
- [10
+ [11
 
-
-] [11
 
 ] [12
 
-]) [13
+] [13
+
+]) [14
 
 ] (./Gilbert.aux)
 
@@ -1753,9 +1753,9 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  42339 strings out of 480171
- 824938 string characters out of 5894489
- 1215105 words of memory out of 5000000
- 58948 multiletter control sequences out of 15000+600000
+ 824930 string characters out of 5894489
+ 1215107 words of memory out of 5000000
+ 58947 multiletter control sequences out of 15000+600000
  658195 words of font info for 390 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  122i,20n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1792,9 +1792,9 @@ public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on Gilbert.pdf (13 pages, 1594324 bytes).
+Output written on Gilbert.pdf (14 pages, 1596155 bytes).
 PDF statistics:
- 1273 PDF objects out of 1440 (max. 8388607)
- 66 named destinations out of 1000 (max. 500000)
+ 1279 PDF objects out of 1440 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
  105242 words of extra memory for PDF output out of 106986 (max. 10000000)
 

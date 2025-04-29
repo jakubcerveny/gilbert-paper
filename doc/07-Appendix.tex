@@ -40,26 +40,27 @@ Our concern is to find a simple ratio of when each of $w$, $h$ or $d$ are consid
 An enumeration of what conditions lead to an eccentric split are as follows:
 
 $$
-\begin{array}{l}
-  w >> h \sim d (1) \\
-  h >> w \sim d (2) \\
-  d >> w \sim h (3) \\
-  h << w \sim d (4) \\
-  w << h \sim d (5) \\
-  d << w \sim h (6) \\
+\begin{array}{ll}
+  (1) & w >> h \sim d \\
+  (2) & h >> w \sim d \\
+  (3) & d >> w \sim h \\
+  (4) & h << w \sim d \\
+  (5) & w << h \sim d \\
+  (6) & d << w \sim h \\
 \end{array}
 $$
 
-
-A representation of the eccentric splits are enumerated in figure \ref{fig:eccentric}.
-The eccentric split differs from the J-split as it's only splitting in one or two
-dimensions, not the full three that the J-split would be doing.
+A representation of the eccentric splits are enumerated in Figure \ref{fig:gilbert3DEccentricCase}.
+The eccentric $S$-split split differs from the $J$-split as it's only partitioning the cuboid along
+one or two dimensions instead of three.
 
 For each of the six cases, we want to know what relative difference in sizes should be used
-to determine when an eccentric split is used and how to subdivide the cuboids so as to make progress.
+to determine when an eccentric split should be used and how to subdivide the cuboids so as to make
+the resulting subdivided cuboids more cube-like.
 
 Specifically, we want to find the ratio, $\sigma$ or $\eta$, of when one dimension is proportionally larger or smaller,
-respectively, than the others and the ratio, $\rho$, of where to choose the split point of subdivision.
+respectively, than the others.
+Further, we choose the ratio, $\rho$, of where to choose the split point of subdivision.
 For simplicity, we might want to subdivide at the half way point ($\rho = \frac{1}{2}$) but as we
 will see, this might give lopsided sub-cuboid regions and using a better split point is desirable.
 
@@ -67,40 +68,107 @@ In what follows, our goal is to choose a subdivision that will reduce the averag
 We assume that the start and end of the path lie in the $w$ dimension with the local start point at $(0,0,0)$
 and endpoint at $(w-1,0,0)$.
 
-Because we want to avoid adding unnecessary notches, we are forced split in the $w$ axis.
-We commit to always splitting the $w$ axis in two.
-If we want to subdivide into three cuboid regions, we also need to pick the split point in the other dimension another dimension
+Since the start and end path lie on the $w$ dimension, we are forced to split in the $w$ axis
+to subdivide the cuboid.
+In what follows, we always commit to splitting the $w$ cuboid region by half, with an
+additional coercion step to coerce the $A$ volume to be the desired parity.
 
-\subsection{$w >> h \sim d$}
+\subsection{$|\alpha| >> |\beta| \sim |\gamma|$}
 
-Take $w = \sigma s$ and $h = d = s$.
-We commit to splitting the width dimension in half, subdividing the original volume into two equal volumes.
+\begin{itemize}
+  \item Shape template: $S_0$
+  \item $\sigma = \frac{5}{3}$
+  \item $\rho = \text{n/a}$
+  \item $\eta= \text{n/a}$
+\end{itemize}
 
-The defect of the original volume is $\lambda(w,h,d) = \sigma$.
 
-If $w > 2h = 2s$, then $\text{min}(\frac{w}{2},h,d) = s$ and we have an average defect $\lambda_s(V_1) = \frac{\sigma}{2}$.
-Intuitively, this is validation that if the width is more than twice the length of the depth and height, we make progress
-if we split the width in half and recursively process each sub-cuboid.
+When $|\alpha|$ is much larger than $|\beta|$ or $|\gamma|$, we only need to split into two sub-cuboids,
+which we represent as an $S_0$ split.
+As stated above, we pick the midway point for $\alpha$.
+What's left is to decide how eccentric the cuboid should be to make the $S_0$ split.
 
-If $w < 2h$ but $\text{min}(\frac{w}{2},h,d) = \frac{w}{2}$,
-the average defect $\lambda_s(V_1) = 2 (\frac{1}{2}) \frac{ \frac{\sigma}{2} \cdot s^3 }{ (\frac{\sigma}{2} s)^3 } = \frac{4}{\sigma^2}$.
+Take $\sigma > 1$:
+
+$$
+\begin{array}{l}
+  |\alpha| = \sigma s \\
+  |\beta| = |\gamma| = s
+\end{array}
+$$
+
+%Denote the defect of the original volume as $\lambda_0$:
+The defect of the original volume is:
+
+
+$$
+\begin{array}{ll}
+  \lambda(|\alpha|,|\beta|,|\gamma|)  & = \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ \text{min}(|\alpha|,|\beta|,|\gamma|) } \\
+                  & = \frac{ \sigma s \cdot s \cdot s }{ \text{min}(\sigma s,s,s) } \\
+                  & = \sigma \\
+\end{array}
+$$
+
+If $|\alpha| > 2 |\beta| = 2s$, then $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = s$ and we have an average defect $\lambda_s(V_1) = \frac{\sigma}{2}$.
+Intuitively, we reduce the defect by splitting a long horizontal column into two parts, each of which is more cube like,
+making it more cube-like on average.
+
+We can get a better ratio of when to split by asking what the maximum value of $|\alpha| = \sigma s$ is when there is still an average defect reduction.
+In this case, we restrict $|\alpha| < 2 |\beta|$, with $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = \frac{|\alpha|}{2}$,
+the average defect becomes:
+
+$$
+\begin{array}{ll}
+  \lambda_s(V_1) & = 2 (\frac{1}{2}) \frac{ \frac{\sigma}{2} \cdot s^3 }{ (\frac{\sigma}{2} s)^3 } \\
+   & = \frac{4}{\sigma^2}
+\end{array}
+$$
+
 We want to reduce the average defect relative to the original defect, so:
 
 $$
 \begin{array}{ll}
   & \lambda_s (V_1) < \lambda(V_0) \\
   \to & \frac{4}{\sigma^2} < \sigma \\
-  \to & \sigma > 4^{\frac{1}{3}} \\
-  \to & \frac{5}{3} > \sigma > 4^{\frac{1}{3}} = 1.58740\dots \\
+  \to & 4^{\frac{1}{3}} < \sigma \\ 
+  \to & 4^{\frac{1}{3}} = 1.58740\dots < \sigma < \frac{5}{3} \\
 \end{array}
 $$
 
-We've chosen the constant $\frac{5}{3}$ as a simple fraction above $4^{\frac{1}{3}}$ to know when
-to split $w$.
+For any $\sigma > 4^{\frac{1}{3}}$, we know the average defect will be reduced.
+For algorithmic simplicity, we've chosen the simple fraction $\frac{5}{3}$ (as $\frac{5}{3} > 4^{\frac{1}{3}}$)
+for the eccentric $S_0$ split ratio.
 
-For this case, $\sigma = \frac{5}{3}$ and $\rho = \frac{1}{2}$.
-That is, we split the $w$ axis by half when the width axis exceed $\frac{5}{3}$ of both the depth, $d$, and height, $h$, dimension.
+\subsection{$|\gamma| >> |\alpha| \sim |\beta|$}
 
-\subsection{$h >> w \sim d$}
+\begin{itemize}
+  \item Shape template: $S_1$
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{1}{3}$
+  \item $\eta= \text{n/a}$
+\end{itemize}
+
+Here, we are trying to find two parameters, $\sigma$ as the ratio of when $|\gamma|$ to the minimum
+of $|\alpha|$ of $|\beta|$ that indicates we're in an eccentric case, and $\rho$,
+the proportion along the $\gamma$ direction of where to choose the split when subdividing the cuboid.
+
+The $S_1$ shape template has three subdivided cuboids, which we call $A$, $B$ and $C$, ordered by
+the path traversal through the cuboids.
+
+...
+
+
+
+
+
+\subsection{$|\beta| >> |\alpha| \sim |\gamma|$}
+
+\begin{itemize}
+  \item Shape template: $S_2$
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{3}{2}$
+  \item $\eta= \text{n/a}$
+\end{itemize}
+
 
 
