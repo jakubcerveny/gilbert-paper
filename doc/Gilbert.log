@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  29 APR 2025 00:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  29 APR 2025 00:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1637,32 +1637,39 @@ LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/LibertinusSerif-TLF/m/sc/9'.
 (microtype)             Ignoring protrusion settings for this character.
- [3 <./gilbert2d_mainsubdiv.pdf>]
-<gilbert2d_examples.pdf, id=116, 301.125pt x 225.84375pt>
+<gilbert2d_examples.pdf, id=76, 301.125pt x 225.84375pt>
 File: gilbert2d_examples.pdf Graphic file (type pdf)
 <use gilbert2d_examples.pdf>
 Package pdftex.def Info: gilbert2d_examples.pdf  used on input line 254.
 (pdftex.def)             Requested size: 214.48395pt x 160.87053pt.
-<gilbert3d_explode.pdf, id=119, 210.7875pt x 271.0125pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<gilbert3d_explode.pdf, id=79, 210.7875pt x 271.0125pt>
 File: gilbert3d_explode.pdf Graphic file (type pdf)
 <use gilbert3d_explode.pdf>
 Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 283.
 (pdftex.def)             Requested size: 214.48395pt x 275.77156pt.
 
-
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[4 <./config_production.pdf> <./gilbert2d_examples.pdf
+[3 <./gilbert2d_mainsubdiv.pdf>] [4 <./config_production.pdf> <./gilbert2d_exam
+ples.pdf
 
 pdfTeX warning: pdflatex (file ./gilbert2d_examples.pdf): PDF inclusion: multip
 le pdfs with page group included in a single page
+> <./gilbert3d_explode.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert3d_explode.pdf): PDF inclusion: multipl
+e pdfs with page group included in a single page
 >]
-<gilbert3d_case.pdf, id=155, 752.8125pt x 526.96875pt>
+<gilbert3d_case.pdf, id=169, 752.8125pt x 526.96875pt>
 File: gilbert3d_case.pdf Graphic file (type pdf)
 <use gilbert3d_case.pdf>
 Package pdftex.def Info: gilbert3d_case.pdf  used on input line 364.
 (pdftex.def)             Requested size: 452.9679pt x 317.08426pt.
-<gilbert3d_eccentric.pdf, id=160, 301.125pt x 263.48438pt>
+<gilbert3d_eccentric.pdf, id=174, 301.125pt x 263.48438pt>
 File: gilbert3d_eccentric.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric.pdf>
 Package pdftex.def Info: gilbert3d_eccentric.pdf  used on input line 404.
@@ -1671,17 +1678,17 @@ Package pdftex.def Info: gilbert3d_eccentric.pdf  used on input line 404.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<gilbert3d_examples.pdf, id=163, 700.11563pt x 398.99063pt>
+<gilbert3d_examples.pdf, id=177, 700.11563pt x 398.99063pt>
 File: gilbert3d_examples.pdf Graphic file (type pdf)
 <use gilbert3d_examples.pdf>
 Package pdftex.def Info: gilbert3d_examples.pdf  used on input line 424.
 (pdftex.def)             Requested size: 452.9679pt x 258.14757pt.
-[5 <./gilbert3d_explode.pdf>]
+[5] [6 <./gilbert3d_case.pdf>]
 
-LaTeX Warning: Reference `fig:oddxtwo_hook.pdf' on page 6 undefined on input li
-ne 494.
+LaTeX Warning: Reference `fig:oddxtwo_hook.pdf' on page 7 undefined on input li
+ne 518.
 
-) (./04-Results.tex) (./05-Conclusion.tex [6 <./gilbert3d_case.pdf>]
+) (./04-Results.tex) (./05-Conclusion.tex
 Underfull \hbox (badness 2753) in paragraph at lines 20--24
 []\T1/LibertinusSerif-TLF/m/n/9 (+20) Our re-cur-sive im-ple-men-ta-tion pro-vi
 des a proof-of-
@@ -1745,13 +1752,13 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42327 strings out of 480171
- 824679 string characters out of 5894489
- 1210101 words of memory out of 5000000
- 58945 multiletter control sequences out of 15000+600000
- 657550 words of font info for 386 fonts, out of 8000000 for 9000
+ 42339 strings out of 480171
+ 824938 string characters out of 5894489
+ 1215105 words of memory out of 5000000
+ 58948 multiletter control sequences out of 15000+600000
+ 658195 words of font info for 390 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 122i,20n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_cb34qf.e
 nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_sfissr.
 enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_hvvyjb
@@ -1785,9 +1792,9 @@ public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on Gilbert.pdf (13 pages, 1590977 bytes).
+Output written on Gilbert.pdf (13 pages, 1594324 bytes).
 PDF statistics:
- 1260 PDF objects out of 1440 (max. 8388607)
- 63 named destinations out of 1000 (max. 500000)
- 105226 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 1273 PDF objects out of 1440 (max. 8388607)
+ 66 named destinations out of 1000 (max. 500000)
+ 105242 words of extra memory for PDF output out of 106986 (max. 10000000)
 
