@@ -10,17 +10,16 @@ An overview of the benefits of the Gilbert curve are that it is:
 
 \begin{itemize}
   \item Valid on arbitrary rectangular regions
-  \item Equivalent to the Hilbert curve when dimensions are exact powers of 2
   \item Efficient at random access lookups ($O(\lg N)$)
   \item A conceptually straight forward algorithm
   \item Able to realize curves without notches unnecessarily and limits the resulting curve
         to a single notch when forced
-  \item Similar in measures of locality to the Hilbert curve
 \end{itemize}
 
 Further, we show:
 
 \begin{itemize}
+  \item Equivalent to the Hilbert curve when dimensions are exact powers of 2
   \item Measures of locality are preserved (Section X)
   \item Comparison metrics to other space filling curves (Section X)
 \end{itemize}
@@ -69,7 +68,7 @@ In such a case, the Gilbert curve will introduce a single diagonal path move, ca
 
 \subsection{Definitions}
 
-A Gilbert curve, for a rectangular cuboid region, is
+A Gilbert curve is %, for a rectangular cuboid region, is
 %To describe the Gilbert curve algorithm, we concern ourselves with
 %finding
 a self avoiding path,
@@ -118,16 +117,19 @@ and differentiates it from other curves that can fill rectangular regions but do
 locally connected way \footnote{For example, the \textit{zig-zag} curve that creates a straight line until
 it hits the bounds of the region to turn around and increment in the other dimensional lengths to fill 
 a rectangular region.}.
-The local connectivity, or locality, is the feature that allows features in dimension one to
+The local connectivity, or locality, is the feature that allows clustering in dimension one to
 remain clustered in higher dimensions \footnote{We refer the reader to
 Sagan \cite{sagan_1994} for a more thorough introduction to local connectivity.}.
 
 If a cuboid region has one side larger or smaller than the maximum or minimum of the remaining two, respectively,
-for a given ratio, $\rho$, it is said to be \textit{eccentric} or $\rho-\textit{eccentric}$.
+for a given ratio, $\rho$, it is said to be \textit{eccentric}. % or $\rho-\textit{eccentric}$.
 For example is, if $\rho=\frac{3}{2}$ and $N _ x > \frac{3}{2} \text{max}(N_y, N_z)$, the cuboid region is said to be eccentric.
 
 In this paper, we talk about \textit{shape templates} as cuboid subdivision schemes, often with some choice as to whether
 to make the side lengths of the subdivided regions even or odd.
+For 2D, we use the term $U$-split to talk about the shape template used.
+For 3D, we use the term $J$-split to talk about the bulk recursion shape template and an $S$-split to
+talk about the shape templates used for eccentric cuboids.
 
 %For simplicity, we focus on three dimensions with the understanding that
 %the two dimensional case can be reduced to a three dimensional case with at least one unit side length.

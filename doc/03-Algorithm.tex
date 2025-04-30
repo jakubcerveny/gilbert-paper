@@ -36,7 +36,7 @@ with virtual origin point $p \in \mathbb{Z}^3$ and local coordinate system $[ \a
 with $\alpha, \beta, \gamma \in \mathbb{Z}^3$.
 Each of $\alpha$, $\beta$ and $\gamma$ are axis aligned and orthogonal.
 
-In a cuboid region, the the Hamiltonian path start at $p$ and ends at $p + \alpha$.
+In a cuboid region, the Hamiltonian path starts at $p$ and ends at $p + \alpha$.
 For this reason, we call $\alpha$ the ``width-like'' dimension, with $\beta$ and $\gamma$
 called the ``height-like'' dimension and ``depth-like'' dimension, respectively.
 
@@ -49,7 +49,7 @@ off as axis-aligned and orthogonal, they remain axis aligned and orthogonal thro
 %if a Hamiltonian path is possible or not.
 %for a given side lengths along with a start and end point,
 %combined with certain cuboid side lengths,
-When applying the shape template to choose the subdivided cuboid regions during the coarse of the
+When applying the shape template to choose the subdivided cuboid regions during the course of the
 algorithm, side lengths are chosen so as to preserve the possibility of a Hamiltonian path.
 Should the lengths of the cuboid being subdivided preclude a Hamiltonian path from occurring, the lengths
 of the subdivided cuboids are chosen
@@ -65,7 +65,8 @@ in the resulting curve, globally.
 
 The next sub-section discusses parity arguments for when a valid curve can be
 traced out in a sub-region.
-We then discuss in detailed the 2D Gilbert curve algorithm and end with a discussion of the 3D Gilbert curve.
+We then discuss in detail the 2D Gilbert curve algorithm, move on to a discussion of the 3D Gilbert curve
+and end with a general discussion on extensions to the algorithm, special cases and other pathological cases.
 
 When talking about the 2D Gilbert curves, we assume vectors are in $\mathbb{Z}^3$
 so they can be used without alteration for algorithms working in 3D.
@@ -103,7 +104,7 @@ volume is odd, or different parity if the volume is even.
      \hline
   \end{tabular}
   \caption{ Table showing when a Hamiltonian path is possible. Here, $|\alpha|$ is the absolute difference in start and end position of the path which
-            coincides with one of the axis aligned side length of the cuboid volume. A Hamiltonian path is possible only when $|\alpha|$ even of both
+            coincides with one of the axis aligned side length of the cuboid volume. A Hamiltonian path is possible only when $|\alpha|$ is even or both
             $|\alpha|$ and the volume are odd. }
   \label{table:pathTable}
 \end{table}
@@ -117,8 +118,8 @@ where a red cross indicating a precluded endpoint.
 Without loss of generality, we will assume a curve starts from position $p_s=(0,0,0)$ and has proposed
 endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
 We state, without proof, that
-a Hamiltonian path is always possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when $|\alpha|$, $|\beta|$ and $|\gamma|$
-are all odd  $(|\alpha| \cdot (1 - |\beta| \cdot |\gamma|) \equiv 0 \bmod 2)$.
+a Hamiltonian path is always possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when all of $|\alpha|$, $|\beta|$ and $|\gamma|$
+are odd  $(|\alpha| \cdot (1 - |\beta| \cdot |\gamma|) \equiv 0 \bmod 2)$.
 
 With this condition, any cuboid subdivision will always have a Hamiltonian path within it and we can recreate a Hamiltonian
 path in the larger cuboid by connecting endpoints from the ending point of one cuboid to the starting point of the succeeding cuboid.
@@ -243,10 +244,10 @@ The generalization to 3D allows the Gilbert2D function to be used unaltered when
 
 The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
 the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
-For completeness, the function is defined in Procedure \ref{alg:delta}.
+For completeness, the function is defined in Procedure \ref{alg:delta} in Appendix \ref{AuxiliaryFunctions}.
 
 Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
-and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to [ i \cdot v_0, i \cdot v_1, i \cdot v_2 ]$).
+and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
 where the context is clear.
 
 \begin{figure}[h]
@@ -261,7 +262,7 @@ where the context is clear.
 
 Example outputs of the \textit{Gilbert2D} function are listed in Figure \ref{fig:gilbert2d_examples}, showing realizations for dimensions
 $(8 \times 8)$, $(18 \times 6)$, $(13 \times 8)$ and $(14 \times 14)$.
-The $(8 \times 8)$ (i) in Figure \ref{fig:gilbert2d_examples}) Gilbert curve is identical to the Hilbert curve of side length 8.
+The $(8 \times 8)$ Gilbert curve in Figure \ref{fig:gilbert2d_examples} (i) is identical to the Hilbert curve of side length 8.
 The $(18 \times 6)$ (ii) curve highlights a horizontal split when the $\alpha$, or width-like, dimension becomes $\frac{3}{2}$ larger than the
 $\beta$, or height-like, dimension.
 For the $(13 \times 8)$ (iii) Gilbert curve, a Hamiltonian path is not possible and the algorithm inserts a notch in a best effort approach to realize the curve.
@@ -286,7 +287,7 @@ For the $(13 \times 8)$ (iii) Gilbert curve, a Hamiltonian path is not possible 
 \end{figure}
 
 
-The concept of a $U$-split is extended to 3D by constructing a $J$-split shape templates.
+The concept of a $U$-split is extended to 3D by constructing $J$-split shape templates.
 An exploded view of the $J_0$ shape template is shown in Figure \ref{fig:gilbert3DJSplit}.
 
 As discussed in section 3.1, we consider $p \in \mathbb{Z}^3$ to be the local origin point in the cuboid with
@@ -376,8 +377,8 @@ When considering a cuboid region to trace out a Gilbert curve on, there are conc
 
 
 For the \textit{bulk recursion case}, there are three main shape templates, $J_0$, $J_1$ and $J_2$.
-An atlas of which $J$-split to choose, what parity each of the subdivided cuboid regions and how
-to connect each of the subdivisions is shown in Figure \ref{fig:gilbert3DCase}.
+An atlas of which $J$-split to choose, what parity each of the subdivided cuboid regions, and how
+to connect each of the subdivisions, is shown in Figure \ref{fig:gilbert3DCase}.
 Figure \ref{fig:gilbert3DCase} also enumerates the local coordinate system for each of the sub-cuboid
 regions, displayed under each of the exploded sub-cuboid region volumes.
 When a Hamiltonian path is infeasible,
@@ -386,7 +387,7 @@ Pseudo-code for each of the $J$-split functions is provided in Appendix \ref{JSp
 
 For many of the subdivisions, there is some choice of parity for non-constrained sides.
 For example, if all sides start out even (parity $0$), the $J_0$ template would be used, constraining
-$\beta_2$ to be even but otherwise allowing $\gamma_2$ and $\beta_2$ to be chosen as even or odd parity.
+$|\beta_2|$ to be even but otherwise allowing $|\gamma_2|$ and $|\alpha_2|$ to be chosen as even or odd parity.
 
 For conceptual simplicity, $|\beta_2|$ and $|\gamma_2|$ are preferred even.
 Should $|\alpha|$ be even, $|\alpha_2|$ is preferred even.
@@ -396,8 +397,9 @@ When $|\alpha|$, $|\beta|$ or $|\gamma|$ become smaller than 2, coercing the res
 side lengths to be odd or even is not done, as the sub-cuboid region can be safely reduced to its
 lower dimensional base case.
 
-The \textit{base case} reduces to \textit{Gilbert2D} if at least one of the dimensions is 1 or a straight forward call to a Hilbert curve
-procedure in the case all dimensions have length 2 (\textit{Hilbert2x2x2} in Appendix \ref{AuxiliaryFunctions}).
+The \textit{base case} reduces to \textit{Gilbert2D} if at least one of the dimensions is 1.
+If all lengths are exactly two, a $(2 \times 2 \times 2)$ Hilbert curve is created
+(\textit{Hilbert2x2x2} in Appendix \ref{AuxiliaryFunctions}).
 
 \begin{figure}[h]
   \centering
@@ -438,14 +440,14 @@ $|\beta| > \frac{3}{2} \max(|\alpha|, |\gamma|)$.
 \end{figure*}
 
 
-Figure \ref{fig:examples3d} shows curated example curves for dimensions.
-Example \textit{i} shows a Gilbert curve of $(4 \times 4 \times 4)$, reducing to a Hilbert curve of the same dimension.
-Examples \textit{ii}, \textit{iii} and \textit{iv} show Gilbert curves of $(4 \times 4 \times 5)$, $(5 \times 5 \times 5)$
+Figure \ref{fig:examples3d} shows curated example curves for a choice of different side lengths.
+Example \textit{(i)} shows a Gilbert curve of $(4 \times 4 \times 4)$, reducing to a Hilbert curve of the same dimension.
+Examples \textit{(ii)}, \textit{(iii)} and \textit{(iv)} show Gilbert curves of $(4 \times 4 \times 5)$, $(5 \times 5 \times 5)$
 and $(6 \times 6 \times 6)$ showing a $J_1$, $J_2$ and $J_0$ split, respectively.
-An $S_0$, $S_2$ and $S_1$ split are showing in the \textit{v}, \textit{vi} and \textit{vii} Gilbert curves of
+An $S_0$, $S_2$ and $S_1$ split are showing in the \textit{(v)}, \textit{(vi)} and \textit{(vii)} Gilbert curves of
 lengths $(8 \times 4 \times 4)$, $(3 \times 5 \times 3)$ and $(3 \times 3 \times 5)$ respectively.
 A Gilbert curve with an unavoidable notch is 
-shown in \textit{viii}, where the side lengths $(5 \times 4 \times 4)$ preclude a Hamiltonian path from $(0,0,0)$ to $(4,0,0)$.
+shown in \textit{(viii)}, where the side lengths $(5 \times 4 \times 4)$ preclude a Hamiltonian path from $(0,0,0)$ to $(4,0,0)$.
 
 
 The constants used to determine eccentricity are chosen by considering the \textit{average defect} of the subdivided cuboid volumes.
@@ -460,7 +462,7 @@ $$
 
 For a cube, the defect will be 1, with an increasing defect the larger a side length becomes relative to the other two.
 
-The \textit{average defect} is defined to be the sum of the individual sub-cuboid defect, weighted by each sub-cuboids proportional
+The \textit{average defect} is defined to be the sum of the individual sub-cuboid defects, weighted by each sub-cuboids proportional
 volume.
 
 The concept of defect is ad hoc and has potential problems\footnote{For example,
@@ -490,7 +492,7 @@ by skipping over the appropriate number of cells.
 %We use the convetion \textbf{d2xyz} to indicate the index to point lookup function.
 A function to convert from an index along the Gilbert curve to a point in space is provided as \textit{Gilbert2D\_d2xyz} in Appendix \ref{alg:gilbert2d_d2xyz}.
 A destination and current index is added to the function call, where the destination index is tested
-against the current updated index to test whether it should fall into the recursion.
+against the current updated index to test whether to continue with the recursion.
 Otherwise, cuboid regions are skipped without processing, providing an $O( \log N )$ worst case run time.
 
 A similar function to convert from a point in space to an index along the curve is called \textit{Gilbert2D\_xyz2d} and is provided in Appendix \ref{alg:gilbert2d_xyz2d}.
@@ -509,15 +511,33 @@ endpoints on the even length dimension so that a Gilbert curve with a Hamiltonia
 Other options can include increasing one or more length dimensions with padding to make the major width-like axis ($\alpha$) even or
 by forcing all length dimensions to be odd.
 
+In some cases, choosing the width-like axis, $\alpha$, on the lone basis of whether a Hamiltonian path is possible might lead
+to a Gilbert curve that isn't visually pleasing.
+For example, in the extreme case when $|\alpha|=2$ and $|\beta|$ odd ($|\gamma|=1$), a long "U" path will occur,
+with two long straight lines running in parallel.
+In this case, a notch might be a reasonable compromise to maintain a more pleasing fold density.
+
+A more general adaptive extension can be done by choosing the base axis, $\alpha$, to be the longest side length to try
+and make the initial subdivided cuboids as cube like as possible.
+
+
 \subsection{Corner Cases, Pathological Cases}
 
 For the special case when dimensions are of the form $((2k+1),2)$, for $k \in \mathbb{N}$, the Gilbert curve realization will
 not have the ending point of the path at the appropriate location.
-For the $((2k+1),2)$ case, no Hamiltonian path is possible from $(0,0)$ to $(2k,0)$ but as an artifact of the algorithm,
+No Hamiltonian path is possible for paths of side lengths
+$((2k+1),2)$ and end points $(0,0)$ to $(2k,0)$.
+As an artifact of the algorithm,
 a "hook" is formed, causing the last two points to be in different locations.
 See Figure \ref{fig:oddxtwo_hook.pdf} for an example configuration.
 
 The hook formed for $((2k+1),2)$ configurations can be removed for a diagonal move by swapping the last two endpoints.
 For the sake of clarity and brevity, we leave the algorithm as is, without adding extra complication for this special case.
+
+As mentioned in the previous subsection,
+when the side lengths are $(2, (2k+1))$, a long "U" shape is formed, with two long straight paths running in parallel.
+These pathological cases are only seen
+when side lengths get near their base case lengths while the other side lengths are large, comparatively.
+For side lengths that are larger and relatively equal in magnitude, features such as these become increasingly rare.
 
 

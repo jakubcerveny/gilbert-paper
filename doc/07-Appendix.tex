@@ -1,5 +1,5 @@
 
-\clearpage
+%\clearpage
 
 \section{Appendix}
 
@@ -10,8 +10,8 @@ Call the \textit{defect} a function $\lambda _ d : \mathbb{N}^d \mapsto \mathbb{
 
 $$
 \begin{array}{l}
-\lambda _ 2 (w,h) = \frac{ w \cdot h }{ \text{min}(w,h)^2 } \\
-\lambda _ 3 (w,h,d) = \frac{ w \cdot h \cdot d }{ \text{min}(w,h,d)^3 }
+\lambda _ 2 (|\alpha|,|\beta|) = \frac{ |\alpha| \cdot |\beta| }{ \text{min}(|\alpha|,|\beta|)^2 } \\
+\lambda _ 3 (|\alpha|,|\beta|,|\gamma|) = \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ \text{min}(|\alpha|,|\beta|,|\gamma|)^3 }
 \end{array}
 $$
 
@@ -34,19 +34,19 @@ If the defect is too high, we might want to split the larger sides while keeping
 
 Calculations in this section will justify what threshold value to pick of when to choose an
 eccentric split over a J-split.
-Our concern is to find a simple ratio of when each of $w$, $h$ or $d$ are considered
+Our concern is to find a simple ratio of when each of $\alpha$, $\beta$ or $\gamma$ are considered
 "small enough" or "large enough", relative to the other dimensions, to split on.
 
 An enumeration of what conditions lead to an eccentric split are as follows:
 
 $$
 \begin{array}{ll}
-  (1) & w >> h \sim d \\
-  (2) & h >> w \sim d \\
-  (3) & d >> w \sim h \\
-  (4) & h << w \sim d \\
-  (5) & w << h \sim d \\
-  (6) & d << w \sim h \\
+  (1) & |\alpha| >> |\beta| \sim |\gamma| \\
+  (2) & |\beta| >> |\alpha| \sim |\gamma| \\
+  (3) & |\gamma| >> |\alpha| \sim |\beta| \\
+  (4) & |\beta| << |\alpha| \sim |\gamma| \\
+  (5) & |\alpha| << |\beta| \sim |\gamma| \\
+  (6) & |\gamma| << |\alpha| \sim |\beta| \\
 \end{array}
 $$
 
@@ -58,20 +58,19 @@ For each of the six cases, we want to know what relative difference in sizes sho
 to determine when an eccentric split should be used and how to subdivide the cuboids so as to make
 the resulting subdivided cuboids more cube-like.
 
-Specifically, we want to find the ratio, $\sigma$ or $\eta$, of when one dimension is proportionally larger or smaller,
+Specifically, we want to find the ratio, $\sigma$, of when one dimension is proportionally larger or smaller,
 respectively, than the others.
 Further, we choose the ratio, $\rho$, of where to choose the split point of subdivision.
 For simplicity, we might want to subdivide at the half way point ($\rho = \frac{1}{2}$) but as we
 will see, this might give lopsided sub-cuboid regions and using a better split point is desirable.
 
 In what follows, our goal is to choose a subdivision that will reduce the average defect.
-We assume that the start and end of the path lie in the $w$ dimension with the local start point at $(0,0,0)$
-and endpoint at $(w-1,0,0)$.
+We assume that the start and end of the path lie in the $\alpha$ dimension.
 
-Since the start and end path lie on the $w$ dimension, we are forced to split in the $w$ axis
+Since the start and end path lie on the $\alpha$ dimension, we are forced to split in the $\alpha$ axis
 to subdivide the cuboid.
-In what follows, we always commit to splitting the $w$ cuboid region by half, with an
-additional coercion step to coerce the $A$ volume to be the desired parity.
+In what follows, we always commit to splitting the $\alpha$ cuboid region by half, with a potentially
+additional step to coerce the $A$ volume to a desired parity.
 
 %%%%
 %%%%
