@@ -3142,11 +3142,15 @@ function Gilbert3D(w, h, d) {
       beta = [0,h,0],
       gamma = [0,0,d];
 
+  let pnt = [];
+
   let g3xyz = Gilbert3DAsync(p, alpha, beta, gamma);
   for (let hv = g3xyz.next() ; !hv.done ; hv = g3xyz.next()) {
     let v = hv.value;
-    console.log(v[0], v[1], v[2]);
+    pnt.push( [v[0], v[1], v[2]] );
   }
+
+  return pnt;
 }
 
 function Gilbert2D(w,h) {
@@ -3154,11 +3158,15 @@ function Gilbert2D(w,h) {
       alpha = [w,0,0],
       beta = [0,h,0];
 
+  let pnt = [];
+
   let g2xy = Gilbert2DAsync(p, alpha, beta);
   for (let hv = g2xy.next() ; !hv.done ; hv = g2xy.next()) {
     let v = hv.value;
-    console.log(v[0], v[1]);
+    pnt.push( [v[0], v[1]] );
   }
+
+  return pnt;
 }
 
 var OP_LIST = [
@@ -3225,16 +3233,16 @@ function _main(argv) {
     }
 
     if (op == "xy") {
-      Gilbert2D(w,h);
-      return;
-      let g2xy = Gilbert2DAsync( [0,0, 0], [w,0, 0], [0,h, 0] );
-      for (let hv = g2xy.next(); !hv.done; hv = g2xy.next()) {
-        let _val = hv.value;
-        console.log(_val[0], _val[1]);
+      let p = Gilbert2D(w,h);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0], p[i][1]);
       }
     }
     else if (op == "xyz") {
-      Gilbert3D(w,h,d);
+      let p = Gilbert3D(w,h,d);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0], p[i][1], p[i][2]);
+      }
     }
 
     else if (op == "xy2d") {
@@ -3334,7 +3342,31 @@ function _main(argv) {
 }
 
 if (typeof module !== "undefined") {
-  _main(process.argv.slice(1));
+  module.exports["Gilbert2D"] = Gilbert2D;
+  module.exports["Gilbert3D"] = Gilbert3D;
+
+  module.exports["Gilbert2DAsync"] = Gilbert2DAsync;
+  module.exports["Gilbert3DAsync"] = Gilbert3DAsync;
+
+  module.exports["Gilbert2D_d2xyz"] = Gilbert2D_d2xyz;
+  module.exports["Gilbert2D_xyz2d"] = Gilbert2D_xyz2d;
+
+  module.exports["Gilbert3D_d2xyz"] = Gilbert3D_d2xyz;
+  module.exports["Gilbert3D_xyz2d"] = Gilbert3D_xyz2d;
+
+  module.exports["Gilbert2DAdapt_d2xyz"] = Gilbert2DAdapt_d2xy;
+  module.exports["Gilbert2DAdapt_xyz2d"] = Gilbert2DAdapt_xy2d;
+
+  module.exports["Gilbert3DAdapt_d2xyz"] = Gilbert3DAdapt_d2xyz;
+  module.exports["Gilbert3DAdapt_xyz2d"] = Gilbert3DAdapt_xyz2d;
 }
 
+//---
+// see https://stackoverflow.com/questions/4981891/node-js-equivalent-of-pythons-if-name-main
+//
+if ((typeof require !== "undefined")  &&
+    (require.main === module)) {
+  _main(process.argv.slice(1));
+}
+//---
 
