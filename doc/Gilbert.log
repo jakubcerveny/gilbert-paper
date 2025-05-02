@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  1 MAY 2025 01:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  1 MAY 2025 19:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1778,7 +1778,7 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 Here is how much of TeX's memory you used:
  42343 strings out of 480171
  825039 string characters out of 5894489
- 1215109 words of memory out of 5000000
+ 1215110 words of memory out of 5000000
  58948 multiletter control sequences out of 15000+600000
  658461 words of font info for 392 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
@@ -1816,7 +1816,7 @@ public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
 amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on Gilbert.pdf (13 pages, 1602733 bytes).
+Output written on Gilbert.pdf (13 pages, 1602724 bytes).
 PDF statistics:
  1280 PDF objects out of 1440 (max. 8388607)
  67 named destinations out of 1000 (max. 500000)
