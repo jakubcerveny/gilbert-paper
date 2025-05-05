@@ -23,6 +23,28 @@
 var numeric = require("numeric");
 var njs = numeric;
 
+function Mx(theta) {
+  let I = numeric.identity(4);
+  I[1][1] =  Math.cos(theta);
+  I[1][2] = -Math.sin(theta);
+
+  I[2][1] =  Math.sin(theta);
+  I[2][2] =  Math.cos(theta);
+
+  return I;
+}
+
+function My(theta) {
+  let I = numeric.identity(4);
+  I[0][0] =  Math.cos(theta);
+  I[0][2] =  Math.sin(theta);
+
+  I[2][0] = -Math.sin(theta);
+  I[2][2] =  Math.cos(theta);
+
+  return I;
+}
+
 function Mz(theta) {
   let I = numeric.identity(4);
   I[0][0] =  Math.cos(theta);
@@ -58,11 +80,16 @@ function Ms(s) {
 
 // reflect
 //
-function Mr(x,y) {
+function Mr(x,y,z) {
+  x = ((typeof x === "undefined") ? 1 : x);
+  y = ((typeof y === "undefined") ? 1 : y);
+  z = ((typeof z === "undefined") ? 1 : z);
+
   let I = numeric.identity(4);
 
   I[0][0] = x;
   I[1][1] = y;
+  I[2][2] = z;
 
   return I;
 }
@@ -112,6 +139,70 @@ function sfc_hilbert(lvl) {
   sfc_hilbert_r( numeric.identity(4), lvl, pnt, pnt_list);
   return pnt_list;
 }
+
+
+function sfc_hilbert3_r(M, lvl, pnt_template, pnt_list) {
+  let _dot = njs.dot;
+  if (lvl==0) {
+    let p = njs.transpose( _dot(M, njs.transpose(pnt_template)) );
+    for (let i=0; i<p.length; i++) { pnt_list.push(p[i]); }
+    return;
+  }
+
+  let sfc = sfc_hilbert3_r;
+
+  let m0 = _dot( Mt([-1/2, -1/2, -1/2]), _dot( Ms(1/2), _dot( My(1*Math.PI/2), Mr(-1) ) ) );
+  sfc(_dot(M, m0), lvl-1, pnt_template, pnt_list);
+
+  let m1 = _dot( Mt([-1/2, -1/2,  1/2]), _dot( Ms(1/2), _dot( Mz(3*Math.PI/2), Mr(-1) ) ) );
+  sfc(_dot(M, m1), lvl-1, pnt_template, pnt_list);
+
+
+  let m2 = _dot( Mt([-1/2,  1/2,  1/2]), Ms(1/2) );
+  sfc(_dot(M, m2), lvl-1, pnt_template, pnt_list);
+
+  let m3 = _dot( Mt([-1/2,  1/2, -1/2]), _dot( Ms(1/2), _dot( My(3*Math.PI/2), Mr(-1) ) ) );
+  sfc(_dot(M, m3), lvl-1, pnt_template, pnt_list);
+
+
+
+  let m4 = _dot( Mt([ 1/2,  1/2, -1/2]), _dot( Ms(1/2), _dot( My(1*Math.PI/2), Mr(-1) ) ) );
+  sfc(_dot(M, m4), lvl-1, pnt_template, pnt_list);
+
+  let m5 = _dot( Mt([ 1/2,  1/2,  1/2]), Ms(1/2) );
+  sfc(_dot(M, m5), lvl-1, pnt_template, pnt_list);
+
+
+  let m6 = _dot( Mt([ 1/2, -1/2,  1/2]), _dot( Ms(1/2), _dot( Mz(1*Math.PI/2), Mr(-1) ) ) );
+  sfc(_dot(M, m6), lvl-1, pnt_template, pnt_list);
+
+  let m7 = _dot( Mt([ 1/2, -1/2, -1/2]), _dot( Ms(1/2), _dot( My(3*Math.PI/2), Mr(-1) ) ) );
+  sfc(_dot(M, m7), lvl-1, pnt_template, pnt_list);
+
+  return pnt_list;
+}
+
+
+function sfc_hilbert3(lvl) {
+  let pnt = [
+    [ -1/2, -1/2, -1/2, 1 ],
+    [ -1/2, -1/2,  1/2, 1 ],
+
+    [ -1/2,  1/2,  1/2, 1 ],
+    [ -1/2,  1/2, -1/2, 1 ],
+
+    [  1/2,  1/2, -1/2, 1 ],
+    [  1/2,  1/2,  1/2, 1 ],
+
+    [  1/2, -1/2,  1/2, 1 ],
+    [  1/2, -1/2, -1/2, 1 ]
+  ];
+
+  let pnt_list = [];
+  sfc_hilbert3_r( numeric.identity(4), lvl, pnt, pnt_list);
+  return pnt_list;
+}
+
 
 function sfc_moore(lvl) {
   let pnt_template = [
@@ -322,6 +413,7 @@ let curve = "hilbert";
 let lvl = 5;
 
 let profile = {
+  "hilbert3": { "name": "hilbert3", "lvl": 5, "f": sfc_hilbert3, "verbose": 1, "p": 1 },
   "hilbert": { "name": "hilbert", "lvl": 5, "f": sfc_hilbert, "verbose": 1, "p": 1 },
   "peano": { "name": "peano", "lvl": 3, "f": sfc_peano, "verbose": 1, "p": 1 },
   "morton": { "name": "morton", "lvl": 5, "f": sfc_morton, "verbose": 1, "p": 1 },
