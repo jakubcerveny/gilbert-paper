@@ -1,0 +1,84 @@
+#!/usr/bin/node
+/*
+ * To the extent possible under law, the person who associated CC0 with
+ * this project has waived all copyright and related or neighboring rights
+ * to this project.
+ *     
+ * You should have received a copy of the CC0 legalcode along with this
+ * work. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
+ *
+ */
+
+/*
+cat hilbert_3.gp | ./sfjs 256 1 > t_h3.gp 
+cat hilbert_4.gp | ./sfjs 1024 4 > t_h4.gp 
+cat hilbert_5.gp | ./sfjs 4096 16 > t_h5.gp 
+cat hilbert_6.gp | ./sfjs 16384 64 > t_h6.gp 
+*/
+
+var VERBOSE = 0;
+
+let Rx = 1.0;
+let Ry = 1.0;
+
+
+var readline = require("readline");
+
+function show_help() {
+  console.log("usage:");
+  console.log("");
+}
+
+function f_x(x,y) {
+  return Rx*x;
+}
+
+function f_y(x,y) {
+  return Ry*y / Math.pow(x, 0.5);
+  return Math.pow(x, 0.5)*Ry*y;
+}
+
+if (process.argv.length > 2) {
+  Rx = parseFloat(process.argv[2]);
+  if (Rx > 1) { Rx = 1/Rx; }
+  if (process.argv.length > 3) {
+    Ry = parseFloat(process.argv[3]);
+    //if (Ry > 1) { Ry = 1/Ry; }
+  }
+}
+
+//if (Fx_str.length > 0) { Fx = calc_eval(Fx_str); }
+//if (Fy_str.length > 0) { Fy = calc_eval(Fy_str); }
+
+var _io = readline.createInterface({
+  "input": process.stdin,
+  "output": process.stdout,
+  "terminal": false
+});
+
+_io.on("line", function(_line) {
+
+  let line = _line.trim();
+
+  if (line.length == 0) { return; }
+  if (line[0] == '#') { return; }
+
+  let tok = line.split(" ");
+
+  //let x = parseFloat(tok[0]);
+  //let y = parseFloat(tok[1]);
+
+  let x = f_x(tok[0], tok[1]);
+  let y = f_y(tok[0], tok[1]);
+
+  console.log(x, y);
+});
+
+_io.once("close", function() {
+  if (VERBOSE > 0) {
+    console.log("###done");
+  }
+});
+
+
+
