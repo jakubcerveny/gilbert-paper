@@ -14,12 +14,18 @@ cat hilbert_3.gp | ./sfjs 256 1 > t_h3.gp
 cat hilbert_4.gp | ./sfjs 1024 4 > t_h4.gp 
 cat hilbert_5.gp | ./sfjs 4096 16 > t_h5.gp 
 cat hilbert_6.gp | ./sfjs 16384 64 > t_h6.gp 
+
+cat hilbert3_2.gp | ./sfjs 512 1 0.33333333333 > t_h3_2.gp
+cat hilbert3_3.gp | ./sfjs 4096 8 0.33333333333 > t_h3_3.gp
+cat hilbert3_4.gp | ./sfjs 32768 64 0.33333333333 > t_h3_4.gp
+cat hilbert3_5.gp | ./sfjs 262144 512 0.33333333333 > t_h3_5.gp
 */
 
 var VERBOSE = 0;
 
 let Rx = 1.0;
 let Ry = 1.0;
+let E = 0.5;
 
 
 var readline = require("readline");
@@ -34,8 +40,8 @@ function f_x(x,y) {
 }
 
 function f_y(x,y) {
-  return Ry*y / Math.pow(x, 0.5);
-  return Math.pow(x, 0.5)*Ry*y;
+  return Ry*y / Math.pow(x, E);
+  //return Math.pow(x, E)*Ry*y;
 }
 
 if (process.argv.length > 2) {
@@ -44,6 +50,10 @@ if (process.argv.length > 2) {
   if (process.argv.length > 3) {
     Ry = parseFloat(process.argv[3]);
     //if (Ry > 1) { Ry = 1/Ry; }
+
+    if (process.argv.length > 4) {
+      E = parseFloat(process.argv[4]);
+    }
   }
 }
 

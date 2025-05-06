@@ -23,6 +23,8 @@
 var numeric = require("numeric");
 var njs = numeric;
 
+var gilbert3dpp = require("./gilbert3dpp.js");
+
 function Mx(theta) {
   let I = numeric.identity(4);
   I[1][1] =  Math.cos(theta);
@@ -141,6 +143,7 @@ function sfc_hilbert(lvl) {
 }
 
 
+// https://github.com/PrincetonLIPS/numpy-hilbert-curve
 function sfc_hilbert3_r(M, lvl, pnt_template, pnt_list) {
   let _dot = njs.dot;
   if (lvl==0) {
@@ -365,6 +368,27 @@ function sfc_morton(lvl) {
   return pnt_list;
 }
 
+//---
+
+function sfc_gilbert2d(exponent_dim) {
+  let W = Math.floor(Math.pow(2, exponent_dim[0]));
+  let H = Math.floor(Math.pow(2, exponent_dim[1]));
+
+  console.log("# W:", W, "H:", H);
+  return gilbert3dpp.Gilbert2D(W,H);
+}
+
+function sfc_gilbert3d(exponent_dim) {
+  let W = Math.floor(Math.pow(2, exponent_dim[0]));
+  let H = Math.floor(Math.pow(2, exponent_dim[1]));
+  let D = Math.floor(Math.pow(2, exponent_dim[2]));
+
+  console.log("# W:", W, "H:", H, "D:", D);
+  return gilbert3dpp.Gilbert3D(W,H,D);
+}
+
+//---
+
 function pnorm_diff(pnta, pntb, p) {
   let s = 0;
   for (let i=0; i<pnta.length; i++) {
@@ -411,10 +435,16 @@ function experiment_pnorm_bindiff(profile) {
 
 let curve = "hilbert";
 let lvl = 5;
+let extra_arg0 = 0;
+let extra_arg1 = 0;
 
 let profile = {
-  "hilbert3": { "name": "hilbert3", "lvl": 5, "f": sfc_hilbert3, "verbose": 1, "p": 1 },
+  "gilbert2d": { "name": "gilbert2d", "lvl": [5,5], "f": sfc_gilbert2d, "verbose": 1, "p": 1 },
+  "gilbert3d": { "name": "gilbert3d", "lvl": [3,3,3], "f": sfc_gilbert3d, "verbose": 1, "p": 1 },
+
+  "hilbert3": { "name": "hilbert3", "lvl": 3, "f": sfc_hilbert3, "verbose": 1, "p": 1 },
   "hilbert": { "name": "hilbert", "lvl": 5, "f": sfc_hilbert, "verbose": 1, "p": 1 },
+
   "peano": { "name": "peano", "lvl": 3, "f": sfc_peano, "verbose": 1, "p": 1 },
   "morton": { "name": "morton", "lvl": 5, "f": sfc_morton, "verbose": 1, "p": 1 },
   "moore": { "name": "moore", "lvl": 5, "f": sfc_moore, "verbose": 1, "p": 1  }
@@ -424,6 +454,15 @@ if (process.argv.length > 2) {
   curve = process.argv[2];
   if (process.argv.length > 3) {
     lvl = parseInt(process.argv[3]);
+
+    if (process.argv.length > 4) {
+      lvl = parseFloat(process.argv[3]);
+      extra_arg0 = parseFloat(process.argv[4]);
+
+      if (process.argv.length > 5) {
+        extra_arg1 = parseFloat(process.argv[5]);
+      }
+    }
   }
 }
 
@@ -433,6 +472,22 @@ if (!(curve in profile)) {
 }
 
 profile[curve].lvl = lvl;
+
+if (curve == "gilbert2d") {
+  if (extra_arg0 == 0) {
+    console.log("provide exponent of other dimension");
+    process.exit(-1);
+  }
+  profile[curve].lvl = [ lvl, extra_arg0 ];
+}
+
+if (curve == "gilbert3d") {
+  if ((extra_arg0 == 0) || (extra_arg1 == 0))  {
+    console.log("provide exponent of other dimension");
+    process.exit(-1);
+  }
+  profile[curve].lvl = [ lvl, extra_arg0, extra_arg1 ];
+}
 
 experiment_pnorm_bindiff(profile[curve]);
 
