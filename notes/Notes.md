@@ -246,3 +246,5 @@ References
 * "Locality and bounding-box quality of two-dimensional space-ﬁlling curves" by H. Haverkort and F. Walderveen
 * "Recursive Tilings and Space-Filling Curves with Little Fragmentation" by H. Haverkort
 * "Matrix Multiplication on GPU" [indii.org](https://indii.org/blog/gpu-matrix-multiply/)
+* ["The Performance of Space-Filling Curves for Dimension Reduction" by Aubrey Jaffer](https://people.csail.mit.edu/jaffer/CNS/PSFCDR)
+
