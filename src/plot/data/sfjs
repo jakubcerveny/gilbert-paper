@@ -27,6 +27,7 @@ let Rx = 1.0;
 let Ry = 1.0;
 let E = 0.5;
 
+E = 1.5;
 
 var readline = require("readline");
 
