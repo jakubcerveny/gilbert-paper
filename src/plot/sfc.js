@@ -439,15 +439,15 @@ let extra_arg0 = 0;
 let extra_arg1 = 0;
 
 let profile = {
-  "gilbert2d": { "name": "gilbert2d", "lvl": [5,5], "f": sfc_gilbert2d, "verbose": 1, "p": 1 },
-  "gilbert3d": { "name": "gilbert3d", "lvl": [3,3,3], "f": sfc_gilbert3d, "verbose": 1, "p": 1 },
+  "gilbert2d" : { "name": "gilbert2d",  "lvl": [5,5],   "f": sfc_gilbert2d, "verbose": 1, "p": 2 },
+  "gilbert3d" : { "name": "gilbert3d",  "lvl": [3,3,3], "f": sfc_gilbert3d, "verbose": 1, "p": 2 },
 
-  "hilbert3": { "name": "hilbert3", "lvl": 3, "f": sfc_hilbert3, "verbose": 1, "p": 1 },
-  "hilbert": { "name": "hilbert", "lvl": 5, "f": sfc_hilbert, "verbose": 1, "p": 1 },
+  "hilbert3"  : { "name": "hilbert3",   "lvl": 3,       "f": sfc_hilbert3,  "verbose": 1, "p": 2 },
+  "hilbert"   : { "name": "hilbert",    "lvl": 5,       "f": sfc_hilbert,   "verbose": 1, "p": 2 },
 
-  "peano": { "name": "peano", "lvl": 3, "f": sfc_peano, "verbose": 1, "p": 1 },
-  "morton": { "name": "morton", "lvl": 5, "f": sfc_morton, "verbose": 1, "p": 1 },
-  "moore": { "name": "moore", "lvl": 5, "f": sfc_moore, "verbose": 1, "p": 1  }
+  "peano"     : { "name": "peano",      "lvl": 3,       "f": sfc_peano,     "verbose": 1, "p": 2 },
+  "morton"    : { "name": "morton",     "lvl": 5,       "f": sfc_morton,    "verbose": 1, "p": 2 },
+  "moore"     : { "name": "moore",      "lvl": 5,       "f": sfc_moore,     "verbose": 1, "p": 2 }
 };
 
 if (process.argv.length > 2) {

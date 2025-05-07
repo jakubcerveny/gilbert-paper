@@ -1,10 +1,10 @@
 #!/bin/bash
 
 hilbert2d=''
-hilbert3d=''
+hilbert3d=1
 
 gilbert2d=''
-gilbert3d=1
+gilbert3d=''
 
 if [[ $hilbert2d ]] ; then
   echo "#hilbert2d"
@@ -16,10 +16,10 @@ fi
 
 if [[ $hilbert3d ]] ; then
   echo "#hilbert3d"
-  node sfc.js hilbert3d 2 > data/hilbert3d_8x8x8_dist.gp
-  node sfc.js hilbert3d 3 > data/hilbert3d_16x16x16_dist.gp
-  node sfc.js hilbert3d 4 > data/hilbert3d_32x32x32_dist.gp
-  node sfc.js hilbert3d 5 > data/hilbert3d_64x64x64_dist.gp
+  node sfc.js hilbert3 2 > data/hilbert3d_8x8x8_dist.gp
+  node sfc.js hilbert3 3 > data/hilbert3d_16x16x16_dist.gp
+  node sfc.js hilbert3 4 > data/hilbert3d_32x32x32_dist.gp
+  #node sfc.js hilbert3 5 > data/hilbert3d_64x64x64_dist.gp
 fi
 
 if [[ $gilbert2d ]] ; then
