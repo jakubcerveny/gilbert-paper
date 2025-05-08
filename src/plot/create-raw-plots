@@ -3,23 +3,29 @@
 hilbert2d=''
 hilbert3d=''
 
-gilbert2d=1
+gilbert2d=''
 gilbert3d=''
 
 if [[ $hilbert2d ]] ; then
   echo "#hilbert2d"
-  node sfc.js hilbert 3 > data/hilbert2d_16x16_dist.gp
-  node sfc.js hilbert 4 > data/hilbert2d_32x32_dist.gp
-  node sfc.js hilbert 5 > data/hilbert2d_64x64_dist.gp
-  node sfc.js hilbert 6 > data/hilbert2d_128x128_dist.gp
-  node sfc.js hilbert 7 > data/hilbert2d_256x256_dist.gp
+
+  mkdir -p data/hilbert2d
+
+  node sfc.js hilbert 3 > data/hilbert2d/hilbert2d_16x16_dist.gp
+  node sfc.js hilbert 4 > data/hilbert2d/hilbert2d_32x32_dist.gp
+  node sfc.js hilbert 5 > data/hilbert2d/hilbert2d_64x64_dist.gp
+  node sfc.js hilbert 6 > data/hilbert2d/hilbert2d_128x128_dist.gp
+  node sfc.js hilbert 7 > data/hilbert2d/hilbert2d_256x256_dist.gp
 fi
 
 if [[ $hilbert3d ]] ; then
   echo "#hilbert3d"
-  node sfc.js hilbert3 2 > data/hilbert3d_8x8x8_dist.gp
-  node sfc.js hilbert3 3 > data/hilbert3d_16x16x16_dist.gp
-  node sfc.js hilbert3 4 > data/hilbert3d_32x32x32_dist.gp
+
+  mkdir -p data/hilbert3d
+
+  node sfc.js hilbert3 2 > data/hilbert3d/hilbert3d_8x8x8_dist.gp
+  node sfc.js hilbert3 3 > data/hilbert3d/hilbert3d_16x16x16_dist.gp
+  node sfc.js hilbert3 4 > data/hilbert3d/hilbert3d_32x32x32_dist.gp
   #node sfc.js hilbert3 5 > data/hilbert3d_64x64x64_dist.gp
 fi
 
@@ -27,8 +33,10 @@ if [[ $gilbert2d ]] ; then
   echo "#gilbert2d"
 
 
-  for ew in `seq 7.25 0.25 7.75` ; do
-    for eh in `seq 7.25 0.25 7.75` ; do
+  mkdir -p data/gilbert2d
+
+  for ew in `seq 5.25 0.25 7.75` ; do
+    for eh in `seq 5.25 0.25 7.75` ; do
       echo "# W:2^$ew H:2^$eh"
 
       W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`
@@ -36,7 +44,7 @@ if [[ $gilbert2d ]] ; then
 
       echo "# W:$W (2^($ew)), H:$H (2^($eh))"
 
-      node sfc.js gilbert2d $ew $eh > data/gilbert2d_${W}x${H}_dist.gp
+      node sfc.js gilbert2d $ew $eh > data/gilbert2d/gilbert2d_${W}x${H}_dist.gp
     done
   done
 
@@ -45,9 +53,11 @@ fi
 if [[ $gilbert3d ]] ; then
   echo "#gilbert3d"
 
-  for ew in `seq 3 0.25 6` ; do
-    for eh in `seq 3 0.25 6` ; do
-      for ed in `seq 3 0.25 6` ; do
+  mkdir -p data/gilbert3d
+
+  for ew in `seq 4.25 0.25 5.75` ; do
+    for eh in `seq 4.25 0.25 5.75` ; do
+      for ed in `seq 4.25 0.25 5.75` ; do
         echo "# W:2^$ew H:2^$eh D:2^$ed"
 
         W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`
@@ -56,7 +66,7 @@ if [[ $gilbert3d ]] ; then
 
         echo "# W:$W (2^($ew)), H:$H (2^($eh)), D:$D (2^($ed))"
 
-        node sfc.js gilbert3d $ew $eh $ed > data/gilbert3d_${W}x${H}x${D}_dist.gp
+        node sfc.js gilbert3d $ew $eh $ed > data/gilbert3d/gilbert3d_${W}x${H}x${D}_dist.gp
       done
     done
   done
