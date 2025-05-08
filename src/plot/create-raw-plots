@@ -1,9 +1,9 @@
 #!/bin/bash
 
 hilbert2d=''
-hilbert3d=1
+hilbert3d=''
 
-gilbert2d=''
+gilbert2d=1
 gilbert3d=''
 
 if [[ $hilbert2d ]] ; then
@@ -12,6 +12,7 @@ if [[ $hilbert2d ]] ; then
   node sfc.js hilbert 4 > data/hilbert2d_32x32_dist.gp
   node sfc.js hilbert 5 > data/hilbert2d_64x64_dist.gp
   node sfc.js hilbert 6 > data/hilbert2d_128x128_dist.gp
+  node sfc.js hilbert 7 > data/hilbert2d_256x256_dist.gp
 fi
 
 if [[ $hilbert3d ]] ; then
@@ -26,8 +27,8 @@ if [[ $gilbert2d ]] ; then
   echo "#gilbert2d"
 
 
-  for ew in `seq 3 0.25 7` ; do
-    for eh in `seq 3 0.25 7` ; do
+  for ew in `seq 7.25 0.25 7.75` ; do
+    for eh in `seq 7.25 0.25 7.75` ; do
       echo "# W:2^$ew H:2^$eh"
 
       W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`
