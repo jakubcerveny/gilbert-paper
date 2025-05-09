@@ -102,9 +102,14 @@ function m_project(v) {
 
 function printpoint(p) {
   for (let i=0; i<p.length; i++) {
-    console.log(p[i][0], p[i][1]);
+    if (p[i].length > 2) {
+      console.log(p[i][0], p[i][1], p[i][2]);
+    }
+    else {
+      console.log(p[i][0], p[i][1]);
+    }
   }
-  console.log("\n");
+  //console.log("\n");
 }
 
 function sfc_hilbert_r(M, lvl, pnt_template, pnt_list) {
@@ -144,7 +149,8 @@ function sfc_hilbert(lvl) {
 
 
 // https://github.com/PrincetonLIPS/numpy-hilbert-curve
-function sfc_hilbert3_r(M, lvl, pnt_template, pnt_list) {
+//
+function sfc_hilbert3_npy_r(M, lvl, pnt_template, pnt_list) {
   let _dot = njs.dot;
   if (lvl==0) {
     let p = njs.transpose( _dot(M, njs.transpose(pnt_template)) );
@@ -152,7 +158,7 @@ function sfc_hilbert3_r(M, lvl, pnt_template, pnt_list) {
     return;
   }
 
-  let sfc = sfc_hilbert3_r;
+  let sfc = sfc_hilbert3_npy_r;
 
   let m0 = _dot( Mt([-1/2, -1/2, -1/2]), _dot( Ms(1/2), _dot( My(1*Math.PI/2), Mr(-1) ) ) );
   sfc(_dot(M, m0), lvl-1, pnt_template, pnt_list);
@@ -186,7 +192,7 @@ function sfc_hilbert3_r(M, lvl, pnt_template, pnt_list) {
 }
 
 
-function sfc_hilbert3(lvl) {
+function sfc_hilbert3_npy(lvl) {
   let pnt = [
     [ -1/2, -1/2, -1/2, 1 ],
     [ -1/2, -1/2,  1/2, 1 ],
@@ -198,6 +204,80 @@ function sfc_hilbert3(lvl) {
     [  1/2,  1/2,  1/2, 1 ],
 
     [  1/2, -1/2,  1/2, 1 ],
+    [  1/2, -1/2, -1/2, 1 ]
+  ];
+
+  let pnt_list = [];
+  sfc_hilbert3_npy_r( numeric.identity(4), lvl, pnt, pnt_list);
+  return pnt_list;
+}
+
+//---
+
+// https://github.com/PrincetonLIPS/numpy-hilbert-curve
+//
+function sfc_hilbert3_r(M, lvl, pnt_template, pnt_list) {
+  let _dot = njs.dot;
+  if (lvl==0) {
+    let p = njs.transpose( _dot(M, njs.transpose(pnt_template)) );
+    for (let i=0; i<p.length; i++) { pnt_list.push(p[i]); }
+    return;
+  }
+
+  let sfc = sfc_hilbert3_r;
+
+  //let m0 = _dot( Mt([-1/2, -1/2, -1/2]), _dot( Ms(1/2), _dot( Mz(3*Math.PI/2), Mr(-1) ) ) );
+  //sfc(_dot(M, m0), lvl-1, pnt_template, pnt_list);
+
+  let m0 = _dot( Mt([-1/2, -1/2, -1/2]), _dot( Ms(1/2), _dot( My(1*Math.PI/2), Mz(1*Math.PI/2) ) ) );
+  sfc(_dot(M, m0), lvl-1, pnt_template, pnt_list);
+
+  //let m1 = _dot( Mt([-1/2,  1/2, -1/2]), _dot( Ms(1/2), _dot( My(1*Math.PI/2), Mr(-1) ) ) );
+  //sfc(_dot(M, m1), lvl-1, pnt_template, pnt_list);
+
+  let m1 = _dot( Mt([-1/2,  1/2, -1/2]), _dot( Ms(1/2), _dot( Mx(3*Math.PI/2), Mz(3*Math.PI/2) ) ) );
+  sfc(_dot(M, m1), lvl-1, pnt_template, pnt_list);
+
+  let m2 = _dot( Mt([-1/2,  1/2,  1/2]), _dot( Ms(1/2), _dot( Mx(3*Math.PI/2), Mz(3*Math.PI/2) ) ) );
+  sfc(_dot(M, m2), lvl-1, pnt_template, pnt_list);
+
+
+  let m3 = _dot( Mt([-1/2, -1/2,  1/2]), _dot( Ms(1/2), _dot( Mx(2*Math.PI/2), Mr( 1) ) ) );
+  sfc(_dot(M, m3), lvl-1, pnt_template, pnt_list);
+
+
+
+  let m4 = _dot( Mt([ 1/2, -1/2,  1/2]), _dot( Ms(1/2), _dot( Mx(2*Math.PI/2), Mr( 1) ) ) );
+  sfc(_dot(M, m4), lvl-1, pnt_template, pnt_list);
+
+
+  let m5 = _dot( Mt([ 1/2,  1/2,  1/2]), _dot( Ms(1/2), _dot( Mx(3*Math.PI/2), Mz(1*Math.PI/2) ) ) );
+  sfc(_dot(M, m5), lvl-1, pnt_template, pnt_list);
+
+  let m6 = _dot( Mt([ 1/2,  1/2, -1/2]), _dot( Ms(1/2), _dot( Mx(3*Math.PI/2), Mz(1*Math.PI/2) ) ) );
+  sfc(_dot(M, m6), lvl-1, pnt_template, pnt_list);
+
+
+
+  let m7 = _dot( Mt([ 1/2, -1/2, -1/2]), _dot( Ms(1/2), _dot( My(3*Math.PI/2), Mz(3*Math.PI/2) ) ) );
+  sfc(_dot(M, m7), lvl-1, pnt_template, pnt_list);
+
+  return pnt_list;
+}
+
+
+function sfc_hilbert3(lvl) {
+  let pnt = [
+    [ -1/2, -1/2, -1/2, 1 ],
+    [ -1/2,  1/2, -1/2, 1 ],
+
+    [ -1/2,  1/2,  1/2, 1 ],
+    [ -1/2, -1/2,  1/2, 1 ],
+
+    [  1/2, -1/2,  1/2, 1 ],
+    [  1/2,  1/2,  1/2, 1 ],
+
+    [  1/2,  1/2, -1/2, 1 ],
     [  1/2, -1/2, -1/2, 1 ]
   ];
 
@@ -488,6 +568,9 @@ let profile = {
   "hilbert3"  : { "name": "hilbert3",   "lvl": 3,       "f": sfc_hilbert3,  "verbose": 1, "p": 2 },
   "hilbert"   : { "name": "hilbert",    "lvl": 5,       "f": sfc_hilbert,   "verbose": 1, "p": 2 },
 
+  "print:hilbert3"  : { "name": "hilbert3",   "lvl": 3,       "f": sfc_hilbert3,  "verbose": 1, "p": 2 },
+  "print:hilbert"   : { "name": "hilbert",    "lvl": 5,       "f": sfc_hilbert,   "verbose": 1, "p": 2 },
+
   "peano"     : { "name": "peano",      "lvl": 3,       "f": sfc_peano,     "verbose": 1, "p": 2 },
   "morton"    : { "name": "morton",     "lvl": 5,       "f": sfc_morton,    "verbose": 1, "p": 2 },
   "moore"     : { "name": "moore",      "lvl": 5,       "f": sfc_moore,     "verbose": 1, "p": 2 }
@@ -532,6 +615,18 @@ if (curve == "gilbert3d") {
   profile[curve].lvl = [ lvl, extra_arg0, extra_arg1 ];
 }
 
-//experiment_pnorm_bindiff(profile[curve]);
-experiment_pnorm_bindiff_cdf(profile[curve]);
-
+let curve_tok = curve.split(":");
+if ((curve_tok.length > 1) && (curve_tok[0] == "print")) {
+  let pnt = profile[curve].f( profile[curve].lvl );
+  let side = Math.pow(2, profile[curve].lvl) - 0.5;
+  for (let i=0; i<pnt.length; i++) {
+    pnt[i] = njs.add( [side,side,side], pnt[i] );
+    pnt[i][0] = Math.floor(pnt[i][0] + (1/(1024*1024)));
+    pnt[i][1] = Math.floor(pnt[i][1] + (1/(1024*1024)));
+    pnt[i][2] = Math.floor(pnt[i][2] + (1/(1024*1024)));
+  }
+  printpoint( pnt );
+}
+else {
+  experiment_pnorm_bindiff_cdf(profile[curve]);
+}
