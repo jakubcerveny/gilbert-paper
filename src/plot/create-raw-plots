@@ -6,6 +6,35 @@ hilbert3d=''
 gilbert2d=''
 gilbert3d=''
 
+for op in $@ ; do
+  if [[ $op == "hilbert2d" ]] ; then
+    hilbert2d=1
+  elif [[ $op == "hilbert3d" ]] ; then
+    hilbert3d=1
+  elif [[ $op == "gilbert2d" ]] ; then
+    gilbert2d=1
+  elif [[ $op == "gilbert3d" ]] ; then
+    gilbert3d=1
+  elif [[ $op == "all" ]] ; then
+    hilbert2d=1
+    hilbert3d=1
+    gilbert2d=1
+    gilbert3d=1
+  elif [[ $op == "help" ]] ; then
+    echo ""
+    echo "create raw plots. Available options are:"
+    echo ""
+    echo "  hilbert2d"
+    echo "  hilbert3d"
+    echo "  gilbert2d"
+    echo "  gilbert3d"
+    echo "  all"
+    echo ""
+    exit
+  fi
+done
+
+
 if [[ $hilbert2d ]] ; then
   echo "#hilbert2d"
 
