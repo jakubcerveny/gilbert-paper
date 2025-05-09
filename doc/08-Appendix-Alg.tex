@@ -3,11 +3,11 @@
 
 \section{Auxiliary Algorithms and Procedures} \label{ProcedureAppendix}
 
-\subsection{Auxiliary Functions}
+\subsection{Auxiliary Functions} \label{AuxiliaryFunctions}
 
-\floatname{algorithm}{Procedure}
+\floatname{algorithm}{Auxiliary Functions}
 \begin{algorithm}
-  \caption{\hskip0.5em $\delta(\cdot)$ directional vector function }
+  \caption{\hskip0.5em}
   \label{alg:delta}
   \begin{algorithmic}
 
@@ -21,9 +21,29 @@
     \EndFunction
 
     \State
+    \State \textit{\# vector integer round down divide}
+    \Function{$\text{div}$}{$v \in \mathbb{Z}^3$, $q \in \mathbb{Z}$ }
+      \State $u_0 = \text{sgn}(v_0) \lfloor | \frac{v_0}{q} | \rfloor$
+      \State $u_1 = \text{sgn}(v_1) \lfloor | \frac{v_1}{q} | \rfloor$
+      \State $u_2 = \text{sgn}(v_2) \lfloor | \frac{v_2}{q} | \rfloor$
+      \State \Return $(u_0, u_1, u_2)$
+    \EndFunction
+
+    \State
     \State \textit{\# directional vector}
     \Function{$\delta$}{$v \in \mathbb{Z}^3$}
-      \State \Return $[ \text{sgn}(v_0), \text{sgn}(v_1), \text{sgn}(v_2) ]$
+      \State \Return $( \text{sgn}(v_0), \text{sgn}(v_1), \text{sgn}(v_2) )$
+    \EndFunction
+
+    \State
+    \State \textit{\# Test if $q$ in directional volume with origin $p$}
+    \Function{inBounds}{$q, p, \alpha, \beta, \gamma \in \mathbb{Z}^3$}
+      \State $v \leftarrow \alpha + \beta + \gamma$
+      \For{$i \leftarrow 0$ \textbf{to} $2$}
+        \State \textbf{return} \textit{false} \textbf{if} $(\text{sgn}(v_i) \cdot (q_i - p_i) < 0)$
+        \State \textbf{return} \textit{false} \textbf{if} $(\text{sgn}(v_i) \cdot (q_i - p_i - v_i) \ge 0)$
+      \EndFor
+      \State \Return \textit{true}
     \EndFunction
 
     \State
@@ -43,7 +63,9 @@
 \end{algorithm}
 \floatname{algorithm}{Algorithm}
 
-\subsection{Gilbert3D S-Split Functions}
+\clearpage
+
+\subsection{Gilbert3D S-Split Functions} \label{SSplitFunctions}
 
 \floatname{algorithm}{Procedure}
 \begin{algorithm}
@@ -53,7 +75,7 @@
     \State
     \State \textit{\# split halfway on $\alpha$ }
     \Function{$S_0$}{$p$, $\alpha$, $\beta$, $\gamma$}
-      \State $\alpha_2 \leftarrow (\alpha // 2)$
+      \State $\alpha_2 \leftarrow \text{div}(\alpha, 2)$
       \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
         \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
       \EndIf
@@ -75,7 +97,7 @@
     \State
     \State \textit{\# split $\frac{1}{3}$ on $\gamma$ and halfway on $\alpha$ }
     \Function{$S_1$}{$p$, $\alpha$, $\beta$, $\gamma$}
-      \State $\alpha_2, \gamma_3 \leftarrow (\alpha // 2), (\gamma // 3)$
+      \State $\alpha_2, \gamma_3 \leftarrow \text{div}(\alpha, 2), \text{div}(\gamma, 3)$
       \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
         \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
       \EndIf
@@ -102,7 +124,7 @@
     \State
     \State \textit{\# split $\frac{1}{3}$ on $\beta$ and halfway on $\alpha$ }
     \Function{$S_2$}{$p$, $\alpha$, $\beta$, $\gamma$}
-      \State $\alpha_2, \beta_3 \leftarrow (\alpha // 2), (\beta // 3)$
+      \State $\alpha_2, \beta_3 \leftarrow \text{div}(\alpha, 2), \text{div}(\beta, 3)$
       \If{ $(|\alpha| > 2)$ and $((|\alpha_2| \bmod{2}) \equiv 1)$ }
         \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
       \EndIf
@@ -122,7 +144,7 @@
 
 \clearpage
 
-\subsection{Gilbert3D J-Split Functions}
+\subsection{Gilbert3D J-Split Functions} \label{JSplitFunctions}
 
 \floatname{algorithm}{Procedure}
 \begin{algorithm}
@@ -133,7 +155,7 @@
     \State \textit{\# $|\gamma|$ even }
     \Function{$J_0$}{$p$, $\alpha$, $\beta$, $\gamma$}
       \State
-      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
+      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow \text{div}(\alpha, 2), \text{div}(\beta, 2), \text{div}(\gamma, 2)$
       \State
       \State \textit{\# prefer initial block even}
       \State $\alpha_2 = \alpha_2 + \delta(\alpha)$ \textbf{if} $(| \alpha | > 2)$and$(| \alpha_2 | \bmod{2} \equiv 1)$
@@ -165,7 +187,7 @@
     \State \textit{\# $|\gamma|$ odd, one of $|\alpha|$ or $|\beta|$ even }
     \Function{$J_1$}{$p$, $\alpha$, $\beta$, $\gamma$}
       \State
-      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
+      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow \text{div}(\alpha, 2), \text{div}(\beta, 2), \text{div}(\gamma, 2)$
       \State
       \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
       \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
@@ -196,7 +218,7 @@
     \State \textit{\# $|\alpha|, |\beta|, |\gamma|$ odd }
     \Function{$J_2$}{$p$, $\alpha$, $\beta$, $\gamma$}
       \State
-      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow (\alpha // 2), (\beta // 2), (\gamma // 2)$
+      \State $\alpha_2, \beta_2, \gamma_2 \leftarrow \text{div}(\alpha, 2), \text{div}(\beta, 2), \text{div}(\gamma, 2)$
       \State
       \State \textit{\# prefer $\beta_2$, $\gamma_2$ even but force $\alpha_2$ odd }
       \State $\alpha_2=\alpha_2+\delta(\alpha)$ \textbf{if} $(|\alpha| > 2)$and$(|\alpha_2| \bmod{2} \equiv 0)$
@@ -218,10 +240,132 @@
 \floatname{algorithm}{Algorithm}
 
 
+\clearpage
+
+\subsection{Gilbert2D Lookup Functions}
+
+\floatname{algorithm}{Algorithm}
+\begin{algorithm}[tbh]
+  \caption{\hskip0.5em 2D Generalized Hilbert Index to Position Lookup Function (Gilbert2D\_d2xyz) }
+  \label{alg:gilbert2d_d2xyz}
+  \begin{algorithmic}
+
+    \State \textit{\# $d_{\text{dst}}, d_{\text{cur}} \in \mathbb{Z}, p, \alpha, \beta \in \mathbb{Z}^3$}
+    \Function{Gilbert2D\_d2xyz}{$d_{\text{dst}}$, $d_{\text{cur}}$, $p$, $\alpha$, $\beta$}
+      \State
+      \State $\alpha_2, \beta_2  = \text{div}(\alpha, 2), \text{div}(\beta, 2)$
+
+      \State
+      \If{ $(|\beta| \equiv 1)$ }
+        \State \Return $p + (d_{\text{dst}} - d_{\text{cur}}) \cdot \delta(\alpha)$
+      \ElsIf{ $(|\alpha| \equiv 1)$ }
+        \State \Return $p + (d_{\text{dst}} - d_{\text{cur}}) \cdot \delta(\beta)$
+
+        \State
+      \ElsIf{ $(2 |\alpha| > 3 |\beta|)$ }
+        \If{ $(|\alpha_2| > 2)$ and $(|\alpha_2| \bmod{2} \equiv 1)$ }
+          \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
+        \EndIf
+        \State
+        \State $d_{\text{nxt}} \leftarrow d_{\text{cur}} + |\alpha_2| \cdot |\beta|$
+        \If{ $d_{\text{cur}} \le d_{\text{dst}} < d_{\text{nxt}}$ }
+          \State \Return Gilbert2D\_d2xyz($d_{\text{dst}}$, $d_{\text{cur}}$, \\ \hskip15.0em $p$, \\ \hskip15.0em $\alpha_2$, $\beta$)
+        \EndIf
+        \State
+
+        \State $d_{\text{cur}} \leftarrow d_{\text{nxt}}$
+        \State \Return Gilbert2D\_d2xyz($d_{\text{dst}}$, $d_{\text{cur}}$, \\ \hskip13.5em $p + \alpha_2$, \\ \hskip13.5em $\alpha - \alpha_2$, $\beta$)
+
+        \State
+      \EndIf
+      \State
+
+      \If{ $(|\beta_2| > 2)$ and $(|\beta_2| \bmod{2} \equiv 1)$ }
+        \State $\beta_2 \leftarrow \beta_2 + \delta(\beta)$
+      \EndIf
+      \State
+      \State $d_{\text{nxt}} \leftarrow d_{\text{cur}} + |\beta_2| \cdot |\alpha_2|$
+      \If{ $d_{\text{cur}} \le d_{\text{dst}} < d_{\text{nxt}}$ }
+        \State \Return Gilbert2D\_d2xyz($d_{\text{dst}}$, $d_{\text{cur}}$, \\ \hskip13.5em $p$, \\ \hskip13.5em $\beta_2$, $\alpha_2$)
+      \EndIf
+      \State $d_{\text{cur}} \leftarrow d_{\text{nxt}}$
+      \State
+
+      \State $d_{\text{nxt}} \leftarrow d_{\text{cur}} + |\alpha| \cdot |\beta-\beta_2|$
+      \If{ $d_{\text{cur}} \le d_{\text{dst}} < d_{\text{nxt}}$ }
+        \State \Return Gilbert2D\_d2xyz($d_{\text{dst}}$, $d_{\text{cur}}$, \\ \hskip13.5em $p + \beta_2$, \\ \hskip13.5em $\alpha$, $(\beta - \beta_2)$)
+      \EndIf
+      \State $d_{\text{cur}} \leftarrow d_{\text{nxt}}$
+      \State
+
+      \State \Return Gilbert2D\_d2xyz($d_{\text{dst}}$, $d_{\text{cur}}$, \\ \hskip12.0em $p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$, \\ \hskip12.0em $\beta_2$, $-(\alpha - \alpha_2)$)
+
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
 
 
+\floatname{algorithm}{Algorithm}
+\begin{algorithm}[thb]
+  \caption{\hskip0.5em 2D Generalized Hilbert Position to Index Lookup Function (Gilbert2D\_xyz2d) }
+  \label{alg:gilbert2d_xyz2d}
+  \begin{algorithmic}
 
+    \State \textit{\# $d_{\text{cur}} \in \mathbb{Z}, q, p, \alpha, \beta \in \mathbb{Z}^3$}
+    \Function{Gilbert2D\_xyz2d}{$d_{\text{cur}}$, $q$, $p$, $\alpha$, $\beta$}
+      \State
+      \State $\alpha_2, \beta_2  = \text{div}(\alpha, 2), \text{div}(\beta, 2)$
 
+      \State
+      \If{ $(|\beta| \equiv 1)$ }
+        \State \Return $d_{\text{cur}} + \delta(\alpha) \cdot (q - p)$
 
+        \State
+      \ElsIf{ $(|\alpha| \equiv 1)$ }
+        \State \Return $d_{\text{cur}} + \delta(\beta) \cdot (q - p)$
 
+        \State
+      \ElsIf{ $(2 |\alpha| > 3 |\beta|)$ }
+        \If{ $(|\alpha_2| > 2)$ and $(|\alpha_2| \bmod{2} \equiv 1)$ }
+          \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
+        \EndIf
+        \State
+        \If{ inBounds($q$, $p$, $\alpha_2$, $\beta$) }
+          \State \Return Gilbert2D\_xyz2d($p$, \\ \hskip15.0em $\alpha_2$, $\beta$)
+        \EndIf
+        \State $d_{\text{cur}} \leftarrow d_{\text{cur}} + |\alpha_2| \cdot |\beta|$
+        \State
+
+        \State $p \leftarrow p + \alpha_2$
+        \State \Return Gilbert2D\_xyz2d($d_{\text{cur}}$, $q$, $p$, \\ \hskip13.5em $\alpha - \alpha_2$, $\beta$)
+
+        \State
+      \EndIf
+
+      \If{ $(|\beta_2| > 2)$ and $(|\beta_2| \bmod{2} \equiv 1)$ }
+        \State $\beta_2 \leftarrow \beta_2 + \delta(\beta)$
+      \EndIf
+      \State
+
+      \If{ inBounds($q$, $p$, $\beta_2$, $\alpha_2$) }
+        \State \Return  Gilbert2D\_xyz2d($p$, \\ \hskip13.5em $\beta_2$, $\alpha_2$)
+      \EndIf
+      \State $d_{\text{cur}} \leftarrow d_{\text{cur}} + |\beta_2| \cdot |\alpha_2|$
+      \State
+
+      \State $p \leftarrow p + \beta_2$
+      \If{ inBounds($q$, $p$, $\alpha$, $(\beta - \beta_2)$) }
+        \State \Return Gilbert2D\_xyz2d($d_{\text{cur}}$, $q$, $p$, \\ \hskip13.5em $\alpha$, $(\beta - \beta_2)$)
+      \EndIf
+      \State $d_{\text{cur}} \leftarrow d_{\text{cur}} + |\alpha| \cdot |\beta - \beta_2|$
+      \State
+
+      \State $p \leftarrow p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$
+      \State \Return Gilbert2D\_xyz2d($d_{\text{cur}}$, $q$, $p$, \\ \hskip12.0em $\beta_2$, $-(\alpha - \alpha_2)$)
+
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+\floatname{algorithm}{Algorithm}
 

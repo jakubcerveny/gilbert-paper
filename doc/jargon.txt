@@ -1,18 +1,24 @@
-personal_ws-1.1 en 17 
+personal_ws-1.1 en 23 
 Algorithmically
+Mazurkiewicz
+Peano
 TODO
 algorithmically
 breaklines
 cr
 discretized
+dst
 embeddings
 forall
 hoc
+inBounds
 libre
 lookups
+nxt
 pre
 rl
 runtime
 sgn
+xyz
 zag
 zig
