@@ -12,7 +12,7 @@ set ylabel 'S_{|i-j|} / |i-j|^{(1 + 1/3)}'
 set title "\n"
 set label 1 "3D Gilbert Binned Cumulative Distance   \n                    Data Collapse  " at graph 0.16,1.2 left
 
-plot [.000015:1.2] [0.95:5.9]  'hilbert3d/dc_h3d_32x32x32.gp' with l title 'Hilbert 32x32x32', \
+plot [.00002:1.2] [0.95:1.75]  'hilbert3d/dc_h3d_32x32x32.gp' with l title 'Hilbert 32x32x32', \
   'gilbert3d/dc_g3d_26x32x32.gp' with l title 'Gilbert 26x32x32', \
   'gilbert3d/dc_g3d_32x26x32.gp' with l title 'Gilbert 32x26x32', \
   'gilbert3d/dc_g3d_32x32x26.gp' with l title 'Gilbert 32x32x26', \

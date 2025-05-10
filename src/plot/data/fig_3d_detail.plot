@@ -19,7 +19,7 @@ set label 1 "3D Gilbert Binned Cumulative Distance   \n              Data Collap
 
 #plot [.000065:0.15] [2.3:3.0]  'hilbert3d/dc_h3d_32x32x32.gp' with l title 'Hilbert 32x32x32', \
 
-plot [.000065:0.12] [2.3:2.95]  'hilbert3d/dc_h3d_32x32x32.gp' with l title 'Hilbert 32x32x32', \
+plot [.0001:0.7] [1.18:1.45]  'hilbert3d/dc_h3d_32x32x32.gp' with l title 'Hilbert 32x32x32', \
   'gilbert3d/dc_g3d_26x32x32.gp' with l title 'Gilbert 26x32x32', \
   'gilbert3d/dc_g3d_32x26x32.gp' with l title 'Gilbert 32x26x32', \
   'gilbert3d/dc_g3d_32x32x26.gp' with l title 'Gilbert 32x32x26', \
