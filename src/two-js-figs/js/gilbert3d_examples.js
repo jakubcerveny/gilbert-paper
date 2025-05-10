@@ -315,7 +315,7 @@ function mkg3curve(xy, whd, s) {
   let pnt2 = [];
   let pnt32 = [];
   for (let idx=0; idx<N; idx++) {
-    let _p3 = Gilbert3Dpp_d2xyz(idx, whd[0], whd[1], whd[2], true);
+    let _p3 = Gilbert3DAdapt_d2xyz(idx, whd[0], whd[1], whd[2], true);
     //let p3 = Gilbert3D_d2xyz(idx, 0, [0,0,0], [0,whd[0],0], [whd[1],0,0], [0,0,whd[2]]);
 
 

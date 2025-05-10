@@ -64,8 +64,8 @@ if [[ $gilbert2d ]] ; then
 
   mkdir -p data/gilbert2d
 
-  for ew in `seq 5.25 0.25 7.75` ; do
-    for eh in `seq 5.25 0.25 7.75` ; do
+  for ew in `seq 7.75 0.25 8.25` ; do
+    for eh in `seq 7.75 0.25 8.25` ; do
       echo "# W:2^$ew H:2^$eh"
 
       W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`
@@ -84,9 +84,9 @@ if [[ $gilbert3d ]] ; then
 
   mkdir -p data/gilbert3d
 
-  for ew in `seq 4.25 0.25 5.75` ; do
-    for eh in `seq 4.25 0.25 5.75` ; do
-      for ed in `seq 4.25 0.25 5.75` ; do
+  for ew in `seq 4.75 0.25 5.25` ; do
+    for eh in `seq 4.75 0.25 5.25` ; do
+      for ed in `seq 4.75 0.25 5.25` ; do
         echo "# W:2^$ew H:2^$eh D:2^$ed"
 
         W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`

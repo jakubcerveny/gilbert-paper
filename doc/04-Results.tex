@@ -33,7 +33,6 @@ Algorithm \ref{alg:bin_and_datacollapse} gives pseudo code detailing this proces
 
 \begin{figure}[h]
   \centering
-  \label{fig:datacollapse_2d}
   \includegraphics[width=\linewidth]{datacollapse_2d.pdf}
   \caption{ The data collapse for the 2D Hilbert curve of 256x256 and the Gilbert curve of combinations for $((215,152,181) \times (215,152,181))$. 
   Note that the plot is on a log-log scale.
@@ -42,11 +41,11 @@ Algorithm \ref{alg:bin_and_datacollapse} gives pseudo code detailing this proces
   hit the base recursion level or have lengths that span a significant portion of the whole curve.
   See text for more details.
   }
+  \label{fig:datacollapse_2d}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \label{fig:datacollapse_3d}
   \includegraphics[width=\linewidth]{datacollapse_3d.pdf}
   \caption{ The data collapse for the 3D Hilbert curve of 32x32x32 and the Gilbert curve of combinations for $((26,32,38) \times (26,32,38) \times (26,32,38))$. 
   Note that the plot is on a log-log scale.
@@ -55,17 +54,18 @@ Algorithm \ref{alg:bin_and_datacollapse} gives pseudo code detailing this proces
   hit the base recursion level or have lengths that span a significant portion of the whole curve.
   See text for more details.
   }
+  \label{fig:datacollapse_3d}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \label{fig:datacollapse_3d_detail}
   \includegraphics[width=\linewidth]{datacollapse_3d_detail.pdf}
   \caption{ A detail of Figure \ref{fig:datacollapse_3d} restricted to $x = \{6.5 \cdot 10^{-5}, 0.15\}$ and $y = \{2.3,3\}$.
   This higlights ripples in the Hilbert curve as well as fluctutations in the Gilbert curve away from the scaling function.
   These fluctions are minor and could be artifacts of the recursive cuboid subdivision process.
   See text for more details.
   }
+  \label{fig:datacollapse_3d_detail}
 \end{figure}
 
 Various choices of width, height and depth were chosen for 2D and 3D Gilbert curves and
@@ -104,7 +104,7 @@ Though the Hilbert and Gilbert curve are space filling, there are minor fluctuat
 function that can be seen in the detail view Figure \ref{fig:datacollapse_3d_detail}.
 
 We note that the data collapse plot for the Hilbert curve has ripples, which
-we hypothesise is an artifact of the square recursive procedure of how
+we suspect is an artifact of the square recursive procedure of how
 the Hilbet curve is constructed.
 Other than to make a note of it, we don't pursue investigation of these ripples in the Hilbert curve
 or the minor fluctions from the scaling function in the Gilbert curve further.

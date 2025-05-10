@@ -29,91 +29,149 @@ function _dprint() {
   }
 }
 
-function Gilbert3DAdapt_d2xyz(idx, w,h,d, force_w) {
-  force_w = ((typeof force_w === "undefined") ? false : force_w);
+var GILBERT_ADAPT_METHOD = {
+  "HARMONY": 0,
+  "HAMILTONIAN" : 1,
+  "AXIS" : 2
+};
+
+function Gilbert3DAdapt_d2xyz(idx, w,h,d, adapt_method) {
+  adapt_method = ((typeof adapt_method === "undefined") ? 0 : adapt_method);
   let w0 = (w%2);
   let h0 = (h%2);
   let d0 = (d%2);
 
   let p0 = [0,0,0];
 
-  if (force_w || (w0 == 0)) {
-    return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
-  }
-
-  if (h0 == 0) {
-    return Gilbert3D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,d]);
-  }
-
-  if (d0 == 0) {
+  // prioritize harmonious split
+  //
+  if (adapt_method == GILBERT_ADAPT_METHOD["HARMONY"]) {
+    if      ((w >= h) && (w >= d)) { return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]); }
+    else if ((h >= w) && (h >= d)) { return Gilbert3D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,d]); }
     return Gilbert3D_d2xyz(idx, 0, p0, [0,0,d], [w,0,0], [0,h,0]);
   }
 
+  // prioritize no notch hamiltonian path
+  //
+  else if (adapt_method == GILBERT_ADAPT_METHOD["HAMILTONIAN"]) {
+
+    if (w0 == 0) { return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]); }
+    if (h0 == 0) { return Gilbert3D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,d]); }
+    if (d0 == 0) { return Gilbert3D_d2xyz(idx, 0, p0, [0,0,d], [w,0,0], [0,h,0]); }
+    return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
+
+  }
+
+  // AXIS (explicit axis order)
+  //
   return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
 
 }
 
-function Gilbert3DAdapt_xyz2d(q, w,h,d) {
-  force_w = ((typeof force_w === "undefined") ? false : force_w);
+function Gilbert3DAdapt_xyz2d(q, w,h,d, adapt_method) {
+  adapt_method = ((typeof adapt_method === "undefined") ? 0 : adapt_method);
   let w0 = (w%2);
   let h0 = (h%2);
   let d0 = (d%2);
 
-  if (force_w || (w0 == 0)) {
-    return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]);
-  }
-
-  if (h0 == 0) {
-    return Gilbert3D_xyz2d(0, q, [0,0,0], [0,h,0], [w,0,0], [0,0,d]);
-  }
-
-  if (d0 == 0) {
+  // prioritize harmonious split
+  //
+  if (adapt_method == GILBERT_ADAPT_METHOD["HARMONY"]) {
+    if      ((w >= h) && (w >= d)) { return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]); }
+    else if ((h >= w) && (h >= d)) { return Gilbert3D_xyz2d(0, q, [0,0,0], [0,h,0], [w,0,0], [0,0,d]); }
     return Gilbert3D_xyz2d(0, q, [0,0,0], [0,0,d], [w,0,0], [0,h,0]);
   }
 
-  return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]);
+  // prioritize no notch hamiltonian path
+  //
+  else if (adapt_method == GILBERT_ADAPT_METHOD["HAMILTONIAN"]) {
+
+    if (w0 == 0) { return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]); }
+    if (h0 == 0) { return Gilbert3D_xyz2d(0, q, [0,0,0], [0,h,0], [w,0,0], [0,0,d]); }
+    if (d0 == 0) { return Gilbert3D_xyz2d(0, q, [0,0,0], [0,0,d], [w,0,0], [0,h,0]); }
+    return Gilbert3D_xyz2d(0, q, [0,0,0], [w,0,0], [0,h,0], [0,0,d]);
+
+  }
+
+  // AXIS (explicit axis order)
+  //
+  return Gilbert3D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,d]);
 
 }
 
 
-function Gilbert2DAdapt_d2xy(idx, w,h, force_w) {
-  force_w = ((typeof force_w === "undefined") ? false : force_w);
+function Gilbert2DAdapt_d2xy(idx, w,h, adapt_method) {
+  adapt_method = ((typeof adapt_method === "undefined") ? 0 : adapt_method);
   let w0 = (w%2);
   let h0 = (h%2);
 
   let p0 = [0,0,0];
 
-  if (force_w || (w0 == 0)) {
+  // prioritize harmonious split
+  //
+  if (adapt_method == GILBERT_ADAPT_METHOD["HARMONY"]) {
+
+    if (w >= h) {
+      let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
+      return [xyz[0], xyz[1]];
+    }
+
+    let xyz = Gilbert2D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,1]);
+    return [xyz[0], xyz[1]];
+
+  }
+
+  // prioritize no notch hamiltonian path
+  //
+  else if (adapt_method == GILBERT_ADAPT_METHOD["HAMILTONIAN"]) {
+    if (w0 == 0) {
+      let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
+      return [xyz[0], xyz[1]];
+    }
+
+    if (h0 == 0) {
+      let xyz = Gilbert2D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,1]);
+      return [xyz[0], xyz[1]];
+    }
+
     let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
     return [xyz[0], xyz[1]];
   }
 
-  if (h0 == 0) {
-    let xyz = Gilbert2D_d2xyz(idx, 0, p0, [0,h,0], [w,0,0], [0,0,1]);
-    return [xyz[0], xyz[1]];
-  }
-
+  // AXIS (explicit axis order)
+  //
   let xyz = Gilbert2D_d2xyz(idx, 0, p0, [w,0,0], [0,h,0], [0,0,1]);
   return [xyz[0], xyz[1]];
+
 }
 
-function Gilbert2DAdapt_xy2d(_q, w,h) {
-  force_w = ((typeof force_w === "undefined") ? false : force_w);
+function Gilbert2DAdapt_xy2d(_q, w,h, adapt_method) {
+  adapt_method = ((typeof adapt_method === "undefined") ? 0 : adapt_method);
   let w0 = (w%2);
   let h0 = (h%2);
 
   let q = [_q[0],_q[1],0];
   let p0 = [0,0,0];
 
-  if (force_w || (w0 == 0)) {
-    return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]);
-  }
-
-  if (h0 == 0) {
+  // prioritize harmonious split
+  //
+  if (adapt_method == GILBERT_ADAPT_METHOD["HARMONY"]) {
+    if (w >= h) { return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]); }
     return Gilbert2D_xyz2d(0, q, p0, [0,h,0], [w,0,0], [0,0,1]);
   }
 
+  // prioritize no notch hamiltonian path
+  //
+  else if (adapt_method == GILBERT_ADAPT_METHOD["HAMILTONIAN"]) {
+    if (w0 == 0) { return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]); }
+    if (h0 == 0) { return Gilbert2D_xyz2d(0, q, p0, [0,h,0], [w,0,0], [0,0,1]); }
+    return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]);
+  }
+
+  // AXIS (explicit axis order)
+  //
   return Gilbert2D_xyz2d(0, q, p0, [w,0,0], [0,h,0], [0,0,1]);
+
 }
 
 // Description:
@@ -3216,6 +3274,14 @@ function _main(argv) {
     if (argv.length > 3) { h = parseInt(argv[3]); }
     if (argv.length > 4) { d = parseInt(argv[4]); }
 
+    let adapt_method = GILBERT_ADAPT_METHOD.HARMONY;
+
+    let op_tok = op.split(".");
+    if (op_tok.length > 1) {
+      op = op_tok[0];
+      adapt_method = parseInt(op_tok[1]);
+    }
+
     let op_found = false
     for (let i=0; i<op_list.length; i++) {
       if (op == op_list[i]) { op_found = true; break; }
@@ -3294,7 +3360,7 @@ function _main(argv) {
     else if (op == "d2xyza") {
 
       for (let idx=0; idx<(w*h*d); idx++) {
-        let xyz = Gilbert3DAdapt_d2xyz(idx, w,h,d);
+        let xyz = Gilbert3DAdapt_d2xyz(idx, w,h,d, adapt_method);
         console.log(xyz[0], xyz[1], xyz[2]);
       }
 
@@ -3305,7 +3371,7 @@ function _main(argv) {
       for (let z=0; z<d; z++) {
         for (let y=0; y<h; y++) {
           for (let x=0; x<w; x++) {
-            let idx = Gilbert3DAdapt_xyz2d([x,y,z], w,h,d);
+            let idx = Gilbert3DAdapt_xyz2d([x,y,z], w,h,d, adapt_method);
             console.log(idx, x,y,z);
           }
         }
@@ -3316,7 +3382,7 @@ function _main(argv) {
     else if (op == "d2xya") {
 
       for (let idx=0; idx<(w*h*d); idx++) {
-        let xyz = Gilbert2DAdapt_d2xy(idx, w,h);
+        let xyz = Gilbert2DAdapt_d2xy(idx, w,h, adapt_method);
         console.log(xyz[0], xyz[1]);
       }
 
@@ -3326,7 +3392,7 @@ function _main(argv) {
 
       for (let y=0; y<h; y++) {
         for (let x=0; x<w; x++) {
-          let idx = Gilbert2DAdapt_xy2d([x,y], w,h);
+          let idx = Gilbert2DAdapt_xy2d([x,y], w,h, adapt_method);
           console.log(idx, x,y);
         }
       }
@@ -3359,6 +3425,8 @@ if (typeof module !== "undefined") {
 
   module.exports["Gilbert3DAdapt_d2xyz"] = Gilbert3DAdapt_d2xyz;
   module.exports["Gilbert3DAdapt_xyz2d"] = Gilbert3DAdapt_xyz2d;
+
+  module.exports["ADAPT_METHOD"] = GILBERT_ADAPT_METHOD;
 }
 
 //---

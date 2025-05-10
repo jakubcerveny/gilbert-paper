@@ -513,7 +513,7 @@ function experiment_pnorm_bindiff(profile) {
 }
 
 // this seems wrong to me!!!
-function __experiment_pnorm_bindiff_cdf(profile) {
+function BAD_experiment_pnorm_bindiff_cdf(profile) {
   let count=0;
   let F = [];
 
@@ -555,7 +555,6 @@ function __experiment_pnorm_bindiff_cdf(profile) {
   console.log("\n");
 }
 
-// this seems wrong to me!!!
 function experiment_pnorm_bindiff_cdf(profile) {
   let F = [];
   let Ffreq = [];
