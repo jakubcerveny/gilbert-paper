@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  9 MAY 2025 23:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  9 MAY 2025 23:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1689,39 +1689,90 @@ LaTeX Warning: Reference `fig:oddxtwo_hook.pdf' on page 7 undefined on input li
 ne 532.
 
 ) (./04-Results.tex
-<datacollapse_2d.pdf, id=971, 361.35pt x 216.81pt>
+<datacollapse_2d.pdf, id=972, 361.35pt x 216.81pt>
 File: datacollapse_2d.pdf Graphic file (type pdf)
 <use datacollapse_2d.pdf>
-Package pdftex.def Info: datacollapse_2d.pdf  used on input line 35.
+Package pdftex.def Info: datacollapse_2d.pdf  used on input line 36.
 (pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<datacollapse_3d.pdf, id=972, 361.35pt x 216.81pt>
+<datacollapse_3d.pdf, id=973, 361.35pt x 216.81pt>
 File: datacollapse_3d.pdf Graphic file (type pdf)
 <use datacollapse_3d.pdf>
-Package pdftex.def Info: datacollapse_3d.pdf  used on input line 41.
+Package pdftex.def Info: datacollapse_3d.pdf  used on input line 49.
 (pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<datacollapse_3d_detail.pdf, id=973, 361.35pt x 216.81pt>
-File: datacollapse_3d_detail.pdf Graphic file (type pdf)
-<use datacollapse_3d_detail.pdf>
-Package pdftex.def Info: datacollapse_3d_detail.pdf  used on input line 47.
-(pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./05-Conclusion.tex [7 <./gilbert3d_eccentric.pdf>]
-Underfull \hbox (badness 2753) in paragraph at lines 20--24
-[]\T1/LibertinusSerif-TLF/m/n/9 (+20) Our re-cur-sive im-ple-men-ta-tion pro-vi
-des a proof-of-
+Underfull \hbox (badness 1132) in paragraph at lines 56--56
+\T1/LibertinusSans-TLF/m/n/8.21255 (+20) and the Gilbert curve of com-bi-na-tio
+ns for $\OT1/cmr/m/n/8 ((26\OML/cmm/m/it/8 ; \OT1/cmr/m/n/8 32\OML/cmm/m/it/8 ;
+ \OT1/cmr/m/n/8 38) \OMS/cmsy/m/n/8 ^^B
  []
 
-) (./Gilbert.bbl) (./07-Appendix.tex [8 <./gilbert3d_examples.pdf> <./datacolla
-pse_2d.pdf
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<datacollapse_3d_detail.pdf, id=974, 361.35pt x 216.81pt>
+File: datacollapse_3d_detail.pdf Graphic file (type pdf)
+<use datacollapse_3d_detail.pdf>
+Package pdftex.def Info: datacollapse_3d_detail.pdf  used on input line 62.
+(pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
+
+Package caption Warning: \label without proper reference on input line 48.
+See the caption package documentation for explanation.
+
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
+(Font)              scaled to size 8.21255pt on input line 67.
+
+LaTeX Warning: Reference `fig:datacollapse_3d' on page 7 undefined on input lin
+e 67.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Package caption Warning: \label without proper reference on input line 35.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:datacollapse_2d' on page 7 undefined on input lin
+e 72.
+
+
+Package caption Warning: \label without proper reference on input line 48.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:datacollapse_3d' on page 7 undefined on input lin
+e 72.
+
+
+Package caption Warning: \label without proper reference on input line 35.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:datacollapse_2d' on page 7 undefined on input lin
+e 98.
+
+
+Package caption Warning: \label without proper reference on input line 48.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:datacollapse_3d' on page 7 undefined on input lin
+e 98.
+
+[7 <./gilbert3d_eccentric.pdf>]
+
+Package caption Warning: \label without proper reference on input line 61.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:datacollapse_3d_detail' on page 8 undefined on in
+put line 103.
+
+) (./05-Conclusion.tex [8 <./gilbert3d_examples.pdf> <./datacollapse_2d.pdf
 
 pdfTeX warning: pdflatex (file ./datacollapse_2d.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
@@ -1730,6 +1781,12 @@ pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./datacollapse_3d.pdf): PDF inclusion: multiple 
 pdfs with page group included in a single page
 >]
+Underfull \hbox (badness 2753) in paragraph at lines 20--24
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) Our re-cur-sive im-ple-men-ta-tion pro-vi
+des a proof-of-
+ []
+
+) (./Gilbert.bbl) (./07-Appendix.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 79.
@@ -1737,27 +1794,23 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 79.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 139.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 139.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 139.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 139.
 
 [9 <./datacollapse_3d_detail.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 181.
+(hyperref)                removing `math shift' on input line 139.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 139.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 139.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 139.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1771,9 +1824,11 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 181.
 
-) (./08-Appendix-Alg.tex [10
 
-]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 181.
+
+) (./08-Appendix-Alg.tex [10]
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
 (Font)              scaled to size 6.0pt on input line 16.
 Package microtype Info: Character `029' is missing
@@ -1813,13 +1868,13 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42371 strings out of 480171
- 825764 string characters out of 5894489
- 1215182 words of memory out of 5000000
- 58968 multiletter control sequences out of 15000+600000
- 658461 words of font info for 392 fonts, out of 8000000 for 9000
+ 42408 strings out of 480171
+ 826964 string characters out of 5894489
+ 1215471 words of memory out of 5000000
+ 58973 multiletter control sequences out of 15000+600000
+ 666141 words of font info for 413 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 122i,20n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_cb34qf.e
 nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_sfissr.
 enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_hvvyjb
@@ -1854,9 +1909,9 @@ amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
 10.pfb>
-Output written on Gilbert.pdf (14 pages, 1812374 bytes).
+Output written on Gilbert.pdf (14 pages, 1820532 bytes).
 PDF statistics:
- 1319 PDF objects out of 1440 (max. 8388607)
+ 1327 PDF objects out of 1440 (max. 8388607)
  72 named destinations out of 1000 (max. 500000)
- 105265 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 109361 words of extra memory for PDF output out of 128383 (max. 10000000)
 

@@ -512,7 +512,8 @@ function experiment_pnorm_bindiff(profile) {
   console.log("\n");
 }
 
-function experiment_pnorm_bindiff_cdf(profile) {
+// this seems wrong to me!!!
+function __experiment_pnorm_bindiff_cdf(profile) {
   let count=0;
   let F = [];
 
@@ -544,6 +545,54 @@ function experiment_pnorm_bindiff_cdf(profile) {
   let S = 0;
   for (let i=0; i<F.length; i++) {
     S += F[i];
+    G.push( S );
+  }
+
+  for (let i=1; i<G.length; i++) {
+    let x = (i-1) / pnt.length;
+    console.log(x, G[i] / S);
+  }
+  console.log("\n");
+}
+
+// this seems wrong to me!!!
+function experiment_pnorm_bindiff_cdf(profile) {
+  let F = [];
+  let Ffreq = [];
+
+  let lvl = profile.lvl;
+  let p = profile.p;
+
+  let pnt = profile.f(lvl);
+
+  if (profile.verbose > 0) {
+    console.log("#" + profile.name + ", lvl:", lvl, ", n:", pnt.length, ", pnorm:", p);
+  }
+
+  for (let i=0; i<=pnt.length; i++) {
+    F.push(0);
+    Ffreq.push(0);
+  }
+
+  for (let i=0; i<pnt.length; i++) {
+    for (let j=0; j<pnt.length; j++) {
+      let a = pnt[i];
+      let b = pnt[j];
+
+      F[ Math.abs(i-j) ] += pnorm_diff(a,b,p);
+      Ffreq[ Math.abs(i-j) ] ++;
+    }
+  }
+
+  //console.log("# n:", pnt.length,  "p:", p);
+
+  let G = [ 0 ];
+
+  let S = 0;
+  for (let i=0; i<F.length; i++) {
+    if (Ffreq[i] > 0) {
+      S += F[i] / Ffreq[i];
+    }
     G.push( S );
   }
 
