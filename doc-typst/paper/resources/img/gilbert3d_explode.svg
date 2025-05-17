@@ -1,0 +1,2354 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   version="1.1"
+   style="overflow: hidden; display: block;"
+   width="280"
+   height="360"
+   id="svg94"
+   sodipodi:docname="gilbert3d_explode.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview94"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="2.1388889"
+     inkscape:cx="139.79221"
+     inkscape:cy="180"
+     inkscape:window-width="1670"
+     inkscape:window-height="1015"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg94" />
+  <defs
+     id="defs94">
+    <!-- 20 -->
+    <pattern
+       id="pattern-xannonball_"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="0"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle1" />
+      <circle
+         cx="12"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle2" />
+      <circle
+         cx="6"
+         cy="0"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle3" />
+      <circle
+         cx="6"
+         cy="12"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle4" />
+    </pattern>
+    <!-- 20 dark green -->
+    <pattern
+       id="pattern-cannonball"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="0"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle5" />
+      <circle
+         cx="12"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle6" />
+      <circle
+         cx="6"
+         cy="0"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle7" />
+      <circle
+         cx="6"
+         cy="12"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle8" />
+    </pattern>
+    <!-- 20 dark green -->
+    <pattern
+       id="pattern-cannonball-big"
+       patternUnits="userSpaceOnUse"
+       width="18"
+       height="18">
+      <circle
+         cx="0"
+         cy="9"
+         r="3"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle9" />
+      <circle
+         cx="18"
+         cy="9"
+         r="3"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle10" />
+      <circle
+         cx="9"
+         cy="0"
+         r="3"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle11" />
+      <circle
+         cx="9"
+         cy="18"
+         r="3"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle12" />
+    </pattern>
+    <pattern
+       id="pattern-cannonball-huge"
+       patternUnits="userSpaceOnUse"
+       width="24"
+       height="24">
+      <circle
+         cx="0"
+         cy="12"
+         r="4"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle13" />
+      <circle
+         cx="24"
+         cy="12"
+         r="4"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle14" />
+      <circle
+         cx="12"
+         cy="0"
+         r="4"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle15" />
+      <circle
+         cx="12"
+         cy="24"
+         r="4"
+         style="stroke: var(--pattern-channel-1, rgb(139,220,116))"
+         fill="rgb(139,220,116)"
+         id="circle16" />
+    </pattern>
+    <pattern
+       id="pattern-cannonball_bak"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="0"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,177,116))"
+         fill="rgb(139,177,116)"
+         id="circle17" />
+      <circle
+         cx="12"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,177,116))"
+         fill="rgb(139,177,116)"
+         id="circle18" />
+      <circle
+         cx="6"
+         cy="0"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,177,116))"
+         fill="rgb(139,177,116)"
+         id="circle19" />
+      <circle
+         cx="6"
+         cy="12"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(139,177,116))"
+         fill="rgb(139,177,116)"
+         id="circle20" />
+    </pattern>
+    <!-- 20 -->
+    <pattern
+       id="pattern-cannonball-lg"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="0"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(167,196,151))"
+         fill="rgb(167,196,151)"
+         id="circle21" />
+      <circle
+         cx="12"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(167,196,151))"
+         fill="rgb(167,196,151)"
+         id="circle22" />
+      <circle
+         cx="6"
+         cy="0"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(167,196,151))"
+         fill="rgb(167,196,151)"
+         id="circle23" />
+      <circle
+         cx="6"
+         cy="12"
+         r="2"
+         style="stroke: var(--pattern-channel-1, rgb(167,196,151))"
+         fill="rgb(167,196,151)"
+         id="circle24" />
+    </pattern>
+    <!-- 23 -->
+    <pattern
+       id="pattern-sgrid"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <rect
+         width="2"
+         height="2"
+         x="0"
+         y="0"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="rect24" />
+    </pattern>
+    <!-- 3 -->
+    <pattern
+       id="pattern-Rdiag_base"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path24" />
+    </pattern>
+    <!-- 3 dark blue -->
+    <pattern
+       id="pattern-Rdiag"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4"
+         stroke="rgb(155,195,212)"
+         style="stroke: var(--pattern-channel-1, rgb(155,195,212))"
+         stroke-width="1.125"
+         id="path25" />
+    </pattern>
+    <pattern
+       id="pattern-Rdiag-big"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <path
+         d="M-1.5,1.5 l6,-6 M0,12 l12,-12 M9,15 l6,-6"
+         stroke="rgb(155,195,212)"
+         style="stroke: var(--pattern-channel-1, rgb(155,195,212))"
+         stroke-width="1.75"
+         id="path26" />
+    </pattern>
+    <!-- 31 -->
+    <pattern
+       id="pattern-cgrid"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <circle
+         cx="2"
+         cy="2"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle26" />
+    </pattern>
+    <pattern
+       id="pattern-cgrid-big"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <circle
+         cx="3"
+         cy="3"
+         r="1.5"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle27" />
+    </pattern>
+    <!-- 39 -->
+    <pattern
+       id="pattern-vwave"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M5,-1 l2,2 M5,7 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path27" />
+      <polyline
+         points="0,0 3,3 0,6"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline27" />
+    </pattern>
+    <!-- 6 -->
+    <pattern
+       id="xxxpattern-ldiag_base"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M7,1 l-2,-2 M0,0 l6,6 M1,7 l-2,-2"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path28" />
+    </pattern>
+    <!-- 6 mid blue -->
+    <pattern
+       id="pattern-ldiag"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M7,1 l-2,-2 M0,0 l6,6 M1,7 l-2,-2"
+         stroke="rgb(164,216,224)"
+         style="stroke: var(--pattern-channel-1, rgb(164,216,224))"
+         id="path29" />
+    </pattern>
+    <pattern
+       id="pattern-ldiag-big"
+       patternUnits="userSpaceOnUse"
+       width="9"
+       height="9">
+      <path
+         d="M10.5,1.5 l-3,-3 M0,0 l9,9 M1.5,10.5 l-3,-3"
+         stroke="rgb(164,216,224)"
+         style="stroke: var(--pattern-channel-1, rgb(164,216,224))"
+         stroke-width="1.7"
+         id="path30" />
+    </pattern>
+    <pattern
+       id="pattern-1"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <path
+         d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path31" />
+    </pattern>
+    <pattern
+       id="pattern-10"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <path
+         d="M2,0 l0,4 M0,2 l4,0"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path32" />
+    </pattern>
+    <pattern
+       id="pattern-11"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M3,0 l0,6 M0,3 l6,0"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path33" />
+    </pattern>
+    <pattern
+       id="pattern-12"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M4,0 l0,8 M0,4 l8,0"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path34" />
+    </pattern>
+    <pattern
+       id="pattern-13"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <path
+         d="M6,0 l0,12 M0,6 l12,0"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path35" />
+    </pattern>
+    <pattern
+       id="pattern-14"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M-1,5 l2,2 M5,7 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path36" />
+      <polyline
+         points="0,0 3,3 6,0"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline36" />
+    </pattern>
+    <pattern
+       id="pattern-15"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M-1,7 l2,2 M7,9 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path37" />
+      <polyline
+         points="0,0 4,4 8,0"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline37" />
+    </pattern>
+    <pattern
+       id="pattern-16"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <path
+         d="M-1,11 l2,2 M11,13 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path38" />
+      <polyline
+         points="0,0 6,6 12,0"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline38" />
+    </pattern>
+    <pattern
+       id="pattern-17"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <circle
+         cx="4"
+         cy="4"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle38" />
+    </pattern>
+    <pattern
+       id="pattern-18"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="6"
+         cy="6"
+         r="3"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle39" />
+    </pattern>
+    <pattern
+       id="pattern-19"
+       patternUnits="userSpaceOnUse"
+       width="16"
+       height="16">
+      <circle
+         cx="8"
+         cy="8"
+         r="4"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle40" />
+    </pattern>
+    <pattern
+       id="pattern-2"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <path
+         d="M0,0 l4,4              M-1,3 l2,2              M3,-1 l2,2"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path40" />
+    </pattern>
+    <pattern
+       id="pattern-20"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="0"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle41" />
+      <circle
+         cx="12"
+         cy="6"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle42" />
+      <circle
+         cx="6"
+         cy="0"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle43" />
+      <circle
+         cx="6"
+         cy="12"
+         r="2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle44" />
+    </pattern>
+    <pattern
+       id="pattern-21"
+       patternUnits="userSpaceOnUse"
+       width="16"
+       height="16">
+      <circle
+         cx="0"
+         cy="8"
+         r="3"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle45" />
+      <circle
+         cx="16"
+         cy="8"
+         r="3"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle46" />
+      <circle
+         cx="8"
+         cy="0"
+         r="3"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle47" />
+      <circle
+         cx="8"
+         cy="16"
+         r="3"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle48" />
+    </pattern>
+    <pattern
+       id="pattern-22"
+       patternUnits="userSpaceOnUse"
+       width="24"
+       height="24">
+      <circle
+         cx="0"
+         cy="12"
+         r="4"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle49" />
+      <circle
+         cx="24"
+         cy="12"
+         r="4"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle50" />
+      <circle
+         cx="12"
+         cy="0"
+         r="4"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle51" />
+      <circle
+         cx="12"
+         cy="24"
+         r="4"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="circle52" />
+    </pattern>
+    <pattern
+       id="pattern-23"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <rect
+         width="2"
+         height="2"
+         x="0"
+         y="0"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="rect52" />
+    </pattern>
+    <pattern
+       id="pattern-24"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <rect
+         width="2"
+         height="2"
+         x="0"
+         y="0"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="rect53" />
+    </pattern>
+    <pattern
+       id="pattern-25"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <rect
+         width="2"
+         height="2"
+         x="0"
+         y="0"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="rect54" />
+    </pattern>
+    <pattern
+       id="pattern-26"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <rect
+         width="2"
+         height="2"
+         x="0"
+         y="0"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="rect55" />
+    </pattern>
+    <pattern
+       id="pattern-27"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M2,2 l2,0 l0,2 l-2,0 l0,-2 M0,0 l1,0 l0,1 l-1,0 l0,-1 M5,0 l1,0 l0,1 l-1,0 l0,-1 M0,5 l1,0 l0,1 l-1,0 l0,-1 M5,5 l1,0 l0,1 l-1,0 l0,-1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="path55" />
+    </pattern>
+    <pattern
+       id="pattern-28"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M3,3 l2,0 l0,2 l-2,0 l0,-2 M0,0 l1,0 l0,1 l-1,0 l0,-1 M7,0 l1,0 l0,1 l-1,0 l0,-1 M0,7 l1,0 l0,1 l-1,0 l0,-1 M7,7 l1,0 l0,1 l-1,0 l0,-1"
+         fill="hotpink"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="path56" />
+    </pattern>
+    <pattern
+       id="pattern-29"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <path
+         d="M5,5 l2,0 l0,2 l-2,0 l0,-2 M0,0 l1,0 l0,1 l-1,0 l0,-1 M11,0 l1,0 l0,1 l-1,0 l0,-1 M0,11 l1,0 l0,1 l-1,0 l0,-1 M11,11 l1,0 l0,1 l-1,0 l0,-1"
+         fill="hotpink"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="path57" />
+    </pattern>
+    <pattern
+       id="pattern-3"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M-1,1 l4,-4 M0,8 l8,-8 M6,10 l4,-4"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path58" />
+    </pattern>
+    <pattern
+       id="pattern-30"
+       patternUnits="userSpaceOnUse"
+       width="16"
+       height="16">
+      <path
+         d="M7,7 l2,0 l0,2 l-2,0 l0,-2 M0,0 l1,0 l0,1 l-1,0 l0,-1 M15,0 l1,0 l0,1 l-1,0 l0,-1 M0,15 l1,0 l0,1 l-1,0 l0,-1 M15,15 l1,0 l0,1 l-1,0 l0,-1"
+         fill="hotpink"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="path59" />
+    </pattern>
+    <pattern
+       id="pattern-31"
+       patternUnits="userSpaceOnUse"
+       width="4"
+       height="4">
+      <circle
+         cx="2"
+         cy="2"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle59" />
+    </pattern>
+    <pattern
+       id="pattern-32"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <circle
+         cx="3"
+         cy="3"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle60" />
+    </pattern>
+    <pattern
+       id="pattern-33"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <circle
+         cx="4"
+         cy="4"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle61" />
+    </pattern>
+    <pattern
+       id="pattern-34"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="6"
+         cy="6"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle62" />
+    </pattern>
+    <pattern
+       id="pattern-35"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <circle
+         cx="0"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle63" />
+      <circle
+         cx="0"
+         cy="6"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle64" />
+      <circle
+         cx="6"
+         cy="6"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle65" />
+      <circle
+         cx="6"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle66" />
+      <circle
+         cx="3"
+         cy="3"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle67" />
+    </pattern>
+    <pattern
+       id="pattern-36"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <circle
+         cx="0"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle68" />
+      <circle
+         cx="0"
+         cy="8"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-cannel-1, currentcolor)"
+         id="circle69" />
+      <circle
+         cx="8"
+         cy="8"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle70" />
+      <circle
+         cx="8"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle71" />
+      <circle
+         cx="4"
+         cy="4"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle72" />
+    </pattern>
+    <pattern
+       id="pattern-37"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <circle
+         cx="0"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle73" />
+      <circle
+         cx="0"
+         cy="12"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle74" />
+      <circle
+         cx="12"
+         cy="12"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle75" />
+      <circle
+         cx="12"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle76" />
+      <circle
+         cx="6"
+         cy="6"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle77" />
+    </pattern>
+    <pattern
+       id="pattern-38"
+       patternUnits="userSpaceOnUse"
+       width="16"
+       height="16">
+      <circle
+         cx="0"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle78" />
+      <circle
+         cx="0"
+         cy="16"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle79" />
+      <circle
+         cx="16"
+         cy="16"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle80" />
+      <circle
+         cx="16"
+         cy="0"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle81" />
+      <circle
+         cx="8"
+         cy="8"
+         r="1"
+         fill="currentcolor"
+         style="fill: var(--pattern-channel-1, currentcolor)"
+         id="circle82" />
+    </pattern>
+    <pattern
+       id="pattern-39"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M5,-1 l2,2 M5,7 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path82" />
+      <polyline
+         points="0,0 3,3 0,6"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline82" />
+    </pattern>
+    <pattern
+       id="pattern-4"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M0,0 l8,8              M-1,7 l4,4              M7,-1 l4,4"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path83" />
+    </pattern>
+    <pattern
+       id="pattern-40"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M7,-1 l2,2 M7,9 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path84" />
+      <polyline
+         points="0,0 4,4 0,8"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline84" />
+    </pattern>
+    <pattern
+       id="pattern-41"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <path
+         d="M11,-1 l2,2 M11,13 l2,-2"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="path85" />
+      <polyline
+         points="0,0 6,6 0,12"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         fill="none"
+         id="polyline85" />
+    </pattern>
+    <pattern
+       id="pattern-5"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M-1,1 l2,-2 M0,6 l6,-6 M5,7 l2,-2"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path86" />
+    </pattern>
+    <pattern
+       id="pattern-6"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M7,1 l-2,-2 M0,0 l6,6 M1,7 l-2,-2"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path87" />
+    </pattern>
+    <pattern
+       id="pattern-7"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M0,0 l6,6 M6,0 l-6,6"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path88" />
+    </pattern>
+    <pattern
+       id="pattern-8"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         d="M0,0 l8,8              M8,0 l-8,8"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path89" />
+    </pattern>
+    <pattern
+       id="pattern-9"
+       patternUnits="userSpaceOnUse"
+       width="12"
+       height="12">
+      <path
+         d="M0,0 l12,12 M12,0 l-12,12"
+         stroke="currentcolor"
+         style="stroke: var(--pattern-channel-1, currentcolor)"
+         id="path90" />
+    </pattern>
+    <pattern
+       id="pattern-5r"
+       patternUnits="userSpaceOnUse"
+       width="6"
+       height="6">
+      <path
+         d="M-1,1 l2,-2 M0,6 l6,-6 M5,7 l2,-2"
+         stroke="#ff0000"
+         stroke-opacity="0.45"
+         style="stroke: var(--pattern-channel-1, #ff0000)"
+         id="path91" />
+    </pattern>
+    <clipPath
+       clip-rule="nonzero"
+       id="two-7">
+      <path
+         transform="matrix(1 0 0 1 0 0)"
+         d="M -4000 -4000 L 4000 -4000 L 4000 4000 L -4000 4000 Z"
+         fill="#fff"
+         stroke="#000"
+         stroke-width="1"
+         stroke-opacity="1"
+         fill-opacity="1"
+         visibility="visible"
+         stroke-linecap="butt"
+         stroke-linejoin="miter"
+         stroke-miterlimit="4"
+         id="path92" />
+    </clipPath>
+    <clipPath
+       clip-rule="nonzero"
+       id="two-14">
+      <path
+         transform="matrix(1 0 0 1 0 0)"
+         d="M -4000 -4000 L 4000 -4000 L 4000 4000 L -4000 4000 Z"
+         fill="#fff"
+         stroke="#000"
+         stroke-width="1"
+         stroke-opacity="1"
+         fill-opacity="1"
+         visibility="visible"
+         stroke-linecap="butt"
+         stroke-linejoin="miter"
+         stroke-miterlimit="4"
+         id="path93" />
+    </clipPath>
+    <clipPath
+       clip-rule="nonzero"
+       id="two-21">
+      <path
+         transform="matrix(1 0 0 1 0 0)"
+         d="M -4000 -4000 L 4000 -4000 L 4000 4000 L -4000 4000 Z"
+         fill="#fff"
+         stroke="#000"
+         stroke-width="1"
+         stroke-opacity="1"
+         fill-opacity="1"
+         visibility="visible"
+         stroke-linecap="butt"
+         stroke-linejoin="miter"
+         stroke-miterlimit="4"
+         id="path94" />
+    </clipPath>
+  </defs>
+  <g
+     id="two-0"
+     transform="matrix(1 0 0 1 0 0)"
+     opacity="1">
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-1"
+       d="M 215 50 L 235.366762 42.14305 "
+       fill="rgba(0,0,0,0)"
+       stroke="rgb(240,10,20)"
+       stroke-width="3"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <g
+       id="two-2"
+       transform="matrix(0.017999 0 0 -0.018 240.55014 38.214576)"
+       opacity="1"
+       clip-path="url(#two-7)">
+      <g
+         id="two-3"
+         transform="matrix(1 0 0 1 0 0)"
+         opacity="1">
+        <g
+           id="two-4"
+           transform="matrix(1 0 0 1 0 0)"
+           opacity="1"
+           data-mml-node="math">
+          <g
+             id="two-5"
+             transform="matrix(1 0 0 1 0 0)"
+             opacity="1"
+             data-mml-node="mi">
+            <path
+               transform="matrix(1 0 0 1 318.5 215.5)"
+               id="two-6"
+               d="M -284.5 -59.5 C -284.5 -21.88 -284.5 54.5 -198.5 140.5 C -170.12 168.88 -112.5 226.5 -9.5 226.5 C 13.6 226.5 60.5 226.5 102.5 186.5 C 116.36 173.3 144.5 146.5 159.5 88.5 C 161.48 78.93 165.5 59.5 166.5 21.5 L 166.5 -7.5 C 182.67 16.92 215.5 66.5 241.5 158.5 C 242.82 163.12 245.5 172.5 247.5 174.5 C 248.16 175.16 249.5 176.5 263.5 177.5 C 270.43 177.5 284.5 177.5 284.5 169.5 C 284.5 166.53 284.5 160.5 275.5 130.5 C 272.53 120.6 266.5 100.5 239.5 45.5 C 230.59 27.349999 212.5 -9.5 178.5 -54.5 L 167.5 -68.5 L 168.5 -92.5 C 169.16 -110.98 170.5 -148.5 176.5 -168.5 C 178.48 -175.1 182.5 -188.5 195.5 -189.5 C 200.12 -188.84 209.5 -187.5 221.5 -178.5 C 225.46 -175.53 233.5 -169.5 238.5 -155.5 C 239.16 -153.19 240.5 -148.5 243.5 -147.5 C 244.49 -147.17 246.5 -146.5 258.5 -145.5 C 265.1 -145.5 278.5 -145.5 278.5 -153.5 C 278.5 -155.48 278.5 -159.5 272.5 -172.5 C 268.54 -180.42 260.5 -196.5 237.5 -210.5 C 229.91 -215.12 214.5 -224.5 193.5 -225.5 L 186.5 -225.5 C 164.39 -225.5 119.5 -225.5 95.5 -153.5 L 92.5 -146.5 L 81.5 -154.5 C 78.2 -157.14 71.5 -162.5 51.5 -174.5 C 44.9 -178.46 31.5 -186.5 6.5 -197.5 C -1.75 -201.13 -18.5 -208.5 -51.5 -217.5 C -62.39 -220.47 -84.5 -226.5 -115.5 -226.5 C -141.57 -226.5 -194.5 -226.5 -239.5 -176.5 C -254.35 -160 -284.5 -126.5 -284.5 -59.5 Z M -110.5 -189.5 C -94.33 -189.5 -61.5 -189.5 -12.5 -168.5 C 3.67 -161.57 36.5 -147.5 60.5 -125.5 L 84.5 -103.5 C 83.84 -56.31 82.5 39.5 77.5 74.5 C 72.88 112.45 63.5 189.5 -14.5 189.5 C -37.27 189.5 -83.5 189.5 -135.5 116.5 C -144.41 103.3 -162.5 76.5 -179.5 8.5 C -185.11 -13.940001 -196.5 -59.5 -197.5 -95.5 C -197.5 -111.67 -197.5 -144.5 -172.5 -166.5 C -164.25 -173.76 -147.5 -188.5 -110.5 -189.5 C -110.5 -189.5 -110.5 -189.5 -110.5 -189.5 Z "
+               fill="rgb(0, 0, 0)"
+               stroke="none"
+               stroke-width="1"
+               stroke-opacity="1"
+               fill-opacity="1"
+               visibility="visible"
+               stroke-linecap="butt"
+               stroke-linejoin="miter"
+               stroke-miterlimit="4" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-8"
+       d="M 215 50 L 201.391364 38.241243 "
+       fill="rgba(0,0,0,0)"
+       stroke="rgb(32,220,32)"
+       stroke-width="3"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <g
+       id="two-9"
+       transform="matrix(0.017999 0 0 -0.018 189.587051 32.361865)"
+       opacity="1"
+       clip-path="url(#two-14)">
+      <g
+         id="two-10"
+         transform="matrix(1 0 0 1 0 0)"
+         opacity="1">
+        <g
+           id="two-11"
+           transform="matrix(1 0 0 1 0 0)"
+           opacity="1"
+           data-mml-node="math">
+          <g
+             id="two-12"
+             transform="matrix(1 0 0 1 0 0)"
+             opacity="1"
+             data-mml-node="mi">
+            <path
+               transform="matrix(1 0 0 1 298 255.5)"
+               id="two-13"
+               d="M -269 -449.5 C -270.98 -447.52 -275 -443.5 -275 -441.5 C -275 -440.51 -275 -438.5 -196 -121.5 C -169.93 -16.89 -117 195.5 -112 209.5 C -104.74 231.94 -90 277.5 -55 328.5 C -43.45 345.33 -20 379.5 11 402.5 C 29.48 418.01 67 449.5 131 449.5 L 133 449.5 C 153.46 449.5 195 449.5 235 411.5 C 248.2 398.96 275 373.5 275 314.5 C 275 279.85 275 209.5 171 140.5 L 184 127.5 C 200.83 110.67 235 76.5 235 -3.5 C 235 -40.79 235 -116.5 150 -190.5 C 121.95 -214.920001 65 -264.5 -41 -265.5 C -50.9 -265.5 -71 -265.5 -95 -257.5 C -102.92 -254.86 -119 -249.5 -133 -238.5 C -137.62 -234.87 -147 -227.5 -155 -215.5 C -157.64 -211.54 -163 -203.5 -167 -196.5 C -168.32 -194.19 -171 -189.5 -172 -190.5 L -236 -443.5 C -236.66 -445.48 -238 -449.5 -256 -449.5 L -269 -449.5 Z M 55 175.5 C 67.87 175.5 94 175.5 129 163.5 L 134 166.5 C 135.32 167.82 138 170.5 141 173.5 C 141.99 174.49 144 176.5 151 183.5 C 153.31 185.81 158 190.5 163 197.5 C 164.65 199.81 168 204.5 174 215.5 C 175.98 219.13 180 226.5 186 239.5 C 187.98 243.79 192 252.5 195 268.5 C 195.99 273.78 198 284.5 203 304.5 C 203.66 307.47 205 313.5 205 337.5 C 205 343.44 205 355.5 204 360.5 C 199.05 377.33 189 411.5 128 411.5 C 114.14 411.5 86 411.5 49 387.5 C 36.79 379.58 12 363.5 -12 326.5 C -19.92 314.29 -36 289.5 -51 258.5 C -55.95 248.27 -66 227.5 -74 199.5 C -75.65 194.22 -79 183.5 -112 52.5 C -122.89 9.269999 -145 -78.5 -146 -87.5 C -146.33 -89.15 -147 -92.5 -147 -108.5 C -147 -124.34 -147 -156.5 -125 -187.5 C -114.77 -201.36 -94 -229.5 -38 -229.5 C -24.14 -229.5 4 -229.5 51 -204.5 C 66.51 -196.25 98 -179.5 127 -118.5 C 132.28 -107.28 143 -84.5 151 -41.5 C 153.64 -27.31 159 1.5 159 23.5 C 159 42.64 159 81.5 124 116.5 C 110.14 111.88 82 102.5 49 102.5 L 39 102.5 C 12.93 102.5 -40 102.5 -40 133.5 C -40 135.81 -40 140.5 -37 147.5 C -32.380001 156.74 -23 175.5 55 175.5 C 55 175.5 55 175.5 55 175.5 Z "
+               fill="rgb(0, 0, 0)"
+               stroke="none"
+               stroke-width="1"
+               stroke-opacity="1"
+               fill-opacity="1"
+               visibility="visible"
+               stroke-linecap="butt"
+               stroke-linejoin="miter"
+               stroke-miterlimit="4" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-15"
+       d="M 215 50 L 215 30 "
+       fill="rgba(0,0,0,0)"
+       stroke="rgb(20,10,240)"
+       stroke-width="3"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <g
+       id="two-16"
+       transform="matrix(0.017999 0 0 -0.018 210 20)"
+       opacity="1"
+       clip-path="url(#two-21)">
+      <g
+         id="two-17"
+         transform="matrix(1 0 0 1 0 0)"
+         opacity="1">
+        <g
+           id="two-18"
+           transform="matrix(1 0 0 1 0 0)"
+           opacity="1"
+           data-mml-node="math">
+          <g
+             id="two-19"
+             transform="matrix(1 0 0 1 0 0)"
+             opacity="1"
+             data-mml-node="mi">
+            <path
+               transform="matrix(1 0 0 1 277 112.5)"
+               id="two-20"
+               d="M -246 136.5 C -252.6 136.5 -266 136.5 -266 145.5 C -266 151.11 -266 162.5 -251 191.5 C -246.05 201.07 -236 220.5 -211 252.5 C -202.75 263.06 -186 284.5 -148 305.5 C -135.46 312.43 -110 326.5 -71 328.5 C -62.09 328.5 -44 328.5 -38 327.5 C -22.16 323.87 10 316.5 41 273.5 C 51.23 259.31 72 230.5 94 142.5 C 98.62 122.7 108 82.5 108 57.5 C 108 56.18 108 53.5 109 53.5 L 121 80.5 C 127.6 97.33 141 131.5 166 187.5 C 174.25 205.98 191 243.5 209 278.5 C 214.94 290.05 227 313.5 231 317.5 C 231.66 317.83 233 318.5 247 318.5 L 260 318.5 C 261.98 316.52 266 312.5 266 309.5 C 266 308.18 266 305.5 245 265.5 C 238.07 252.3 224 225.5 186 138.5 C 173.46 109.789999 148 51.5 114 -41.5 C 112.02 -46.78 108 -57.5 101 -106.5 C 98.69 -122.67 94 -155.5 80 -212.5 C 74.72 -233.95 64 -277.5 53 -302.5 C 49.37 -310.75 42 -327.5 26 -328.5 C 20.39 -328.5 9 -328.5 9 -300.5 C 9 -284 9 -250.5 63 -80.5 L 69 -61.5 L 70 -43.5 C 70.33 -40.2 71 -33.5 71 -12.5 C 71 39.31 71 144.5 14 204.5 C 0.799999 217.04 -26 242.5 -81 242.5 C -96.84 242.5 -129 242.5 -169 216.5 C -182.2 207.92 -209 190.5 -226 147.5 C -226.66 144.53 -228 138.5 -230 138.5 C -230.66 137.84 -232 136.5 -246 136.5 C -246 136.5 -246 136.5 -246 136.5 Z "
+               fill="rgb(0, 0, 0)"
+               stroke="none"
+               stroke-width="1"
+               stroke-opacity="1"
+               fill-opacity="1"
+               visibility="visible"
+               stroke-linecap="butt"
+               stroke-linejoin="miter"
+               stroke-miterlimit="4" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       transform="matrix(1 0 0 1 215 50)"
+       id="two-22"
+       d="M 3 0 C 3 1.656854 1.656854 3 0 3 C -1.656855 3 -3 1.656854 -3 0 C -3.000001 -1.656855 -1.656855 -3 -0.000001 -3 C 1.656854 -3.000001 3 -1.656855 3 0 Z "
+       fill="#000"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 105.351074 73.713333)"
+       id="two-23"
+       d="M -13.608636 28.241243 L -13.608636 -51.758757 L 13.608635 -28.241244 L 13.608635 51.758756 Z "
+       fill="rgb(171,221,164)"
+       stroke="rgb(121,181,124)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 139.326477 77.615142)"
+       id="two-24"
+       d="M -20.366763 47.856949 L -20.366763 -32.143051 L 20.366762 -47.85695 L 20.366762 32.14305 Z "
+       fill="rgb(171,221,164)"
+       stroke="rgb(121,181,124)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 125.717834 25.856386)"
+       id="two-25"
+       d="M -33.975399 -3.901807 L 6.758126 -19.615706 L 33.975398 3.901806 L -6.758127 19.615705 Z "
+       fill="rgb(171,221,164)"
+       stroke="rgb(121,181,124)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-26"
+       d="M 151.199384 103.78274 L 228.768608 170.807649 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="2.8"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="square"
+       stroke-linejoin="bevel"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 64.617546 89.42723)"
+       id="two-27"
+       d="M -13.608636 28.241243 L -13.608636 -51.758757 L 13.608635 -28.241244 L 13.608635 51.758756 Z "
+       fill="rgb(253,174,97)"
+       stroke="rgb(203,134,37)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 98.592948 93.32904)"
+       id="two-28"
+       d="M -20.366763 47.856949 L -20.366763 -32.143051 L 20.366762 -47.85695 L 20.366762 32.14305 Z "
+       fill="rgb(253,174,97)"
+       stroke="rgb(203,134,37)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 84.984306 41.570285)"
+       id="two-29"
+       d="M -33.975399 -3.901807 L 6.758126 -19.615706 L 33.975398 3.901806 L -6.758127 19.615705 Z "
+       fill="rgb(253,174,97)"
+       stroke="rgb(203,134,37)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 203.333251 178.376373)"
+       id="two-30"
+       d="M -13.608636 8.241243 L -13.608636 -31.758757 L 13.608635 -8.241244 L 13.608635 31.758756 Z "
+       fill="rgb(43,131,186)"
+       stroke="rgb(13,91,136)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 237.308654 182.278182)"
+       id="two-31"
+       d="M -20.366763 27.856949 L -20.366763 -12.143051 L 20.366762 -27.85695 L 20.366762 12.14305 Z "
+       fill="rgb(43,131,186)"
+       stroke="rgb(13,91,136)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 223.700012 150.519424)"
+       id="two-32"
+       d="M -33.975399 -3.901807 L 6.758126 -19.615706 L 33.975398 3.901806 L -6.758127 19.615705 Z "
+       fill="rgb(43,131,186)"
+       stroke="rgb(13,91,136)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 162.599731 194.09027)"
+       id="two-33"
+       d="M -13.608636 8.241243 L -13.608636 -31.758757 L 13.608635 -8.241244 L 13.608635 31.758756 Z "
+       fill="rgb(215,25,28)"
+       stroke="rgb(120,25,28)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 196.575119 197.99208)"
+       id="two-34"
+       d="M -20.366763 27.856949 L -20.366763 -12.143051 L 20.366762 -27.85695 L 20.366762 12.14305 Z "
+       fill="rgb(215,25,28)"
+       stroke="rgb(120,25,28)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 182.966491 166.233322)"
+       id="two-35"
+       d="M -33.975399 -3.901807 L 6.758126 -19.615706 L 33.975398 3.901806 L -6.758127 19.615705 Z "
+       fill="rgb(215,25,28)"
+       stroke="rgb(120,25,28)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 162.599731 154.09027)"
+       id="two-36"
+       d="M -13.608636 8.241243 L -13.608636 -31.758757 L 13.608635 -8.241244 L 13.608635 31.758756 Z "
+       fill="rgb(255,255,159)"
+       stroke="rgb(215,215,191)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 216.941879 150.135131)"
+       id="two-37"
+       d="M -40.733526 35.713899 L -40.733526 -4.286101 L 40.733525 -35.7139 L 40.733525 4.2861 Z "
+       fill="rgb(255,255,159)"
+       stroke="rgb(215,215,191)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 203.333251 118.37638)"
+       id="two-38"
+       d="M -54.342162 3.955143 L 27.124889 -27.472656 L 54.342161 -3.955144 L -27.12489 27.472655 Z "
+       fill="rgb(255,255,159)"
+       stroke="rgb(215,215,191)"
+       stroke-width="2"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 172.806198 217.909347)"
+       id="two-39"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 181.300048 218.884796)"
+       id="two-40"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 177.897888 210.945114)"
+       id="two-41"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 177.897888 215.945114)"
+       id="two-42"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(0,0,0)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 152.393249 200.271209)"
+       id="two-43"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 160.8871 201.246658)"
+       id="two-44"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 157.484939 193.306976)"
+       id="two-45"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 157.484939 198.306976)"
+       id="two-46"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 74.82402 133.246307)"
+       id="two-47"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 83.317871 134.221755)"
+       id="two-48"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 79.915718 126.282066)"
+       id="two-49"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 79.915718 131.282058)"
+       id="two-50"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 74.82402 63.246299)"
+       id="two-51"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 83.317871 64.221755)"
+       id="two-52"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 79.915718 56.282062)"
+       id="two-53"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 79.915718 61.282062)"
+       id="two-54"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 152.393249 130.271209)"
+       id="two-55"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 160.8871 131.246658)"
+       id="two-56"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 157.484939 123.306976)"
+       id="two-57"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 157.484939 128.306976)"
+       id="two-58"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 146.107696 35.746978)"
+       id="two-59"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 154.601547 36.722431)"
+       id="two-60"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 151.199386 28.782739)"
+       id="two-61"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 151.199386 33.782741)"
+       id="two-62"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 223.676925 102.771888)"
+       id="two-63"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 232.170761 103.747337)"
+       id="two-64"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 228.768615 95.807647)"
+       id="two-65"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 228.768615 100.807647)"
+       id="two-66"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 146.107696 105.746978)"
+       id="two-67"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 154.601547 106.722427)"
+       id="two-68"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 151.199386 98.782737)"
+       id="two-69"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 151.199386 103.782737)"
+       id="two-70"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 244.089874 190.410018)"
+       id="two-71"
+       d="M -3.402159 2.06031 L -3.402159 -7.93969 L 3.402158 -2.060311 L 3.402158 7.939689 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 252.583724 191.385467)"
+       id="two-72"
+       d="M -5.091691 6.964237 L -5.091691 -3.035763 L 5.09169 -6.964238 L 5.09169 3.035762 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 249.181564 183.445785)"
+       id="two-73"
+       d="M -8.49385 -0.975452 L 1.689531 -4.903927 L 8.493849 0.975451 L -1.689532 4.903926 Z "
+       fill="rgb(0,0,0)"
+       stroke="rgb(0,0,0)"
+       stroke-width="0"
+       stroke-opacity="0.3"
+       fill-opacity="0.3"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 249.181564 188.445785)"
+       id="two-74"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(255,255,255)"
+       stroke="none"
+       stroke-width="1"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-75"
+       d="M 157.484938 198.306973 L 79.915714 131.282063 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="2.8"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="square"
+       stroke-linejoin="bevel"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-76"
+       d="M 79.915714 61.282063 L 157.484938 128.306973 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="2.8"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="square"
+       stroke-linejoin="bevel"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-77"
+       d="M 151.199384 33.78274 L 228.768608 100.807649 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="2.8"
+       stroke-opacity="0.9"
+       fill-opacity="0.9"
+       visibility="visible"
+       stroke-linecap="square"
+       stroke-linejoin="bevel"
+       stroke-miterlimit="4" />
+    <text
+       transform="matrix(1 0 0 1 196.575119 193.99208)"
+       id="two-78"
+       font-family="Libertine, Linux Libertine O"
+       font-size="18"
+       line-height="17"
+       text-anchor="middle"
+       dominant-baseline="middle"
+       font-style="normal"
+       font-weight="bold"
+       text-decoration="none"
+       direction="ltr"
+       fill="rgb(255,255,255)"
+       stroke="none"
+       stroke-width="1"
+       opacity="1"
+       visibility="visible">A</text>
+    <text
+       transform="matrix(1 0 0 1 98.592948 93.32904)"
+       id="two-79"
+       font-family="Libertine, Linux Libertine O"
+       font-size="18"
+       line-height="17"
+       text-anchor="middle"
+       dominant-baseline="middle"
+       font-style="normal"
+       font-weight="bold"
+       text-decoration="none"
+       direction="ltr"
+       fill="rgb(16,16,16)"
+       stroke="none"
+       stroke-width="1"
+       opacity="1"
+       visibility="visible">B</text>
+    <text
+       transform="matrix(1 0 0 1 201.981628 122.299522)"
+       id="two-80"
+       font-family="Libertine, Linux Libertine O"
+       font-size="18"
+       line-height="17"
+       text-anchor="middle"
+       dominant-baseline="middle"
+       font-style="normal"
+       font-weight="bold"
+       text-decoration="none"
+       direction="ltr"
+       fill="rgb(16,16,16)"
+       stroke="none"
+       stroke-width="1"
+       opacity="1"
+       visibility="visible">C</text>
+    <text
+       transform="matrix(1 0 0 1 139.326477 77.615142)"
+       id="two-81"
+       font-family="Libertine, Linux Libertine O"
+       font-size="18"
+       line-height="17"
+       text-anchor="middle"
+       dominant-baseline="middle"
+       font-style="normal"
+       font-weight="bold"
+       text-decoration="none"
+       direction="ltr"
+       fill="rgb(16,16,16)"
+       stroke="none"
+       stroke-width="1"
+       opacity="1"
+       visibility="visible">D</text>
+    <text
+       transform="matrix(1 0 0 1 233.23529 181.849578)"
+       id="two-82"
+       font-family="Libertine, Linux Libertine O"
+       font-size="18"
+       line-height="17"
+       text-anchor="middle"
+       dominant-baseline="middle"
+       font-style="normal"
+       font-weight="bold"
+       text-decoration="none"
+       direction="ltr"
+       fill="rgb(255,255,255)"
+       stroke="none"
+       stroke-width="1"
+       opacity="1"
+       visibility="visible">E</text>
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-83"
+       d="M 103.164932 249.8387 L 180.695099 313.372335 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="4"
+       stroke-opacity="0.7"
+       fill-opacity="0.7"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4"
+       stroke-dasharray="8 8"
+       stroke-dashoffset="0" />
+    <path
+       transform="matrix(1 0 0 1 134.068084 327.125122)"
+       id="two-84"
+       d="M -3.803127 19.50941 L -4.621415 -1.066251 L 16.381388 -8.475775 L 17.199676 12.099886 L 4.621414 1.06625 L 3.803126 -19.509411 L -17.199677 -12.099887 L -16.381389 8.475774 "
+       fill="none"
+       stroke="rgb(215,25,28)"
+       stroke-width="4"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 43.141361 231.982192)"
+       id="two-85"
+       d="M -2.98484 40.085071 L 18.017964 32.675548 L 5.439702 21.641912 L -15.563101 29.051436 L -16.381389 8.475774 L 4.621414 1.06625 L 17.199676 12.099886 L -3.803127 19.50941 L -4.621415 -1.066251 L 16.381388 -8.475775 L 3.803126 -19.509411 L -17.199677 -12.099887 L -18.017965 -32.675549 L 2.984839 -40.085072 L 15.5631 -29.051437 L -5.439703 -21.641913 "
+       fill="none"
+       stroke="rgb(253,174,97)"
+       stroke-width="4"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 153.43431 278.5643)"
+       id="two-86"
+       d="M -38.20248 -4.690363 L -25.624218 6.343272 L -24.805931 26.918934 L -37.384192 15.885298 L -16.381389 8.475774 L -3.803127 19.50941 L -4.621415 -1.066251 L -17.199677 -12.099887 L 3.803126 -19.509411 L 16.381388 -8.475775 L 17.199676 12.099886 L 4.621414 1.06625 L 25.624217 -6.343273 L 38.202479 4.690362 L 37.384191 -15.885299 L 24.80593 -26.918935 "
+       fill="none"
+       stroke="#aa9803"
+       stroke-width="4"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 85.146965 217.163146)"
+       id="two-87"
+       d="M 15.5631 -29.051437 L -5.439703 -21.641913 L -18.017965 -32.675549 L 2.984839 -40.085072 L 3.803126 -19.509411 L -17.199677 -12.099887 L -4.621415 -1.066251 L 16.381388 -8.475775 L 17.199676 12.099886 L -3.803127 19.50941 L -16.381389 8.475774 L 4.621414 1.06625 L 5.439702 21.641912 L -15.563101 29.051436 L -2.98484 40.085071 L 18.017964 32.675548 "
+       fill="none"
+       stroke="rgb(171,221,164)"
+       stroke-width="4"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 176.073684 312.306091)"
+       id="two-88"
+       d="M 4.621414 1.06625 L 3.803126 -19.509411 L -17.199677 -12.099887 L -16.381389 8.475774 L -3.803127 19.50941 L -4.621415 -1.066251 L 16.381388 -8.475775 L 17.199676 12.099886 "
+       fill="none"
+       stroke="rgb(43,131,186)"
+       stroke-width="4"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 130.264953 346.634552)"
+       id="two-89"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(0,0,0)"
+       stroke="#000"
+       stroke-width="1"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 193.273361 324.405975)"
+       id="two-90"
+       d="M 4 0 C 4 2.209138 2.209138 4 0 4 C -2.209139 4 -4 2.209138 -4 0 C -4 -2.209139 -2.209139 -4 -0.000001 -4 C 2.209138 -4.000001 4 -2.209139 4 0 Z "
+       fill="rgb(250,250,250)"
+       stroke="#000"
+       stroke-width="1"
+       stroke-opacity="1"
+       fill-opacity="1"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-91"
+       d="M 117.68669 335.600907 L 40.156523 272.067271 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="4"
+       stroke-opacity="0.7"
+       fill-opacity="0.7"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4"
+       stroke-dasharray="8 8"
+       stroke-dashoffset="0" />
+    <path
+       transform="matrix(1 0 0 1 117.686691 335.600921)"
+       id="two-92"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 40.156524 272.06726)"
+       id="two-93"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-94"
+       d="M 37.701659 210.340287 L 115.231826 273.873922 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="4"
+       stroke-opacity="0.7"
+       fill-opacity="0.7"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4"
+       stroke-dasharray="8 8"
+       stroke-dashoffset="0" />
+    <path
+       transform="matrix(1 0 0 1 37.70166 210.340286)"
+       id="two-95"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 115.231826 273.873931)"
+       id="two-96"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 0 0)"
+       id="two-97"
+       d="M 178.240236 251.645351 L 100.710069 188.111715 "
+       fill="rgb(0,0,0)"
+       stroke="rgb(60,60,60)"
+       stroke-width="4"
+       stroke-opacity="0.7"
+       fill-opacity="0.7"
+       visibility="visible"
+       stroke-linecap="round"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4"
+       stroke-dasharray="8 8"
+       stroke-dashoffset="0" />
+    <path
+       transform="matrix(1 0 0 1 178.240234 251.645355)"
+       id="two-98"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 100.710067 188.111709)"
+       id="two-99"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 103.164932 249.838699)"
+       id="two-100"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+    <path
+       transform="matrix(1 0 0 1 180.695098 313.372344)"
+       id="two-101"
+       d="M 3.5 0 C 3.5 1.932996 1.932996 3.5 0 3.5 C -1.932997 3.5 -3.5 1.932996 -3.5 0 C -3.500001 -1.932997 -1.932997 -3.5 -0.000001 -3.5 C 1.932996 -3.500001 3.5 -1.932997 3.5 0 Z "
+       fill="rgb(60,60,60)"
+       stroke="#000"
+       stroke-width="0"
+       stroke-opacity="0.8"
+       fill-opacity="0.8"
+       visibility="visible"
+       stroke-linecap="butt"
+       stroke-linejoin="miter"
+       stroke-miterlimit="4" />
+  </g>
+</svg>
