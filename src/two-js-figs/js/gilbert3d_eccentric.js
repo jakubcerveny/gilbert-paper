@@ -960,7 +960,11 @@ function gilbert3d_eccentric() {
   // |\alpha| >> ...
   //
 
-  let cxy = [75,110];
+
+  let cxy = [75,115];
+
+  scale = 28;
+
   let dxyz = rodrigues([scale,0,0], vr, theta);
   let dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
   let cs = njs.mul( scale, cuboid_size );
@@ -975,9 +979,13 @@ function gilbert3d_eccentric() {
   mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
   mkdockconn(cxy, [1-_D,0,0, 1-_d,_d,_d], scale, dock_co_b, vr, theta);
 
-  mathjax2twojs("S0", cxy[0]+10, cxy[1]+30, latex_name_scale);
-  mathjax2twojs("wgg", cxy[0]-37, cxy[1]+50, latex_eqn_scale);
+  //mathjax2twojs("S0", cxy[0]+10, cxy[1]+30, latex_name_scale);
+  //mathjax2twojs("wgg", cxy[0]-37, cxy[1]+50, latex_eqn_scale);
 
+  mathjax2twojs("S0", cxy[0]+10, cxy[1]+25, latex_name_scale);
+  mathjax2twojs("wgg", cxy[0]-37, cxy[1]+45, latex_eqn_scale);
+
+  scale = 25;
 
 
 
@@ -990,7 +998,9 @@ function gilbert3d_eccentric() {
   // |\beta| >> ...
   //
 
-  cxy = [200,110];
+  cxy = [200,120];
+
+  scale = 38;
 
   let _s23 = scale*2/3;
   let _s13 = scale*1/3;
@@ -1016,9 +1026,13 @@ function gilbert3d_eccentric() {
   mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale/2, dock_co_b, vr, theta);
 
 
-  mathjax2twojs("S2", cxy[0]-5, cxy[1]+30, latex_name_scale);
-  mathjax2twojs("hgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
+  //mathjax2twojs("S2", cxy[0]-5, cxy[1]+30, latex_name_scale);
+  //mathjax2twojs("hgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
 
+  mathjax2twojs("S2", cxy[0]-5, cxy[1]+20, latex_name_scale);
+  mathjax2twojs("hgg", cxy[0]-51, cxy[1]+40, latex_eqn_scale);
+
+  scale = 25;
 
   //------
   //------
@@ -1029,7 +1043,9 @@ function gilbert3d_eccentric() {
   // |\gamma| >> ...
   //
 
-  cxy = [310,110];
+  cxy = [310,120];
+
+  scale = 35;
 
   dxyz = rodrigues([scale/2,0,0], vr, theta);
   dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
@@ -1053,9 +1069,13 @@ function gilbert3d_eccentric() {
   mkdockconn(cxy, [2-_D,0,1, 2-_d,_d,1+_d], scale/2, dock_co_b, vr, theta);
 
 
-  mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
-  mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
+  //mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
+  //mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
 
+  mathjax2twojs("S1", cxy[0]-5, cxy[1]+20, latex_name_scale);
+  mathjax2twojs("dgg", cxy[0]-51, cxy[1]+40, latex_eqn_scale);
+
+  scale = 25;
 
   //------
   //------
