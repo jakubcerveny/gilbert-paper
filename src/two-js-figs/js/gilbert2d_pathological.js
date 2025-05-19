@@ -99,9 +99,10 @@ function a2xy(v) {
   return { "x": v[0], "y": v[1] };
 }
 
-function mkgcurve(xy, wh, s, flipxy) {
+function mkgcurve(xy, wh, s, flipxy, adapt_method) {
   s = ((typeof s === "undefined") ? 1 : s);
   flipxy = ((typeof flipxy === "undefined") ? {"y":false, "x": false} : flipxy);
+  adapt_method = ((typeof adapt_method === "undefined") ? 2 : adapt_method);
 
   let two = g_fig_ctx.two;
 
@@ -113,8 +114,8 @@ function mkgcurve(xy, wh, s, flipxy) {
     //let p = Gilbert.d2xy(idx-1, wh[0], wh[1]);
     //let q = Gilbert.d2xy(  idx, wh[0], wh[1]);
 
-    let p = a2xy(Gilbert.d2xya(idx-1, wh[0], wh[1],2));
-    let q = a2xy(Gilbert.d2xya(  idx, wh[0], wh[1],2));
+    let p = a2xy(Gilbert.d2xya(idx-1, wh[0], wh[1],adapt_method));
+    let q = a2xy(Gilbert.d2xya(  idx, wh[0], wh[1],adapt_method));
 
     if (flipxy.y) {
       p.y = H - p.y;
@@ -163,16 +164,18 @@ function gilbert2d_pathological() {
   let lx = 40;
 
   two.makeText("i)", lx, 50, font_style);
-  mkgcurve([lx+35,35], [11, 2], 10, {"y":true, "x":false});
+  mkgcurve([lx+15,35], [11, 2], 10, {"y":true, "x":false});
 
-  two.makeText("ii)", lx + 140, 50, font_style);
-  mkgcurve([lx+160,35], [2, 7], 10, {"y":true, "x":false});
+  two.makeText("ii)", lx + 160, 50, font_style);
+  mkgcurve([lx+180,35], [7, 2], 10, {"y":true, "x":false}, 1);
 
+  /*
   two.makeText("iii)", lx, 150, font_style);
   mkgcurve([lx+10,160], [13, 8], 10, {"y":true, "x":false});
 
   two.makeText("iv)", lx + 140, 150, font_style);
   mkgcurve([lx+170,130], [14, 14], 10, {"y":true, "x":false});
+  */
 
   two.update();
 

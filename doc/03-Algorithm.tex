@@ -523,6 +523,18 @@ and make the initial subdivided cuboids as cube like as possible.
 
 \subsection{Corner Cases, Pathological Cases}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert2d_pathological.pdf}
+  \caption{ Two examples of corner cases and pathological conditions for the Gilbert curve.
+            (i) An $11 \times 2$ Gilbert curve where the $\alpha$ side length is 11, precluding
+            a notch free path but for the $((2k+1) \times 2)$ case, the notch shows up as a hook
+            at the end. (ii) A $2 \times 7$ Gilbert that reduces to a snake curve for the $(2 \times k)$ case. }
+  \label{fig:gilbert2d_pathological}
+\end{figure}
+
+
+
 For the special case when dimensions are of the form $((2k+1),2)$, for $k \in \mathbb{N}$, the Gilbert curve realization will
 not have the ending point of the path at the appropriate location.
 No Hamiltonian path is possible for paths of side lengths

@@ -5,10 +5,13 @@ TODO
 
 * Replace 'Hilbert curve' with 'Pseudo Hilbert curve' and define it
 * Pictures in appendix to help with description
-* Pathological/edge case pictures
+* ~Pathological/edge case pictures~
 * Mention stability?
 * Metion Tautenhahn as originator of arguments along with
   some of his arguments for threshold
+  - done in appendix
+  - need to do in text
+  - need to mention "extension of tautenhahn's argument" for 3d
 * Think about and discuss harmony some more
   - this is more important than I gave it credit for and is the reason for
     the elongated rectangle in the 2d case and the elognated cuboids for
