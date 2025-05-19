@@ -943,7 +943,7 @@ function rbracket(mxy, w, h, theta) {
 
 }
 
-function gilbert3d_eccentric_appendix() {
+function gilbert3d_eccentric_appendix_s2() {
   let two = g_fig_ctx.two;
 
   let vr = [0,0,1];
@@ -1041,41 +1041,77 @@ function gilbert3d_eccentric_appendix() {
   //------
   //------
 
-  /*
   // S_2
   // h >> ...
   // |\beta| >> ...
   //
 
-  cxy = [200,110];
+  scale = 35;
+  cxy = [130,220];
 
   let _s23 = scale*2/3;
   let _s13 = scale*1/3;
 
-  dxyz = rodrigues([0,scale/2,0], vr, theta);
+  dxyz = rodrigues([0,scale,0], vr, theta);
   dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-  cs = njs.mul( scale, [1,1,1] );
+  //cs = njs.mul( scale, [1,1,1] );
+  cs = njs.mul( scale, [2,2,2] );
+
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
 
   dxyz = rodrigues([scale/2,0,0], vr, theta);
   dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-  cs = njs.mul( scale, [0.5,0.5,1] );
-  mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
+  //cs = njs.mul( scale, [0.5,0.5,1] );
+  cs = njs.mul( scale, [1,1,2] );
+
+  mk_iso_cuboid( cxy[0]+2*dxy[0], cxy[1]+2*dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
 
   mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
 
-  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale/2, dock_co_a, vr, theta);
+
+  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale, dock_co_a, vr, theta);
   //mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
 
-  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale/2, dock_co_a, vr, theta);
-  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale/2, dock_co_b, vr, theta);
+  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
+  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale, dock_co_b, vr, theta);
 
-  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale/2, dock_co_b, vr, theta);
+  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
+
+  let _sm = 0.8*scale;
+  let _sl = 1.65*scale;
+
+  mathjax2twojs("S2", cxy[0]-5, 35, latex_name_scale);
+
+  mathjax2twojs("one_m_rho", cxy[0]+(1.15*scale), cxy[1]-150, latex_name_scale);
+  rbracket( [ cxy[0] + (1.05*scale), cxy[1]-150], _sl/2.65, 0.95*_sl,   theta*0.62);
+
+  mathjax2twojs("rho", cxy[0]+(2.25*scale), cxy[1]-120, latex_name_scale);
+  rbracket( [ cxy[0] + (2.10*scale), cxy[1]-118], _sl/3, _sm, theta*0.62);
+  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-40, latex_name_scale);
 
 
-  mathjax2twojs("S2", cxy[0]-5, cxy[1]+30, latex_name_scale);
-  mathjax2twojs("hgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
-  */
+  // bottom s
+  mathjax2twojs("s", cxy[0]-(2.85*scale), cxy[1]-92, latex_name_scale);
+  rbracket( [cxy[0] - (2.5*scale), cxy[1]-96], _sl/3, _sl, Math.PI);
+
+
+
+  mathjax2twojs("sigma_s", cxy[0]-(1.85*scale), cxy[1]-5, latex_name_scale);
+  rbracket( [cxy[0] - (1.35*scale), cxy[1]-20], _sl/3, _sl*1.6, Math.PI + theta*0.62);
+
+
+
+  rbracket( [cxy[0] + (0.8*scale), cxy[1]+15], _sl/3, _sm, - theta*0.86);
+  rbracket( [cxy[0] + (1.8*scale), cxy[1]+1], _sl/3, _sm, - theta*0.86);
+
+  mathjax2twojs("one_half", cxy[0]+(0.5*scale), cxy[1]+35, latex_name_scale);
+  mathjax2twojs("one_half", cxy[0]+(1.7*scale), cxy[1]+20, latex_name_scale);
+
+  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-90, 2*latex_name_scale);
+
+  //mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
+  //mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
+
 
 
   //------
@@ -1087,10 +1123,11 @@ function gilbert3d_eccentric_appendix() {
   // |\gamma| >> ...
   //
 
-  scale = 35;
 
+  /*
   console.log(scale);
 
+  scale = 35;
 
   cxy = [110,220];
 
@@ -1116,16 +1153,6 @@ function gilbert3d_eccentric_appendix() {
 
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
 
-  /*
-  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale/2, dock_co_a, vr, theta);
-  mkdockconn(cxy, [0,0,1-_D, _d,_d,1-_d], scale/2, dock_co_b, vr, theta);
-
-  mkdockconn(cxy, [2-_D,0,1-_D, 2-_d,_d,1-_d], scale/2, dock_co_a, vr, theta);
-  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale/2, dock_co_b, vr, theta);
-
-  mkdockconn(cxy, [0,0,1, _d,_d,1+_d], scale/2, dock_co_a, vr, theta);
-  mkdockconn(cxy, [2-_D,0,1, 2-_d,_d,1+_d], scale/2, dock_co_b, vr, theta);
-  */
   let _sm = 0.8*scale;
   let _sl = 1.65*scale;
 
@@ -1156,6 +1183,7 @@ function gilbert3d_eccentric_appendix() {
 
   //mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
   //mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
+  */
 
 
   //------
