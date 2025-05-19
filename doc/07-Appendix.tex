@@ -30,9 +30,51 @@ This weights the defect of each subdivided cuboid by its proportional volume.
 The defect gives us a coarse idea of how lopsided or \textit{eccentric} a cuboid region is.
 If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
 
-\subsection{Eccentric Split Threshold}
+\subsection{2D Eccentric Split Threshold}
 
-Calculations in this section will justify what threshold value to pick of when to choose an
+For the 2D Gilbert curve,
+if the $\alpha$ side length is significantly longer than the $\beta$ side length,
+we want to subdivide the rectangle into two nearly equal regions and recursively find
+a Gilbert curve in each region.
+We will justify the constant $(3/2)$ as the ratio threshold to split on using an argument
+given by L. Tautenhahn \footnote{ through personal communication }.
+That is, when $(|\alpha|/|\beta| > 3/2)$, we split the rectangle into roughly equal parts.
+
+The defect of a rectangle of side length $|\alpha|$ and $|\beta|$ is, with $|\alpha| > |\beta|$:
+
+$$
+\begin{array}{ll}
+  \lambda_2(|\alpha|, |\beta|) & = |\alpha| \cdot |\beta| / |\beta|^2 \\
+   & = |\alpha| / |\beta|
+\end{array}
+$$
+
+After a subdivision, if we assume $|\alpha| < 2 |\beta|$, the defect is:
+
+$$
+\begin{array}{ll}
+  \lambda_2(|\alpha|/2, |\beta|) & = \frac{|\alpha|}{2} \cdot |\beta| / (\frac{|\alpha|}{2})^2 \\
+   & = 2 |\beta| / |\alpha|
+\end{array}
+$$
+
+We're looking for the condition when there's a defect reduction, so
+
+$$
+\begin{array}{ll}
+    & \lambda_2(|\alpha|/2, |\beta|)  < \lambda_2(|\alpha|, |\beta|) \\
+\to & 2 |\beta| / |\alpha| < |\alpha| / |\beta| \\
+  \to & \sqrt{2} < |\alpha| / |\beta| \\
+\end{array}
+$$
+
+Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
+be assured a defect reduction.
+
+
+\subsection{3D Eccentric Split Threshold}
+
+Calculations in this section will justify what threshold value to pick of when to choose a 3D
 eccentric split over a J-split.
 Our concern is to find a simple ratio of when each of $\alpha$, $\beta$ or $\gamma$ are considered
 "small enough" or "large enough", relative to the other dimensions, to split on.
@@ -137,6 +179,17 @@ for the eccentric $S_0$ split ratio.
 %%%%
 
 \subsection{$|\gamma| >> |\alpha| \sim |\beta|$ or $|\beta| << |\alpha| \sim |\gamma|$}
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s1.pdf}
+  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
+            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
+  \label{fig:eccentric_s1}
+\end{figure}
+
+
 
 \begin{itemize}
   \item Shape template: $S_1$

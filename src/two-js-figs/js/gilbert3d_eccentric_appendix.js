@@ -1092,7 +1092,7 @@ function gilbert3d_eccentric_appendix() {
   console.log(scale);
 
 
-  cxy = [140,240];
+  cxy = [110,220];
 
   dxyz = rodrigues([scale/2,0,0], vr, theta);
   dxyz = rodrigues([scale,0,0], vr, theta);
@@ -1139,6 +1139,15 @@ function gilbert3d_eccentric_appendix() {
 
   rbracket( [cxy[0] + (0.8*scale), cxy[1]+15], _sl/3, _sm, - theta*0.86);
   rbracket( [cxy[0] + (1.8*scale), cxy[1]+1], _sl/3, _sm, - theta*0.86);
+
+  // bottom s
+  mathjax2twojs("s", cxy[0]-(1.35*scale), cxy[1]+10, latex_name_scale);
+  rbracket( [cxy[0] - (1.1*scale), cxy[1]-1], _sl/3, _sl, -Math.PI/2 - theta*0.5);
+
+
+
+  mathjax2twojs("sigma_s", cxy[0]-(2.75*scale), cxy[1]-87, latex_name_scale);
+  rbracket( [cxy[0] - (2.0*scale), cxy[1]-90], _sl/3, _sl*1.6, Math.PI);
 
   mathjax2twojs("one_half", cxy[0]+(0.5*scale), cxy[1]+35, latex_name_scale);
   mathjax2twojs("one_half", cxy[0]+(1.7*scale), cxy[1]+20, latex_name_scale);
