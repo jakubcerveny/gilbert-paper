@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  20 MAY 2025 15:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  20 MAY 2025 16:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -411,3 +411,1620 @@ Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/everyshi/everyshi.sty
+Package: everyshi 2020/11/18 v4.00 EveryShipout Package
+)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+){/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks27
+\inpenc@posthook=\toks28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/l8u-penc.def
+File: l8u-penc.def 2017/06/23 v0.8 Custom LaTeX file, for UTF8 encoded letters 
+and symbols
+LaTeX Info: Composite with undeclared \b in encoding L8U on input line 278.
+)
+\pdfxsafeforxmp@toks=\toks29
+\pdfx@tmptoks=\toks30
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen170
+\Hy@linkcounter=\count289
+\Hy@pagecounter=\count290
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
+nguages
+)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count291
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Option `pdfa' set `true' on input line 4073.
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count292
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen171
+
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count293
+\Field@Width=\dimen172
+\Fld@charsize=\dimen173
+Package hyperref Info: Hyper figures OFF on input line 6076.
+Package hyperref Info: Link nesting OFF on input line 6081.
+Package hyperref Info: Hyper index ON on input line 6084.
+Package hyperref Info: backreferencing OFF on input line 6091.
+Package hyperref Info: Link coloring OFF on input line 6096.
+Package hyperref Info: Link coloring with OCG OFF on input line 6101.
+Package hyperref Info: PDF/A mode ON on input line 6104.
+LaTeX Info: Redefining \ref on input line 6146.
+LaTeX Info: Redefining \pageref on input line 6150.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count294
+\c@Item=\count295
+\c@Hfootnote=\count296
+)
+Package hyperref Info: Driver: hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count297
+\c@bookmark@seq@number=\count298
+
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip72
+)
+Package hyperref Info: Option `unicode' set `true' on input line 1463.
+
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+Package hyperref Info: Option `psdextra' set `true' on input line 1465.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc-greekbasic.def
+File: puenc-greekbasic.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (
+greek block) (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/psdextra.def
+File: psdextra.def 2021-06-07 v7.00m Hyperref: Additions to PDF string support
+)
+(/usr/share/texlive/texmf-dist/tex/generic/colorprofiles/colorprofiles.sty
+Package: colorprofiles 2018/11/01 v1.0.1 color profiles for PDF/X and PDF/A sup
+port
+
+(/usr/share/texlive/texmf-dist/tex/generic/colorprofiles/colorprofiles.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-pdfdoc.def
+File: se-pdfdoc.def 2019/11/29 v1.12 stringenc: PDFDocEncoding
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/AdobeColorProfiles.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/8bit.def
+File: 8bit.def 2008/03/30 v1.1d Input encoding file
+)
+** pdfx: Metadata file Gilbert.xmpdata read successfully.
+(./Gilbert.xmpdata)<<sRGB.icc>>
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/8bit.def
+File: 8bit.def 2008/03/30 v1.1d Input encoding file
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/8bit.def
+File: 8bit.def 2008/03/30 v1.1d Input encoding file
+)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/se-utf8.def
+File: se-utf8.def 2019/11/29 v1.12 stringenc: UTF-8
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/8bit.def
+File: 8bit.def 2008/03/30 v1.1d Input encoding file
+)
+Package hyperref Info: Option `unicode' set `true' on input line 2411.
+Package hyperref Info: Option `unicode' set `true' on input line 2412.
+
+(/usr/share/texlive/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/glyphtounicode-cmr.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/glyphtounicode-ntx.tex)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xmpincl/xmpincl.sty
+Package: xmpincl 2021/09/22 v2.4 Include XMP data in pdflatex
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pdfx/8bit.def
+File: 8bit.def 2008/03/30 v1.1d Input encoding file
+)
+Using XMP template file: pdfa.xmp
+\xmpinclWrite=\write3
+\xmpinclRead=\read2
+\openout3 = `pdfa.xmpi'.
+
+<<pdfa.xmpi>>)
+Package hyperref Info: Option `colorlinks' set `true' on input line 177.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 177.
+
+Package hyperref Info: Option `unicode' set `true' on input line 177.
+
+(/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
+Package: fontawesome5 2021/06/04 v5.15.3 Font Awesome 5
+
+(/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/fontawesome5-generic-help
+er.sty
+Package: fontawesome5-generic-helper 2021/06/04 v5.15.3 non-uTeX helper for fon
+tawesome5
+
+(/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/fontawesome5-mapping.def)
+))
+\g_xmpdata_output_iow=\write4
+\openout4 = `Gilbert.xmpdata'.
+
+\l_ceur_title_before_dim=\dimen174
+\l_ceur_title_after_dim=\dimen175
+\g_ead_int=\count299
+\g_uad_int=\count300
+\g_orcid_int=\count301
+\@eadauthor=\toks31
+\g_ceur_tnote_int=\count302
+\g_ceur_fnote_int=\count303
+\g_ceur_cor_int=\count304
+\g_ceur_au_int=\count305
+\g_ceur_aau_int=\count306
+\l_autype_int=\count307
+\l_ceur_augroup_before_dim=\dimen176
+\l_ceur_augroup_after_dim=\dimen177
+\l_ceur_augroup_lskip_tl=\dimen178
+\l_ceur_augroup_rskip_tl=\dimen179
+\g_num_short_authors=\count308
+\g_ceur_aff_int=\count309
+\l_ceur_aff_before_dim=\dimen180
+\l_ceur_aff_after_dim=\dimen181
+\l_ceur_aff_lskip_dim=\dimen182
+\l_ceur_aff_rskip_dim=\dimen183
+\g_ceur_augr_int=\count310
+\g_ceur_aaugr_int=\count311
+ (/usr/share/texlive/texmf-dist/tex/latex/moreverb/moreverb.sty
+Package: moreverb 2008/06/03 v2.3a `more' verbatim facilities
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks32
+\verbatim@line=\toks33
+\verbatim@in@stream=\read3
+)
+\tab@position=\count312
+\tab@size=\count313
+\listing@line=\count314
+)
+\g_ceur_abs_box=\box58
+\casgrabsbox=\box59
+\casauhlbox=\box60
+\g_ceur_key_box=\box61
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2021-02-22 v5.2l context-sensitive quotations (JAW)
+\csq@reset=\count315
+\csq@gtype=\count316
+\csq@glevel=\count317
+\csq@qlevel=\count318
+\csq@maxlvl=\count319
+\csq@tshold=\count320
+\csq@ltx@everypar=\toks34
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2021-02-22 v5.2l csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+))
+(/usr/share/texlive/texmf-dist/tex/latex/doclicense/doclicense.sty
+Package: doclicense 2021/07/11 v3.0.0 Support for putting documents under a lic
+ense
+
+(/usr/share/texlive/texmf-dist/tex/latex/xifthen/xifthen.sty
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count321
+\calc@Bcount=\count322
+\calc@Adimen=\dimen184
+\calc@Bdimen=\dimen185
+\calc@Askip=\skip73
+\calc@Bskip=\skip74
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count323
+\calc@Cskip=\skip75
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ifmtarg/ifmtarg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+))
+
+Package doclicense Warning: The pdfx package was detected. Therefore the mechan
+ism to add license metadata won't work. Ensure to setup \Copyright and correspo
+nding settings to your xmpdata-file.  on input line 118.
+
+\doclicense@hsize=\skip76
+(/usr/share/texlive/texmf-dist/tex/latex/doclicense/doclicense-english.ldf
+File: doclicense-english.ldf 
+))
+\ccLogoWidth=\dimen186
+\g_ceur_jtype_int=\count324
+\g_ceur_blind_int=\count325
+\c@au=\count326
+\c@cnote=\count327
+\c@tnote=\count328
+\c@fnote=\count329
+\c@aff=\count330
+\g_ceur_notes_box=\box62
+\g_ceur_front_box=\box63
+\paraindent=\dimen187
+\subparaindent=\dimen188
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer-scrpage.sty
+Package: scrlayer-scrpage 2021/11/13 v3.35 KOMA-Script package (end user interf
+ace for scrlayer)
+
+(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlayer.sty
+Package: scrlayer 2021/11/13 v3.35 KOMA-Script package (defining layers and pag
+e styles)
+Package scrlayer Info: Using already defined \footheight
+(scrlayer)             hoping, that this is a length and
+(scrlayer)             not only a macro on input line 136.
+Package scrlayer Info: patching LaTeX kernel macro \pagestyle on input line 216
+2.
+)
+Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
+(scrlayer-scrpage)             alias to `pageheadfoot' on input line 1085.
+Package scrlayer-scrpage Info: deactivating warning for font element
+(scrlayer-scrpage)             `pagefoot' on input line 1109.
+)
+Package scrlayer-scrpage Info: auto-selection of `pagestyleset=KOMA-Script'.
+\FullWidth=\dimen189
+\l_tbl_width_dim=\dimen190
+\l_tbl_abovecap_skip=\skip77
+\l_tbl_belowcap_skip=\skip78
+\l_tbl_abovetbl_skip=\skip79
+\l_tbl_belowtbl_skip=\skip80
+\l_fig_width_dim=\dimen191
+\l_fig_abovecap_skip=\skip81
+\l_fig_belowcap_skip=\skip82
+\l_fig_abovefig_skip=\skip83
+\l_fig_belowfig_skip=\skip84
+
+(/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen192
+\WF@size=\dimen193
+\c@WF@wrappedlines=\count331
+\WF@box=\box64
+\WF@everypar=\toks35
+Package: wrapfig 2003/01/31  v 3.6
+)
+\l_wrap_figwidth_dim=\dimen194
+\l_wrap_fighspace_dim=\dimen195
+\l_wrap_figvspace_dim=\dimen196
+\l_wrap_fighcorr_dim=\dimen197
+\l_wrap_figvcorr_dim=\dimen198
+\l_above_bio_dim=\dimen199
+\l_wrap_figlcorr_int=\count332
+\l_wrap_figlines_int=\count333
+\l_bio_text_box=\box65
+\c@ca_biography_ctr=\count334
+\l_ca_temp_inta=\count335
+\leftMargin=\dimen256
+\@enLab=\toks36
+\@sep=\skip85
+\@@sep=\skip86
+
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip87
+\bibsep=\skip88
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count336
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+<<t1.cmap>>)
+(/usr/share/texlive/texmf-dist/tex/latex/libertinus/libertinus.sty
+Package: libertinus 2020/05/06 v. 0.02 (Herbert Voss) Supports libertinus fonts
+ for pdflatex/lualatex/xelatex
+
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2020/11/20 v2.8 package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks37
+\XKV@tempa@toks=\toks38
+)
+\XKV@depth=\count337
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/libertinus-type1.sty
+Package: libertinus-type1 2021/02/14 (Bob Tennent) Supports libertinus fonts fo
+r latex/pdflatex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2020/07/21 v1.0e Font selection axes
+LaTeX Info: Redefining \upshape on input line 29.
+LaTeX Info: Redefining \itshape on input line 31.
+LaTeX Info: Redefining \slshape on input line 33.
+LaTeX Info: Redefining \swshape on input line 35.
+LaTeX Info: Redefining \scshape on input line 37.
+LaTeX Info: Redefining \sscshape on input line 39.
+LaTeX Info: Redefining \ulcshape on input line 41.
+LaTeX Info: Redefining \textsw on input line 47.
+LaTeX Info: Redefining \textssc on input line 48.
+LaTeX Info: Redefining \textulc on input line 49.
+)))
+LaTeX Info: Redefining \rm on input line 2963.
+LaTeX Info: Redefining \sf on input line 2964.
+LaTeX Info: Redefining \tt on input line 2965.
+LaTeX Info: Redefining \bf on input line 2966.
+LaTeX Info: Redefining \it on input line 2967.
+LaTeX Info: Redefining \sl on input line 2968.
+LaTeX Info: Redefining \sc on input line 2969.
+
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count338
+\Gm@cntv=\count339
+\c@Gm@tempcnt=\count340
+\Gm@bindingoffset=\dimen257
+\Gm@wd@mp=\dimen258
+\Gm@odd@mp=\dimen259
+\Gm@even@mp=\dimen260
+\Gm@layoutwidth=\dimen261
+\Gm@layoutheight=\dimen262
+\Gm@layouthoffset=\dimen263
+\Gm@layoutvoffset=\dimen264
+\Gm@dimlist=\toks39
+))
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count341
+\float@exts=\toks40
+\float@box=\box66
+\@float@everytoks=\toks41
+\@floatcapt=\box67
+)
+\@float@every@algorithm=\toks42
+\c@algorithm=\count342
+)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+Package: algpseudocode 
+
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count343
+\c@ALG@rem=\count344
+\c@ALG@nested=\count345
+\ALG@tlm=\skip89
+\ALG@thistlm=\skip90
+\c@ALG@Lnr=\count346
+\c@ALG@blocknr=\count347
+\c@ALG@storecount=\count348
+\c@ALG@tmpcounter=\count349
+\ALG@tmplength=\skip91
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen265
+\captionmargin@=\dimen266
+\captionwidth=\dimen267
+\caption@tempdima=\dimen268
+\caption@indent=\dimen269
+\caption@parindent=\dimen270
+\caption@hangindent=\dimen271
+Package caption Info: KOMA-Script document class detected.
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption-koma.sto
+File: caption-koma.sto 2020/09/21 v2.0b Adaption of the caption package to the 
+KOMA-Script document classes (AR)
+))
+\c@caption@flags=\count350
+\c@continuedfloat=\count351
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: wrapfig package is loaded.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+\pgfutil@everybye=\toks43
+\pgfutil@tempdima=\dimen272
+\pgfutil@tempdimb=\dimen273
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
+ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
+\pgfutil@abb=\box68
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/pgf.revision.tex)
+Package: pgfrcs 2021/05/15 v3.1.9a (3.1.9a)
+))
+Package: pgf 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
+Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks44
+\pgfkeys@temptoks=\toks45
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
+ex
+\pgfkeys@tmptoks=\toks46
+))
+\pgf@x=\dimen274
+\pgf@y=\dimen275
+\pgf@xa=\dimen276
+\pgf@ya=\dimen277
+\pgf@xb=\dimen278
+\pgf@yb=\dimen279
+\pgf@xc=\dimen280
+\pgf@yc=\dimen281
+\pgf@xd=\dimen282
+\pgf@yd=\dimen283
+\w@pgf@writea=\write5
+\r@pgf@reada=\read4
+\c@pgf@counta=\count352
+\c@pgf@countb=\count353
+\c@pgf@countc=\count354
+\c@pgf@countd=\count355
+\t@pgf@toka=\toks47
+\t@pgf@tokb=\toks48
+\t@pgf@tokc=\toks49
+\pgf@sys@id@count=\count356
+ (/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
+)
+Driver file for pgf: pgfsys-pdftex.def
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+File: pgfsys-pdftex.def 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-common-pdf.de
+f
+File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.
+tex
+File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfsyssoftpath@smallbuffer@items=\count357
+\pgfsyssoftpath@bigbuffer@items=\count358
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.
+tex
+File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
+Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen284
+\pgfmath@count=\count359
+\pgfmath@box=\box69
+\pgfmath@toks=\toks50
+\pgfmath@stack@operand=\toks51
+\pgfmath@stack@operation=\toks52
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
+ric.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
+e.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
+.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
+tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
+thmetics.code.tex)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count360
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.te
+x
+File: pgfcorepoints.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@picminx=\dimen285
+\pgf@picmaxx=\dimen286
+\pgf@picminy=\dimen287
+\pgf@picmaxy=\dimen288
+\pgf@pathminx=\dimen289
+\pgf@pathmaxx=\dimen290
+\pgf@pathminy=\dimen291
+\pgf@pathmaxy=\dimen292
+\pgf@xx=\dimen293
+\pgf@xy=\dimen294
+\pgf@yx=\dimen295
+\pgf@yy=\dimen296
+\pgf@zx=\dimen297
+\pgf@zy=\dimen298
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.
+code.tex
+File: pgfcorepathconstruct.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@path@lastx=\dimen299
+\pgf@path@lasty=\dimen300
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code
+.tex
+File: pgfcorepathusage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@shorten@end@additional=\dimen301
+\pgf@shorten@start@additional=\dimen302
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.te
+x
+File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfpic=\box70
+\pgf@hbox=\box71
+\pgf@layerbox@main=\box72
+\pgf@picture@serial@count=\count361
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.c
+ode.tex
+File: pgfcoregraphicstate.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgflinewidth=\dimen303
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformation
+s.code.tex
+File: pgfcoretransformations.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@pt@x=\dimen304
+\pgf@pt@y=\dimen305
+\pgf@pt@temp=\dimen306
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.t
+ex
+File: pgfcoreobjects.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathprocessing
+.code.tex
+File: pgfcorepathprocessing.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.te
+x
+File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfarrowsep=\dimen307
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@max=\dimen308
+\pgf@sys@shading@range@num=\count362
+\pgf@shadingcount=\count363
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.
+tex
+File: pgfcoreexternal.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfexternal@startupbox=\box73
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.te
+x
+File: pgfcorelayers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.c
+ode.tex
+File: pgfcoretransparency.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatterns.code.
+tex
+File: pgfcorepatterns.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfnodeparttextbox=\box74
+) (/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65
+.sty
+Package: pgfcomp-version-0-65 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@nodesepstart=\dimen309
+\pgf@nodesepend=\dimen310
+)
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18
+.sty
+Package: pgfcomp-version-1-18 2021/05/15 v3.1.9a (3.1.9a)
+)) (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgffor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Package: pgffor 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)
+\pgffor@iter=\dimen311
+\pgffor@skip=\dimen312
+\pgffor@stack=\toks53
+\pgffor@toks=\toks54
+))
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
+Package: tikz 2021/05/15 v3.1.9a (3.1.9a)
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers
+.code.tex
+File: pgflibraryplothandlers.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgf@plot@mark@count=\count364
+\pgfplotmarksize=\dimen313
+)
+\tikz@lastx=\dimen314
+\tikz@lasty=\dimen315
+\tikz@lastxsaved=\dimen316
+\tikz@lastysaved=\dimen317
+\tikz@lastmovetox=\dimen318
+\tikz@lastmovetoy=\dimen319
+\tikzleveldistance=\dimen320
+\tikzsiblingdistance=\dimen321
+\tikz@figbox=\box75
+\tikz@figbox@bg=\box76
+\tikz@tempbox=\box77
+\tikz@tempbox@bg=\box78
+\tikztreelevel=\count365
+\tikznumberofchildren=\count366
+\tikznumberofcurrentchild=\count367
+\tikz@fig@count=\count368
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+\pgfmatrixcurrentrow=\count369
+\pgfmatrixcurrentcolumn=\count370
+\pgf@matrix@numberofcolumns=\count371
+)
+\tikz@expandcount=\count372
+
+(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
+zlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count373
+\lst@gtempboxa=\box79
+\lst@token=\toks55
+\lst@length=\count374
+\lst@currlwidth=\dimen322
+\lst@column=\count375
+\lst@pos=\count376
+\lst@lostspace=\dimen323
+\lst@width=\dimen324
+\lst@newlines=\count377
+\lst@lineno=\count378
+\lst@maxwidth=\dimen325
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count379
+\lst@skipnumbers=\count380
+\lst@framebox=\box80
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... none found.
+
+(/usr/share/texlive/texmf-dist/tex/latex/ccicons/ccicons.sty
+Package: ccicons 2017/10/30 v1.6 LaTeX support for Creative Commons icons
+)
+LaTeX Font Info:    Trying to load font information for T1+LibertinusSerif-TLF 
+on input line 36.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/T1LibertinusSerif-TLF
+.fd
+File: T1LibertinusSerif-TLF.fd 2020/08/22 (autoinst) Font definitions for T1/Li
+bertinusSerif-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 36.
+ (./Gilbert.aux
+
+LaTeX Warning: Label `alg:procJ2' multiply defined.
+
+)
+\openout1 = `Gilbert.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+Package scrbase Info: activating english \contentsname on input line 36.
+Package scrbase Info: activating english \listfigurename on input line 36.
+Package scrbase Info: activating english \listtablename on input line 36.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count381
+\scratchdimen=\dimen326
+\scratchbox=\box81
+\nofMPsegments=\count382
+\nofMParguments=\count383
+\everyMPshowfont=\toks56
+\MPscratchCnt=\count384
+\MPscratchDim=\dimen327
+\MPnumerator=\count385
+\makeMPintoPDFobject=\count386
+\everyMPtoPDFconversion=\toks57
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+LaTeX Info: Redefining \microtypecontext on input line 36.
+Package microtype Info: Applying patch `item' on input line 36.
+Package microtype Info: Applying patch `toc' on input line 36.
+Package microtype Info: Applying patch `eqnum' on input line 36.
+Package microtype Info: Applying patch `footnote' on input line 36.
+Package microtype Info: Generating PDF output.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 36.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LibertinusSerif-TLF' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package hyperref Info: Link coloring ON on input line 36.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count387
+)
+LaTeX Info: Redefining \ref on input line 36.
+LaTeX Info: Redefining \pageref on input line 36.
+LaTeX Info: Redefining \nameref on input line 36.
+
+(./Gilbert.out) (./Gilbert.out)
+\@outlinefile=\write6
+\openout6 = `Gilbert.out'.
+
+Class scrartcl Info: loading recommended package `bookmark'.
+(scrartcl)           Using `bookmark' together with `hyperref' is recommended,
+(scrartcl)           because of handling of possible bookmark level gaps.
+(scrartcl)           You can avoid loading `bookmark' with KOMA-Script option
+(scrartcl)           `bookmarkpackage=false' before \begin{document} and
+(scrartcl)           you can avoid this message adding:
+(scrartcl)             \usepackage{bookmark}
+(scrartcl)           before \begin{document} on input line 36.
+
+(/usr/share/texlive/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+
+(/usr/share/texlive/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count388
+))
+\c@mv@tabular=\count389
+\c@mv@boldtabular=\count390
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* hratio: 1:1
+* vratio: 1:1
+* modes: includehead includefoot heightrounded 
+* h-part:(L,W,R)=(72.26999pt, 452.9679pt, 72.26999pt)
+* v-part:(T,H,B)=(28.45274pt, 788.14136pt, 28.45274pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=452.9679pt
+* \textheight=702.19824pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-43.81725pt
+* \headheight=17.0pt
+* \headsep=20.40001pt
+* \topskip=11.0pt
+* \footskip=47.6pt
+* \marginparwidth=59.7508pt
+* \marginparsep=12.8401pt
+* \columnsep=24.0pt
+* \skip\footins=8.09998pt plus 3.5996pt minus 1.80037pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumntrue
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count391
+(./CONFERENCE.tex) (./AUTHOR.tex)
+\verbatim@out=\write7
+\openout7 = `Gilbert.abs'.
+
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 15.55197pt on input line 78.
+LaTeX Font Info:    Trying to load font information for T1+LibertinusSans-TLF o
+n input line 78.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/T1LibertinusSans-TLF.
+fd
+File: T1LibertinusSans-TLF.fd 2020/08/22 (autoinst) Font definitions for T1/Lib
+ertinusSans-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/n' will be
+(Font)              scaled to size 15.55197pt on input line 78.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LibertinusSans-TLF' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
+(Font)              scaled to size 15.55197pt on input line 78.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
+(Font)              scaled to size 9.0pt on input line 78.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 10.79997pt on input line 78.
+LaTeX Font Info:    Calculating math sizes for size <10.79997> on input line 78
+.
+<<ot1.cmap>> (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.55994> not available
+(Font)              size <8> substituted on input line 78.
+
+<<oml.cmap>>
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.55994> not available
+(Font)              size <8> substituted on input line 78.
+
+<<oms.cmap>>
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.55994> not available
+(Font)              size <8> substituted on input line 78.
+
+<<omx.cmap>>
+LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 7.55994pt on input line 78.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 12.96002pt on input line 78.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 7.50009pt on input line 78.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
+(Font)              scaled to size 7.50009pt on input line 78.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
+(Font)              scaled to size 9.0pt on input line 78.
+ (./Gilbert.abs)
+LaTeX Font Info:    Calculating math sizes for size <7.50009> on input line 78.
+
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.50009> not available
+(Font)              size <8> substituted on input line 78.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75005> not available
+(Font)              size <5> substituted on input line 78.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.50009> not available
+(Font)              size <8> substituted on input line 78.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75005> not available
+(Font)              size <5> substituted on input line 78.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.50009> not available
+(Font)              size <8> substituted on input line 78.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75005> not available
+(Font)              size <5> substituted on input line 78.
+
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 5.25003pt on input line 78.
+
+Package hyperref Warning: Ignoring empty anchor on input line 78.
+
+
+Package hyperref Warning: Ignoring empty anchor on input line 78.
+
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
+nput line 78.
+(/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd)
+
+Package hyperref Warning: Ignoring empty anchor on input line 78.
+
+LaTeX Font Info:    Trying to load font information for U+fontawesomebrands1 on
+ input line 78.
+(/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomebrands1.fd)
+LaTeX Font Info:    Font shape `U/fontawesomebrands1/solid/n' in size <7.50009>
+ not available
+(Font)              Font shape `U/fontawesomebrands1/regular/n' tried instead o
+n input line 78.
+
+
+Package hyperref Warning: Ignoring empty anchor on input line 78.
+
+<doclicense-CC-by-88x31.pdf, id=17, 90.3375pt x 31.61812pt>
+File: doclicense-CC-by-88x31.pdf Graphic file (type pdf)
+<use doclicense-CC-by-88x31.pdf>
+Package pdftex.def Info: doclicense-CC-by-88x31.pdf  used on input line 78.
+(pdftex.def)             Requested size: 32.37479pt x 11.33087pt.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 4.5pt on input line 78.
+LaTeX Font Info:    Trying to load font information for TS1+LibertinusSerif-TLF
+ on input line 78.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/TS1LibertinusSerif-TL
+F.fd
+File: TS1LibertinusSerif-TLF.fd 2020/08/22 (autoinst) Font definitions for TS1/
+LibertinusSerif-TLF.
+)
+LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 4.5pt on input line 78.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LibertinusSerif-TLF' (encoding: TS1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Overfull \hbox (3.75005pt too wide) in paragraph at lines 78--78
+[][][][]||$[]$ $[]$|  
+ []
+
+(./01-Introduction.tex
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 1.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
+(Font)              scaled to size 12.96002pt on input line 1.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
+(Font)              scaled to size 10.79997pt on input line 3.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
+(Font)              scaled to size 9.0pt on input line 5.
+LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 9.0pt on input line 12.
+
+Underfull \hbox (badness 8189) in paragraph at lines 87--92
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) A dis-crete \T1/LibertinusSerif-TLF/m/it/
+9 (+20) path \T1/LibertinusSerif-TLF/m/n/9 (+20) is an ar-ray of points, $\OML/
+cmm/m/it/9 ! \OT1/cmr/m/n/9 =
+ []
+
+
+Underfull \hbox (badness 3492) in paragraph at lines 93--98
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) A \T1/LibertinusSerif-TLF/m/it/9 (+20) cu
+boid \T1/LibertinusSerif-TLF/m/n/9 (+20) is a rect-an-gu-lar re-gion of side le
+ngths
+ []
+
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 6.0pt on input line 102.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 5.0pt on input line 102.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/n' will be
+(Font)              scaled to size 8.21255pt on input line 104.
+LaTeX Font Info:    Calculating math sizes for size <8.21255> on input line 104
+.
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <4.10628> not available
+(Font)              size <5> substituted on input line 104.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <4.10628> not available
+(Font)              size <5> substituted on input line 104.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <4.10628> not available
+(Font)              size <5> substituted on input line 104.
+
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
+(Font)              scaled to size 8.21255pt on input line 104.
+[1
+
+
+ </usr/share/texlive/texmf-dist/tex/latex/doclicense/images/doclicense-CC-by-88
+x31.pdf>]) (./02-Related-Work.tex [2]) (./03-Algorithm.tex
+<simple_hampath.pdf, id=100, 414.04688pt x 338.76563pt>
+File: simple_hampath.pdf Graphic file (type pdf)
+<use simple_hampath.pdf>
+Package pdftex.def Info: simple_hampath.pdf  used on input line 81.
+(pdftex.def)             Requested size: 214.48395pt x 175.49231pt.
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
+(Font)              scaled to size 8.21255pt on input line 83.
+
+Underfull \hbox (badness 10000) in paragraph at lines 83--83
+[][]\T1/LibertinusSans-TLF/b/n/8.21255 (+20) Figure 1:[] \T1/LibertinusSans-TLF
+/m/n/8.21255 (+20) Il-lus-tra-tive ex-am-ples of Hamil-to-nian paths
+ []
+
+
+Underfull \hbox (badness 3635) in paragraph at lines 83--83
+\T1/LibertinusSans-TLF/m/n/8.21255 (+20) height/width that are even/even, even/
+odd and odd-/odd,
+ []
+
+LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/it' will be
+(Font)              scaled to size 8.21255pt on input line 99.
+[3 <./simple_hampath.pdf>]
+<gilbert2d_mainsubdiv.pdf, id=124, 526.96875pt x 263.48438pt>
+File: gilbert2d_mainsubdiv.pdf Graphic file (type pdf)
+<use gilbert2d_mainsubdiv.pdf>
+Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 147.
+(pdftex.def)             Requested size: 214.48395pt x 107.24127pt.
+<config_production.pdf, id=125, 1053.9375pt x 602.25pt>
+File: config_production.pdf Graphic file (type pdf)
+<use config_production.pdf>
+Package pdftex.def Info: config_production.pdf  used on input line 157.
+(pdftex.def)             Requested size: 452.9679pt x 258.84299pt.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 199.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
+(Font)              scaled to size 9.0pt on input line 204.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/LibertinusSerif-TLF/m/sc/9'.
+(microtype)             Ignoring protrusion settings for this character.
+<gilbert2d_examples.pdf, id=136, 301.125pt x 225.84375pt>
+File: gilbert2d_examples.pdf Graphic file (type pdf)
+<use gilbert2d_examples.pdf>
+Package pdftex.def Info: gilbert2d_examples.pdf  used on input line 258.
+(pdftex.def)             Requested size: 214.48395pt x 160.87053pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[4 <./gilbert2d_mainsubdiv.pdf>]
+<gilbert3d_explode.pdf, id=179, 210.7875pt x 271.0125pt>
+File: gilbert3d_explode.pdf Graphic file (type pdf)
+<use gilbert3d_explode.pdf>
+Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 288.
+(pdftex.def)             Requested size: 214.48395pt x 275.77156pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5 <./config_production.pdf> <./gilbert2d_examples.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert2d_examples.pdf): PDF inclusion: multip
+le pdfs with page group included in a single page
+> <./gilbert3d_explode.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert3d_explode.pdf): PDF inclusion: multipl
+e pdfs with page group included in a single page
+>]
+<gilbert3d_case.pdf, id=228, 752.8125pt x 526.96875pt>
+File: gilbert3d_case.pdf Graphic file (type pdf)
+<use gilbert3d_case.pdf>
+Package pdftex.def Info: gilbert3d_case.pdf  used on input line 369.
+(pdftex.def)             Requested size: 452.9679pt x 317.08426pt.
+<gilbert3d_eccentric.pdf, id=233, 301.125pt x 263.48438pt>
+File: gilbert3d_eccentric.pdf Graphic file (type pdf)
+<use gilbert3d_eccentric.pdf>
+Package pdftex.def Info: gilbert3d_eccentric.pdf  used on input line 410.
+(pdftex.def)             Requested size: 214.48395pt x 187.68228pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<gilbert3d_examples.pdf, id=236, 700.11563pt x 398.99063pt>
+File: gilbert3d_examples.pdf Graphic file (type pdf)
+<use gilbert3d_examples.pdf>
+Package pdftex.def Info: gilbert3d_examples.pdf  used on input line 430.
+(pdftex.def)             Requested size: 452.9679pt x 258.14757pt.
+[6] [7 <./gilbert3d_case.pdf>]
+<gilbert2d_pathological.pdf, id=1028, 248.42813pt x 75.28125pt>
+File: gilbert2d_pathological.pdf Graphic file (type pdf)
+<use gilbert2d_pathological.pdf>
+Package pdftex.def Info: gilbert2d_pathological.pdf  used on input line 532.
+(pdftex.def)             Requested size: 214.48395pt x 64.9956pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./04-Results.tex
+<datacollapse_2d.pdf, id=1034, 361.35pt x 216.81pt>
+File: datacollapse_2d.pdf Graphic file (type pdf)
+<use datacollapse_2d.pdf>
+Package pdftex.def Info: datacollapse_2d.pdf  used on input line 43.
+(pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<datacollapse_3d.pdf, id=1035, 361.35pt x 216.81pt>
+File: datacollapse_3d.pdf Graphic file (type pdf)
+<use datacollapse_3d.pdf>
+Package pdftex.def Info: datacollapse_3d.pdf  used on input line 56.
+(pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
+
+Underfull \hbox (badness 1132) in paragraph at lines 63--63
+\T1/LibertinusSans-TLF/m/n/8.21255 (+20) and the Gilbert curve of com-bi-na-tio
+ns for $\OT1/cmr/m/n/8 ((26\OML/cmm/m/it/8 ; \OT1/cmr/m/n/8 32\OML/cmm/m/it/8 ;
+ \OT1/cmr/m/n/8 38) \OMS/cmsy/m/n/8 ^^B
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<datacollapse_3d_detail.pdf, id=1036, 361.35pt x 216.81pt>
+File: datacollapse_3d_detail.pdf Graphic file (type pdf)
+<use datacollapse_3d_detail.pdf>
+Package pdftex.def Info: datacollapse_3d_detail.pdf  used on input line 69.
+(pdftex.def)             Requested size: 214.48395pt x 128.69092pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8 <./gilbert3d_eccentric.pdf>]) (./05-Conclusion.tex [9 <./gilbert3d_examples.
+pdf> <./gilbert2d_pathological.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert2d_pathological.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
+> <./datacollapse_2d.pdf
+
+pdfTeX warning: pdflatex (file ./datacollapse_2d.pdf): PDF inclusion: multiple 
+pdfs with page group included in a single page
+>]
+Underfull \hbox (badness 2753) in paragraph at lines 20--24
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) Our re-cur-sive im-ple-men-ta-tion pro-vi
+des a proof-of-
+ []
+
+) (./Gilbert.bbl
+Underfull \hbox (badness 2726) in paragraph at lines 27--31
+\T1/LibertinusSerif-TLF/m/n/9 (+20) New York, 1994. URL: [][]$https : / / books
+ . google . com /
+ []
+
+
+Underfull \hbox (badness 2293) in paragraph at lines 32--38
+\T1/LibertinusSerif-TLF/m/n/9 (+20) mazurkiewicz the-o-rem,  2012. URL: [][]$ht
+tps : / / api .
+ []
+
+LaTeX Font Info:    Trying to load font information for T1+LibertinusMono-TLF o
+n input line 50.
+
+(/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/T1LibertinusMono-TLF.
+fd
+File: T1LibertinusMono-TLF.fd 2020/08/22 (autoinst) Font definitions for T1/Lib
+ertinusMono-TLF.
+)
+LaTeX Font Info:    Font shape `T1/LibertinusMono-TLF/m/n' will be
+(Font)              scaled to size 7.65005pt on input line 50.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LibertinusMono-TLF' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package microtype Info: Character `guilsinglleft ' is missing
+(microtype)             in font `T1/LibertinusMono-TLF/m/n/9'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `guilsinglright ' is missing
+(microtype)             in font `T1/LibertinusMono-TLF/m/n/9'.
+(microtype)             Ignoring protrusion settings for this character.
+
+Underfull \hbox (badness 5490) in paragraph at lines 44--53
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) D. Lera, Y. Sergeyev,  Lip-s-chitz and hö
+lder
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 44--53
+\T1/LibertinusSerif-TLF/m/n/9 (+20) plied Nu-mer-i-cal Math-e-mat-ics 60 (2010)
+ 115--129.
+ []
+
+
+Underfull \hbox (badness 1881) in paragraph at lines 75--83
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) R. Nie-der-meier, K. Rein-hardt, P. Sande
+rs,  To-
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 75--83
+\T1/LibertinusSerif-TLF/m/n/9 (+20) wards op-ti-mal lo-cal-ity in mesh-indexing
+s,  Dis-
+ []
+
+
+Underfull \hbox (badness 4595) in paragraph at lines 75--83
+\T1/LibertinusSerif-TLF/m/n/9 (+20) crete Ap-plied Math-e-mat-ics 117 (2002) 21
+1--237.
+ []
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 88--96
+\T1/LibertinusSerif-TLF/m/n/9 (+20) URL: [][]$https : / / doi . org / 10 . 1093
+ / bioinformatics / btp152$[][].
+ []
+
+
+Underfull \hbox (badness 1540) in paragraph at lines 134--139
+\T1/LibertinusSerif-TLF/m/n/9 (+20) curves are there? (2016). doi:[][]$\T1/Libe
+rtinusMono-TLF/m/n/9 10 . 48550 / arXiv .
+ []
+
+[10 <./datacollapse_3d.pdf> <./datacollapse_3d_detail.pdf
+
+pdfTeX warning: pdflatex (file ./datacollapse_3d_detail.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
+>]
+Underfull \hbox (badness 1412) in paragraph at lines 172--177
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) H. Haverkort, Re-cur-sive tilings and spa
+ce-filling
+ []
+
+
+Underfull \hbox (badness 4846) in paragraph at lines 196--200
+[]\T1/LibertinusSerif-TLF/m/n/9 (+20) D. Moore, Fast hilbert curve gen-er-a-tio
+n, sort-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--200
+\T1/LibertinusSerif-TLF/m/n/9 (+20) ing and range queries, 2016. URL: [][]$http
+s :
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 196--200
+\T1/LibertinusSerif-TLF/m/n/9 (+20) / / web . archive . org / web / 20160604090
+636 / http : / / www .
+ []
+
+
+Underfull \hbox (badness 2150) in paragraph at lines 201--212
+\T1/LibertinusSerif-TLF/m/n/9 (+20) al-go-rithms,  Chi-nese Jour-nal of Elec-tr
+on-ics 31
+ []
+
+
+Underfull \hbox (badness 3029) in paragraph at lines 219--224
+\T1/LibertinusSerif-TLF/m/n/9 (+20) a-bil-ity and Its Ap-pli-ca-tions, Birkhäus
+er Boston,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--224
+\T1/LibertinusSerif-TLF/m/n/9 (+20) 2013. URL: [][]$https : / / books . google 
+. com / books ? id =
+ []
+
+
+Underfull \hbox (badness 1005) in paragraph at lines 225--229
+\T1/LibertinusSerif-TLF/m/n/9 (+20) i-cal-ity, Ad-vanced physics texts, Im-pe-r
+ial Col-lege
+ []
+
+) (./07-Appendix.tex
+<gilbert2d_eccentric_appendix.pdf, id=1223, 338.76563pt x 248.42813pt>
+File: gilbert2d_eccentric_appendix.pdf Graphic file (type pdf)
+<use gilbert2d_eccentric_appendix.pdf>
+Package pdftex.def Info: gilbert2d_eccentric_appendix.pdf  used on input line 3
+7.
+(pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
+ [11 <./gilbert2d_eccentric_appendix.pdf>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 133.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 133.
+
+<gilbert3d_eccentric_appendix_s0.pdf, id=1264, 263.48438pt x 188.20313pt>
+File: gilbert3d_eccentric_appendix_s0.pdf Graphic file (type pdf)
+<use gilbert3d_eccentric_appendix_s0.pdf>
+Package pdftex.def Info: gilbert3d_eccentric_appendix_s0.pdf  used on input lin
+e 137.
+(pdftex.def)             Requested size: 214.48395pt x 153.21043pt.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 202.
+
+<gilbert3d_eccentric_appendix_s1.pdf, id=1265, 338.76563pt x 248.42813pt>
+File: gilbert3d_eccentric_appendix_s1.pdf Graphic file (type pdf)
+<use gilbert3d_eccentric_appendix_s1.pdf>
+Package pdftex.def Info: gilbert3d_eccentric_appendix_s1.pdf  used on input lin
+e 207.
+(pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
+[12 <./gilbert3d_eccentric_appendix_s0.pdf> <./gilbert3d_eccentric_appendix_s1.
+pdf
+
+pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_appendix_s1.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 260.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 260.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 260.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 260.
+
+<gilbert3d_eccentric_appendix_s2.pdf, id=1345, 338.76563pt x 248.42813pt>
+File: gilbert3d_eccentric_appendix_s2.pdf Graphic file (type pdf)
+<use gilbert3d_eccentric_appendix_s2.pdf>
+Package pdftex.def Info: gilbert3d_eccentric_appendix_s2.pdf  used on input lin
+e 264.
+(pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
+) (./08-Appendix-Alg.tex [13
+
+ <./gilbert3d_eccentric_appendix_s2.pdf>]
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
+(Font)              scaled to size 6.0pt on input line 16.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/LibertinusSerif-TLF/m/sc/6'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/sc' will be
+(Font)              scaled to size 5.0pt on input line 16.
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/LibertinusSerif-TLF/m/sc/5'.
+(microtype)             Ignoring protrusion settings for this character.
+ [14
+
+
+]
+[15
+
+] [16
+
+]
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
+(Font)              scaled to size 6.0pt on input line 253.
+LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
+(Font)              scaled to size 5.0pt on input line 253.
+) [17
+
+] (./Gilbert.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 1.24995pt have occurred.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `Gilbert.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+ ) 
+Here is how much of TeX's memory you used:
+ 42610 strings out of 480171
+ 832096 string characters out of 5894489
+ 1216914 words of memory out of 5000000
+ 59131 multiletter control sequences out of 15000+600000
+ 661539 words of font info for 412 fonts, out of 8000000 for 9000
+ 59 hyphenation exceptions out of 8191
+ 122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_tll2u3.e
+nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_cb34qf.
+enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_sfissr
+.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_hvvyj
+b.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_mfad
+fl.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5brands1.e
+nc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}{/u
+sr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_rlktsf.enc}{/
+usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_nufysp.enc}{
+/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_75t36g.enc}
+</usr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Bran
+ds-Regular.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/fontawesome5/F
+ontAwesome5Free-Solid.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lib
+ertinus-type1/LibertinusMono-Regular.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/libertinus-type1/LibertinusSans-Bold.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/libertinus-type1/LibertinusSans-Italic.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/libertinus-type1/LibertinusSans-Regular.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/libertinus-type1/Libertinu
+sSerif-Bold.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/libertinus-ty
+pe1/LibertinusSerif-Italic.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/libertinus-type1/LibertinusSerif-Regular.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msbm10.pfb>
+Output written on Gilbert.pdf (17 pages, 2019742 bytes).
+PDF statistics:
+ 1628 PDF objects out of 1728 (max. 8388607)
+ 108 named destinations out of 1000 (max. 500000)
+ 105810 words of extra memory for PDF output out of 106986 (max. 10000000)
+

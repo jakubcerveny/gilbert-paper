@@ -54,7 +54,7 @@ algorithm, side lengths are chosen so as to preserve the possibility of a Hamilt
 Should the lengths of the cuboid being subdivided preclude a Hamiltonian path from occurring, the lengths
 of the subdivided cuboids are chosen
 so that all but one will preserve the possibility of a Hamiltonian path.
-In this case, since only a single cuboid absorbs the impossibility of a Hamiltonian path,
+In this case, since only a single cuboid absorbs the impossibility of a Hamiltonian path from occurring,
 and this process is recursively applied, there will be a single jump, or \textit{notch},
 in the resulting curve, globally.
 
@@ -112,7 +112,7 @@ volume is odd, or different parity if the volume is even.
 
 For a path starting at $(0,0,0)$ and ending $|\alpha|$ steps in one of the axis-aligned dimensions,
 then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
-Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with volumes $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
+Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with areas $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
 where a red cross indicating a precluded endpoint.
 
 Without loss of generality, we will assume a curve starts from position $p_s=(0,0,0)$ and has proposed
@@ -121,10 +121,12 @@ We state, without proof, that
 a Hamiltonian path is always possible from $p_s$ to $p_e$ when $|\alpha|$ is even or when all of $|\alpha|$, $|\beta|$ and $|\gamma|$
 are odd  $(|\alpha| \cdot (1 - |\beta| \cdot |\gamma|) \equiv 0 \bmod 2)$.
 
-With this condition, any cuboid subdivision will always have a Hamiltonian path within it and we can recreate a Hamiltonian
-path in the larger cuboid by connecting endpoints from the ending point of one cuboid to the starting point of the succeeding cuboid.
-For cuboids that violate this condition, there will be a required notch and
-an feasible cuboid subdivision is possible
+When the condition $(|\alpha| \cdot (1 - |\beta| \cdot |\gamma|) \equiv 0 \bmod 2)$ is met ($|\alpha|$ even or all of $|\alpha|, |\beta|, |\gamma|$ odd)
+any cuboid subdivision will always have a Hamiltonian path feasible within it.
+We can recreate a Hamiltonian path in the larger cuboid region by connecting neighboring endpoints in each of the adjacent subdivided regions.
+
+For cuboids that violate this condition, there will be a required notch.
+A cuboid subdivision with a feasible Hamiltonian path is possible
 for all but one of the cuboid subdivisions, recursively limiting the notch violation to a single point.
 
 
@@ -168,25 +170,26 @@ by dividing the height-like dimension of the original region ($\beta$ in Figure 
 Since the width-like length of the subdivided $A$ and $C$ block is even ($\beta_2$), there is a guaranteed valid Hamiltonian path 
 in both.
 
-Should the original width-like length be even ($\alpha$ in Figure \ref{fig:main2dsubdiv}), the $C$ block will continue to have 
+Should the original width-like length be even ($\alpha$ in Figure \ref{fig:main2dsubdiv}), the $B$ block will continue to have 
 a valid Hamiltonian path.
-If the original width-like dimension is odd, a Hamiltonian path is not possible and there is a forced notch that will appear in the subdivided block $C$.
+If the original width-like dimension is odd, a Hamiltonian path is not possible and there is a forced notch that will appear in the subdivided block $B$.
 
 Figure \ref{fig:production2d} gives examples of the different parity conditions for the original area,
 as well as the different conditions when the $A$ and $C$ subdivided areas are coerced into having even parity.
 Figure \ref{fig:production2d} also shows when a Hamiltonian
-path is not possible, indicated by a red cross, and illustrates how the notch is pushed into the $C$ block
+path is not possible, indicated by a red cross, and illustrates how the notch is pushed into the $B$ block
 under these conditions.
 
 If a subdivided block becomes too long in its width-like dimension, the block is divided in half and the recursion
 proceeds as normal.
+
 Even sides are only enforced if the length is larger than 2, with a length 2 or smaller representing the base
 case.
-The base case enumerates paths in the axis direction of length greater than one.
+%The base case enumerates paths in the axis direction of length greater than one.
 
 % redundant...
 Since $A$ and $C$ are chosen to have an even width-like local axis length, no new notches are introduced and any
-obligatory notch is effectively ``pushed'' into the $C$ block.
+obligatory notch is effectively ``pushed'' into the $B$ block.
 
 
 %The $A$ block is chosen to to have a preference for even height dimension
@@ -266,6 +269,7 @@ The $(8 \times 8)$ Gilbert curve in Figure \ref{fig:gilbert2d_examples} (i) is i
 The $(18 \times 6)$ (ii) curve highlights a horizontal split when the $\alpha$, or width-like, dimension becomes $\frac{3}{2}$ larger than the
 $\beta$, or height-like, dimension.
 For the $(13 \times 8)$ (iii) Gilbert curve, a Hamiltonian path is not possible and the algorithm inserts a notch in a best effort approach to realize the curve.
+The $(14 \times 14)$ (iv) realization highlights the main subdivision scheme used.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %            _ ____              __ _____     __
@@ -377,7 +381,7 @@ When considering a cuboid region to trace out a Gilbert curve on, there are conc
 
 
 For the \textit{bulk recursion case}, there are three main shape templates, $J_0$, $J_1$ and $J_2$.
-An atlas of which $J$-split to choose, what parity each of the subdivided cuboid regions, and how
+An atlas of which $J$-split to choose, what parity each of the subdivided cuboid regions has, and how
 to connect each of the subdivisions, is shown in Figure \ref{fig:gilbert3DCase}.
 Figure \ref{fig:gilbert3DCase} also enumerates the local coordinate system for each of the sub-cuboid
 regions, displayed under each of the exploded sub-cuboid region volumes.
@@ -414,9 +418,9 @@ Figure \ref{fig:gilbert3DEccentricCase} shows the three shape templates, $S_0$, 
 points, for the different conditions when one axis length is significantly different from the others.
 Pseudo-code is provided for each of the $S$-split functions in Appendix \ref{SSplitFunctions}.
 
-When $|\alpha| > \frac{5}{3} \max(|\beta|, |\gamma|)$, the $S_0$ template is used to partition the cuboid the $\alpha$ axis.
+When $|\alpha| > \frac{5}{3} \max(|\beta|, |\gamma|)$, the $S_0$ template is used to partition the cuboid along the $\alpha$ axis.
 In the other cases, when $|\gamma| > \frac{3}{2} \max(|\alpha|, |\beta|)$ or $|\beta| < \frac{2}{3} \min(|\alpha|, |\gamma|)$ the $S_1$
-template is used and the $S_2$ template is used when
+template is used. The $S_2$ template is used when
 $|\alpha| < \frac{2}{3} \min(|\beta|, |\gamma|)$,
 $|\gamma| < \frac{2}{3} \min(|\alpha|, |\beta|)$ or
 $|\beta| > \frac{3}{2} \max(|\alpha|, |\gamma|)$.
@@ -456,7 +460,7 @@ That is:
 
 $$
 \begin{array}{l}
-  \text{defect}(|\alpha|, |\beta|, |\gamma|) \overset{\mathrm{def}}{=} \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ \min(|\alpha|, |\beta|, |\gamma|) }
+  \text{defect}(|\alpha|, |\beta|, |\gamma|) \overset{\mathrm{def}}{=} \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ (\min(|\alpha|, |\beta|, |\gamma|))^3 }
 \end{array}
 $$
 
@@ -527,9 +531,9 @@ and make the initial subdivided cuboids as cube like as possible.
   \centering
   \includegraphics[width=\linewidth]{gilbert2d_pathological.pdf}
   \caption{ Two examples of corner cases and pathological conditions for the Gilbert curve.
-            (i) An $11 \times 2$ Gilbert curve where the $\alpha$ side length is 11, precluding
-            a notch free path but for the $((2k+1) \times 2)$ case, the notch shows up as a hook
-            at the end. (ii) A $2 \times 7$ Gilbert that reduces to a snake curve for the $(2 \times k)$ case. }
+            (i) An $(11 \times 2)$ Gilbert curve. The $|\alpha|$ side length of 11 precludes
+            a notch free path. For the $((2k+1) \times 2)$ case, the notch shows up as a hook
+            at the end. (ii) A $(2 \times 7)$ Gilbert curve. For dimensions $(2 \times k)$, the curve reduces to a snake curve.  }
   \label{fig:gilbert2d_pathological}
 \end{figure}
 
@@ -541,7 +545,7 @@ No Hamiltonian path is possible for paths of side lengths
 $((2k+1),2)$ and end points $(0,0)$ to $(2k,0)$.
 As an artifact of the algorithm,
 a "hook" is formed, causing the last two points to be in different locations.
-See Figure \ref{fig:oddxtwo_hook.pdf} for an example configuration.
+See Figure \ref{fig:gilbert2d_pathological} for an example configuration.
 
 The hook formed for $((2k+1),2)$ configurations can be removed for a diagonal move by swapping the last two endpoints.
 For the sake of clarity and brevity, we leave the algorithm as is, without adding extra complication for this special case.

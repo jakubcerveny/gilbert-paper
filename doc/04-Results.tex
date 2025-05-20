@@ -31,10 +31,12 @@ We use the term \textit{data collapse} for the process of normalizing the $x$ fi
 \end{algorithm}
 
 Algorithm \ref{alg:bin_and_datacollapse} gives pseudo code detailing this process.
-Algorithm \ref{alg:bin_and_datacollapse} first calculates the sum of all embedded Euclidean distances for a linear curve distance, $B$,
-as well as the frequency of of each linear curve distance, $M$.
-The sum, $B$, is averaged using $M$ to create the average embedded Euclidean distance, $S$, for a given linear length along the
-curve and the function $G$ is calculated by normalizing the $x$ value and applying the scaling function $x^{-(1+1/d)}$.
+Algorithm \ref{alg:bin_and_datacollapse} first calculates the sum of all embedded Euclidean distances, binning by linear curve distance,
+and placing them in the array $B$.
+The frequency of how many entries are summed in $B$ is stored in the array $M$.
+Each sum in $B$ is averaged using the corresponding entry in $M$ to create the average embedded Euclidean distance, $S$.
+The function $G$ is calculated by setting the normalized index distance entry to the corresponding average Euclidean distance in $S$ multiplied
+by the scaling function $x^{-(1+1/d)}$.
 
 \begin{figure}[h]
   \centering
@@ -95,7 +97,8 @@ $$
 $$
 
 Where $|p_i - p_j|$ is the standard Euclidean norm.
-Replacing the above with an inequality leads to a \textit{H{\"o}lder condition}.
+
+%Replacing the above with an inequality leads to a \textit{H{\"o}lder condition}.
 
 Modulating the average embedded distance by the scaling function effectively
 normalizes the value by how space filling we would expect it to be.
