@@ -34,44 +34,59 @@ nearby index points in the domain lead to
 scaled nearby points in the output embedded dimension.
 The \textit{locality} feature means that nearby index points
 cluster in the mapped higher dimensional space.
-This feature can be used to highlight one dimensional clustered data in higher dimensions.
+%This feature can be used to highlight one dimensional clustered data in higher dimensions.
 
-Wiener noticed that Lebesgue integration could be reduced from
+Since the Hilbert curve is continuous and space filling, many problems that are higher dimensional
+can be reduced to considering a single dimensional case by a clever use of the Hilbert
+curve. % to map a one dimensional space to a higher dimensional space.
+For example, Wiener noticed that Lebesgue integration could be reduced from
 higher dimensional integration to one-dimensional integration by the use of space filling curves \cite{wiener_1988}.
 Lera and Sergeyev have investigated reducing higher dimensional global optimization
 on functions satisfying the Lipschitz condition, reducing the multi dimensional optimization to a
 single dimension through a space filling curve mapping \cite{lera_2010}.
-Asano et al. discuss space filling curves and their uses in geometric data structures
-to create localized spatial access patterns \cite{asano_1997},
+
+The locality property of the Hilbert curve can help in situations where there is a desire to cluster higher dimension
+areas from a linear access pattern.
+For example, Asano et al. discuss space filling curves and their uses in geometric data structures
+to create localized spatial access patterns \cite{asano_1997}.
 B{\"o}hm, Perdacher and Plant
-show speedups in Cholesky decomposition and the Floyd-Warshall algorithm by reducing cache misses from
-a space filling curve data access schedule \cite{bohm_2021}.
+show speedups in Cholesky decomposition and the Floyd-Warshall algorithm by using a space
+filling curve data access schedule to reduce cache misses \cite{bohm_2021}.
 Niedermeier discusses a new method of H-indexing as a benefit over a Hilbert indexing scheme to
 create optimal locality for mesh indexing in \cite{niedermeier_2002}.
 
-Munroe used the locality property to create a stylized mapping of the internet protocol (IPv4) space \cite{xkcd_195}.
+Clustering can also help with data visualization by helping to pick out patterns for information that is
+formatted in one dimension and embedding it in a higher dimensional space.
+For example, Munroe used the locality property to create a stylized visualization
+of the internet protocol (IPv4) address space \cite{xkcd_195}.
 Anders used a Hilbert curve mapping to visualize the human genome as a 2d map \cite{anders_2009}.
 Cortesi has used a Hilbert curve to visualize binary files \cite{cortesi_2011}.
-Dafner, Cohen-Or and Matias use a space filling curve that is adapted to the image context to improve autocorrelation
-above what can be achieved with a Peano or Hilbert curve \cite{dafner_2000}.
 
+%Dafner, Cohen-Or and Matias use a space filling curve that is adapted to the image context to improve autocorrelation
+%above what can be achieved with a Peano or Hilbert curve \cite{dafner_2000}.
 
-Hamilton and Rau-Chaplin explore creating Hilbert curves with unequal side lengths in \cite{hamilton_2008} but
-require the side lengths to still be exact powers of two.
+Others have generalized the Hilbert curve, in various ways, to overcome the equal powers of two side length limitation.
+Hamilton and Rau-Chaplin explore creating Hilbert curves with \textit{unequal} side lengths in \cite{hamilton_2008} but
+require the individual side lengths to still be exact powers of two.
 Rong, Zhang and Lin \cite{rong_2021} proposed a generalization of the 2D Hilbert curve to arbitrary rectangular
-regions that involves subdividing smaller regions into nearest powers of to areas until a base case is reached.
+regions that involves subdividing smaller regions into nearest powers of to areas.
 They extend their method to 3D but require the depth dimension to be an exact power of two.
 
 In a website application and scanned note \cite{lutanho_2003}, Tautenhahn provided the basis for a generalized 2D
 space filling curve.
 Tautenhahn also included policies for when to subdivide regions preferentially in only one dimension, what we call
-\textit{eccentric splits}.
+\textit{eccentric splits}, that help to create more \textit{harmonious} curve realizations.
 Tautenhahn's exploration details the parity arguments necessary for when a subdivision scheme can be employed
 without creating diagonal moves (\textit{notches}).
-In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve, employing parity arguments
-and conditions under which eccentric splits should be employed.
 
-For recursive space filling curves, there is a choice in recursive or subdivision schemes.
+In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve.
+We further extend Tautenhahn's core ideas on when to use alternate subdivision schemes in the eccentric cases and
+extend them to 3d.
+Tautenhahn's unpublished reasoning behind the constants used in the 2d eccentric split case are recreated
+in Appendix \ref{appendix:eccentric_2d} \footnote{ Through personal communication with the authors, Tautenhahn
+kindly provided the reasoning for the constants used in the eccentric split }.
+
+For recursive space filling curves, there is leeway in choosing a subdivision scheme.
 Haverkort catalogs different techniques for constructing 3D Hilbert curves in \cite{haverkort_2016_inventory} and \cite{haverkort_2016_howmany}.
 
 
@@ -87,11 +102,11 @@ Voorhies defines the concept of \textit{coherence} to measure how many times a r
 to differentiate between zig-zag curves, Peano curves and Hilbert curves \cite{voorhies_1991}.
 
 Though recursive subdivision methods can be made to run in $O(\log N)$ time and space ($N \sim W \times H \times D$),
-this is undesirable under certain high performance conditions where a memory usage needs to be constant or
-where constant bounds matter.
+this is undesirable under certain high performance conditions where memory usage needs to be constant or
+where constant run-time bounds matter.
 Butz described a non-recursive, byte-oriented algorithm for Hilbert's space filling curve in \cite{butz_1971}.
 Moore later extended Butz's idea to create a fast non-recursive algorithm that includes range queries \cite{moore_2016}.
-Jia et al. provide further enhancements for efficient the 3D Hilbert curve encoding and decoding in \cite{jia_2022}.
+Jia et al. provide further enhancements for efficient 3D Hilbert curve encoding and decoding in \cite{jia_2022}.
 In Holzm{\"u}ller's bachelor thesis, an algorithm for average case $O(1)$ neighbor queries is shown \cite{holzmuller_2019}.
 
 For a more general treatment on self avoiding walks, the reader is referred to Madras and Slate \cite{madras_2013}.

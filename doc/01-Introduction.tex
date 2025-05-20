@@ -12,16 +12,16 @@ An overview of the benefits of the Gilbert curve are that it is:
   \item Valid on arbitrary rectangular regions
   \item Efficient at random access lookups ($O(\lg N)$)
   \item A conceptually straight forward algorithm
+  \item Able to create \textit{harmonious} realizations
   \item Able to realize curves without notches unnecessarily and limits the resulting curve
         to a single notch when forced
 \end{itemize}
 
-Further, we show:
+Further, we show that the Gilbert curve is:
 
 \begin{itemize}
   \item Equivalent to the Hilbert curve when dimensions are exact powers of 2
-  \item Measures of locality are preserved (Section X)
-  \item Comparison metrics to other space filling curves (Section X)
+  \item Locality preserving (Section 4)
 \end{itemize}
 
 Some drawbacks are that:
@@ -31,11 +31,14 @@ Some drawbacks are that:
         which may be undesirable for some applications requiring better than $O( \lg N)$
         memory usage or better constant bounds for runtime performance
   \item Might not adequately capture some features of a Hilbert curve
+  \item Might have stability or continuity issues, depending on the limiting family
+        of Gilbert curves chosen
 \end{itemize}
 
 
 Generalizations of the Hilbert curve to non power of two rectangular cuboid regions
 have been explored before but are overly complicated algorithmically, create unbalanced
+or \textit{inharmonious}
 curves and often don't generalize well to 3D.
 Our realization focuses on a conceptually simple algorithm which creates pleasing
 resulting curves and works in both 2D and 3D.
@@ -58,7 +61,7 @@ points from the source unit line remain close in the embedded space.
 The Gilbert curve algorithm works by choosing sub rectangular cuboid regions
 to recursively find a connecting path.
 If one extent of the cuboid becomes too large or small relative to the other lengths,
-a special subdivision is performed to try and make further subdivisions more cube-like.
+a special subdivision is performed to try and make further subdivisions more square or cube-like.
 Subdivisions are performed until a base case is reached and the lowest unit of the curve
 can be realized.
 
@@ -98,8 +101,9 @@ A self avoiding path of length $N$ that is confined to the rectangular region $(
 A discrete realization of the Hilbert curve as a path within a cuboid region has an additional \textit{local connectivity} feature.
 For our purposes, \textit{local connectivity}, or \textit{locality}, denotes the idea that if $\text{dist}_1(i,j)$ is small, then $\text{dist}_d(w_i,w_j)$
 should also be small by some measure, where $\text{dist}_d(\cdot,\cdot)$ is a distance function defined for dimension $d$.
-The condition of a Hamiltonian path through a cuboid region doesn't address locality and the Gilbert curve
-has additional features to make its locality similar to the Hilbert curve.
+
+The condition of a Hamiltonian path through a cuboid region doesn't address locality.
+The Gilbert curve has additional features to make its locality similar to the Hilbert curve.
 %We only provide some intuitive explanation for local connectivity here.
 %That is, nearness in the line domain should relate to nearness in the three dimensional range.
 We use metrics to get a handle on local connectivity in a discrete and finite setting and leave
@@ -114,21 +118,20 @@ their definition and usage until Section 5.
 %% sectoin might be too extraneous
 The concept of local connectivity gives one of the key characteristics of a space filling curve
 and differentiates it from other curves that can fill rectangular regions but don't do so in a
-locally connected way \footnote{For example, the \textit{zig-zag} curve that creates a straight line until
-it hits the bounds of the region to turn around and increment in the other dimensional lengths to fill 
-a rectangular region, is not space filling as it isn't locally connected.}.
-The local connectivity, or locality, is the feature that allows clustering in dimension one to
+locally connected way \footnote{For example, the \textit{zig-zag} curve that fills a rectangular region
+by creating horizontal lines that turn around at the edge boundaries. The zig-zag curve is not space
+filling as it isn't locally connected.}.
+The local connectivity, or locality, is the feature that allows points clustered in dimension one to
 remain clustered in higher dimensions.
 
 %\footnote{We refer the reader to
 %Sagan \cite{sagan_1994} for a more thorough introduction to local connectivity.}.
 
-If a cuboid region has one side larger or smaller than the maximum or minimum of the remaining two, respectively,
-for a given ratio, $\rho$, it is said to be \textit{eccentric}. % or $\rho-\textit{eccentric}$.
-For example is, if $\rho=\frac{3}{2}$ and $N _ x > \frac{3}{2} \text{max}(N_y, N_z)$, the cuboid region is said to be eccentric.
+If a cuboid region has one side that differs in size by more than a factor of $\sigma$, it is said to be \textit{eccentric}.
+For example, if $\sigma=(3/2)$ and $N _ x > (3/2) \text{max}(N_y, N_z)$, the cuboid region is said to be eccentric.
 
-In this paper, we talk about \textit{shape templates} as cuboid subdivision schemes, often with some choice as to whether
-to make the side lengths of the subdivided regions even or odd.
+In this paper, we talk about \textit{shape templates} that are cuboid subdivision schemes.
+Often there will be some choice as to whether to make the side lengths of the subdivided regions even or odd.
 For 2D, we use the term $U$-split to talk about the shape template used.
 For 3D, we use the term $J$-split to talk about the bulk recursion shape template and an $S$-split to
 talk about the shape templates used for eccentric cuboids.

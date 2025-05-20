@@ -20,45 +20,45 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--empty booktitle in kupers_2012
 Warning--empty pages in kupers_2012
 Warning--empty journal in haverkort_2016_howmany
-You've used 28 entries,
+You've used 27 entries,
             2918 wiz_defined-function locations,
-            1087 strings with 15925 characters,
-and the built_in function-call counts, 16085 in all, are:
-= -- 1260
-> -- 530
+            1078 strings with 15688 characters,
+and the built_in function-call counts, 15385 in all, are:
+= -- 1202
+> -- 503
 < -- 23
-+ -- 209
-- -- 172
-* -- 1794
-:= -- 2334
-add.period$ -- 69
-call.type$ -- 28
-change.case$ -- 195
-chr.to.int$ -- 27
-cite$ -- 31
-duplicate$ -- 1250
-empty$ -- 1239
-format.name$ -- 240
-if$ -- 3067
++ -- 199
+- -- 163
+* -- 1705
+:= -- 2234
+add.period$ -- 66
+call.type$ -- 27
+change.case$ -- 187
+chr.to.int$ -- 26
+cite$ -- 30
+duplicate$ -- 1201
+empty$ -- 1190
+format.name$ -- 228
+if$ -- 2934
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 230
-newline$ -- 130
-num.names$ -- 114
-pop$ -- 404
+missing$ -- 220
+newline$ -- 125
+num.names$ -- 110
+pop$ -- 391
 preamble$ -- 1
-purify$ -- 197
+purify$ -- 189
 quote$ -- 0
-skip$ -- 355
+skip$ -- 345
 stack$ -- 0
-substring$ -- 612
-swap$ -- 834
+substring$ -- 579
+swap$ -- 795
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 237
+type$ -- 228
 warning$ -- 3
-while$ -- 99
+while$ -- 95
 width$ -- 0
-write$ -- 395
+write$ -- 380
 (There was 1 error message)
