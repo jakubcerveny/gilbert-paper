@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  19 MAY 2025 23:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  20 MAY 2025 10:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1939,12 +1939,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 239.
 
-<gilbert3d_eccentric_appendix_s2.pdf, id=1254, 263.48438pt x 210.7875pt>
+<gilbert3d_eccentric_appendix_s2.pdf, id=1254, 338.76563pt x 248.42813pt>
 File: gilbert3d_eccentric_appendix_s2.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_appendix_s2.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_appendix_s2.pdf  used on input lin
 e 243.
-(pdftex.def)             Requested size: 214.48395pt x 171.5957pt.
+(pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
 [12 <./gilbert3d_eccentric_appendix_s1.pdf> <./gilbert3d_eccentric_appendix_s2.
 pdf
 
@@ -2034,9 +2034,9 @@ ist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/symbols/msbm10.pfb>
-Output written on Gilbert.pdf (17 pages, 1991106 bytes).
+Output written on Gilbert.pdf (17 pages, 2000012 bytes).
 PDF statistics:
- 1574 PDF objects out of 1728 (max. 8388607)
+ 1592 PDF objects out of 1728 (max. 8388607)
  105 named destinations out of 1000 (max. 500000)
  105800 words of extra memory for PDF output out of 106986 (max. 10000000)
 

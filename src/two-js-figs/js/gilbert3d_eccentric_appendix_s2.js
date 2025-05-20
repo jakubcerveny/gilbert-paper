@@ -1035,6 +1035,13 @@ function gilbert3d_eccentric_appendix_s2() {
   */
 
 
+  // DEBUG
+  // DEBUG
+  // DEBUG
+  //two.makeRectangle( two.width/2, two.height/2, two.width, two.height );
+  // DEBUG
+  // DEBUG
+  // DEBUG
 
 
   //------
@@ -1045,9 +1052,11 @@ function gilbert3d_eccentric_appendix_s2() {
   // h >> ...
   // |\beta| >> ...
   //
+  mathjax2twojs("S2", 40, two.height-40, latex_name_scale);
+
 
   scale = 35;
-  cxy = [130,220];
+  cxy = [110,180];
 
   let _s23 = scale*2/3;
   let _s13 = scale*1/3;
@@ -1065,39 +1074,26 @@ function gilbert3d_eccentric_appendix_s2() {
   cs = njs.mul( scale, [1,1,2] );
 
   mk_iso_cuboid( cxy[0]+2*dxy[0], cxy[1]+2*dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
-
   mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
-
-
-  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale, dock_co_a, vr, theta);
-  //mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
-
-  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
-  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale, dock_co_b, vr, theta);
-
-  mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
 
   let _sm = 0.8*scale;
   let _sl = 1.65*scale;
 
-  mathjax2twojs("S2", cxy[0]-5, 35, latex_name_scale);
+  mathjax2twojs("one_m_rho", cxy[0]+(1.2*scale), cxy[1]-155, latex_name_scale);
+  rbracket( [ cxy[0] + (1.15*scale), cxy[1]-155], _sl/2.65, 0.95*_sl,   theta*0.62);
 
-  mathjax2twojs("one_m_rho", cxy[0]+(1.15*scale), cxy[1]-150, latex_name_scale);
-  rbracket( [ cxy[0] + (1.05*scale), cxy[1]-150], _sl/2.65, 0.95*_sl,   theta*0.62);
-
-  mathjax2twojs("rho", cxy[0]+(2.25*scale), cxy[1]-120, latex_name_scale);
-  rbracket( [ cxy[0] + (2.10*scale), cxy[1]-118], _sl/3, _sm, theta*0.62);
-  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-40, latex_name_scale);
+  mathjax2twojs("rho", cxy[0]+(2.40*scale), cxy[1]-123, latex_name_scale);
+  rbracket( [ cxy[0] + (2.20*scale), cxy[1]-123], _sl/3, _sm, theta*0.62);
 
 
   // bottom s
-  mathjax2twojs("s", cxy[0]-(2.85*scale), cxy[1]-92, latex_name_scale);
-  rbracket( [cxy[0] - (2.5*scale), cxy[1]-96], _sl/3, _sl, Math.PI);
+  mathjax2twojs("s", cxy[0]-(3.0*scale), cxy[1]-92, latex_name_scale);
+  rbracket( [cxy[0] - (2.6*scale), cxy[1]-96], _sl/3, _sl, Math.PI);
 
 
 
-  mathjax2twojs("sigma_s", cxy[0]-(1.85*scale), cxy[1]-5, latex_name_scale);
-  rbracket( [cxy[0] - (1.35*scale), cxy[1]-20], _sl/3, _sl*1.6, Math.PI + theta*0.62);
+  mathjax2twojs("sigma_s", cxy[0]-(2.05*scale), cxy[1]-5, latex_name_scale);
+  rbracket( [cxy[0] - (1.50*scale), cxy[1]-15], _sl/3, _sl*1.6, Math.PI + theta*0.62);
 
 
 
@@ -1107,10 +1103,6 @@ function gilbert3d_eccentric_appendix_s2() {
   mathjax2twojs("one_half", cxy[0]+(0.5*scale), cxy[1]+35, latex_name_scale);
   mathjax2twojs("one_half", cxy[0]+(1.7*scale), cxy[1]+20, latex_name_scale);
 
-  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-90, 2*latex_name_scale);
-
-  //mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
-  //mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
 
 
 
@@ -1118,109 +1110,51 @@ function gilbert3d_eccentric_appendix_s2() {
   //------
   //------
 
-  // S_1
-  // d >> ...
-  // |\gamma| >> ...
-  //
-
-
-  /*
-  console.log(scale);
-
-  scale = 35;
-
-  cxy = [110,220];
-
-  dxyz = rodrigues([scale/2,0,0], vr, theta);
-  dxyz = rodrigues([scale,0,0], vr, theta);
-
-  dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-
-  //cs = njs.mul( scale, [0.5,1,0.5] );
-  cs = njs.mul( scale, [1.0,2,1.0] );
-
-  mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
-
-  mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
-
-  dxyz = rodrigues([0,0,scale/2], vr, theta);
-  dxyz = rodrigues([0,0,scale], vr, theta);
-
-  dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-
-  //cs = njs.mul( scale, [1,1,1] );
-  cs = njs.mul( scale, [2,2,2] );
-
-  mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
-
-  let _sm = 0.8*scale;
-  let _sl = 1.65*scale;
-
-  mathjax2twojs("rho", cxy[0]+(2.85*scale), cxy[1]-40, latex_name_scale);
-  rbracket( [ cxy[0] + (2.65*scale), cxy[1]-45], _sl/3, _sm);
-  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-40, latex_name_scale);
-
-
-  mathjax2twojs("one_m_rho", cxy[0]+(2.85*scale), cxy[1]-90, latex_name_scale);
-  rbracket( [ cxy[0] + (2.75*scale), cxy[1]-94], _sl/2, _sl);
-
-  rbracket( [cxy[0] + (0.8*scale), cxy[1]+15], _sl/3, _sm, - theta*0.86);
-  rbracket( [cxy[0] + (1.8*scale), cxy[1]+1], _sl/3, _sm, - theta*0.86);
-
-  // bottom s
-  mathjax2twojs("s", cxy[0]-(1.35*scale), cxy[1]+10, latex_name_scale);
-  rbracket( [cxy[0] - (1.1*scale), cxy[1]-1], _sl/3, _sl, -Math.PI/2 - theta*0.5);
-
-
-
-  mathjax2twojs("sigma_s", cxy[0]-(2.75*scale), cxy[1]-87, latex_name_scale);
-  rbracket( [cxy[0] - (2.0*scale), cxy[1]-90], _sl/3, _sl*1.6, Math.PI);
-
-  mathjax2twojs("one_half", cxy[0]+(0.5*scale), cxy[1]+35, latex_name_scale);
-  mathjax2twojs("one_half", cxy[0]+(1.7*scale), cxy[1]+20, latex_name_scale);
-
-  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-90, 2*latex_name_scale);
-
-  //mathjax2twojs("S1", cxy[0]-5, cxy[1]+30, latex_name_scale);
-  //mathjax2twojs("dgg", cxy[0]-51, cxy[1]+50, latex_eqn_scale);
-  */
-
-
-  //------
-  //------
-  //------
-
-  /*
   // S_2
   // w << ...
   // |\alpha| << ...
   //
 
-  cxy = [100,280];
+  cxy = [350,280];
 
-  dxyz = rodrigues([0,scale/2,0], vr, theta);
+  scale = 35;
+
+  dxyz = rodrigues([0,scale,0], vr, theta);
   dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-  cs = njs.mul( scale, [1,2,2] );
+  cs = njs.mul( scale, [1,2,3] );
   mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
 
-  dxyz = rodrigues([scale/2,0,0], vr, theta);
+  dxyz = rodrigues([scale,0,0], vr, theta);
   dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-  cs = njs.mul( scale, [0.5,1,2] );
-  mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
+  cs = njs.mul( scale, [0.5,1,3] );
+
+  mk_iso_cuboid( cxy[0]+0.5*dxy[0], cxy[1]+0.5*dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
 
   mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
 
-  mkdockconn(cxy, [0,1,0, _d,1+_d,_d], scale, dock_co_a, vr, theta);
 
-  mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
-  mkdockconn(cxy, [0,1-_D,0, _d,1-_d,_d], scale, dock_co_b, vr, theta);
+  mathjax2twojs("one_m_rho_s", cxy[0]+(0.2*scale), cxy[1]-175, latex_name_scale);
+  rbracket( [ cxy[0] + (0.1*scale), cxy[1]-175], _sl/2.65, 0.9*_sl,   theta*0.62);
 
-  mkdockconn(cxy, [1-_D,0,0, 1-_d,_d,_d], scale, dock_co_b, vr, theta);
+  mathjax2twojs("rho_s", cxy[0]+(1.30*scale), cxy[1]-145, latex_name_scale);
+  rbracket( [ cxy[0] + (1.10*scale), cxy[1]-143], _sl/3, 0.95*_sm, theta*0.62);
 
 
-  mathjax2twojs("S2", cxy[0]-15, cxy[1]+30, latex_name_scale);
-  mathjax2twojs("wll", cxy[0]-60, cxy[1]+50, latex_eqn_scale);
-  */
+  //mathjax2twojs("s_d_sigma", cxy[0]+(0.8*scale), cxy[1]+35, latex_name_scale, true);
+  //rbracket( [cxy[0] + (0.8*scale), cxy[1]+15], _sl/3, _sm, - theta*0.86);
+
+  mathjax2twojs("s_d_sigma", cxy[0]-(2.3*scale), cxy[1] - 5.6*scale , latex_name_scale, true);
+  rbracket( [cxy[0] - (1.8*scale), cxy[1] - 5.4*scale ], _sl/3, _sm, Math.PI - theta*0.86);
+
+  mathjax2twojs("s", cxy[0]-(1.86*scale), cxy[1] - 5, latex_name_scale, true);
+  rbracket( [cxy[0] - (1.50*scale), cxy[1]-15], _sl/3, _sl*1.6, Math.PI + theta*0.62);
+
+
+  rbracket( [cxy[0] + (0.45*scale), cxy[1]+15], _sl/4, _sm/2, - theta*0.86);
+  rbracket( [cxy[0] + (1.05*scale), cxy[1]+7], _sl/4, _sm/2, - theta*0.86);
+
+  mathjax2twojs("one_half", cxy[0]+(0.15*scale), cxy[1]+35, latex_name_scale);
+  mathjax2twojs("one_half", cxy[0]+(1.1*scale), cxy[1]+25, latex_name_scale);
 
 
   //------
@@ -1309,7 +1243,7 @@ function gilbert3d_eccentric_appendix_s2() {
   //------
   //------
 
-  axis_fig(50, 50, 20);
+  axis_fig(300, 50, 20);
 
   two.update();
 }
@@ -1323,7 +1257,7 @@ var debug = [];
 // We need to contort ourselves to get the mask
 // right so that it gets all the element
 //
-function mathjax2twojs(_id,x,y,s,s_sub) {
+function mathjax2twojs(_id,x,y,s,s_sub, ignore) {
   s = ((typeof s === "undefined") ? 0.02 : s);
   s_sub = ((typeof s_sub === "undefined") ? 0.7 : s_sub);
 
@@ -1344,6 +1278,8 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
   sgr.scale.y = -s;
 
   debug.push(sgr);
+
+  if (!ignore) {
 
   // rescale subscript HACK
   //
@@ -1376,6 +1312,8 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
     }
     }
     }
+
+  }
 
   }
 
