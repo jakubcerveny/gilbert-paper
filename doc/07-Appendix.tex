@@ -32,13 +32,15 @@ If the defect is too high, we might want to split the larger sides while keeping
 
 \subsection{2D Eccentric Split Threshold}
 
+In this section, we justify splitting the rectangle into
+two roughly equal parts when $(|\alpha|/|\beta| > 3/2)$.
+
 For the 2D Gilbert curve,
 if the $\alpha$ side length is significantly longer than the $\beta$ side length,
 we want to subdivide the rectangle into two nearly equal regions and recursively find
 a Gilbert curve in each region.
 We will justify the constant $(3/2)$ as the ratio threshold to split on using an argument
-given by L. Tautenhahn \footnote{ through personal communication }.
-That is, when $(|\alpha|/|\beta| > 3/2)$, we split the rectangle into roughly equal parts.
+originally developed by L. Tautenhahn \footnote{ Given to us through personal communication with L. Tautenhahn }.
 
 The defect of a rectangle of side length $|\alpha|$ and $|\beta|$ is, with $|\alpha| > |\beta|$:
 
@@ -71,6 +73,8 @@ $$
 Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
 be assured a defect reduction.
 
+In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is reduced
+as the ratio of the defects before and after the split is $(1/2)$.
 
 \subsection{3D Eccentric Split Threshold}
 
@@ -119,6 +123,15 @@ additional step to coerce the $A$ volume to a desired parity.
 %%%%
 
 \subsection{$|\alpha| >> |\beta| \sim |\gamma|$}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s0.pdf}
+  \caption{ An $S_0$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split. }
+  \label{fig:eccentric_s0}
+\end{figure}
+
+
 
 \begin{itemize}
   \item Shape template: $S_0$
