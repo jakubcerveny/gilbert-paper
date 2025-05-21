@@ -87,9 +87,10 @@ In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is
 
 \subsection{3D Eccentric Split Threshold}
 
-Calculations in this section will justify what threshold value to pick for when to choose a 3D eccentric split over a J-split.
+%Calculations in this section will justify what threshold value to pick for when to choose a 3D eccentric split over a J-split.
+Calculations in this section will justify the choice of threshold values for when to choose an eccentric $S$-split over a $J$-split.
 Our concern is to find a simple ratio of when each of $\alpha$, $\beta$ or $\gamma$ are considered
-"small enough" or "large enough", relative to the other dimensions, to split on.
+"small enough" or "large enough", relative to the other lengths, to split on.
 
 An enumeration of what conditions lead to an eccentric split are as follows:
 
@@ -110,7 +111,8 @@ one or two dimensions instead of three.
 
 For each of the six cases, we want to know what relative difference in sizes should be used
 to determine when an eccentric split should be used and how to subdivide the cuboids so as to make
-the resulting subdivided cuboids more cube-like.
+the resulting subdivided regions more cube-like.
+That is, we want to choose when and how to make the subdivision and resulting curve more \textit{harmonious}.
 
 Specifically, we want to find the ratio, $\sigma$, of when one dimension is proportionally larger or smaller,
 respectively, than the others.
@@ -123,8 +125,8 @@ We assume that the start and end of the path lie in the $\alpha$ dimension.
 
 Since the start and end path lie on the $\alpha$ dimension, we are forced to split in the $\alpha$ axis
 to subdivide the cuboid.
-In what follows, we always commit to splitting the $\alpha$ cuboid region by half, with a potentially
-additional step to coerce the $A$ volume to a desired parity.
+In what follows, we always commit to splitting the cuboid region by half along the $\alpha$ dimension,
+coercing the $A$ volume to a desired parity as needed.
 
 %%%%
 %%%%
@@ -152,26 +154,28 @@ When $|\alpha|$ is much larger than $|\beta|$ or $|\gamma|$,
 we split into two sub-cuboids along the $\alpha$ axis,
 which we represent as an $S_0$ split.
 As stated above, we pick the midway point for $\alpha$.
-What's left is to decide how eccentric the cuboid should be to make the $S_0$ split.
+What's left is to decide how eccentric the cuboid should be to determine when to use the $S_0$ split.
 
-Take $\sigma > 1$ and $s = \text{min}(|\beta|,|\gamma|)$, $\sigma s = |\alpha|$.
+Take $\sigma > 1$ and $s = \text{min}(|\beta|,|\gamma|)$, with $\sigma s = |\alpha|$.
 The defect of the original volume is:
 
 $$
 \begin{array}{ll}
-  \lambda(|\alpha|,|\beta|,|\gamma|)  & = \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ \text{min}(|\alpha|,|\beta|,|\gamma|) } \\
-                  & = \frac{ \sigma s \cdot s \cdot s }{ \text{min}(\sigma s,s,s) } \\
+  \lambda(|\alpha|,|\beta|,|\gamma|)  & = \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ (\text{min}(|\alpha|,|\beta|,|\gamma|))^3 } \\
+                  & = \frac{ \sigma s \cdot s \cdot s }{ (\text{min}(\sigma s,s,s))^3 } \\
                   & = \sigma \\
 \end{array}
 $$
 
-If $|\alpha| > 2 |\beta| = 2s$, then $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = s$ and we have an average defect $\lambda_s(V_1) = \frac{\sigma}{2}$.
+If $|\alpha| > 2 |\beta| = 2s$, then $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = s$ and
+we have an average defect of the subdivided regions as $\lambda_s(V_1) = \frac{\sigma}{2}$,
+giving us a reduced defect and making progress.
 Intuitively, we reduce the defect by splitting a long horizontal column into two parts, each of which is more cube like,
 making it more cube-like on average.
 
-We can get a better ratio of when to split by asking what the maximum value of $|\alpha| = \sigma s$ is when there is still an average defect reduction.
-In this case, we restrict $|\alpha| < 2 |\beta|$, with $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = \frac{|\alpha|}{2}$,
-the average defect becomes:
+We can get a better ratio by asking what the maximum value of $|\alpha| = \sigma s$ is when there is still an average defect reduction.
+In this case, we restrict $|\alpha| < 2 \text{min}(|\beta|,|\gamma|)$, implying $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = \frac{|\alpha|}{2}$.
+The average defect becomes:
 
 $$
 \begin{array}{ll}
@@ -187,13 +191,16 @@ $$
   & \lambda_s (V_1) < \lambda(V_0) \\
   \to & \frac{4}{\sigma^2} < \sigma \\
   \to & 4^{\frac{1}{3}} < \sigma \\ 
-  \to & 4^{\frac{1}{3}} = 1.58740\dots < \sigma < \frac{5}{3} \\
+  \to & 4^{\frac{1}{3}} = 1.58740\dots < \sigma \\
 \end{array}
 $$
 
 For any $\sigma > 4^{\frac{1}{3}}$, we know the average defect will be reduced.
 For algorithmic simplicity, we've chosen the simple fraction $\frac{5}{3}$ (as $\frac{5}{3} > 4^{\frac{1}{3}}$)
 for the eccentric $S_0$ split ratio.
+
+For convenience, we've assumed $|\beta| = |\gamma|$ in the above analysis but it's easy to check that the conclusions of the
+above calculations remain unchanged when $|\beta| = \mu |\gamma|$ with $\sigma > \mu > 1$.
 
 %%%%
 %%%%
