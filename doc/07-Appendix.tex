@@ -142,11 +142,11 @@ coercing the $A$ volume to a desired parity as needed.
 \end{figure}
 
 
-
 \begin{itemize}
-  \item Shape template: $S_0$
   \item $\sigma = \frac{5}{3}$
   \item $\rho = \text{n/a}$
+  \item $|\alpha| > \sigma \cdot \text{min}( |\beta|, |\gamma|)$
+  \item Shape template: $S_0$
 \end{itemize}
 
 
@@ -200,7 +200,7 @@ coercing the $A$ volume to a desired parity as needed.
 %for the eccentric $S_0$ split ratio.
 %
 %For convenience, we've assumed $|\beta| = |\gamma|$ in the above analysis but it's easy to check that the conclusions of the
-%above calculations remain unchanged when $|\beta| = \mu |\gamma|$ with $\sigma > \mu > 1$.
+%above calculations remain unchanged when $|\beta| = \mu |\gamma|$ with $\sigma > \mu \ge 1$.
 %
 %
 %
@@ -220,7 +220,7 @@ $$
   s & = \text{min}(|\beta|, |\gamma|) \\
   \mu s & = \text{max}(|\beta|, |\gamma|) \\
   |\alpha| & = \sigma' s > \sigma s \\
-  & \sigma > \mu > 1 \\
+  & \sigma > \mu \ge 1 \\
 \end{array}
 $$
 
@@ -336,8 +336,24 @@ We need to be more careful about when and how to subdivide the cuboid to ensure 
 
 \subsubsection{ $|\gamma| >> |\alpha| \sim |\beta|$ }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 ____  
+%   ___ ____ ___ _  __ _  ___ _   \ \ \ 
+%  / _ `/ _ `/  ' \/  ' \/ _ `/    > > >
+%  \_, /\_,_/_/_/_/_/_/_/\_,_/    /_/_/ 
+% /___/                                 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %In what follows, we assume $\gamma$ is the elongated axis.
 %After the calculation, we will discuss the case when $\beta$ is the shorter axis.
+
+\begin{itemize}
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{1}{3}$
+  \item $|\gamma| > \sigma \cdot \text{min}( |\alpha|, |\beta|)$
+  \item Shape template: $S_1$
+\end{itemize}
+
 
 Define:
 
@@ -346,7 +362,7 @@ $$
   s & = \text{min}(|\alpha|, |\beta|) \\
   \mu s & = \text{max}(|\alpha|, |\beta|) \\
   |\gamma| & = \sigma' s > \sigma s \\
-   & \sigma > \mu > 1 \\
+   & \sigma > \mu \ge 1 \\
 \end{array}
 $$
 
@@ -372,7 +388,7 @@ $$
 \begin{array}{ll}
   \lambda_0 & = \frac{ |\gamma| \mu s^2 }{ s^3 } = |\gamma| \mu / s  \\
   \lambda_1 & = 2 (\frac{\rho}{2}) \left( \frac{(\frac{s}{2}) (\mu s) \rho |\gamma| }{(\frac{s}{2})^3 (\mu')^3 } \right)  
-						  + (1-\rho) \left( \frac{ (1-\rho) |\gamma| \mu s^2}{s^3} \right) \\
+              + (1-\rho) \left( \frac{ (1-\rho) |\gamma| \mu s^2}{s^3} \right) \\
  & =  \frac{ 4 \rho^2 \mu |\gamma|}{s (\mu')^3} + \frac{(1-\rho)^2 \mu |\gamma|}{s}  \\
 \end{array}
 $$
@@ -394,6 +410,23 @@ We've chosen $\rho = 1/3 < 2/5$, ensuring an average defect reduction.
 
 \subsubsection{ $|\beta| << |\alpha| \sim |\gamma|$ }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    __       __         ____
+%   / /  ___ / /____ _  / / /
+%  / _ \/ -_) __/ _ `/ < < < 
+% /_.__/\__/\__/\_,_/   \_\_\
+%                            
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{1}{3}$
+  \item $|\beta| < \text{min}( |\alpha|, |\gamma|) / \sigma$
+  \item Shape template: $S_1$
+\end{itemize}
+
+
+
 For the case when $|\beta|$ is much smaller than $|\alpha|$ and $|\gamma|$,
 ($|\beta| < \text{min}(|\alpha|, |\gamma|) / \sigma$),
 we show that if we still use the same subdivision scheme, splitting $\gamma$ at the $\rho$ point and halfway for the
@@ -406,7 +439,7 @@ $$
   s & = \text{min}(|\alpha|, |\gamma|) \\
   \mu s & = \text{max}(|\alpha|, |\gamma|) \\
   |\beta| & = s / \sigma' < s / \sigma \\
-   & \sigma' \ge \sigma > \mu > 1 \\
+   & \sigma' \ge \sigma > \mu \ge 1 \\
 \end{array}
 $$
 
@@ -421,7 +454,7 @@ $$
 \end{array}
 $$
 
-Only taking terms with $\rho$ or $s$ as a factor since $\mu > 1$. 
+Only taking terms with $\rho$ or $s$ as a factor since $\mu \ge 1$. 
 
 We calculate the average defect reduction before and after the subdivision:
 
@@ -430,7 +463,7 @@ $$
 \begin{array}{ll}
   \lambda_0 & = \frac{ |\beta| \mu s^2 }{ |\beta|^3 } = \mu s^2 / |\beta|^2  \\
   \lambda_1 & = 2 (\frac{\rho}{2}) \left( \frac{\mu (\frac{s}{2}) \rho s |\beta| }{\omega^3} \right)  
-						  + (1-\rho) \left( \frac{ (1-\rho) |\beta| \mu s^2}{ |\beta|^3} \right) \\
+              + (1-\rho) \left( \frac{ (1-\rho) |\beta| \mu s^2}{ |\beta|^3} \right) \\
   & =  \frac{ \rho^2 \mu s^2 |\beta| }{2 \omega^3} + \frac{ (1-\rho)^2 \mu s^2 }{ |\beta|^2 } \\
 \end{array}
 $$
@@ -465,6 +498,7 @@ still providing an average defect reduction for both of the cases when $|\gamma|
 
 \subsection{$|\beta| >> |\alpha| \sim |\gamma|$ or $|\alpha| << |\beta| \sim |\gamma|$}
 
+
 \begin{figure}[h]
   \centering
   \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s2.pdf}
@@ -479,25 +513,213 @@ still providing an average defect reduction for both of the cases when $|\gamma|
   \item $\rho = \frac{1}{3}$
 \end{itemize}
 
-As with the previous case, we are trying to validate two parameters, $\sigma$, the amount
-of eccentricity of one side length relative to the others, and $\rho$, where to subdivide the
-cuboid along the $\beta$ axis.
+\subsubsection{$|\beta| >> |\alpha| \sim |\gamma|$}
 
-Choosing $\sigma = \frac{3}{2}$ implies that the defect of the original volume is $\lambda(V_0) = \sigma = \frac{3}{2}$.
-Further, $\text{min}( \sigma \rho s, \frac{s}{2} ) = \frac{s}{2}$, implying the $A$ and $C$ volumes
-have minimum side length of $\frac{s}{2}$ and $\text{min}( (1-\rho) \sigma s, s) = s$, implying the
-minimum side length of volume $C$ is $s$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    __       __         ____  
+%   / /  ___ / /____ _   \ \ \ 
+%  / _ \/ -_) __/ _ `/    > > >
+% /_.__/\__/\__/\_,_/    /_/_/ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This allows us to calculate the average defect of the subdivided cuboid using an $S_2$ shape template:
+\begin{itemize}
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{1}{3}$
+  \item $|\beta| > \sigma \cdot \text{min}( |\alpha|, |\gamma|)$
+  \item Shape template: $S_2$
+\end{itemize}
+
+
+Here $|\beta|$ is the eccentric length, surpasing $\sigma = 3/2$ of the minimum
+of the other two lengths to
+trigger an $S_2$ subdivision.
+
+To verify the constants chosen lead to an average defect reduction, define:
 
 $$
 \begin{array}{ll}
-  \lambda_s (V_1) & = 2 (\frac{1}{2}) \rho [ \frac{ \rho \sigma s \cdot \frac{s}{2} \cdot s }{(\frac{s}{2})^3} ] \\
-  & + (1-\rho) \cdot [ \frac{ (1-\rho) \sigma s \cdot s \cdot s }{s^3} ] \\
-  & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
-  & = \frac{8}{9} \sigma = \frac{4}{3} < \frac{3}{2} \\
-  \to & \lambda_s(V_1) < \lambda(V_0) \\
+  s & = \text{min}(|\alpha|, |\gamma|) \\
+  \mu s & = \text{max}(|\alpha|, |\gamma|) \\
+  \mu' s & = |\alpha| \\
+  \sigma' s & = |\beta| > \sigma s \\
+  & \sigma' \ge \sigma > \mu \ge 1 \\
 \end{array}
 $$
+
+The average defect before the subdivision, $\lambda_0$, and after, $\lambda_1$:
+
+$$
+\begin{array}{ll}
+  \lambda_0 & = \frac{|\beta| \mu s^2 }{s^3} = |\beta| \mu / s \\
+  \lambda_1 & = \rho \left( \frac{ \rho |\beta| s (\frac{s}{2}) \mu }{ (\mu')^3 (\frac{s}{2})^3 } \right) +
+    (1-\rho) \left( \frac{(1-\rho)|\beta| s^2 \mu}{s^3} \right) \\
+    & = \frac{4 \sigma^2 |\beta| \mu}{(\mu')^3 s} + \frac{(1-\rho)^2 |\beta| \mu }{s} 
+\end{array}
+$$
+
+Since $|\beta| > \sigma s$, $\text{min}( \rho |\beta| > \rho \sigma s > \frac{s}{2}, \frac{s}{2}) = \frac{s}{2}$
+and $\text{min}( (1-\rho)|\beta| > (1-\rho)\sigma s = s, s) = s$, giving us the denominator of the
+defect caclulation above.
+
+The average defect reduction ratio:
+
+$$
+\begin{array}{llr}
+  \lambda_1 / \lambda_0 & = \frac{4 \rho^2}{(\mu')^3} + (1-\rho)^2 & \\
+   & < 4 \rho^2 + (1-\rho)^2 & (\mu' \ge \mu \ge 1) \\
+   & = 8/9 < 1 \\
+\end{array}
+$$
+
+Showing an average defect reduction.
+
+
+%As with the previous case, we are trying to validate two parameters, $\sigma$, the amount
+%of eccentricity of one side length relative to the others, and $\rho$, where to subdivide the
+%cuboid along the $\beta$ axis.
+%
+%Choosing $\sigma = \frac{3}{2}$ implies that the defect of the original volume is $\lambda(V_0) = \sigma = \frac{3}{2}$.
+%Further, $\text{min}( \sigma \rho s, \frac{s}{2} ) = \frac{s}{2}$, implying the $A$ and $C$ volumes
+%have minimum side length of $\frac{s}{2}$ and $\text{min}( (1-\rho) \sigma s, s) = s$, implying the
+%minimum side length of volume $C$ is $s$.
+%
+%This allows us to calculate the average defect of the subdivided cuboid using an $S_2$ shape template:
+%
+%$$
+%\begin{array}{ll}
+%  \lambda_s (V_1) & = 2 (\frac{1}{2}) \rho [ \frac{ \rho \sigma s \cdot \frac{s}{2} \cdot s }{(\frac{s}{2})^3} ] \\
+%  & + (1-\rho) \cdot [ \frac{ (1-\rho) \sigma s \cdot s \cdot s }{s^3} ] \\
+%  & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
+%  & = \frac{8}{9} \sigma = \frac{4}{3} < \frac{3}{2} \\
+%  \to & \lambda_s(V_1) < \lambda(V_0) \\
+%\end{array}
+%$$
+%
+%
+
+\subsubsection{ $|\alpha| << |\beta| \sim |\gamma|$ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        __     __          ____
+%  ___ _/ /__  / /  ___ _  / / /
+% / _ `/ / _ \/ _ \/ _ `/ < < < 
+% \_,_/_/ .__/_//_/\_,_/   \_\_\
+%      /_/                      
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{1}{3}$
+  \item $|\alpha| < \text{min}( |\beta|, |\gamma|) / \sigma$
+  \item Shape template: $S_2$
+\end{itemize}
+
+
+Here $|\alpha|$ is the eccentric smaller length, falling below $1/\sigma = 2/3$
+of the minimum of the other two lengths to trigger an $S_2$ subdivision.
+
+To verify the constants chosen lead to an average defect reduction, define:
+
+$$
+\begin{array}{ll}
+  s & = \text{min}(|\beta|, |\gamma|) \\
+  \mu s & = \text{max}(|\beta|, |\gamma|) \\
+  \sigma' s & = |\beta| > \sigma s \\
+  \omega & = \text{min}( \rho s, \frac{|\alpha|}{2} = \frac{s}{2 \sigma'} < \frac{s}{2\sigma} = \frac{s}{3} ) \\
+   & = |\alpha|/2 \\
+  & \sigma' \ge \sigma \ge \mu \ge 1 \\
+\end{array}
+$$
+
+For convenience, we take $\omega$ to the smallest side length of the bottom subdivided region.
+
+The average defect before the subdivision, $\lambda_0$, and after, $\lambda_1$:
+
+$$
+\begin{array}{ll}
+  \lambda_0 & = \frac{ |\alpha| s^2 \mu }{ |\alpha|^3 } = \frac{\mu s^2}{|\alpha|^2} \\
+  \lambda_1 & = \rho \left( \frac{ (|\alpha|/2) (\rho s) s \mu  }{ \omega^3 } \right)
+    + (1-\rho) \left( \frac{ |\alpha| (1-\rho) s^2 \mu  }{ |\alpha|^3 } \right) \\
+    & = \frac{ \rho^2 |\alpha| s^2 \mu }{ 2 (|\alpha|/2)^3 } + \frac{ (1-\rho)^2 s^2 \mu }{ |\alpha|^2 } \\
+    & = \frac{ 4 \rho^2 s^2 \mu }{ |\alpha|^2 } + \frac{ (1-\rho)^2 s^2 \mu }{ |\alpha|^2 } \\
+\end{array}
+$$
+
+The defect reduction:
+
+$$
+\begin{array}{ll}
+  \lambda_1 / \lambda_0 & = 4 \rho^2 + (1-\rho)^2 \\
+   & = 8/9 < 1 \\
+\end{array}
+$$
+
+Confirming a defect reduction.
+
+\subsubsection{ $|\gamma| << |\alpha| \sim |\beta|$ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 ____
+%   ___ ____ ___ _  __ _  ___ _  / / /
+%  / _ `/ _ `/  ' \/  ' \/ _ `/ < < < 
+%  \_, /\_,_/_/_/_/_/_/_/\_,_/   \_\_\
+% /___/                               
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+  \item $\sigma = \frac{3}{2}$
+  \item $\rho = \frac{1}{3}$
+  \item $|\gamma| < \text{min}( |\alpha|, |\beta|) / \sigma$
+  \item Shape template: $S_2$
+\end{itemize}
+
+
+Here $|\gamma|$ is the eccentric smaller length, falling below $1/\sigma = 2/3$
+of the minimum of the other two lengths to trigger an $S_2$ subdivision.
+
+To verify the constants chosen lead to an average defect reduction, define:
+
+$$
+\begin{array}{ll}
+  s & = \text{min}(|\alpha|, |\beta|) \\
+  \mu s & = \text{max}(|\alpha|, |\beta|) \\
+  s / \sigma' & = |\gamma| < s / \sigma \\
+  \omega & = \text{min}( |\gamma|, \rho s ) \\
+  & \sigma' \ge \sigma \ge \mu \ge 1 \\
+\end{array}
+$$
+
+For convenience, we take $\omega$ to the smallest side length of the bottom subdivided region.
+
+The average defect before the subdivision, $\lambda_0$, and after, $\lambda_1$:
+
+$$
+\begin{array}{ll}
+  \lambda_0 & = \frac{ |\gamma| s^2 \mu }{ |\gamma|^3 } = \frac{\mu s^2}{|\gamma|^2} \\
+  \lambda_1 & = \rho \left( \frac{ |\gamma| (\rho s) (s/2) \mu  }{ \omega^3 } \right)
+    + (1-\rho) \left( \frac{ |\gamma| (1-\rho) s^2 \mu  }{ |\gamma|^3 } \right) \\
+    & = \frac{ \rho^2 |\gamma| s^2 \mu }{ 2 \omega^3 } + \frac{ (1-\rho)^2 s^2 \mu }{ |\gamma|^2 } \\
+\end{array}
+$$
+
+The defect reduction:
+
+$$
+\begin{array}{ll}
+  \lambda_1 / \lambda_0 & = \frac{\rho^2 |\gamma|^3 }{ 2 \omega^3 }  + (1-\rho)^2 \\
+  & = \left\{
+      \begin{array}{lr}
+        \frac{\rho^2}{2} + (1-\rho)^2 = 1/2 < 1 & (\omega = |\gamma|) \\
+        \frac{ \rho^2 (\frac{s}{\sigma'})^3 }{ 2 (\frac{s}{3})^3 } + (1-\rho)^2 & (\omega = \frac{s}{3}, |\gamma| = \frac{s}{\sigma'}) \\
+        = \frac{ \rho^2 3^3 }{ 2 (\sigma')^3 } + (1-\rho)^2 & \\
+        \le \frac{ \rho^2 3^3 }{ 2 (\sigma)^3 } + (1-\rho)^2 & \\
+         = \frac{ \rho^2 3^3 }{ 2 (3/2)^3 } + (1-\rho)^2 & \\
+         = 4 \rho^2  + (1-\rho)^2  = 8 / 9 < 1 & \\
+      \end{array}
+    \right. \\
+\end{array}
+$$
+
+Confirming a defect reduction.
 
 
