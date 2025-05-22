@@ -69,7 +69,7 @@
   <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"> 
    <dc:format>application/pdf</dc:format> 
    <dc:type><rdf:Bag><rdf:li>journal</rdf:li></rdf:Bag></dc:type>
-   <dc:title><rdf:Alt><rdf:li xml:lang="x-default"> A Generalized 2D and 3D Hilbert Curve </rdf:li></rdf:Alt></dc:title>
+   <dc:title><rdf:Alt><rdf:li xml:lang="x-default"> The Gilbert Curve: A Generalized 2D and 3D Hilbert Curve </rdf:li></rdf:Alt></dc:title>
    <dc:creator><rdf:Seq><rdf:li>Jakub Červený</rdf:li>
      <rdf:li>Zzyv Zzyzek</rdf:li></rdf:Seq></dc:creator>
    <dc:rights><rdf:Alt><rdf:li xml:lang="x-default">© 2025 Copyright for this paper by its authors. Use permitted under Creative Commons License Attribution 4.0 International (CC BY 4.0).</rdf:li></rdf:Alt></dc:rights>
@@ -87,9 +87,9 @@
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/"> 
    <xmp:CreatorTool>LaTeX with hyperref</xmp:CreatorTool> 
-   <xmp:ModifyDate>2025-05-21T22:33:02-04:00</xmp:ModifyDate> 
-   <xmp:CreateDate>2025-05-21T22:33:02-04:00</xmp:CreateDate> 
-   <xmp:MetadataDate>2025-05-21T22:33:02-04:00</xmp:MetadataDate> 
+   <xmp:ModifyDate>2025-05-22T02:17:40-04:00</xmp:ModifyDate> 
+   <xmp:CreateDate>2025-05-22T02:17:40-04:00</xmp:CreateDate> 
+   <xmp:MetadataDate>2025-05-22T02:17:40-04:00</xmp:MetadataDate> 
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmpRights = "http://ns.adobe.com/xap/1.0/rights/"> 
    <xmpRights:Marked>True</xmpRights:Marked>
@@ -98,7 +98,7 @@
   </rdf:Description> 
   <rdf:Description rdf:about="" xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"> 
    <xmpMM:DocumentID>uuid:BBD7EB88-5643-278C-2B66-471B0A1568C1</xmpMM:DocumentID> 
-   <xmpMM:InstanceID>uuid:B6BF20C2-51A8-996A-937F-79B261EBCD2C</xmpMM:InstanceID> 
+   <xmpMM:InstanceID>uuid:228C16CA-AD34-2402-340B-A088490B808C</xmpMM:InstanceID> 
   </rdf:Description> 
  </rdf:RDF> 
 </x:xmpmeta> 

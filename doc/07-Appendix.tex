@@ -4,6 +4,15 @@
 \section{Appendix}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%     _      __        _   
+%  __| |___ / _|___ __| |_ 
+% / _` / -_)  _/ -_) _|  _|
+% \__,_\___|_| \___\__|\__|
+%                          
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \subsection{Defect} \label{appendix:defect}
 
 Call the \textit{defect} a function $\lambda _ d : \mathbb{N}^d \mapsto \mathbb{N}$:
@@ -29,6 +38,14 @@ This weights the defect of each subdivided cuboid by its proportional volume.
 
 The defect gives us a coarse idea of how lopsided or \textit{eccentric} a cuboid region is.
 If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
+
+%%%%%%%%%%%%
+%  ___    _ 
+% |_  )__| |
+%  / // _` |
+% /___\__,_|
+%           
+%%%%%%%%%%%%
 
 \subsection{2D Eccentric Split Threshold} \label{appendix:eccentric_2d}
 
@@ -85,9 +102,16 @@ be assured a defect reduction.
 In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
 \footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    _       _    
+%  ___ __ __ ___ _ _| |_ _ _(_)__ 
+% / -_) _/ _/ -_) ' \  _| '_| / _|
+% \___\__\__\___|_||_\__|_| |_\__|
+%                                 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{3D Eccentric Split Threshold}
 
-%Calculations in this section will justify what threshold value to pick for when to choose a 3D eccentric split over a J-split.
 Calculations in this section will justify the choice of threshold values for when to choose an eccentric $S$-split over a $J$-split.
 Our concern is to find a simple ratio of when each of $\alpha$, $\beta$ or $\gamma$ are considered
 "small enough" or "large enough", relative to the other lengths, to split on.
@@ -111,26 +135,32 @@ one or two dimensions instead of three.
 
 For each of the six cases, we want to know what relative difference in sizes should be used
 to determine when an eccentric split should be used and how to subdivide the cuboids so as to make
-the resulting subdivided regions more cube-like.
-That is, we want to choose when and how to make the subdivision and resulting curve more \textit{harmonious}.
+the resulting subdivided regions more cube-like or \textit{harmonious}.
 
-Specifically, we want to find the ratio, $\sigma$, of when one dimension is proportionally larger or smaller,
-respectively, than the others.
-Further, we choose the ratio, $\rho$, of where to choose the split point of subdivision.
-For simplicity, we might want to subdivide at the half way point ($\rho = \frac{1}{2}$) but as we
-will see, this might give lopsided sub-cuboid regions and using a better split point is desirable.
+Specifically, we want to find the ratio, $\sigma$, of when one dimension differs significantly from the others.
+Further, we choose the ratio, $\rho$, of where to choose the first subdivision.
+For the 2D case, choosing $\rho = \frac{1}{2}$ worked to make the resulting subdivided regions more harmonious.
+We will need a different value of $\rho$ for most of the 3d cases to ensure a harmonious resuling subvidision.
 
 In what follows, our goal is to choose a subdivision that will reduce the average defect.
 We assume that the start and end of the path lie in the $\alpha$ dimension.
 
 Since the start and end path lie on the $\alpha$ dimension, we are forced to split in the $\alpha$ axis
 to subdivide the cuboid.
-In what follows, we always commit to splitting the cuboid region by half along the $\alpha$ dimension,
-coercing the $A$ volume to a desired parity as needed.
 
-%%%%
-%%%%
-%%%%
+The chosen constants $\sigma$ and $\rho$ for each of the eccentric splits are not chosen optimally
+to reduce average defect.
+We chose $\sigma$ and $\rho$ as a compromise between providing simple ratios while
+still providing a more harmonious subdivision.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        __     __          ____
+%  ___ _/ /__  / /  ___ _   \ \ \
+% / _ `/ / _ \/ _ \/ _ `/    > > >
+% \_,_/_/ .__/_//_/\_,_/    /_/_/
+%      /_/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{$|\alpha| >> |\beta| \sim |\gamma|$}
 
@@ -150,66 +180,6 @@ coercing the $A$ volume to a desired parity as needed.
 \end{itemize}
 
 
-%When $|\alpha|$ is much larger than $|\beta|$ or $|\gamma|$,
-%we split into two sub-cuboids along the $\alpha$ axis,
-%which we represent as an $S_0$ split.
-%As stated above, we pick the midway point for $\alpha$.
-%What's left is to decide how eccentric the cuboid should be to determine when to use the $S_0$ split.
-%
-%Take $\sigma > 1$ and $s = \text{min}(|\beta|,|\gamma|)$, with $\sigma s = |\alpha|$.
-%The defect of the original volume is:
-%
-%$$
-%\begin{array}{ll}
-%  \lambda(|\alpha|,|\beta|,|\gamma|)  & = \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ (\text{min}(|\alpha|,|\beta|,|\gamma|))^3 } \\
-%                  & = \frac{ \sigma s \cdot s \cdot s }{ (\text{min}(\sigma s,s,s))^3 } \\
-%                  & = \sigma \\
-%\end{array}
-%$$
-%
-%If $|\alpha| > 2 |\beta| = 2s$, then $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = s$ and
-%we have an average defect of the subdivided regions as $\lambda_s(V_1) = \frac{\sigma}{2}$,
-%giving us a reduced defect and making progress.
-%Intuitively, we reduce the defect by splitting a long horizontal column into two parts, each of which is more cube like,
-%making it more cube-like on average.
-%
-%We can get a better ratio by asking what the maximum value of $|\alpha| = \sigma s$ is when there is still an average defect reduction.
-%In this case, we restrict $|\alpha| < 2 \text{min}(|\beta|,|\gamma|)$, implying $\text{min}(\frac{|\alpha|}{2},|\beta|,|\gamma|) = \frac{|\alpha|}{2}$.
-%The average defect becomes:
-%
-%$$
-%\begin{array}{ll}
-%  \lambda_s(V_1) & = 2 (\frac{1}{2}) \frac{ \frac{\sigma}{2} \cdot s^3 }{ (\frac{\sigma}{2} s)^3 } \\
-%   & = \frac{4}{\sigma^2}
-%\end{array}
-%$$
-%
-%We want to reduce the average defect relative to the original defect, so:
-%
-%$$
-%\begin{array}{ll}
-%  & \lambda_s (V_1) < \lambda(V_0) \\
-%  \to & \frac{4}{\sigma^2} < \sigma \\
-%  \to & 4^{\frac{1}{3}} < \sigma \\ 
-%  \to & 4^{\frac{1}{3}} = 1.58740\dots < \sigma \\
-%\end{array}
-%$$
-%
-%For any $\sigma > 4^{\frac{1}{3}}$, we know the average defect will be reduced.
-%For algorithmic simplicity, we've chosen the simple fraction $\frac{5}{3}$ (as $\frac{5}{3} > 4^{\frac{1}{3}}$)
-%for the eccentric $S_0$ split ratio.
-%
-%For convenience, we've assumed $|\beta| = |\gamma|$ in the above analysis but it's easy to check that the conclusions of the
-%above calculations remain unchanged when $|\beta| = \mu |\gamma|$ with $\sigma > \mu \ge 1$.
-%
-%
-%
-%%%%%
-%%%%%
-%%%%%
-%
-%\textbf{UPDATED ARGUMENT:} \textit{(uses $\mu$ for other dimension, tries to be more careful with inequalities)}
-
 We're splitting at the halfway point on $|\alpha|$ and we want to figure out
 what the eccentric threshold is to split on.
 
@@ -220,7 +190,7 @@ $$
   s & = \text{min}(|\beta|, |\gamma|) \\
   \mu s & = \text{max}(|\beta|, |\gamma|) \\
   |\alpha| & = \sigma' s > \sigma s \\
-  & \sigma > \mu \ge 1 \\
+  %& \sigma' > \sigma \ge \mu \ge 1 \\
 \end{array}
 $$
 
@@ -267,74 +237,6 @@ For algorithmic simplicity, we've chosen the simple fraction $\sigma = \frac{5}{
 for the eccentric $S_0$ split ratio.
 
 
-%%%%
-%%%%
-%%%%
-
-\subsection{$|\gamma| >> |\alpha| \sim |\beta|$ or $|\beta| << |\alpha| \sim |\gamma|$}
-
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s1.pdf}
-  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
-            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
-  \label{fig:eccentric_s1}
-\end{figure}
-
-
-
-\begin{itemize}
-  \item Shape template: $S_1$
-  \item $\sigma = \frac{3}{2}$
-  \item $\rho = \frac{1}{3}$
-\end{itemize}
-
-%Here, we are trying to validate two parameters, $\sigma$ and $\rho$.
-%$\sigma$ is the ratio of when $|\gamma|$ (resp. $|\beta|$)
-%is larger (resp. smaller) to the minimum (resp. maximum) of the remaining side lengths as the threshold to trigger an $S_1$
-%template split.
-%$\rho$ is the proportion along the $\gamma$ (resp. $\beta$) direction of where to choose the $\gamma$ direction split.
-%The $S_1$ shape template has three subdivided cuboids, which we call $A$, $B$ and $C$, ordered by
-%the path traversal through the cuboids.
-%
-%We will show that there is an average defect reduction when choosing $\sigma = \frac{3}{2}$ and
-%$\rho = \frac{1}{3}$.
-%If we take $s = \text{min}(|\alpha|, |\beta|)$ and $|\gamma| = \sigma s$, then the defect of the original volume is:
-%
-%$$
-%\lambda(V_0) = \sigma
-%$$
-%
-%From our choice of $\sigma$ and $\rho$, $\text{min}( \sigma \rho s, \frac{s}{2} ) = \frac{s}{2}$,
-%implying the minimum side length for $A$ and $C$ is $\frac{s}{2}$ and the minimum side length of $B$
-%is $\text{min}( \sigma (1-\rho) s, s) = s$.
-%From this, we can calculate the average defect of the subdivided cuboid:
-%
-%$$
-%\begin{array}{ll}
-%  \lambda_s (V_1) & = 2 \cdot (\frac{1}{2}) \rho [ \frac{ \rho \sigma s \cdot \frac{s}{2} \cdot s }{ (\frac{s}{2})^3 } ] \\
-%        & + (1-\rho) [ \frac{ (1-\rho) \sigma s \cdot s \cdot s }{s^3} ] \\
-%  & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
-%  & = \frac{8}{9} \sigma = \frac{4}{3} < \frac{3}{2} \\
-%  \to & \lambda_s(V_1) < \lambda(V_0)
-%\end{array}
-%$$
-%
-%Showing there is an average defect reduction.
-%
-%%%%%
-%%%%%
-%%%%%
-%
-%\textbf{UPDATED ARGUMENT:} \textit{(uses $\mu$ for other dimension, tries to be more careful with inequalities)}
-
-
-When the elongated side length is not in the same axis as the start and end point, a simple subdivision won't
-yield a defect reduction.
-We need to be more careful about when and how to subdivide the cuboid to ensure we make a more harmonious split.
-
-\subsubsection{ $|\gamma| >> |\alpha| \sim |\beta|$ }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                 ____  
@@ -343,6 +245,20 @@ We need to be more careful about when and how to subdivide the cuboid to ensure 
 %  \_, /\_,_/_/_/_/_/_/_/\_,_/    /_/_/ 
 % /___/                                 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{ $|\gamma| >> |\alpha| \sim |\beta|$ }
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_gt.pdf}
+  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
+            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
+  \label{fig:eccentric_gamma_gt}
+\end{figure}
+
+
 
 %In what follows, we assume $\gamma$ is the elongated axis.
 %After the calculation, we will discuss the case when $\beta$ is the shorter axis.
@@ -362,7 +278,7 @@ $$
   s & = \text{min}(|\alpha|, |\beta|) \\
   \mu s & = \text{max}(|\alpha|, |\beta|) \\
   |\gamma| & = \sigma' s > \sigma s \\
-   & \sigma > \mu \ge 1 \\
+   %& \sigma' > \sigma \ge \mu \ge 1 \\
 \end{array}
 $$
 
@@ -408,7 +324,7 @@ For our choice of $\sigma = 3/2$, the average defect is reduced
 so long as the $\gamma$ split point of $\rho < 2/5$.
 We've chosen $\rho = 1/3 < 2/5$, ensuring an average defect reduction.
 
-\subsubsection{ $|\beta| << |\alpha| \sim |\gamma|$ }
+\subsection{ $|\beta| << |\alpha| \sim |\gamma|$ }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %    __       __         ____
@@ -417,6 +333,15 @@ We've chosen $\rho = 1/3 < 2/5$, ensuring an average defect reduction.
 % /_.__/\__/\__/\_,_/   \_\_\
 %                            
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_lt.pdf}
+  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
+            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
+  \label{fig:eccentric_beta_lt}
+\end{figure}
+
 
 \begin{itemize}
   \item $\sigma = \frac{3}{2}$
@@ -439,7 +364,7 @@ $$
   s & = \text{min}(|\alpha|, |\gamma|) \\
   \mu s & = \text{max}(|\alpha|, |\gamma|) \\
   |\beta| & = s / \sigma' < s / \sigma \\
-   & \sigma' \ge \sigma > \mu \ge 1 \\
+   %& \sigma' \ge \sigma > \mu \ge 1 \\
 \end{array}
 $$
 
@@ -491,12 +416,16 @@ $$
 Showing our choice of $\sigma = 3/2$ and $\rho = 1/3$ provides an average defect reduction even in the case
 of $|\beta|$ small relative to the other two side lengths.
 
-The constants $\sigma$ and $\rho$ are not optimal in terms of reducing the average defect.
-$\sigma$ and $\rho$ were chosen as a compromise between providing simple ratios while
-still providing an average defect reduction for both of the cases when $|\gamma|$ large or $|\beta|$ small.
 
 
-\subsection{$|\beta| >> |\alpha| \sim |\gamma|$ or $|\alpha| << |\beta| \sim |\gamma|$}
+\subsection{$|\beta| >> |\alpha| \sim |\gamma|$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    __       __         ____  
+%   / /  ___ / /____ _   \ \ \ 
+%  / _ \/ -_) __/ _ `/    > > >
+% /_.__/\__/\__/\_,_/    /_/_/ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{figure}[h]
@@ -507,20 +436,6 @@ still providing an average defect reduction for both of the cases when $|\gamma|
   \label{fig:eccentric_s2}
 \end{figure}
 
-\begin{itemize}
-  \item Shape template: $S_2$
-  \item $\sigma = \frac{3}{2}$
-  \item $\rho = \frac{1}{3}$
-\end{itemize}
-
-\subsubsection{$|\beta| >> |\alpha| \sim |\gamma|$}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%    __       __         ____  
-%   / /  ___ / /____ _   \ \ \ 
-%  / _ \/ -_) __/ _ `/    > > >
-% /_.__/\__/\__/\_,_/    /_/_/ 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{itemize}
   \item $\sigma = \frac{3}{2}$
@@ -542,7 +457,7 @@ $$
   \mu s & = \text{max}(|\alpha|, |\gamma|) \\
   \mu' s & = |\alpha| \\
   \sigma' s & = |\beta| > \sigma s \\
-  & \sigma' \ge \sigma > \mu \ge 1 \\
+  %& \sigma' \ge \sigma > \mu \ge 1 \\
 \end{array}
 $$
 
@@ -573,31 +488,7 @@ $$
 
 Showing an average defect reduction.
 
-
-%As with the previous case, we are trying to validate two parameters, $\sigma$, the amount
-%of eccentricity of one side length relative to the others, and $\rho$, where to subdivide the
-%cuboid along the $\beta$ axis.
-%
-%Choosing $\sigma = \frac{3}{2}$ implies that the defect of the original volume is $\lambda(V_0) = \sigma = \frac{3}{2}$.
-%Further, $\text{min}( \sigma \rho s, \frac{s}{2} ) = \frac{s}{2}$, implying the $A$ and $C$ volumes
-%have minimum side length of $\frac{s}{2}$ and $\text{min}( (1-\rho) \sigma s, s) = s$, implying the
-%minimum side length of volume $C$ is $s$.
-%
-%This allows us to calculate the average defect of the subdivided cuboid using an $S_2$ shape template:
-%
-%$$
-%\begin{array}{ll}
-%  \lambda_s (V_1) & = 2 (\frac{1}{2}) \rho [ \frac{ \rho \sigma s \cdot \frac{s}{2} \cdot s }{(\frac{s}{2})^3} ] \\
-%  & + (1-\rho) \cdot [ \frac{ (1-\rho) \sigma s \cdot s \cdot s }{s^3} ] \\
-%  & = 4 \sigma \rho^2 + \sigma (1-\rho)^2 \\
-%  & = \frac{8}{9} \sigma = \frac{4}{3} < \frac{3}{2} \\
-%  \to & \lambda_s(V_1) < \lambda(V_0) \\
-%\end{array}
-%$$
-%
-%
-
-\subsubsection{ $|\alpha| << |\beta| \sim |\gamma|$ }
+\subsection{ $|\alpha| << |\beta| \sim |\gamma|$ }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        __     __          ____
@@ -627,7 +518,7 @@ $$
   \sigma' s & = |\beta| > \sigma s \\
   \omega & = \text{min}( \rho s, \frac{|\alpha|}{2} = \frac{s}{2 \sigma'} < \frac{s}{2\sigma} = \frac{s}{3} ) \\
    & = |\alpha|/2 \\
-  & \sigma' \ge \sigma \ge \mu \ge 1 \\
+  %& \sigma' \ge \sigma \ge \mu \ge 1 \\
 \end{array}
 $$
 
@@ -656,7 +547,7 @@ $$
 
 Confirming a defect reduction.
 
-\subsubsection{ $|\gamma| << |\alpha| \sim |\beta|$ }
+\subsection{ $|\gamma| << |\alpha| \sim |\beta|$ }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                 ____
@@ -685,7 +576,7 @@ $$
   \mu s & = \text{max}(|\alpha|, |\beta|) \\
   s / \sigma' & = |\gamma| < s / \sigma \\
   \omega & = \text{min}( |\gamma|, \rho s ) \\
-  & \sigma' \ge \sigma \ge \mu \ge 1 \\
+  %& \sigma' \ge \sigma \ge \mu \ge 1 \\
 \end{array}
 $$
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  21 MAY 2025 22:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 MAY 2025 02:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1398,9 +1398,9 @@ Package caption Info: End \AtBeginDocument code.
 \openout7 = `Gilbert.abs'.
 
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 15.55197pt on input line 78.
+(Font)              scaled to size 15.55197pt on input line 79.
 LaTeX Font Info:    Trying to load font information for T1+LibertinusSans-TLF o
-n input line 78.
+n input line 79.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/T1LibertinusSans-TLF.
 fd
@@ -1408,18 +1408,18 @@ File: T1LibertinusSans-TLF.fd 2020/08/22 (autoinst) Font definitions for T1/Lib
 ertinusSans-TLF.
 )
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/m/n' will be
-(Font)              scaled to size 15.55197pt on input line 78.
+(Font)              scaled to size 15.55197pt on input line 79.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LibertinusSans-TLF' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
-(Font)              scaled to size 15.55197pt on input line 78.
+(Font)              scaled to size 15.55197pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LibertinusSans-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 78.
+(Font)              scaled to size 9.0pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 10.79997pt on input line 78.
-LaTeX Font Info:    Calculating math sizes for size <10.79997> on input line 78
+(Font)              scaled to size 10.79997pt on input line 79.
+LaTeX Font Info:    Calculating math sizes for size <10.79997> on input line 79
 .
 <<ot1.cmap>> (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
@@ -1427,20 +1427,20 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.55994> not available
-(Font)              size <8> substituted on input line 78.
+(Font)              size <8> substituted on input line 79.
 
 <<oml.cmap>>
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.55994> not available
-(Font)              size <8> substituted on input line 78.
+(Font)              size <8> substituted on input line 79.
 
 <<oms.cmap>>
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.55994> not available
-(Font)              size <8> substituted on input line 78.
+(Font)              size <8> substituted on input line 79.
 
 <<omx.cmap>>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 79.
 
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1448,7 +1448,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 78.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 79.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1458,77 +1458,77 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 7.55994pt on input line 78.
+(Font)              scaled to size 7.55994pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 12.96002pt on input line 78.
+(Font)              scaled to size 12.96002pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 7.50009pt on input line 78.
+(Font)              scaled to size 7.50009pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/it' will be
-(Font)              scaled to size 7.50009pt on input line 78.
+(Font)              scaled to size 7.50009pt on input line 79.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/b/n' will be
-(Font)              scaled to size 9.0pt on input line 78.
+(Font)              scaled to size 9.0pt on input line 79.
  (./Gilbert.abs)
-LaTeX Font Info:    Calculating math sizes for size <7.50009> on input line 78.
+LaTeX Font Info:    Calculating math sizes for size <7.50009> on input line 79.
 
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <7.50009> not available
-(Font)              size <8> substituted on input line 78.
+(Font)              size <8> substituted on input line 79.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.75005> not available
-(Font)              size <5> substituted on input line 78.
+(Font)              size <5> substituted on input line 79.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <7.50009> not available
-(Font)              size <8> substituted on input line 78.
+(Font)              size <8> substituted on input line 79.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.75005> not available
-(Font)              size <5> substituted on input line 78.
+(Font)              size <5> substituted on input line 79.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <7.50009> not available
-(Font)              size <8> substituted on input line 78.
+(Font)              size <8> substituted on input line 79.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.75005> not available
-(Font)              size <5> substituted on input line 78.
+(Font)              size <5> substituted on input line 79.
 
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 5.25003pt on input line 78.
+(Font)              scaled to size 5.25003pt on input line 79.
 
-Package hyperref Warning: Ignoring empty anchor on input line 78.
+Package hyperref Warning: Ignoring empty anchor on input line 79.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 78.
+Package hyperref Warning: Ignoring empty anchor on input line 79.
 
 LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on i
-nput line 78.
+nput line 79.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd)
 
-Package hyperref Warning: Ignoring empty anchor on input line 78.
+Package hyperref Warning: Ignoring empty anchor on input line 79.
 
 LaTeX Font Info:    Trying to load font information for U+fontawesomebrands1 on
- input line 78.
+ input line 79.
 (/usr/share/texlive/texmf-dist/tex/latex/fontawesome5/ufontawesomebrands1.fd)
 LaTeX Font Info:    Font shape `U/fontawesomebrands1/solid/n' in size <7.50009>
  not available
 (Font)              Font shape `U/fontawesomebrands1/regular/n' tried instead o
-n input line 78.
+n input line 79.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 78.
+Package hyperref Warning: Ignoring empty anchor on input line 79.
 
 <doclicense-CC-by-88x31.pdf, id=17, 90.3375pt x 31.61812pt>
 File: doclicense-CC-by-88x31.pdf Graphic file (type pdf)
 <use doclicense-CC-by-88x31.pdf>
-Package pdftex.def Info: doclicense-CC-by-88x31.pdf  used on input line 78.
+Package pdftex.def Info: doclicense-CC-by-88x31.pdf  used on input line 79.
 (pdftex.def)             Requested size: 32.37479pt x 11.33087pt.
 LaTeX Font Info:    Font shape `T1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 4.5pt on input line 78.
+(Font)              scaled to size 4.5pt on input line 79.
 LaTeX Font Info:    Trying to load font information for TS1+LibertinusSerif-TLF
- on input line 78.
+ on input line 79.
 
 (/usr/share/texlive/texmf-dist/tex/latex/libertinus-type1/TS1LibertinusSerif-TL
 F.fd
@@ -1536,13 +1536,13 @@ File: TS1LibertinusSerif-TLF.fd 2020/08/22 (autoinst) Font definitions for TS1/
 LibertinusSerif-TLF.
 )
 LaTeX Font Info:    Font shape `TS1/LibertinusSerif-TLF/m/n' will be
-(Font)              scaled to size 4.5pt on input line 78.
+(Font)              scaled to size 4.5pt on input line 79.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `LibertinusSerif-TLF' (encoding: TS1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (3.75005pt too wide) in paragraph at lines 78--78
+Overfull \hbox (3.75005pt too wide) in paragraph at lines 79--79
 [][][][]||$[]$ $[]$|  
  []
 
@@ -1872,131 +1872,109 @@ ial Col-lege
 <gilbert2d_eccentric_appendix.pdf, id=1223, 338.76563pt x 248.42813pt>
 File: gilbert2d_eccentric_appendix.pdf Graphic file (type pdf)
 <use gilbert2d_eccentric_appendix.pdf>
-Package pdftex.def Info: gilbert2d_eccentric_appendix.pdf  used on input line 3
-7.
+Package pdftex.def Info: gilbert2d_eccentric_appendix.pdf  used on input line 5
+4.
 (pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
  [11 <./gilbert2d_eccentric_appendix.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 135.
+(hyperref)                removing `math shift' on input line 165.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 135.
+(hyperref)                removing `math shift' on input line 165.
 
 <gilbert3d_eccentric_appendix_s0.pdf, id=1264, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_appendix_s0.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_appendix_s0.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_appendix_s0.pdf  used on input lin
-e 139.
+e 169.
 (pdftex.def)             Requested size: 214.48395pt x 153.21043pt.
 
-Overfull \hbox (11.70094pt too wide) detected at line 246
+Overfull \hbox (11.70094pt too wide) detected at line 216
 []
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 274.
+(hyperref)                removing `math shift' on input line 250.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 274.
+(hyperref)                removing `math shift' on input line 250.
+
+<gilbert3d_eccentric_gamma_gt.pdf, id=1265, 248.42813pt x 188.20313pt>
+File: gilbert3d_eccentric_gamma_gt.pdf Graphic file (type pdf)
+<use gilbert3d_eccentric_gamma_gt.pdf>
+Package pdftex.def Info: gilbert3d_eccentric_gamma_gt.pdf  used on input line 2
+55.
+(pdftex.def)             Requested size: 214.48395pt x 162.48904pt.
+[12 <./gilbert3d_eccentric_appendix_s0.pdf> <./gilbert3d_eccentric_gamma_gt.pdf
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 274.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 274.
-
-<gilbert3d_eccentric_appendix_s1.pdf, id=1265, 338.76563pt x 248.42813pt>
-File: gilbert3d_eccentric_appendix_s1.pdf Graphic file (type pdf)
-<use gilbert3d_eccentric_appendix_s1.pdf>
-Package pdftex.def Info: gilbert3d_eccentric_appendix_s1.pdf  used on input lin
-e 279.
-(pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 337.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 337.
-
-[12 <./gilbert3d_eccentric_appendix_s0.pdf> <./gilbert3d_eccentric_appendix_s1.
-pdf
-
-pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_appendix_s1.pdf): PDF incl
-usion: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_gamma_gt.pdf): PDF inclusi
+on: multiple pdfs with page group included in a single page
 >]
-Overfull \hbox (2.21303pt too wide) detected at line 405
+Overfull \hbox (2.21303pt too wide) detected at line 321
 []
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 411.
+(hyperref)                removing `math shift' on input line 327.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 411.
+(hyperref)                removing `math shift' on input line 327.
 
+<gilbert3d_eccentric_beta_lt.pdf, id=1327, 248.42813pt x 188.20313pt>
+File: gilbert3d_eccentric_beta_lt.pdf Graphic file (type pdf)
+<use gilbert3d_eccentric_beta_lt.pdf>
+Package pdftex.def Info: gilbert3d_eccentric_beta_lt.pdf  used on input line 33
+9.
+(pdftex.def)             Requested size: 214.48395pt x 162.48904pt.
 
-Overfull \hbox (30.3695pt too wide) detected at line 489
+Overfull \hbox (30.3695pt too wide) detected at line 414
 []
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 499.
+(hyperref)                removing `math shift' on input line 421.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 499.
+(hyperref)                removing `math shift' on input line 421.
 
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 499.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 499.
-
-<gilbert3d_eccentric_appendix_s2.pdf, id=1345, 338.76563pt x 248.42813pt>
+<gilbert3d_eccentric_appendix_s2.pdf, id=1328, 338.76563pt x 248.42813pt>
 File: gilbert3d_eccentric_appendix_s2.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_appendix_s2.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_appendix_s2.pdf  used on input lin
-e 504.
+e 433.
 (pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
+[13 <./gilbert3d_eccentric_beta_lt.pdf> <./gilbert3d_eccentric_appendix_s2.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_appendix_s2.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 516.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 516.
-
-[13 <./gilbert3d_eccentric_appendix_s2.pdf>]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 600.
+(hyperref)                removing `math shift' on input line 491.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 600.
+(hyperref)                removing `math shift' on input line 491.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 659.
+(hyperref)                removing `math shift' on input line 550.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 659.
+(hyperref)                removing `math shift' on input line 550.
 
 
-Overfull \hbox (46.46648pt too wide) detected at line 721
+Overfull \hbox (46.46648pt too wide) detected at line 612
 []
  []
 
@@ -2037,11 +2015,11 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42635 strings out of 480171
- 832784 string characters out of 5894489
- 1216914 words of memory out of 5000000
- 59147 multiletter control sequences out of 15000+600000
- 661916 words of font info for 414 fonts, out of 8000000 for 9000
+ 42626 strings out of 480171
+ 832460 string characters out of 5894489
+ 1217265 words of memory out of 5000000
+ 59141 multiletter control sequences out of 15000+600000
+ 661539 words of font info for 412 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  122i,21n,120p,10623b,2604s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/libertinus-type1/lbts_tll2u3.e
@@ -2080,9 +2058,9 @@ ts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb>
-Output written on Gilbert.pdf (18 pages, 2040234 bytes).
+Output written on Gilbert.pdf (18 pages, 2047791 bytes).
 PDF statistics:
- 1658 PDF objects out of 1728 (max. 8388607)
- 114 named destinations out of 1000 (max. 500000)
- 105850 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 1665 PDF objects out of 1728 (max. 8388607)
+ 113 named destinations out of 1000 (max. 500000)
+ 105839 words of extra memory for PDF output out of 106986 (max. 10000000)
 
