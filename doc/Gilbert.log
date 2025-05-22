@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 MAY 2025 14:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 MAY 2025 14:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1873,41 +1873,41 @@ ial Col-lege
 File: gilbert2d_eccentric_appendix.pdf Graphic file (type pdf)
 <use gilbert2d_eccentric_appendix.pdf>
 Package pdftex.def Info: gilbert2d_eccentric_appendix.pdf  used on input line 5
-4.
+9.
 (pdftex.def)             Requested size: 214.48395pt x 157.29143pt.
  [11 <./gilbert2d_eccentric_appendix.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 165.
+(hyperref)                removing `math shift' on input line 170.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 165.
+(hyperref)                removing `math shift' on input line 170.
 
-<gilbert3d_eccentric_appendix_s0.pdf, id=1264, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_appendix_s0.pdf, id=1263, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_appendix_s0.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_appendix_s0.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_appendix_s0.pdf  used on input lin
-e 169.
+e 174.
 (pdftex.def)             Requested size: 214.48395pt x 153.21043pt.
 
-Overfull \hbox (11.70094pt too wide) detected at line 216
+Overfull \hbox (11.70094pt too wide) detected at line 221
 []
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 250.
+(hyperref)                removing `math shift' on input line 255.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 250.
+(hyperref)                removing `math shift' on input line 255.
 
-<gilbert3d_eccentric_gamma_gt.pdf, id=1265, 248.42813pt x 188.20313pt>
+<gilbert3d_eccentric_gamma_gt.pdf, id=1264, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_gt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_gt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_gt.pdf  used on input line 2
-55.
+60.
 (pdftex.def)             Requested size: 214.48395pt x 162.48904pt.
 [12 <./gilbert3d_eccentric_appendix_s0.pdf> <./gilbert3d_eccentric_gamma_gt.pdf
 
@@ -1915,42 +1915,45 @@ Package pdftex.def Info: gilbert3d_eccentric_gamma_gt.pdf  used on input line 2
 pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_gamma_gt.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
 >]
-Overfull \hbox (2.21303pt too wide) detected at line 321
+Overfull \hbox (2.21303pt too wide) detected at line 326
 []
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 327.
+(hyperref)                removing `math shift' on input line 332.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 327.
+(hyperref)                removing `math shift' on input line 332.
 
 <gilbert3d_eccentric_beta_lt.pdf, id=1327, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_lt.pdf>
-Package pdftex.def Info: gilbert3d_eccentric_beta_lt.pdf  used on input line 33
-9.
+Package pdftex.def Info: gilbert3d_eccentric_beta_lt.pdf  used on input line 34
+4.
 (pdftex.def)             Requested size: 214.48395pt x 162.48904pt.
 
-Overfull \hbox (30.3695pt too wide) detected at line 414
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (30.3695pt too wide) detected at line 419
 []
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 421.
+(hyperref)                removing `math shift' on input line 426.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 421.
+(hyperref)                removing `math shift' on input line 426.
 
 <gilbert3d_eccentric_beta_gt.pdf, id=1328, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_gt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_gt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_beta_gt.pdf  used on input line 43
-2.
+7.
 (pdftex.def)             Requested size: 214.48395pt x 162.48904pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1958,31 +1961,34 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [13 <./gilbert3d_eccentric_beta_lt.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 488.
+(hyperref)                removing `math shift' on input line 493.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 488.
+(hyperref)                removing `math shift' on input line 493.
 
 <gilbert3d_eccentric_alpha_lt.pdf, id=1370, 248.42813pt x 210.7875pt>
 File: gilbert3d_eccentric_alpha_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_alpha_lt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_alpha_lt.pdf  used on input line 5
-00.
+05.
 (pdftex.def)             Requested size: 214.48395pt x 181.98775pt.
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 556.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 556.
+(hyperref)                removing `math shift' on input line 561.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 561.
 
 <gilbert3d_eccentric_gamma_lt.pdf, id=1371, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_lt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_lt.pdf  used on input line 5
-68.
+73.
 (pdftex.def)             Requested size: 214.48395pt x 162.48904pt.
 [14 <./gilbert3d_eccentric_beta_gt.pdf> <./gilbert3d_eccentric_alpha_lt.pdf
 
@@ -1993,7 +1999,7 @@ on: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_gamma_lt.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
 >]
-Overfull \hbox (46.46648pt too wide) detected at line 627
+Overfull \hbox (46.46648pt too wide) detected at line 632
 []
  []
 
@@ -2038,7 +2044,7 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 Here is how much of TeX's memory you used:
  42645 strings out of 480171
  833084 string characters out of 5894489
- 1218724 words of memory out of 5000000
+ 1217601 words of memory out of 5000000
  59155 multiletter control sequences out of 15000+600000
  661539 words of font info for 412 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
@@ -2079,7 +2085,7 @@ ts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type
 1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/symbols/msbm10.pfb>
-Output written on Gilbert.pdf (19 pages, 2075173 bytes).
+Output written on Gilbert.pdf (19 pages, 2075650 bytes).
 PDF statistics:
  1720 PDF objects out of 1728 (max. 8388607)
  116 named destinations out of 1000 (max. 500000)

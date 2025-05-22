@@ -39,6 +39,11 @@ This weights the defect of each subdivided cuboid by its proportional volume.
 The defect gives us a coarse idea of how lopsided or \textit{eccentric} a cuboid region is.
 If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
 
+Reducing the average defect attempts to make each subdivided cuboid more cube-like.
+When subdivided cuboids are more cube-like, we say that the subdivided regions are more \textit{harmonious}.
+The same idea is applied for 2D rectangles and rectangular regions that are more square like are said to be
+more harmonious.
+
 %%%%%%%%%%%%
 %  ___    _ 
 % |_  )__| |
@@ -140,7 +145,7 @@ the resulting subdivided regions more cube-like or \textit{harmonious}.
 Specifically, we want to find the ratio, $\sigma$, of when one dimension differs significantly from the others.
 Further, we choose the ratio, $\rho$, of where to choose the first subdivision.
 For the 2D case, choosing $\rho = \frac{1}{2}$ worked to make the resulting subdivided regions more harmonious.
-We will need a different value of $\rho$ for most of the 3d cases to ensure a harmonious resuling subvidision.
+We will need a different value of $\rho$ for most of the 3d cases to ensure a harmonious resulting subdivision.
 
 In what follows, our goal is to choose a subdivision that will reduce the average defect.
 We assume that the start and end of the path lie in the $\alpha$ dimension.
@@ -194,7 +199,7 @@ $$
 \end{array}
 $$
 
-Call $\lambda_0$ the average defect of the original cuboid regoin and $\lambda_1$ the average defect
+Call $\lambda_0$ the average defect of the original cuboid region and $\lambda_1$ the average defect
 after the subdivision at the $\alpha$ halfway point:
 
 $$
@@ -442,7 +447,7 @@ of $|\beta|$ small relative to the other two side lengths.
   \item Shape template: $S_2$
 \end{itemize}
 
-Here $|\beta|$ is the eccentric length, surpasing $\sigma = 3/2$ of the minimum
+Here $|\beta|$ is the eccentric length, surpassing $\sigma = 3/2$ of the minimum
 of the other two lengths to
 trigger an $S_2$ subdivision.
 
@@ -471,7 +476,7 @@ $$
 
 Since $|\beta| > \sigma s$, $\text{min}( \rho |\beta| > \rho \sigma s > \frac{s}{2}, \frac{s}{2}) = \frac{s}{2}$
 and $\text{min}( (1-\rho)|\beta| > (1-\rho)\sigma s = s, s) = s$, giving us the denominator of the
-defect caclulation above.
+defect calculation above.
 
 The average defect reduction ratio:
 
