@@ -236,12 +236,34 @@ function gilbert2d_eccentric_appendix() {
   let _w = 340;
 
 
+  /*
   let rect  = two.makeRectangle( cxy[0], cxy[1], _w, _h);
   rect.noFill();
   rect.linewidth = rect_lw;
   rect.stroke = RECT_COLOR;
   rect.opacity = 1;
   rect.join = "round";
+  */
+
+  let rect_l  = two.makeRectangle( cxy[0] - _w/4, cxy[1], _w/2, _h);
+  //rect_l.noFill();
+  rect_l.fill = "rgba(215,25,28)";
+  rect_l.fill = "hsl(359,79.2%,47.1%)";
+  rect_l.fill = "hsl(359,70.2%,65.1%)";
+  rect_l.linewidth = rect_lw;
+  rect_l.stroke = RECT_COLOR;
+  rect_l.opacity = 1;
+  rect_l.join = "round";
+
+  let rect_r = two.makeRectangle( cxy[0] + _w/4, cxy[1], _w/2, _h);
+  //rect_r.noFill();
+  rect_r.fill = "rgba(43,131,186)";
+  rect_r.fill = "hsl(203,63.9%,44.5%)";
+  rect_r.fill = "hsl(203,53.9%,54.5%)";
+  rect_r.linewidth = rect_lw;
+  rect_r.stroke = RECT_COLOR;
+  rect_r.opacity = 1;
+  rect_r.join = "round";
 
   let _line = two.makeLine( cxy[0], cxy[1] - _h/2, cxy[0], cxy[1] + _h/2 );
 

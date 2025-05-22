@@ -1019,7 +1019,8 @@ function gilbert3d_eccentric_appendix_s0() {
 
 
 
-  axis_fig(280, 50, 20);
+  //axis_fig(280, 50, 20);
+  axis_fig(30, 50, 20);
 
   two.update();
 }

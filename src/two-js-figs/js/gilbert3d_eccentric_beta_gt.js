@@ -943,7 +943,7 @@ function rbracket(mxy, w, h, theta) {
 
 }
 
-function gilbert3d_eccentric_beta_lt() {
+function gilbert3d_eccentric_beta_gt() {
   let two = g_fig_ctx.two;
 
   let vr = [0,0,1];
@@ -988,89 +988,82 @@ function gilbert3d_eccentric_beta_lt() {
   let dock_co_a = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.3)", "rgb(0,0,0)" ];
   let dock_co_b = [ "rgba(0,0,0,0)", "rgba(0,0,0,0.3)", "rgb(255,255,255)" ];
 
-  // S_1
-  // d >> ...
-  // |\gamma| >> ...
-  //
 
-  //DEBUG
-  //DEBUG
-  //DEBUG
-  //DEBUG
+  // DEBUG
+  // DEBUG
+  // DEBUG
   //two.makeRectangle( two.width/2, two.height/2, two.width, two.height );
-  //DEBUG
-  //DEBUG
-  //DEBUG
-  //DEBUG
+  // DEBUG
+  // DEBUG
+  // DEBUG
 
-  // S_1
-  // h << ...
-  // |\beta| << ...
+
+  //------
+  //------
+  //------
+
+  // S_2
+  // h >> ...
+  // |\beta| >> ...
   //
+  mathjax2twojs("S2", 20, two.height-20, latex_name_scale);
+
+
+  scale = 35;
+  cxy = [160,190];
+
+  let _s23 = scale*2/3;
+  let _s13 = scale*1/3;
+
+  dxyz = rodrigues([0,scale,0], vr, theta);
+  dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
+  //cs = njs.mul( scale, [1,1,1] );
+  cs = njs.mul( scale, [2,2,2] );
+
+  mk_iso_cuboid( cxy[0]+dxy[0], cxy[1]+dxy[1] , 1, lPAL[2], PAL[2], cs, 2, vr, theta );
+
+  dxyz = rodrigues([scale/2,0,0], vr, theta);
+  dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
+  //cs = njs.mul( scale, [0.5,0.5,1] );
+  cs = njs.mul( scale, [1,1,2] );
+
+  mk_iso_cuboid( cxy[0]+2*dxy[0], cxy[1]+2*dxy[1] , 1, lPAL[4], PAL[4], cs, 2, vr, theta );
+  mk_iso_cuboid( cxy[0], cxy[1] , 1, lPAL[0], PAL[0], cs, 2, vr, theta );
 
   let _sm = 0.8*scale;
   let _sl = 1.65*scale;
 
+  mathjax2twojs("one_m_rho", cxy[0]+(1.2*scale), cxy[1]-155, latex_name_scale);
+  rbracket( [ cxy[0] + (1.15*scale), cxy[1]-155], _sl/2.65, 0.95*_sl,   theta*0.62);
 
-  cxy = [80,195];
-
-  scale = 35;
-
-  dxyz = rodrigues([scale,0,0], vr, theta);
-  dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-  cs = njs.mul( scale, [1.5,1,1] );
-
-  let VV = 1.5;
-
-  mk_iso_cuboid( cxy[0] + VV*dxy[0], cxy[1] + VV*dxy[1], 1, lPAL[4], PAL[4], cs, 2, vr, theta );
-
-  mk_iso_cuboid( cxy[0], cxy[1], 1, lPAL[0], PAL[0], cs, 2, vr, theta );
-
-  dxyz = rodrigues([0,0,scale], vr, theta);
-  dxy = _project(dxyz[0], dxyz[1], dxyz[2]);
-  cs = njs.mul( scale, [3,1,2.0] );
-  mk_iso_cuboid( cxy[0]+1*dxy[0], cxy[1]+1*dxy[1], 1, lPAL[2], PAL[2], cs, 2, vr, theta );
-
-  rbracket( [cxy[0] - (1.45*scale), cxy[1]-63], _sl/3, _sl*1.4, Math.PI);
-  mathjax2twojs("s", cxy[0]-(1.95*scale), cxy[1]-60, latex_name_scale);
-
-  mathjax2twojs("s_d_sigma", cxy[0]-(1.45*scale), cxy[1]+25, latex_name_scale, true);
-  rbracket( [cxy[0] - (0.85*scale), cxy[1]+8], _sl/3, _sl/3, -Math.PI/2 - theta*0.5);
+  mathjax2twojs("rho", cxy[0]+(2.40*scale), cxy[1]-123, latex_name_scale);
+  rbracket( [ cxy[0] + (2.20*scale), cxy[1]-123], _sl/3, _sm, theta*0.62);
 
 
-  mathjax2twojs("rho", cxy[0]+(3.95*scale), cxy[1]-56, latex_name_scale);
-  rbracket( [ cxy[0] + (3.65*scale), cxy[1]-59], _sl/4, 1.1*_sm);
-  //mathjax2twojs("rb", cxy[0]+(2.35*scale), cxy[1]-40, latex_name_scale);
-
-
-  mathjax2twojs("one_m_rho", cxy[0]+(3.95*scale), cxy[1]-105, latex_name_scale);
-  rbracket( [ cxy[0] + (3.8*scale), cxy[1]-110], _sl/2, 1.5*_sl);
-
-
-  // 1/2
-  rbracket( [cxy[0] + (1.1*scale), cxy[1]+13], _sl/3, 1.85*_sm, - theta*0.86);
-  rbracket( [cxy[0] + (2.6*scale), cxy[1]-8], _sl/3, 1.85*_sm, - theta*0.86);
-
-  mathjax2twojs("one_half", cxy[0]+(1.1*scale), cxy[1]+32, latex_name_scale);
-  mathjax2twojs("one_half", cxy[0]+(2.6*scale), cxy[1]+15, latex_name_scale);
+  // bottom s
+  mathjax2twojs("s", cxy[0]-(3.0*scale), cxy[1]-92, latex_name_scale);
+  rbracket( [cxy[0] - (2.6*scale), cxy[1]-96], _sl/3, _sl, Math.PI);
 
 
 
-  //mkdockconn(cxy, [0,0,0, _d,_d,_d], scale, dock_co_a, vr, theta);
-  //mkdockconn(cxy, [0,0,1-_D, _d,_d,1-_d], scale, dock_co_b, vr, theta);
-
-  //mkdockconn(cxy, [2-_D,0,1-_D, 2-_d,_d,1-_d], scale, dock_co_a, vr, theta);
-  //mkdockconn(cxy, [2-_D,0,0, 2-_d,_d,_d], scale, dock_co_b, vr, theta);
-
-  //mkdockconn(cxy, [0,0,1, _d,_d,1+_d], scale, dock_co_a, vr, theta);
-  //mkdockconn(cxy, [2-_D,0,1, 2-_d,_d,1+_d], scale, dock_co_b, vr, theta);
+  mathjax2twojs("sigma_s", cxy[0]-(2.05*scale), cxy[1]-5, latex_name_scale);
+  rbracket( [cxy[0] - (1.50*scale), cxy[1]-15], _sl/3, _sl*1.6, Math.PI + theta*0.62);
 
 
-  //mathjax2twojs("hll", cxy[0]-35+5, cxy[1]+50, latex_eqn_scale);
 
-  //mathjax2twojs("S1", cxy[0]-5+15, cxy[1]+30, latex_name_scale);
-  //mathjax2twojs("S1", two.width/2, two.height-30, latex_name_scale);
-  mathjax2twojs("S1", two.width-30,  two.height-20, latex_name_scale);
+  rbracket( [cxy[0] + (0.8*scale), cxy[1]+15], _sl/3, _sm, - theta*0.86);
+  rbracket( [cxy[0] + (1.8*scale), cxy[1]+1], _sl/3, _sm, - theta*0.86);
+
+  mathjax2twojs("one_half", cxy[0]+(0.5*scale), cxy[1]+35, latex_name_scale);
+  mathjax2twojs("one_half", cxy[0]+(1.7*scale), cxy[1]+20, latex_name_scale);
+
+
+
+
+  //------
+  //------
+  //------
+
 
   //------
   //------
@@ -1093,7 +1086,6 @@ var debug = [];
 function mathjax2twojs(_id,x,y,s,s_sub, ignore) {
   s = ((typeof s === "undefined") ? 0.02 : s);
   s_sub = ((typeof s_sub === "undefined") ? 0.7 : s_sub);
-  ignore = ((typeof ignore === "undefined") ? false : ignore);
 
   let two = g_fig_ctx.two;
 
@@ -1115,39 +1107,39 @@ function mathjax2twojs(_id,x,y,s,s_sub, ignore) {
 
   if (!ignore) {
 
-    // rescale subscript HACK
-    //
-    if (_id.slice(0,2) == "m_") {
+  // rescale subscript HACK
+  //
+  if (_id.slice(0,2) == "m_") {
 
-      if (true) {
+    if (true) {
 
-      if (sgr.children.length > 0) {
-      if (sgr.children[0].children.length > 0) {
-      if (sgr.children[0].children[0].children.length > 1) {
-      if (sgr.children[0].children[0].children[1].children.length > 1) {
-          sgr.children[0].children[0].children[1].children[1].scale.x = s_sub;
-          sgr.children[0].children[0].children[1].children[1].scale.y = s_sub;
-      }
-      }
-      }
-      }
-
-      }
+    if (sgr.children.length > 0) {
+    if (sgr.children[0].children.length > 0) {
+    if (sgr.children[0].children[0].children.length > 1) {
+    if (sgr.children[0].children[0].children[1].children.length > 1) {
+        sgr.children[0].children[0].children[1].children[1].scale.x = s_sub;
+        sgr.children[0].children[0].children[1].children[1].scale.y = s_sub;
     }
-    else {
-
-      if (sgr.children.length > 0) {
-      if (sgr.children[0].children.length > 0) {
-      if (sgr.children[0].children[0].children.length > 0) {
-      if (sgr.children[0].children[0].children[0].children.length > 1) {
-          sgr.children[0].children[0].children[0].children[1].scale.x = s_sub;
-          sgr.children[0].children[0].children[0].children[1].scale.y = s_sub;
-      }
-      }
-      }
-      }
+    }
+    }
+    }
 
     }
+  }
+  else {
+
+    if (sgr.children.length > 0) {
+    if (sgr.children[0].children.length > 0) {
+    if (sgr.children[0].children[0].children.length > 0) {
+    if (sgr.children[0].children[0].children[0].children.length > 1) {
+        sgr.children[0].children[0].children[0].children[1].scale.x = s_sub;
+        sgr.children[0].children[0].children[0].children[1].scale.y = s_sub;
+    }
+    }
+    }
+    }
+
+  }
 
   }
 
