@@ -180,15 +180,15 @@ function Gilbert2DAdapt_xy2d(_q, w,h, adapt_method) {
 // d2u    : divide by 2 but force odd (by adding one if need be)
 // dqe    : divide by q but force even (by adding one if need be)
 // dqu    : divide by q but force odd (by adding one if need be)
-// _divq  : integer divide vector entries by q ( sgn(v) floor(|v|/q) )
-// _div2  : _divq(2)
+// v_divq  : integer divide vector entries by q ( sgn(v) floor(|v|/q) )
+// v_div2  : v_divq(2)
 // _sgn   : return -1,0,1 if value is <0, 0 or >0 respectively
-// _neg   : negate vector (multiply each entry by -1)
-// _add   : add two vectors
-// _abs   : absolute value all vector entries
-// _delta : replace each element in vector by _sgn(.)
-// _print : print vector (debugging)
-// _clone : make a clone of the vector
+// v_neg   : negate vector (multiply each entry by -1)
+// v_add   : add two vectors
+// abs_sum_v   : absolute value all vector entries
+// v_delta : replace each element in vector by _sgn(.)
+// v_print : print vector (debugging)
+// v_clone : make a clone of the vector
 //
 // all vector operations can be done with 2d or 3d vectors (only)
 //
@@ -249,7 +249,7 @@ function dqu(_v,q) {
 
 // round to zero version
 //
-function _divq(v,q) {
+function v_divq(v,q) {
   let u = [];
   for (let i=0; i<v.length; i++) {
     let _v = Math.abs(v[i]);
@@ -259,7 +259,7 @@ function _divq(v,q) {
   return u;
 }
 
-function _div2(v) { return _divq(v,2); }
+function v_div2(v) { return v_divq(v,2); }
 
 function _sgn(v) {
   if (v>0) { return  1; }
@@ -267,35 +267,71 @@ function _sgn(v) {
   return 0;
 }
 
-function _neg(v) {
-  if (v.length==2) {
-    return [-v[0], -v[1]];
-  }
+function v_neg(v) {
+  if (v.length==2) { return [-v[0], -v[1]]; }
   return [ -v[0], -v[1], -v[2] ];
 }
 
-function _add(u,v) {
+/*
+function v_add(u,v) {
   if ((u.length == 2) || (v.length == 2)) {
     return [ u[0]+v[0], u[1]+v[1] ];
   }
   return [ u[0]+v[0], u[1]+v[1], u[2]+v[2] ];
 }
+*/
 
-function _mul(c,v) {
+function v_add() {
+  if (arguments.length == 0) { return []; }
+  let u = v_clone(arguments[0]);
+
+  for (let i=1; i<arguments.length; i++) {
+    let v = arguments[i];
+    let m = Math.min( u.length, v.length );
+    for (let j=0; j<m; j++) { u[j] += v[j]; }
+  }
+
+  return u;
+}
+
+/*
+function v_sub(u,v) {
+  if ((u.length == 2) || (v.length == 2)) {
+    return [ u[0]-v[0], u[1]-v[1] ];
+  }
+  return [ u[0]-v[0], u[1]-v[1], u[2]-v[2] ];
+}
+*/
+
+function v_sub() {
+  if (arguments.length == 0) { return []; }
+  let u = v_clone(arguments[0]);
+
+  for (let i=1; i<arguments.length; i++) {
+    let v = arguments[i];
+    let m = Math.min( u.length, v.length );
+    for (let j=0; j<m; j++) { u[j] -= v[j]; }
+  }
+
+  return u;
+}
+
+
+function v_mul(c,v) {
   if (v.length == 2) {
     return [ c*v[0], c*v[1] ];
   }
   return [ c*v[0], c*v[1], c*v[2] ];
 }
 
-function _dot(u,v) {
+function dot_v(u,v) {
   if ((u.length == 2) || (v.length == 2)) {
     return  (u[0]*v[0]) + (u[1]*v[1]);
   }
   return (u[0]*v[0]) + (u[1]*v[1]) + (u[2]*v[2]);
 }
 
-function _abs(v) {
+function abs_sum_v(v) {
   let s = 0;
   for (let i=0; i<v.length; i++) {
     s += Math.abs(v[i]);
@@ -303,7 +339,7 @@ function _abs(v) {
   return s;
 }
 
-function _delta(v) {
+function v_delta(v) {
   let u = [];
   for (let i=0; i<v.length; i++) {
     u.push( _sgn(v[i]) );
@@ -311,12 +347,12 @@ function _delta(v) {
   return u;
 }
 
-function _print(v) {
+function v_print(v) {
   if (v.length == 2)  { console.log(v[0], v[1]); }
   else                { console.log(v[0], v[1], v[2]); }
 }
 
-function _clone(v) {
+function v_clone(v) {
   let u = [];
   for (let i=0; i<v.length; i++) {
     u.push(v[i]);
@@ -418,20 +454,20 @@ function _inBounds(q, p, a, b, g) {
 // recursive, sync
 //
 function Gilbert2D_d2xyz(dst_idx, cur_idx, p, alpha, beta) {
-  let a = _abs(alpha);
-  let b = _abs(beta);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
 
   _vprint("#Gilbert2D_d2xyz: dst_idx:", dst_idx, "cur_idx:", cur_idx, "alpha:", alpha, "beta:", beta, "(", a, b, ")");
 
-  let d_alpha = _delta(alpha);
-  let d_beta  = _delta(beta);
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
 
   if (b==1) {
 
     _vprint("#Gilbert2D_d2xyz.Lb: dst_idx:", dst_idx, "cur_idx:", cur_idx, "alpha:", alpha, "beta:", beta, "(", a, b, ")");
 
     let d_idx = dst_idx - cur_idx;
-    return _add(p, _mul(d_idx, d_alpha));
+    return v_add(p, v_mul(d_idx, d_alpha));
   }
 
 
@@ -440,21 +476,21 @@ function Gilbert2D_d2xyz(dst_idx, cur_idx, p, alpha, beta) {
     _vprint("#Gilbert2D_d2xyz.La: dst_idx:", dst_idx, "cur_idx:", cur_idx, "alpha:", alpha, "beta:", beta, "(", a, b, ")");
 
     let d_idx = dst_idx - cur_idx;
-    return _add(p, _mul(d_idx, d_beta));
+    return v_add(p, v_mul(d_idx, d_beta));
   }
 
-  let alpha2 = _div2(alpha);
-  let beta2  = _div2(beta);
+  let alpha2 = v_div2(alpha);
+  let beta2  = v_div2(beta);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
 
   _vprint("#  Gilbert2D_d2xyz: dst_idx:", dst_idx, "cur_idx:", cur_idx, "(alpha2,beta2):", alpha2, beta2, "(", a2, b2, ")");
 
   if ( (2*a) > (3*b) ) {
     if ((a2%2) && (a>2)) {
-      alpha2 = _add(alpha2, d_alpha);
-      a2 = _abs(alpha2);
+      alpha2 = v_add(alpha2, d_alpha);
+      a2 = abs_sum_v(alpha2);
     }
 
 
@@ -472,16 +508,16 @@ function Gilbert2D_d2xyz(dst_idx, cur_idx, p, alpha, beta) {
     _vprint("#Gilbert2D_d2xyz.S1: dst_idx:", dst_idx, "cur_idx:", cur_idx, "(alpha2,beta2):", alpha2, beta2, "(", a2, b2, ")");
 
     return Gilbert2D_d2xyz( dst_idx, cur_idx,
-                            _add(p, alpha2),
-                            _add(alpha, _neg(alpha2)),
+                            v_add(p, alpha2),
+                            v_add(alpha, v_neg(alpha2)),
                             beta );
 
   }
 
 
   if ((b2%2) && (b>2)) {
-    beta2 = _add(beta2, d_beta);
-    b2 = _abs(beta2);
+    beta2 = v_add(beta2, d_beta);
+    b2 = abs_sum_v(beta2);
   }
 
 
@@ -501,20 +537,20 @@ function Gilbert2D_d2xyz(dst_idx, cur_idx, p, alpha, beta) {
   nxt_idx = cur_idx + (a*(b-b2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert2D_d2xyz( dst_idx, cur_idx,
-                            _add(p, beta2),
+                            v_add(p, beta2),
                             alpha,
-                            _add(beta, _neg(beta2)) );
+                            v_add(beta, v_neg(beta2)) );
   }
   cur_idx = nxt_idx;
 
   _vprint("#Gilbert2D_d2xyz.C: dst_idx:", dst_idx, "cur_idx:", cur_idx, "(alpha2,beta2):", alpha2, beta2, "(", a2, b2, ")");
 
   return Gilbert2D_d2xyz( dst_idx, cur_idx,
-                          _add(p,
-                          _add( _add(alpha, _neg(d_alpha) ),
-                                _add(beta2, _neg( d_beta) ) ) ),
-                          _neg(beta2),
-                          _add(alpha2, _neg(alpha)) );
+                          v_add(p,
+                          v_add( v_add(alpha, v_neg(d_alpha) ),
+                                v_add(beta2, v_neg( d_beta) ) ) ),
+                          v_neg(beta2),
+                          v_add(alpha2, v_neg(alpha)) );
 }
 
 //-----------------------------------------------------------------
@@ -537,36 +573,36 @@ function Gilbert2D_d2xyz(dst_idx, cur_idx, p, alpha, beta) {
 // recursive, synchronous
 //
 function Gilbert2D_xyz2d(cur_idx, q, p, alpha, beta) {
-  let a = _abs(alpha);
-  let b = _abs(beta);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
 
-  let u = _clone(p);
+  let u = v_clone(p);
 
   _vprint("#Gilbert2D_xyz2d: cur_idx:", cur_idx, "q:", q, "p:", p, "(alpha:", alpha, "beta:", beta, ") (", a, b, ")");
 
-  let d_alpha = _delta(alpha);
-  let d_beta  = _delta(beta);
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
 
   if ( b == 1 ) {
-    return cur_idx + _dot( d_alpha, _add(q, _neg(u)) );
+    return cur_idx + dot_v( d_alpha, v_add(q, v_neg(u)) );
   }
 
   if ( a == 1 ) {
-    return cur_idx + _dot( d_beta, _add(q, _neg(u)) );
+    return cur_idx + dot_v( d_beta, v_add(q, v_neg(u)) );
   }
 
-  let alpha2 = _div2(alpha);
-  let beta2  = _div2(beta);
+  let alpha2 = v_div2(alpha);
+  let beta2  = v_div2(beta);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
 
   _vprint("#  Gilbert2D_xyz2d: cur_idx:", cur_idx, "(alpha2,beta2):", alpha2, beta2, "(", a2, b2, ")");
 
   if ( (2*a) > (3*b) ) {
     if ((a2%2) && (a>2)) {
-      alpha2 = _add(alpha2, d_alpha);
-      a2 = _abs(alpha2);
+      alpha2 = v_add(alpha2, d_alpha);
+      a2 = abs_sum_v(alpha2);
     }
 
     _vprint("#  Gilbert2D_xyz2d.W0");
@@ -578,21 +614,21 @@ function Gilbert2D_xyz2d(cur_idx, q, p, alpha, beta) {
                               beta );
     }
     cur_idx += (a2*b);
-    u = _add(u, alpha2);
+    u = v_add(u, alpha2);
 
     _vprint("#  Gilbert2D_xyz2d.W1");
 
     return Gilbert2D_xyz2d( cur_idx, q,
                             u,
-                            _add(alpha, _neg(alpha2)),
+                            v_add(alpha, v_neg(alpha2)),
                             beta );
 
   }
 
 
   if ((b2%2) && (b>2)) {
-    beta2 = _add(beta2, d_beta);
-    b2 = _abs(beta2);
+    beta2 = v_add(beta2, d_beta);
+    b2 = abs_sum_v(beta2);
   }
 
   _vprint("#  Gilbert2D_xyz2d.A: q:", q, "u:", u, "beta2:", beta2, "alpha2:", alpha2);
@@ -607,24 +643,24 @@ function Gilbert2D_xyz2d(cur_idx, q, p, alpha, beta) {
 
   _vprint("#  Gilbert2D_xyz2d.B");
 
-  u = _add(p, beta2);
-  if (_inBounds(q, u, alpha, _add(beta, _neg(beta2)))) {
+  u = v_add(p, beta2);
+  if (_inBounds(q, u, alpha, v_add(beta, v_neg(beta2)))) {
     return Gilbert2D_xyz2d( cur_idx, q,
                             u,
                             alpha,
-                            _add(beta, _neg(beta2)) );
+                            v_add(beta, v_neg(beta2)) );
   }
   cur_idx += (a*(b-b2));
 
   _vprint("#  Gilbert2D_xyz2d.C");
 
-  u = _add(p,
-           _add( _add(alpha, _neg(d_alpha) ),
-                 _add(beta2, _neg( d_beta) ) ) );
+  u = v_add(p,
+           v_add( v_add(alpha, v_neg(d_alpha) ),
+                 v_add(beta2, v_neg( d_beta) ) ) );
   return Gilbert2D_xyz2d( cur_idx, q,
                           u,
-                          _neg(beta2),
-                          _add(alpha2, _neg(alpha)) );
+                          v_neg(beta2),
+                          v_add(alpha2, v_neg(alpha)) );
 
 }
 
@@ -649,43 +685,43 @@ function Gilbert2D_xyz2d(cur_idx, q, p, alpha, beta) {
 // recursive, sync
 //
 function *Gilbert2DAsync(p, alpha, beta) {
-  let a = _abs(alpha);
-  let b = _abs(beta);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
 
   _vprint("#Gilbert2DAsync", alpha, beta, "(", a, b, ")");
 
-  let d_alpha = _delta(alpha);
-  let d_beta  = _delta(beta);
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
 
   if (b==1) {
-    let u = _clone(p);
+    let u = v_clone(p);
     for (let i=0; i<a; i++) {
       yield u;
-      u = _add(u, d_alpha);
+      u = v_add(u, d_alpha);
     }
     return;
   }
 
 
   if (a==1) {
-    let u = _clone(p);
+    let u = v_clone(p);
     for (let i=0; i<b; i++) {
       yield u;
-      u = _add(u, d_beta);
+      u = v_add(u, d_beta);
     }
     return;
   }
 
-  let alpha2 = _div2(alpha);
-  let beta2  = _div2(beta);
+  let alpha2 = v_div2(alpha);
+  let beta2  = v_div2(beta);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
 
   _vprint("#  Gilbert2DAsync: (alpha2,beta2):", alpha2, beta2, "(", a2, b2, ")");
 
   if ( (2*a) > (3*b) ) {
-    if ((a2%2) && (a>2)) { alpha2 = _add(alpha2, d_alpha); }
+    if ((a2%2) && (a>2)) { alpha2 = v_add(alpha2, d_alpha); }
 
     _vprint("#  Gilbert2DAsync: 2a>3b:A");
 
@@ -693,15 +729,15 @@ function *Gilbert2DAsync(p, alpha, beta) {
 
     _vprint("#  Gilbert2DAsync: 2a>3b:B");
 
-    yield* Gilbert2DAsync( _add(p, alpha2),
-                           _add(alpha, _neg(alpha2)),
+    yield* Gilbert2DAsync( v_add(p, alpha2),
+                           v_add(alpha, v_neg(alpha2)),
                            beta );
 
     return;
   }
 
 
-  if ((b2%2) && (b>2)) { beta2 = _add(beta2, d_beta); }
+  if ((b2%2) && (b>2)) { beta2 = v_add(beta2, d_beta); }
 
   _vprint("#  Gilbert2DAsync: A (alpha:", alpha, "beta:", beta, "alpha2:", alpha2, "beta2:", beta2, ")", "(|a2|:", a2, "|b2|:", b2, ")");
 
@@ -711,17 +747,17 @@ function *Gilbert2DAsync(p, alpha, beta) {
 
   _vprint("#  Gilbert2DAsync: B (alpha:", alpha, "beta:", beta, "alpha2:", alpha2, "beta2:", beta2, ")", "(|a2|:", a2, "|b2|:", b2, ")");
 
-  yield* Gilbert2DAsync( _add(p, beta2),
+  yield* Gilbert2DAsync( v_add(p, beta2),
                          alpha,
-                         _add(beta, _neg(beta2)) );
+                         v_add(beta, v_neg(beta2)) );
 
   _vprint("#  Gilbert2DAsync: C (alpha:", alpha, "beta:", beta, "alpha2:", alpha2, "beta2:", beta2, ")", "(|a2|:", a2, "|b2|:", b2, ")");
 
-  yield* Gilbert2DAsync( _add(p,
-                         _add( _add(alpha, _neg(d_alpha) ),
-                               _add(beta2, _neg( d_beta) ) ) ),
-                         _neg(beta2),
-                         _add(alpha2, _neg(alpha)) );
+  yield* Gilbert2DAsync( v_add(p,
+                         v_add( v_add(alpha, v_neg(d_alpha) ),
+                               v_add(beta2, v_neg( d_beta) ) ) ),
+                         v_neg(beta2),
+                         v_add(alpha2, v_neg(alpha)) );
 
   return;
 }
@@ -735,9 +771,9 @@ function *Gilbert2DAsync(p, alpha, beta) {
 //----------------------------------------
 
 function Hilbert2x2x2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
-  let d_alpha = _delta(alpha);
-  let d_beta  = _delta(beta);
-  let d_gamma = _delta(gamma);
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
 
   let d_idx = dst_idx - cur_idx;
 
@@ -745,13 +781,13 @@ function Hilbert2x2x2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
   switch (d_idx) {
     case 0: return [ p[0], p[1], p[2] ]; break;
-    case 1: return _add(p, d_beta); break;
-    case 2: return _add(p, _add(d_beta, d_gamma)); break;
-    case 3: return _add(p, d_gamma); break;
-    case 4: return _add(p, _add(d_alpha, d_gamma)); break;
-    case 5: return _add(p, _add(d_alpha, _add(d_beta, d_gamma))); break;
-    case 6: return _add(p, _add(d_alpha, d_beta)); break;
-    case 7: return _add(p, d_alpha); break;
+    case 1: return v_add(p, d_beta); break;
+    case 2: return v_add(p, v_add(d_beta, d_gamma)); break;
+    case 3: return v_add(p, d_gamma); break;
+    case 4: return v_add(p, v_add(d_alpha, d_gamma)); break;
+    case 5: return v_add(p, v_add(d_alpha, v_add(d_beta, d_gamma))); break;
+    case 6: return v_add(p, v_add(d_alpha, d_beta)); break;
+    case 7: return v_add(p, d_alpha); break;
     default: return [-1,-1,-1]; break;
   }
 
@@ -759,18 +795,18 @@ function Hilbert2x2x2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 }
 
 function Hilbert2x2x2_xyz2d(idx, q, p, alpha, beta, gamma) {
-  let d_alpha = _delta(alpha);
-  let d_beta  = _delta(beta);
-  let d_gamma = _delta(gamma);
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
 
   let lu = [ 0, 7,  1, 6,  3, 4,  2, 5 ];
 
-  let m_qp = _add(q, _neg(p));
+  let m_qp = v_add(q, v_neg(p));
 
   let dxyz = [
-    _dot(d_alpha, m_qp),
-    _dot(d_beta, m_qp),
-    _dot(d_gamma, m_qp)
+    dot_v(d_alpha, m_qp),
+    dot_v(d_beta, m_qp),
+    dot_v(d_gamma, m_qp)
   ];
 
   let p_idx = (4*dxyz[2]) + (2*dxyz[1]) + dxyz[0];
@@ -795,20 +831,20 @@ function Hilbert2x2x2_xyz2d(idx, q, p, alpha, beta, gamma) {
 
 function Gilbert3DS0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let d_alpha = _delta(alpha);
+  let alpha2  = v_div2(alpha);
+  let d_alpha = v_delta(alpha);
 
-  let a   = _abs(alpha);
-  let a2  = _abs(alpha2);
+  let a   = abs_sum_v(alpha);
+  let a2  = abs_sum_v(alpha2);
 
-  let b   = _abs(beta);
-  let g   = _abs(gamma);
+  let b   = abs_sum_v(beta);
+  let g   = abs_sum_v(gamma);
 
-  _vprint("#S0_d2xyz (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S0_d2xyz (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2)==1)) {
-    alpha2 = _add(alpha2, d_alpha);
-    a2 = _abs(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+    a2 = abs_sum_v(alpha2);
   }
 
   let nxt_idx = cur_idx + (a2*b*g);
@@ -826,8 +862,8 @@ function Gilbert3DS0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   _vprint("#S0.B_d2xyz");
 
   return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                          _add(p, alpha2),
-                          _add(alpha, _neg(alpha2)), beta, gamma );
+                          v_add(p, alpha2),
+                          v_add(alpha, v_neg(alpha2)), beta, gamma );
 }
 
 //---------------------------------------------------
@@ -840,25 +876,25 @@ function Gilbert3DS0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
 function Gilbert3DS0_xyz2d( cur_idx, q, p, alpha, beta, gamma ) {
 
-  let alpha2  = _div2(alpha);
-  let d_alpha = _delta(alpha);
+  let alpha2  = v_div2(alpha);
+  let d_alpha = v_delta(alpha);
 
-  let a   = _abs(alpha);
-  let a2  = _abs(alpha2);
+  let a   = abs_sum_v(alpha);
+  let a2  = abs_sum_v(alpha2);
 
-  let b   = _abs(beta);
-  let g   = _abs(gamma);
+  let b   = abs_sum_v(beta);
+  let g   = abs_sum_v(gamma);
 
-  _vprint("#S0_xyz2d (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S0_xyz2d (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2)==1)) {
-    alpha2 = _add(alpha2, d_alpha);
-    a2 = _abs(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+    a2 = abs_sum_v(alpha2);
   }
 
   _vprint("#S0.A_xyz2d");
 
-  let u = _clone(p);
+  let u = v_clone(p);
   if (_inBounds( q, p, alpha2, beta, gamma )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
@@ -868,10 +904,10 @@ function Gilbert3DS0_xyz2d( cur_idx, q, p, alpha, beta, gamma ) {
 
   _vprint("#S0.B_xyz2d");
 
-  u = _add(p, alpha2);
+  u = v_add(p, alpha2);
   return Gilbert3D_xyz2d( cur_idx, q,
                           u,
-                          _add(alpha, _neg(alpha2)), beta, gamma );
+                          v_add(alpha, v_neg(alpha2)), beta, gamma );
 }
 
 //----------------------------------------------
@@ -883,29 +919,29 @@ function Gilbert3DS0_xyz2d( cur_idx, q, p, alpha, beta, gamma ) {
 //----------------------------------------------
 
 function Gilbert3DS1_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
-  let alpha2 = _div2(alpha);
-  let gamma3 = _divq(gamma, 3);
+  let alpha2 = v_div2(alpha);
+  let gamma3 = v_divq(gamma, 3);
 
-  let d_alpha = _delta(alpha);
-  let d_gamma = _delta(gamma);
+  let d_alpha = v_delta(alpha);
+  let d_gamma = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let g3 = _abs(gamma3);
+  let a2 = abs_sum_v(alpha2);
+  let g3 = abs_sum_v(gamma3);
 
-  _vprint("#S1_d2xyz (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S1_d2xyz (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2) == 1)) {
-    alpha2 = _add(alpha2, d_alpha);
-    a2 = _abs(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+    a2 = abs_sum_v(alpha2);
   }
 
   if ((g > 2) && ((g3 % 2) == 1)) {
-    gamma3 = _add(gamma3, d_gamma);
-    g3 = _abs(gamma3);
+    gamma3 = v_add(gamma3, d_gamma);
+    g3 = abs_sum_v(gamma3);
   }
 
   _vprint("#S1.A_d2xyz");
@@ -923,16 +959,16 @@ function Gilbert3DS1_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
   nxt_idx = cur_idx + (a*b*(g-g3));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add(p, gamma3),
-                            alpha, beta, _add(gamma, _neg(gamma3)) );
+                            v_add(p, gamma3),
+                            alpha, beta, v_add(gamma, v_neg(gamma3)) );
   }
   cur_idx = nxt_idx;
 
   _vprint("#S1.C_d2xyz");
 
   return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                          _add(p, _add( _add(alpha, _neg(d_alpha)), _add(gamma3, _neg(d_gamma)) ) ),
-                          _neg(gamma3), _neg(_add(alpha, _neg(alpha2))), beta );
+                          v_add(p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(gamma3, v_neg(d_gamma)) ) ),
+                          v_neg(gamma3), v_neg(v_add(alpha, v_neg(alpha2))), beta );
 }
 
 //-------------------------------------------------
@@ -944,34 +980,34 @@ function Gilbert3DS1_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
 //-------------------------------------------------
 
 function Gilbert3DS1_xyz2d( cur_idx, q, p, alpha, beta, gamma ) {
-  let alpha2 = _div2(alpha);
-  let gamma3 = _divq(gamma, 3);
+  let alpha2 = v_div2(alpha);
+  let gamma3 = v_divq(gamma, 3);
 
-  let d_alpha = _delta(alpha);
-  let d_gamma = _delta(gamma);
+  let d_alpha = v_delta(alpha);
+  let d_gamma = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let g3 = _abs(gamma3);
+  let a2 = abs_sum_v(alpha2);
+  let g3 = abs_sum_v(gamma3);
 
-  _vprint("#S1_xyz2d (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S1_xyz2d (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2) == 1)) {
-    alpha2 = _add(alpha2, d_alpha);
-    a2 = _abs(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+    a2 = abs_sum_v(alpha2);
   }
 
   if ((g > 2) && ((g3 % 2) == 1)) {
-    gamma3 = _add(gamma3, d_gamma);
-    g3 = _abs(gamma3);
+    gamma3 = v_add(gamma3, d_gamma);
+    g3 = abs_sum_v(gamma3);
   }
 
   _vprint("#S1.A_xyz2d");
 
-  let u = _clone(p);
+  let u = v_clone(p);
   if (_inBounds(q, u, gamma3, alpha2, beta )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
@@ -981,21 +1017,21 @@ function Gilbert3DS1_xyz2d( cur_idx, q, p, alpha, beta, gamma ) {
 
   _vprint("#S1.B_xyz2d");
 
-  u =_add(p, gamma3);
-  if (_inBounds(q, u, alpha, beta, _add(gamma, _neg(gamma3)) )) {
+  u = v_add(p, gamma3);
+  if (_inBounds(q, u, alpha, beta, v_add(gamma, v_neg(gamma3)) )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            alpha, beta, _add(gamma, _neg(gamma3)) );
+                            alpha, beta, v_add(gamma, v_neg(gamma3)) );
 
   }
   cur_idx += (a*b*(g-g3));
 
   _vprint("#S1.C_xyz2d");
 
-  u = _add(p, _add( _add(alpha, _neg(d_alpha)), _add(gamma3, _neg(d_gamma)) ) );
+  u = v_add(p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(gamma3, v_neg(d_gamma)) ) );
   return Gilbert3D_xyz2d( cur_idx, q,
                           u,
-                          _neg(gamma3), _neg(_add(alpha, _neg(alpha2))), beta );
+                          v_neg(gamma3), v_neg(v_add(alpha, v_neg(alpha2))), beta );
 }
 
 
@@ -1009,29 +1045,29 @@ function Gilbert3DS1_xyz2d( cur_idx, q, p, alpha, beta, gamma ) {
 //------------------------------------------------
 
 function Gilbert3DS2_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
-  let alpha2 = _div2(alpha);
-  let beta3 = _divq(beta, 3);
+  let alpha2 = v_div2(alpha);
+  let beta3 = v_divq(beta, 3);
 
-  let d_alpha = _delta(alpha);
-  let d_beta = _delta(beta);
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b3 = _abs(beta3);
+  let a2 = abs_sum_v(alpha2);
+  let b3 = abs_sum_v(beta3);
 
-  _vprint("#S2_d2xyz (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S2_d2xyz (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2) == 1)) {
-    alpha2 = _add(alpha2, d_alpha);
-    a2 = _abs(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+    a2 = abs_sum_v(alpha2);
   }
 
   if ((b > 2) && ((b3 % 2) == 1)) {
-    beta3 = _add(beta3, d_beta);
-    b3 = _abs(beta3);
+    beta3 = v_add(beta3, d_beta);
+    b3 = abs_sum_v(beta3);
   }
 
   _vprint("#S2.A_d2xyz");
@@ -1051,8 +1087,8 @@ function Gilbert3DS2_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
 
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add(p, beta3),
-                            alpha, _add(beta, _neg(beta3)), gamma );
+                            v_add(p, beta3),
+                            alpha, v_add(beta, v_neg(beta3)), gamma );
 
   }
   cur_idx = nxt_idx;
@@ -1060,8 +1096,8 @@ function Gilbert3DS2_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
   _vprint("#S2.C_d2xyz");
 
   return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                          _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta3, _neg(d_beta)) ) ),
-                          _neg(beta3), gamma, _neg(_add(alpha, _neg(alpha2))) );
+                          v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta3, v_neg(d_beta)) ) ),
+                          v_neg(beta3), gamma, v_neg(v_add(alpha, v_neg(alpha2))) );
 
 }
 
@@ -1075,34 +1111,34 @@ function Gilbert3DS2_d2xyz( dst_idx, cur_idx, p, alpha, beta, gamma ) {
 //----------------------------------------------------
 
 function Gilbert3DS2_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
-  let alpha2 = _div2(alpha);
-  let beta3 = _divq(beta, 3);
+  let alpha2 = v_div2(alpha);
+  let beta3 = v_divq(beta, 3);
 
-  let d_alpha = _delta(alpha);
-  let d_beta = _delta(beta);
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b3 = _abs(beta3);
+  let a2 = abs_sum_v(alpha2);
+  let b3 = abs_sum_v(beta3);
 
-  _vprint("#S2_xyz2d cur_idx:", cur_idx, "q:", q, "p:", p, "(a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S2_xyz2d cur_idx:", cur_idx, "q:", q, "p:", p, "(a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2) == 1)) {
-    alpha2 = _add(alpha2, d_alpha);
-    a2 = _abs(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+    a2 = abs_sum_v(alpha2);
   }
 
   if ((b > 2) && ((b3 % 2) == 1)) {
-    beta3 = _add(beta3, d_beta);
-    b3 = _abs(beta3);
+    beta3 = v_add(beta3, d_beta);
+    b3 = abs_sum_v(beta3);
   }
 
   _vprint("#S2.A_xyz2d");
 
-  let u = _clone(p);
+  let u = v_clone(p);
   if (_inBounds(q, u, beta3, gamma, alpha2 )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
@@ -1112,20 +1148,20 @@ function Gilbert3DS2_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
   _vprint("#S2.B_xyz2d");
 
-  u = _add(p, beta3);
-  if (_inBounds(q, u, alpha, _add(beta, _neg(beta3)), gamma )) {
+  u = v_add(p, beta3);
+  if (_inBounds(q, u, alpha, v_add(beta, v_neg(beta3)), gamma )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            alpha, _add(beta, _neg(beta3)), gamma );
+                            alpha, v_add(beta, v_neg(beta3)), gamma );
   }
   cur_idx += (a*(b-b3)*g);
 
   _vprint("#S2.C_xyz2d");
 
-  u = _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta3, _neg(d_beta)) ) );
+  u = v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta3, v_neg(d_beta)) ) );
   return Gilbert3D_xyz2d( cur_idx, q,
                           u,
-                          _neg(beta3), gamma, _neg(_add(alpha, _neg(alpha2))) );
+                          v_neg(beta3), gamma, v_neg(v_add(alpha, v_neg(alpha2))) );
 
 }
 
@@ -1139,27 +1175,27 @@ function Gilbert3DS2_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 //-------------------------------------------------
 
 function Gilbert3DJ0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J0_d2xyz (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J0_d2xyz (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 1)) { alpha2 = _add(alpha2, d_alpha); a2 = _abs(alpha2); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta);   b2 = _abs(beta2); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); g2 = _abs(gamma2); }
+  if ((a > 2) && ((a2 % 2) == 1)) { alpha2 = v_add(alpha2, d_alpha); a2 = abs_sum_v(alpha2); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta);   b2 = abs_sum_v(beta2); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); g2 = abs_sum_v(gamma2); }
 
   _vprint("#J0.A_d2xyz");
 
@@ -1176,8 +1212,8 @@ function Gilbert3DJ0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (g*a2*(b-b2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add(p, beta2),
-                            gamma, alpha2, _add(beta, _neg(beta2)) );
+                            v_add(p, beta2),
+                            gamma, alpha2, v_add(beta, v_neg(beta2)) );
   }
   cur_idx = nxt_idx;
 
@@ -1186,8 +1222,8 @@ function Gilbert3DJ0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (a*b2*(g-g2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add( p, _add( _add(beta2, _neg(d_beta)), _add(gamma, _neg(d_gamma)) ) ),
-                            alpha, _neg(beta2), _neg( _add(gamma, _neg(gamma2)) ) );
+                            v_add( p, v_add( v_add(beta2, v_neg(d_beta)), v_add(gamma, v_neg(d_gamma)) ) ),
+                            alpha, v_neg(beta2), v_neg( v_add(gamma, v_neg(gamma2)) ) );
   }
   cur_idx = nxt_idx;
 
@@ -1196,16 +1232,16 @@ function Gilbert3DJ0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (g*(a-a2)*(b-b2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta2, _add(gamma, _neg(d_gamma))) ) ),
-                            _neg(gamma), _neg( _add(alpha, _neg(alpha2)) ), _add(beta, _neg(beta2)) );
+                            v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta2, v_add(gamma, v_neg(d_gamma))) ) ),
+                            v_neg(gamma), v_neg( v_add(alpha, v_neg(alpha2)) ), v_add(beta, v_neg(beta2)) );
   }
   cur_idx = nxt_idx;
 
   _vprint("#J0.E_d2xyz");
 
   return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                          _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta2, _neg(d_beta)) ) ),
-                          _neg(beta2), gamma2, _neg( _add(alpha, _neg(alpha2)) ) );
+                          v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta2, v_neg(d_beta)) ) ),
+                          v_neg(beta2), gamma2, v_neg( v_add(alpha, v_neg(alpha2)) ) );
 }
 
 //----------------------------------------------------
@@ -1217,31 +1253,31 @@ function Gilbert3DJ0_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 //----------------------------------------------------
 
 function Gilbert3DJ0_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J0_xyz2d (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J0_xyz2d (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 1)) { alpha2 = _add(alpha2, d_alpha); a2 = _abs(alpha2); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta);   b2 = _abs(beta2); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); g2 = _abs(gamma2); }
+  if ((a > 2) && ((a2 % 2) == 1)) { alpha2 = v_add(alpha2, d_alpha); a2 = abs_sum_v(alpha2); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta);   b2 = abs_sum_v(beta2); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); g2 = abs_sum_v(gamma2); }
 
   _vprint("#J0.A_xyz2d");
 
-  let u = _clone(p);
+  let u = v_clone(p);
   if (_inBounds(q, u, beta2, gamma2, alpha2)) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
@@ -1251,40 +1287,40 @@ function Gilbert3DJ0_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
   _vprint("#J0.B_xyz2d");
 
-  u = _add(p, beta2);
-  if (_inBounds(q, u, gamma, alpha2, _add(beta, _neg(beta2)) )) {
+  u = v_add(p, beta2);
+  if (_inBounds(q, u, gamma, alpha2, v_add(beta, v_neg(beta2)) )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            gamma, alpha2, _add(beta, _neg(beta2)) );
+                            gamma, alpha2, v_add(beta, v_neg(beta2)) );
   }
   cur_idx += (g*a2*(b-b2));
 
   _vprint("#J0.C_xyz2d");
 
-  u = _add( p, _add( _add(beta2, _neg(d_beta)), _add(gamma, _neg(d_gamma)) ) );
-  if (_inBounds(q, u, alpha, _neg(beta2), _neg( _add(gamma, _neg(gamma2)) ) )) {
+  u = v_add( p, v_add( v_add(beta2, v_neg(d_beta)), v_add(gamma, v_neg(d_gamma)) ) );
+  if (_inBounds(q, u, alpha, v_neg(beta2), v_neg( v_add(gamma, v_neg(gamma2)) ) )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            alpha, _neg(beta2), _neg( _add(gamma, _neg(gamma2)) ) );
+                            alpha, v_neg(beta2), v_neg( v_add(gamma, v_neg(gamma2)) ) );
   }
   cur_idx += (a*b2*(g-g2));
 
   _vprint("#J0.D_xyz2d");
 
-  u = _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta2, _add(gamma, _neg(d_gamma))) ) );
-  if (_inBounds(q, u, _neg(gamma), _neg( _add(alpha, _neg(alpha2)) ), _add(beta, _neg(beta2)) )) {
+  u = v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta2, v_add(gamma, v_neg(d_gamma))) ) );
+  if (_inBounds(q, u, v_neg(gamma), v_neg( v_add(alpha, v_neg(alpha2)) ), v_add(beta, v_neg(beta2)) )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            _neg(gamma), _neg( _add(alpha, _neg(alpha2)) ), _add(beta, _neg(beta2)) );
+                            v_neg(gamma), v_neg( v_add(alpha, v_neg(alpha2)) ), v_add(beta, v_neg(beta2)) );
   }
   cur_idx += (g*(a-a2)*(b-b2));
 
   _vprint("#J0.E_xyz2d");
 
-  u = _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta2, _neg(d_beta)) ) );
+  u = v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta2, v_neg(d_beta)) ) );
   return Gilbert3D_xyz2d( cur_idx, q,
                           u,
-                          _neg(beta2), gamma2, _neg( _add(alpha, _neg(alpha2)) ) );
+                          v_neg(beta2), gamma2, v_neg( v_add(alpha, v_neg(alpha2)) ) );
 }
 
 //-----------------------------------------------
@@ -1297,27 +1333,27 @@ function Gilbert3DJ0_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
 function Gilbert3DJ1_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J1_d2xyz (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J1_d2xyz (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = _add(alpha2, d_alpha); a2 = _abs(alpha2); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta);   b2 = _abs(beta2); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); g2 = _abs(gamma2); }
+  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = v_add(alpha2, d_alpha); a2 = abs_sum_v(alpha2); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta);   b2 = abs_sum_v(beta2); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); g2 = abs_sum_v(gamma2); }
 
   _vprint("#J1.A_d2xyz");
 
@@ -1334,8 +1370,8 @@ function Gilbert3DJ1_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (b*(g-g2)*a2);
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add( p, gamma2 ),
-                            beta, _add(gamma, _neg(gamma2)), alpha2 );
+                            v_add( p, gamma2 ),
+                            beta, v_add(gamma, v_neg(gamma2)), alpha2 );
   }
   cur_idx = nxt_idx;
 
@@ -1344,8 +1380,8 @@ function Gilbert3DJ1_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (a*(b-b2)*g2);
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add( p, _add( _add(gamma2, _neg(d_gamma)), _add(beta, _neg(d_beta)) ) ),
-                            alpha, _neg(_add(beta, _neg(beta2))), _neg(gamma2) );
+                            v_add( p, v_add( v_add(gamma2, v_neg(d_gamma)), v_add(beta, v_neg(d_beta)) ) ),
+                            alpha, v_neg(v_add(beta, v_neg(beta2))), v_neg(gamma2) );
   }
   cur_idx = nxt_idx;
 
@@ -1354,16 +1390,16 @@ function Gilbert3DJ1_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (b*(g-g2)*(a-a2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add( p , _add( _add(alpha, _neg(d_alpha)), _add( _add(beta, _neg(d_beta)), gamma2 ) ) ),
-                            _neg(beta), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) );
+                            v_add( p , v_add( v_add(alpha, v_neg(d_alpha)), v_add( v_add(beta, v_neg(d_beta)), gamma2 ) ) ),
+                            v_neg(beta), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) );
   }
   cur_idx = nxt_idx;
 
   _vprint("#J1.E_d2xyz");
 
   return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                          _add( p, _add( _add(alpha, _neg(d_alpha)), _add(gamma2, _neg(d_gamma)) ) ),
-                          _neg(gamma2), _neg(_add(alpha, _neg(alpha2))), beta2 );
+                          v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(gamma2, v_neg(d_gamma)) ) ),
+                          v_neg(gamma2), v_neg(v_add(alpha, v_neg(alpha2))), beta2 );
 
 }
 
@@ -1377,31 +1413,31 @@ function Gilbert3DJ1_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
 function Gilbert3DJ1_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J1_xyz2d (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J1_xyz2d (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = _add(alpha2, d_alpha); a2 = _abs(alpha2); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta);   b2 = _abs(beta2); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); g2 = _abs(gamma2); }
+  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = v_add(alpha2, d_alpha); a2 = abs_sum_v(alpha2); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta);   b2 = abs_sum_v(beta2); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); g2 = abs_sum_v(gamma2); }
 
   _vprint("#J1.A_xyz2d");
 
-  let u = _clone(p);
+  let u = v_clone(p);
   if (_inBounds(q, u, gamma2, alpha2, beta2)) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             p,
@@ -1411,40 +1447,40 @@ function Gilbert3DJ1_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
   _vprint("#J1.B_xyz2d");
 
-  u = _add(p, gamma2);
-  if (_inBounds(q, u, beta, _add(gamma, _neg(gamma2)), alpha2)) {
+  u = v_add(p, gamma2);
+  if (_inBounds(q, u, beta, v_add(gamma, v_neg(gamma2)), alpha2)) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            beta, _add(gamma, _neg(gamma2)), alpha2 );
+                            beta, v_add(gamma, v_neg(gamma2)), alpha2 );
   }
   cur_idx += b*(g-g2)*a2;
 
   _vprint("#J1.C_xyz2d");
 
-  u = _add( p, _add( _add(gamma2, _neg(d_gamma)), _add(beta, _neg(d_beta)) ) );
-  if (_inBounds(q, u, alpha, _neg(_add(beta, _neg(beta2))), _neg(gamma2) )) {
+  u = v_add( p, v_add( v_add(gamma2, v_neg(d_gamma)), v_add(beta, v_neg(d_beta)) ) );
+  if (_inBounds(q, u, alpha, v_neg(v_add(beta, v_neg(beta2))), v_neg(gamma2) )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            alpha, _neg(_add(beta, _neg(beta2))), _neg(gamma2) );
+                            alpha, v_neg(v_add(beta, v_neg(beta2))), v_neg(gamma2) );
   }
   cur_idx += a*(b-b2)*g2;
 
   _vprint("#J1.D_xyz2d");
 
-  u = _add( p , _add( _add(alpha, _neg(d_alpha)), _add( _add(beta, _neg(d_beta)), gamma2 ) ) );
-  if (_inBounds(q, u, _neg(beta), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) )) {
+  u = v_add( p , v_add( v_add(alpha, v_neg(d_alpha)), v_add( v_add(beta, v_neg(d_beta)), gamma2 ) ) );
+  if (_inBounds(q, u, v_neg(beta), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) )) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            _neg(beta), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) );
+                            v_neg(beta), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) );
   }
   cur_idx += (b*(g-g2)*(a-a2));
 
   _vprint("#J1.E_xyz2d");
 
-  u = _add( p, _add( _add(alpha, _neg(d_alpha)), _add(gamma2, _neg(d_gamma)) ) );
+  u = v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(gamma2, v_neg(d_gamma)) ) );
   return Gilbert3D_xyz2d( cur_idx, q,
                           u,
-                          _neg(gamma2), _neg(_add(alpha, _neg(alpha2))), beta2 );
+                          v_neg(gamma2), v_neg(v_add(alpha, v_neg(alpha2))), beta2 );
 
 }
 
@@ -1458,27 +1494,27 @@ function Gilbert3DJ1_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
 function Gilbert3DJ2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J2_d2xyz (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J2_d2xyz (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = _add(alpha2, d_alpha); a2 = _abs(alpha2); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta);   b2 = _abs(beta2); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); g2 = _abs(gamma2); }
+  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = v_add(alpha2, d_alpha); a2 = abs_sum_v(alpha2); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta);   b2 = abs_sum_v(beta2); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); g2 = abs_sum_v(gamma2); }
 
   _vprint("#J2.A_d2xyz");
 
@@ -1495,8 +1531,8 @@ function Gilbert3DJ2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (g2*a*(b-b2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add(p, beta2),
-                            gamma2, alpha, _add(beta, _neg(beta2)) );
+                            v_add(p, beta2),
+                            gamma2, alpha, v_add(beta, v_neg(beta2)) );
   }
   cur_idx = nxt_idx;
 
@@ -1505,8 +1541,8 @@ function Gilbert3DJ2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (a*(b-b2)*(g-g2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add(p, _add(beta2, gamma2)),
-                            alpha, _add(beta, _neg(beta2)), _add(gamma, _neg(gamma2)) );
+                            v_add(p, v_add(beta2, gamma2)),
+                            alpha, v_add(beta, v_neg(beta2)), v_add(gamma, v_neg(gamma2)) );
   }
   cur_idx = nxt_idx;
 
@@ -1515,16 +1551,16 @@ function Gilbert3DJ2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
   nxt_idx = cur_idx + (b2*(g-g2)*(a-a2));
   if ((cur_idx <= dst_idx) && (dst_idx < nxt_idx)) {
     return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                            _add( p, _add( _add( alpha, _neg(d_alpha) ), _add( _add(beta2, _neg(d_beta)), gamma2 ) ) ),
-                            _neg(beta2), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) );
+                            v_add( p, v_add( v_add( alpha, v_neg(d_alpha) ), v_add( v_add(beta2, v_neg(d_beta)), gamma2 ) ) ),
+                            v_neg(beta2), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) );
   }
   cur_idx = nxt_idx;
 
   _vprint("#J2.E_d2xyz");
 
   return Gilbert3D_d2xyz( dst_idx, cur_idx,
-                          _add( p, _add( _add(alpha, _neg(d_alpha)), _add( gamma2, _neg(d_gamma) ) ) ),
-                          _neg(gamma2), _neg(_add(alpha, _neg(alpha2))), beta2);
+                          v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add( gamma2, v_neg(d_gamma) ) ) ),
+                          v_neg(gamma2), v_neg(v_add(alpha, v_neg(alpha2))), beta2);
 
 }
 
@@ -1539,32 +1575,32 @@ function Gilbert3DJ2_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 
 function Gilbert3DJ2_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
 
-  _vprint("#J2_xyz2d (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J2_xyz2d (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = _add(alpha2, d_alpha); a2 = _abs(alpha2); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta);   b2 = _abs(beta2); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); g2 = _abs(gamma2); }
+  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = v_add(alpha2, d_alpha); a2 = abs_sum_v(alpha2); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta);   b2 = abs_sum_v(beta2); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); g2 = abs_sum_v(gamma2); }
 
   _vprint("#J2.A_xyz2d");
 
-  let u = _clone(p);
+  let u = v_clone(p);
   if (_inBounds(q, u, beta2, gamma, alpha2)) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
@@ -1574,40 +1610,40 @@ function Gilbert3DJ2_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
   _vprint("#J2.B_xyz2d");
 
-  u = _add(p, beta2);
-  if (_inBounds(q, u, gamma2, alpha, _add(beta, _neg(beta2)))) {
+  u = v_add(p, beta2);
+  if (_inBounds(q, u, gamma2, alpha, v_add(beta, v_neg(beta2)))) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            gamma2, alpha, _add(beta, _neg(beta2)) );
+                            gamma2, alpha, v_add(beta, v_neg(beta2)) );
   }
   cur_idx += (g2*a*(b-b2));
 
   _vprint("#J2.C_xyz2d");
 
-  u = _add(p, _add(beta2, gamma2));
-  if (_inBounds(q, u, alpha, _add(beta, _neg(beta2)), _add(gamma, _neg(gamma2)))) {
+  u = v_add(p, v_add(beta2, gamma2));
+  if (_inBounds(q, u, alpha, v_add(beta, v_neg(beta2)), v_add(gamma, v_neg(gamma2)))) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            alpha, _add(beta, _neg(beta2)), _add(gamma, _neg(gamma2)) );
+                            alpha, v_add(beta, v_neg(beta2)), v_add(gamma, v_neg(gamma2)) );
   }
   cur_idx += (a*(b-b2)*(g-g2));
 
   _vprint("#J2.D_xyz2d");
 
-  u = _add( p, _add( _add( alpha, _neg(d_alpha) ), _add( _add(beta2, _neg(d_beta)), gamma2 ) ) );
-  if (_inBounds(q, u, _neg(beta2), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))))) {
+  u = v_add( p, v_add( v_add( alpha, v_neg(d_alpha) ), v_add( v_add(beta2, v_neg(d_beta)), gamma2 ) ) );
+  if (_inBounds(q, u, v_neg(beta2), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))))) {
     return Gilbert3D_xyz2d( cur_idx, q,
                             u,
-                            _neg(beta2), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) );
+                            v_neg(beta2), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) );
   }
   cur_idx += (b2*(g-g2)*(a-a2));
 
   _vprint("#J2.E_xyz2d");
 
-  u = _add( p, _add( _add(alpha, _neg(d_alpha)), _add( gamma2, _neg(d_gamma) ) ) );
+  u = v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add( gamma2, v_neg(d_gamma) ) ) );
   return Gilbert3D_xyz2d( cur_idx, q,
                           u,
-                          _neg(gamma2), _neg(_add(alpha, _neg(alpha2))), beta2);
+                          v_neg(gamma2), v_neg(v_add(alpha, v_neg(alpha2))), beta2);
 
 }
 
@@ -1622,9 +1658,9 @@ function Gilbert3DJ2_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 // Gilbert3d d2xyz
 //
 function Gilbert3D_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
   let a0 = (a % 2);
   let b0 = (b % 2);
@@ -1706,9 +1742,9 @@ function Gilbert3D_d2xyz(dst_idx, cur_idx, p, alpha, beta, gamma) {
 // Gilbert3d xyz2d
 //
 function Gilbert3D_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
   let a0 = (a % 2);
   let b0 = (b % 2);
@@ -1790,48 +1826,48 @@ function Gilbert3D_xyz2d(cur_idx, q, p, alpha, beta, gamma) {
 
 
 function *Hilbert2x2x2Async(p, alpha, beta, gamma) {
-  let xyz = _clone(p);
+  let xyz = v_clone(p);
 
-  let d_alpha = _delta(alpha);
-  let d_beta  = _delta(beta);
-  let d_gamma = _delta(gamma);
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
 
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, d_beta);
+  xyz = v_add(xyz, d_beta);
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, d_gamma);
+  xyz = v_add(xyz, d_gamma);
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, _neg(d_beta));
+  xyz = v_add(xyz, v_neg(d_beta));
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, d_alpha);
+  xyz = v_add(xyz, d_alpha);
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, d_beta);
+  xyz = v_add(xyz, d_beta);
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, _neg(d_gamma));
+  xyz = v_add(xyz, v_neg(d_gamma));
   yield [ xyz[0], xyz[1], xyz[2] ];
 
-  xyz = _add(xyz, _neg(d_beta));
+  xyz = v_add(xyz, v_neg(d_beta));
   yield [ xyz[0], xyz[1], xyz[2] ];
 }
 
 function *Gilbert3DS0Async(p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let d_alpha = _delta(alpha);
+  let alpha2  = v_div2(alpha);
+  let d_alpha = v_delta(alpha);
 
-  let a   = _abs(alpha);
-  let a2  = _abs(alpha2);
+  let a   = abs_sum_v(alpha);
+  let a2  = abs_sum_v(alpha2);
 
-  _vprint("#S0 (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S0 (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2)==1)) {
-    alpha2 = _add(alpha2, d_alpha);
+    alpha2 = v_add(alpha2, d_alpha);
   }
 
   _vprint("#S0.A");
@@ -1841,31 +1877,31 @@ function *Gilbert3DS0Async(p, alpha, beta, gamma) {
 
   _vprint("#S0.B");
 
-  yield *Gilbert3DAsync( _add(p, alpha2),
-                         _add(alpha, _neg(alpha2)), beta, gamma );
+  yield *Gilbert3DAsync( v_add(p, alpha2),
+                         v_add(alpha, v_neg(alpha2)), beta, gamma );
 }
 
 function *Gilbert3DS1Async(p, alpha, beta, gamma) {
-  let alpha2 = _div2(alpha);
-  let gamma3 = _divq(gamma, 3);
+  let alpha2 = v_div2(alpha);
+  let gamma3 = v_divq(gamma, 3);
 
-  let d_alpha = _delta(alpha);
-  let d_gamma = _delta(gamma);
+  let d_alpha = v_delta(alpha);
+  let d_gamma = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let g3 = _abs(gamma3);
+  let a2 = abs_sum_v(alpha2);
+  let g3 = abs_sum_v(gamma3);
 
-  _vprint("#S1 (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S1 (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2) == 1)) {
-    alpha2 = _add(alpha2, d_alpha);
+    alpha2 = v_add(alpha2, d_alpha);
   }
 
   if ((g > 2) && ((g3 % 2) == 1)) {
-    gamma3 = _add(gamma3, d_gamma);
+    gamma3 = v_add(gamma3, d_gamma);
   }
 
   _vprint("#S1.A");
@@ -1875,36 +1911,36 @@ function *Gilbert3DS1Async(p, alpha, beta, gamma) {
 
   _vprint("#S1.B");
 
-  yield *Gilbert3DAsync( _add(p, gamma3),
-                         alpha, beta, _add(gamma, _neg(gamma3)) );
+  yield *Gilbert3DAsync( v_add(p, gamma3),
+                         alpha, beta, v_add(gamma, v_neg(gamma3)) );
 
   _vprint("#S1.C");
 
-  yield *Gilbert3DAsync( _add(p, _add( _add(alpha, _neg(d_alpha)), _add(gamma3, _neg(d_gamma)) ) ),
-                         _neg(gamma3), _neg(_add(alpha, _neg(alpha2))), beta );
+  yield *Gilbert3DAsync( v_add(p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(gamma3, v_neg(d_gamma)) ) ),
+                         v_neg(gamma3), v_neg(v_add(alpha, v_neg(alpha2))), beta );
 }
 
 function *Gilbert3DS2Async(p, alpha, beta, gamma) {
-  let alpha2 = _div2(alpha);
-  let beta3 = _divq(beta, 3);
+  let alpha2 = v_div2(alpha);
+  let beta3 = v_divq(beta, 3);
 
-  let d_alpha = _delta(alpha);
-  let d_beta = _delta(beta);
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
 
-  let a2 = _abs(alpha2);
-  let b3 = _abs(beta3);
+  let a2 = abs_sum_v(alpha2);
+  let b3 = abs_sum_v(beta3);
 
-  _vprint("#S2 (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#S2 (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
   if ((a > 2) && ((a2 % 2) == 1)) {
-    alpha2 = _add(alpha2, d_alpha);
+    alpha2 = v_add(alpha2, d_alpha);
   }
 
   if ((b > 2) && ((b3 % 2) == 1)) {
-    beta3 = _add(beta3, d_beta);
+    beta3 = v_add(beta3, d_beta);
   }
 
   _vprint("#S2.A");
@@ -1914,38 +1950,38 @@ function *Gilbert3DS2Async(p, alpha, beta, gamma) {
 
   _vprint("#S2.B");
 
-  yield *Gilbert3DAsync( _add(p, beta3),
-                         alpha, _add(beta, _neg(beta3)), gamma );
+  yield *Gilbert3DAsync( v_add(p, beta3),
+                         alpha, v_add(beta, v_neg(beta3)), gamma );
 
   _vprint("#S2.C");
 
-  yield *Gilbert3DAsync( _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta3, _neg(d_beta)) ) ),
-                         _neg(beta3), gamma, _neg(_add(alpha, _neg(alpha2))) );
+  yield *Gilbert3DAsync( v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta3, v_neg(d_beta)) ) ),
+                         v_neg(beta3), gamma, v_neg(v_add(alpha, v_neg(alpha2))) );
 
 }
 
 function *Gilbert3DJ0Async(p, alpha, beta, gamma) {
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J0 (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J0 (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 1)) { alpha2 = _add(alpha2, d_alpha); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); }
+  if ((a > 2) && ((a2 % 2) == 1)) { alpha2 = v_add(alpha2, d_alpha); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); }
 
   _vprint("#J0.A");
 
@@ -1954,48 +1990,48 @@ function *Gilbert3DJ0Async(p, alpha, beta, gamma) {
 
   _vprint("#J0.B");
 
-  yield *Gilbert3DAsync( _add(p, beta2),
-                         gamma, alpha2, _add(beta, _neg(beta2)) );
+  yield *Gilbert3DAsync( v_add(p, beta2),
+                         gamma, alpha2, v_add(beta, v_neg(beta2)) );
 
   _vprint("#J0.C");
 
-  yield *Gilbert3DAsync( _add( p, _add( _add(beta2, _neg(d_beta)), _add(gamma, _neg(d_gamma)) ) ),
-                         alpha, _neg(beta2), _neg( _add(gamma, _neg(gamma2)) ) );
+  yield *Gilbert3DAsync( v_add( p, v_add( v_add(beta2, v_neg(d_beta)), v_add(gamma, v_neg(d_gamma)) ) ),
+                         alpha, v_neg(beta2), v_neg( v_add(gamma, v_neg(gamma2)) ) );
 
   _vprint("#J0.D");
 
-  yield *Gilbert3DAsync( _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta2, _add(gamma, _neg(d_gamma))) ) ),
-                         _neg(gamma), _neg( _add(alpha, _neg(alpha2)) ), _add(beta, _neg(beta2)) );
+  yield *Gilbert3DAsync( v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta2, v_add(gamma, v_neg(d_gamma))) ) ),
+                         v_neg(gamma), v_neg( v_add(alpha, v_neg(alpha2)) ), v_add(beta, v_neg(beta2)) );
 
   _vprint("#J0.E");
 
-  yield *Gilbert3DAsync( _add( p, _add( _add(alpha, _neg(d_alpha)), _add(beta2, _neg(d_beta)) ) ),
-                         _neg(beta2), gamma2, _neg( _add(alpha, _neg(alpha2)) ) );
+  yield *Gilbert3DAsync( v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(beta2, v_neg(d_beta)) ) ),
+                         v_neg(beta2), gamma2, v_neg( v_add(alpha, v_neg(alpha2)) ) );
 }
 
 function *Gilbert3DJ1Async(p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J1 (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J1 (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = _add(alpha2, d_alpha); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); }
+  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = v_add(alpha2, d_alpha); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); }
 
   _vprint("#J1.A");
 
@@ -2005,49 +2041,49 @@ function *Gilbert3DJ1Async(p, alpha, beta, gamma) {
 
   _vprint("#J1.B");
 
-  yield *Gilbert3DAsync(_add( p, gamma2 ),
-                        beta, _add(gamma, _neg(gamma2)), alpha2 );
+  yield *Gilbert3DAsync(v_add( p, gamma2 ),
+                        beta, v_add(gamma, v_neg(gamma2)), alpha2 );
 
   _vprint("#J1.C");
 
-  yield *Gilbert3DAsync(_add( p, _add( _add(gamma2, _neg(d_gamma)), _add(beta, _neg(d_beta)) ) ),
-                        alpha, _neg(_add(beta, _neg(beta2))), _neg(gamma2) );
+  yield *Gilbert3DAsync(v_add( p, v_add( v_add(gamma2, v_neg(d_gamma)), v_add(beta, v_neg(d_beta)) ) ),
+                        alpha, v_neg(v_add(beta, v_neg(beta2))), v_neg(gamma2) );
 
   _vprint("#J1.D");
 
-  yield *Gilbert3DAsync(_add( p , _add( _add(alpha, _neg(d_alpha)), _add( _add(beta, _neg(d_beta)), gamma2 ) ) ),
-                        _neg(beta), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) );
+  yield *Gilbert3DAsync(v_add( p , v_add( v_add(alpha, v_neg(d_alpha)), v_add( v_add(beta, v_neg(d_beta)), gamma2 ) ) ),
+                        v_neg(beta), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) );
 
   _vprint("#J1.E");
 
-  yield *Gilbert3DAsync(_add( p, _add( _add(alpha, _neg(d_alpha)), _add(gamma2, _neg(d_gamma)) ) ),
-                        _neg(gamma2), _neg(_add(alpha, _neg(alpha2))), beta2 );
+  yield *Gilbert3DAsync(v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add(gamma2, v_neg(d_gamma)) ) ),
+                        v_neg(gamma2), v_neg(v_add(alpha, v_neg(alpha2))), beta2 );
 
 }
 
 function *Gilbert3DJ2Async(p, alpha, beta, gamma) {
 
-  let alpha2  = _div2(alpha);
-  let beta2   = _div2(beta);
-  let gamma2  = _div2(gamma);
+  let alpha2  = v_div2(alpha);
+  let beta2   = v_div2(beta);
+  let gamma2  = v_div2(gamma);
 
-  let d_alpha  = _delta(alpha);
-  let d_beta   = _delta(beta);
-  let d_gamma  = _delta(gamma);
+  let d_alpha  = v_delta(alpha);
+  let d_beta   = v_delta(beta);
+  let d_gamma  = v_delta(gamma);
 
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
-  let a2 = _abs(alpha2);
-  let b2 = _abs(beta2);
-  let g2 = _abs(gamma2);
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
 
-  _vprint("#J2 (a:", _abs(alpha), "b:", _abs(beta), "g:", _abs(gamma), ")");
+  _vprint("#J2 (a:", abs_sum_v(alpha), "b:", abs_sum_v(beta), "g:", abs_sum_v(gamma), ")");
 
-  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = _add(alpha2, d_alpha); }
-  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = _add(beta2, d_beta); }
-  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = _add(gamma2, d_gamma); }
+  if ((a > 2) && ((a2 % 2) == 0)) { alpha2 = v_add(alpha2, d_alpha); }
+  if ((b > 2) && ((b2 % 2) == 1)) { beta2  = v_add(beta2, d_beta); }
+  if ((g > 2) && ((g2 % 2) == 1)) { gamma2 = v_add(gamma2, d_gamma); }
 
   _vprint("#J2.A");
 
@@ -2056,32 +2092,32 @@ function *Gilbert3DJ2Async(p, alpha, beta, gamma) {
 
   _vprint("#J2.B");
 
-  yield *Gilbert3DAsync( _add(p, beta2),
-                         gamma2, alpha, _add(beta, _neg(beta2)) );
+  yield *Gilbert3DAsync( v_add(p, beta2),
+                         gamma2, alpha, v_add(beta, v_neg(beta2)) );
 
   _vprint("#J2.C");
 
-  yield *Gilbert3DAsync( _add(p, _add(beta2, gamma2)),
-                         alpha, _add(beta, _neg(beta2)), _add(gamma, _neg(gamma2)) );
+  yield *Gilbert3DAsync( v_add(p, v_add(beta2, gamma2)),
+                         alpha, v_add(beta, v_neg(beta2)), v_add(gamma, v_neg(gamma2)) );
 
   _vprint("#J2.D");
 
-  yield *Gilbert3DAsync( _add( p, _add( _add( alpha, _neg(d_alpha) ), _add( _add(beta2, _neg(d_beta)), gamma2 ) ) ),
-                         _neg(beta2), _add(gamma, _neg(gamma2)), _neg(_add(alpha, _neg(alpha2))) );
+  yield *Gilbert3DAsync( v_add( p, v_add( v_add( alpha, v_neg(d_alpha) ), v_add( v_add(beta2, v_neg(d_beta)), gamma2 ) ) ),
+                         v_neg(beta2), v_add(gamma, v_neg(gamma2)), v_neg(v_add(alpha, v_neg(alpha2))) );
 
   _vprint("#J2.E");
 
-  yield *Gilbert3DAsync( _add( p, _add( _add(alpha, _neg(d_alpha)), _add( gamma2, _neg(d_gamma) ) ) ),
-                         _neg(gamma2), _neg(_add(alpha, _neg(alpha2))), beta2);
+  yield *Gilbert3DAsync( v_add( p, v_add( v_add(alpha, v_neg(d_alpha)), v_add( gamma2, v_neg(d_gamma) ) ) ),
+                         v_neg(gamma2), v_neg(v_add(alpha, v_neg(alpha2))), beta2);
 
 }
 
 // Gilbert3dAsync
 //
 function *Gilbert3DAsync(p, alpha, beta, gamma) {
-  let a = _abs(alpha);
-  let b = _abs(beta);
-  let g = _abs(gamma);
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
   let a0 = (a % 2);
   let b0 = (b % 2);
@@ -2204,13 +2240,1544 @@ function Gilbert2D(w,h) {
   return pnt;
 }
 
+
+//--------------------------------------//
+//            _                         //
+//  __ _ _  _(_)___ ___ _ __ _ __  ___  //
+// / _` | || | (_-</ -_) '_ \ '_ \/ -_) //
+// \__, |\_,_|_/__/\___| .__/ .__/\___| //
+// |___/               |_|  |_|         //
+//--------------------------------------//
+
+function *Guiseppe2DAsync_line(p, alpha, beta) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+
+  if (b == 1) {
+    let u = v_clone(p);
+    for (let i=0; i<a; i++) {
+      yield u;
+      u = v_add(u, d_alpha);
+    }
+    return;
+  }
+
+  if (a == 1) {
+    let u = v_clone(p);
+    for (let i=0; i<b; i++) {
+      yield u;
+      u = v_add(u, d_beta);
+    }
+    return;
+  }
+
+  return;
+}
+
+function *Guiseppe2DAsync_base(p, alpha, beta) {
+
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+
+  let d_2x2 = [ [0,0], [1,0],
+                [0,1], [1,1] ];
+
+  let d_3x2 = [ [0,0], [0,1],
+                [1,1], [1,0],
+                [2,0], [2,1] ];
+
+  let d_2x3 = [ [0,0], [1,0], [1,1],
+                [0,1], [0,2],[1,2] ];
+
+  let d_3x3 = [ [0,0], [1,0], [2,0],
+                [2,1], [1,1], [0,1],
+                [0,2], [1,2], [2,2] ];
+
+  let d_m = [];
+
+  if ((a == 1) || (b == 1)) {
+    yield* Guiseppe2DAsync_line(p, alpha, beta);
+    return;
+  }
+
+  if      ((a == 2) && (b == 2)) { d_m = d_2x2; }
+  else if ((a == 2) && (b == 3)) { d_m = d_2x3; }
+  else if ((a == 3) && (b == 2)) { d_m = d_3x2; }
+  else if ((a == 3) && (b == 3)) { d_m = d_3x3; }
+
+  for (let i = 0; i < d_m.length; i++) {
+    yield v_add(p, v_add( v_mul(d_m[i][0], d_alpha), v_mul(d_m[i][1], d_beta) ) );
+  }
+
+  return;
+}
+
+// we assume point starts at p and ends at diagonal
+//
+function *Guiseppe2DAsync(p, alpha, beta) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+
+  _vprint("#Guiseppe2dasync: p:", p, "alpha:", alpha, "beta:", beta);
+
+  if ((a == 1) || (b == 1)) {
+    yield* Guiseppe2DAsync_line(p, alpha, beta);
+    return;
+  }
+
+  if ((a <= 3) && (b <= 3)) {
+    yield* Guiseppe2DAsync_base(p, alpha, beta);
+    return;
+  }
+
+  if (b > a) {
+    let u = alpha;
+    alpha = beta;
+    beta = u;
+
+    a = abs_sum_v(alpha);
+    b = abs_sum_v(beta);
+  }
+
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+
+  let alpha3_0 = v_divq(alpha, 3);
+  let alpha3_1 = v_div2( v_sub( alpha, alpha3_0 ) );
+  let alpha3_2 = v_sub( alpha, v_add(alpha3_0, alpha3_1) );
+
+  let a3_0 = abs_sum_v(alpha3_0);
+  let a3_1 = abs_sum_v(alpha3_1);
+  let a3_2 = abs_sum_v(alpha3_2);
+
+  if ((b%2) == 0) {
+
+    if ((a3_0%2) == 0) {
+      alpha3_0 = v_add(alpha3_0, d_alpha);
+      alpha3_1 = v_sub(alpha3_1, d_alpha);
+
+      a3_0 = abs_sum_v(alpha3_0);
+      a3_1 = abs_sum_v(alpha3_1);
+    }
+
+    if ((a3_1%2) == 0) {
+      alpha3_1 = v_add(alpha3_1, d_alpha);
+      alpha3_2 = v_sub(alpha3_2, d_alpha);
+
+      a3_1 = abs_sum_v(alpha3_1);
+      a3_2 = abs_sum_v(alpha3_2);
+    }
+
+  }
+
+  let q = v_clone(p);
+  yield* Guiseppe2DAsync( q,
+                          alpha3_0,
+                          beta );
+
+  q = v_add( p, v_add(alpha3_0, v_sub(beta, d_beta)) );
+  yield* Guiseppe2DAsync( q,
+                          alpha3_1,
+                          v_neg(beta) );
+
+  q = v_add( p, v_add(alpha3_0, alpha3_1) );
+  yield* Guiseppe2DAsync( q,
+                          alpha3_2,
+                          beta );
+
+  return;
+}
+
+function *Guiseppe3DAsync_base(p, alpha, beta, gamma) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+
+  if (a == 1) { yield* Guiseppe2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Guiseppe2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let s = a + b + g;
+
+  _vprint("#  guisepped3dasync_base: s:", s);
+
+  // 3x3x3
+  //
+  if (s == 9) {
+
+    let u = v_clone(p);
+    yield* Guiseppe2DAsync(u, beta, gamma);
+
+    u = v_add(p, v_add( v_add( v_sub(beta, d_beta), v_sub(gamma, d_gamma) ), d_alpha ) );
+    yield* Guiseppe2DAsync(u, v_neg(beta), v_neg(gamma));
+
+    u = v_add(p, v_mul(2, d_alpha));
+    yield* Guiseppe2DAsync(u, beta, gamma);
+
+    return;
+  }
+
+  // 3x3x2, 3x2x3, 2x3x3
+  //
+  if (s == 8) {
+
+    let sched = [
+      [0,0,0], [1,0,0], [1,0,1], [0,0,1], [0,0,2], [1,0,2],
+      [1,1,2], [0,1,2], [0,1,1], [1,1,1], [1,1,0], [0,1,0],
+      [0,2,0], [1,2,0], [1,2,1], [0,2,1], [0,2,2], [1,2,2]
+    ];
+
+    // force alpha to be the len 2 vector
+    //
+    if (b == 2) {
+      let _v = alpha;
+      alpha = beta;
+      beta = _v;
+
+      let _d = d_alpha;
+      d_alpha = d_beta;
+      d_beta = _d;
+    }
+
+    else if (g == 2) {
+      let _v = alpha;
+      alpha = gamma;
+      gamma = _v;
+
+      let _d = d_alpha;
+      d_alpha = d_gamma;
+      d_gamma = _d;
+    }
+
+
+    let u = v_clone(p);
+    for (let i=0; i<sched.length; i++) {
+      u = v_add(p, v_add( v_mul(sched[i][0], d_alpha), v_add( v_mul(sched[i][1], d_beta), v_mul(sched[i][2], d_gamma) ) ) );
+      yield u;
+    }
+
+    return;
+  }
+
+  else if (s == 7) {
+
+    // s == 7 (2x2x3, 2x3x2, 3x2x2) only condition that remains
+    //
+    let sched = [
+      [0,0,0], [0,0,1], [0,1,1], [0,1,0],
+      [1,1,0], [1,1,1], [1,0,1], [1,0,0],
+      [2,0,0], [2,0,1], [2,1,0], [2,1,1]
+    ];
+
+    // shuffle around so alpha is the length 3 dimension
+    //
+
+    if (b == 3) {
+      let _v = alpha;
+      alpha = beta;
+      beta = _v;
+
+      let _d = d_alpha;
+      d_alpha = d_beta;
+      d_beta = _d;
+    }
+
+    else if (g == 3) {
+      let _v = alpha;
+      alpha = gamma;
+      gamma = _v;
+
+      let _d = d_alpha;
+      d_alpha = d_gamma;
+      d_gamma = _d;
+    }
+
+    let u = v_clone(p);
+    for (let i=0; i<sched.length; i++) {
+      u = v_add(p, v_add( v_mul(sched[i][0], d_alpha), v_add( v_mul(sched[i][1], d_beta), v_mul(sched[i][2], d_gamma) ) ) );
+      yield u;
+    }
+
+    return;
+  }
+
+  // s == 6 (2x2x2)
+  
+  let sched = [
+    [0,0,0], [0,1,0], [0,1,1], [0,0,1],
+    [1,0,1], [1,0,0], [1,1,0], [1,1,1]
+  ];
+
+  let u = v_clone(p);
+  for (let i=0; i<sched.length; i++) {
+    u = v_add(p, v_add( v_mul(sched[i][0], d_alpha), v_add( v_mul(sched[i][1], d_beta), v_mul(sched[i][2], d_gamma) ) ) );
+    yield u;
+  }
+
+}
+
+// we assume point starts at p and ends at
+// diagonal (alpha + beta + gamma).
+//
+function *Guiseppe3DAsync(p, alpha, beta, gamma) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  _vprint("#Guiseppe3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
+
+  if (a == 1) { yield* Guiseppe2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Guiseppe2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+
+  if ((a <= 3) && (b <= 3) && (g <= 3)) {
+    yield* Guiseppe3DAsync_base(p, alpha, beta, gamma);
+    return;
+  }
+
+  // Swap to make alpha prime subdivision axis.
+  // Recalculate size.
+  //
+  if      ((b >= a) && (b >= g)) { let u = alpha; alpha = beta;  beta = u;  }
+  else if ((g >= a) && (g >= b)) { let u = alpha; alpha = gamma; gamma = u; }
+  a = abs_sum_v(alpha);
+  b = abs_sum_v(beta);
+  g = abs_sum_v(gamma);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha3_0 = v_divq(alpha, 3);
+  let alpha3_1 = v_div2( v_sub( alpha, alpha3_0 ) );
+  let alpha3_2 = v_sub( alpha, v_add(alpha3_0, alpha3_1) );
+
+  let a3_0 = abs_sum_v(alpha3_0);
+  let a3_1 = abs_sum_v(alpha3_1);
+  let a3_2 = abs_sum_v(alpha3_2);
+
+  let path_parity0 = (a3_0 + b + g) % 2;
+  let path_parity1 = (a3_1 + b + g) % 2;
+  let path_parity2 = (a3_2 + b + g) % 2;
+
+  let cuboid_parity0 = (a3_0 * b * g) % 2;
+  let cuboid_parity1 = (a3_1 * b * g) % 2;
+  let cuboid_parity2 = (a3_2 * b * g) % 2;
+
+  _vprint("#  path_parity:", path_parity0, path_parity1, path_parity2,
+    "cuboid_parity:", cuboid_parity0, cuboid_parity1, cuboid_parity2);
+
+  // fix parity for first and secnd subdivided
+  // surface, leaving the top surface to absorb
+  // the notch, if present.
+  //
+  if (path_parity0 != cuboid_parity0) {
+    alpha3_0 = v_add(alpha3_0, d_alpha);
+    alpha3_1 = v_sub(alpha3_1, d_alpha);
+
+    a3_0 = abs_sum_v(alpha3_0);
+    a3_1 = abs_sum_v(alpha3_1);
+
+    path_parity0 = (a3_0 + b + g) % 2;
+    path_parity1 = (a3_1 + b + g) % 2;
+
+    cuboid_parity0 = (a3_0 * b * g) % 2;
+    cuboid_parity1 = (a3_1 * b * g) % 2;
+  }
+
+  if (path_parity1 != cuboid_parity1) {
+    alpha3_1 = v_add(alpha3_1, d_alpha);
+    alpha3_2 = v_sub(alpha3_2, d_alpha);
+
+    a3_1 = abs_sum_v(alpha3_1);
+    a3_2 = abs_sum_v(alpha3_2);
+
+    path_parity1 = (a3_1 + b + g) % 2;
+    path_parity2 = (a3_2 + b + g) % 2;
+
+    cuboid_parity1 = (a3_1 * b * g) % 2;
+    cuboid_parity2 = (a3_2 * b * g) % 2;
+  }
+
+  _vprint("#  >>Guiseppe3dasync: alpha3[]:", alpha3_0, alpha3_1, alpha3_2);
+
+  if ( a3_1 == 0 ) {
+
+    let q = v_clone(p);
+    yield* Hibiscus3DAsync( q,
+                            alpha3_0,
+                            beta,
+                            gamma );
+
+    q = v_add( p, alpha3_0 );
+    yield* Guiseppe3DAsync( q,
+                            alpha3_2,
+                            beta,
+                            gamma );
+
+
+    return;
+  }
+
+
+  let q = v_clone(p);
+  yield* Guiseppe3DAsync( q,
+                          alpha3_0,
+                          beta,
+                          gamma );
+
+  q = v_add( p, alpha3_0, v_sub(beta, d_beta), v_sub(gamma, d_gamma) );
+  yield* Guiseppe3DAsync( q,
+                          alpha3_1,
+                          v_neg(beta),
+                          v_neg(gamma) );
+
+  q = v_add( p, alpha3_0, alpha3_1);
+  yield* Guiseppe3DAsync( q,
+                          alpha3_2,
+                          beta,
+                          gamma );
+
+  return;
+}
+
+
+function Guiseppe2D(width, height) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0];
+
+  let pnt = [];
+
+  let g2xy = Guiseppe2DAsync(p, alpha, beta);
+  for (let hv = g2xy.next() ; !hv.done ; hv = g2xy.next()) {
+    let v = hv.value;
+    pnt.push( [v[0], v[1]] );
+  }
+
+  return pnt;
+}
+
+function Guiseppe3D(width, height,depth) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0],
+      gamma = [0,0,depth] ;
+
+  let pnt = [];
+
+  let g2xyz = Guiseppe3DAsync(p, alpha, beta, gamma);
+  for (let hv = g2xyz.next() ; !hv.done ; hv = g2xyz.next()) {
+    let v = hv.value;
+    pnt.push( [v[0], v[1],v[2]] );
+  }
+
+  return pnt;
+}
+
+//-------------------------------
+//  _    _ _    _                
+// | |_ (_) |__(_)___ __ _  _ ___
+// | ' \| | '_ \ (_-</ _| || (_-<
+// |_||_|_|_.__/_/__/\__|\_,_/__/
+//-------------------------------
+
+
+// start and end point are on alpha axis
+// ( p(0,0,0) -> q( |alpha|-1, 0, 0 )
+//
+function *Hibiscus3DAsync(p, alpha, beta, gamma) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  _vprint("#Hibiscus3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
+
+  if (a == 1) { yield* Gilbert2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Gilbert2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Gilbert2DAsync(p, alpha, beta); return; }
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  if ( (a==2) && (b==2) && (g==2) ) {
+    yield* Hilbert2x2x2Async(p, alpha, beta, gamma);
+    return;
+  }
+
+  let alpha2 = v_div2(alpha);
+  let beta2 = v_div2(beta);
+  let gamma2 = v_div2(gamma);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
+
+  let parity_alpha  = a%2;
+  let parity_beta   = b%2;
+  let parity_gamma  = g%2;
+
+  // eccentric cases
+  //
+
+  // S0
+  //
+  if ( ((3*a) > (5*b)) ||
+       ((3*a) > (5*g)) ) {
+
+    if ((a > 2) && ((a2 % 2) == 1)) {
+      alpha2 = v_add(alpha2, d_alpha);
+      a2 = abs_sum_v(alpha2);
+    }
+
+    _vprint("#  Hibiscus3dasync.S0: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "alpha2:", alpha2);
+
+    let u = v_clone(p);
+    yield* Hibiscus3DAsync( u, alpha2, beta, gamma );
+
+    u = v_add(p, alpha2);
+    yield* Hibiscus3DAsync( u, v_sub(alpha, alpha2), beta, gamma );
+
+    return;
+  }
+
+  // S2
+  //
+  if ( ((2*b) >= (3*g)) ||
+       ((2*b) >= (3*a)) ) {
+
+    let beta3 = v_divq(beta, 3);
+    let b3 = abs_sum_v(beta3);
+
+    if ((a > 2) && ((a2 % 2) == 1)) {
+      alpha2 = v_add(alpha2, d_alpha);
+      a2 = abs_sum_v(alpha2);
+    }
+
+    _vprint("#  Hibiscus3dasync.S1: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "alpha2:", alpha2, "beta3:", beta3);
+
+    if ((b > 2) && ((b3 % 2) == 1)) {
+      beta3 = v_add(beta3, d_beta);
+      b3 = abs_sum_v(beta3);
+    }
+
+    let u = v_clone(p);
+    yield *Hibiscus3DAsync( u, beta3, gamma, alpha2 );
+
+    u = v_add(p, beta3);
+    yield *Hibiscus3DAsync( u, alpha, v_sub(beta, beta3), gamma );
+
+    u = v_add( p, v_sub(alpha, d_alpha), v_sub(beta3, d_beta) );
+    yield *Hibiscus3DAsync( u, v_neg(beta3), gamma, v_sub(alpha2, alpha) );
+
+
+    return;
+  }
+
+  // S1
+  //
+  if ((2*g) >= (3*b)) {
+
+    let gamma3 = v_divq(gamma, 3);
+    let g3 = abs_sum_v(gamma3);
+
+    if ((a > 2) && ((a2 % 2) == 1)) {
+      alpha2 = v_add(alpha2, d_alpha);
+      a2 = abs_sum_v(alpha2);
+    }
+
+    if ((g > 2) && ((g3 % 2) == 1)) {
+      gamma3 = v_add(gamma3, d_gamma);
+      g3 = abs_sum_v(gamma3);
+    }
+
+    _vprint("#  Hibiscus3dasync.S2: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "alpha2:", alpha2, "gamma3:", gamma3);
+
+    let u = v_clone(p);
+    yield *Hibiscus3DAsync( u, gamma3, alpha2, beta );
+
+    u = v_add(p, gamma3);
+    yield *Hibiscus3DAsync( u, alpha, beta, v_sub(gamma, gamma3) );
+
+    u = v_add( p, v_sub(alpha, d_alpha), v_sub(gamma3, d_gamma) );
+    yield *Hibiscus3DAsync( u, v_neg(gamma3), v_sub(alpha2, alpha), beta );
+
+    return;
+  }
+
+
+  if ( (b > 2) &&
+       ((b2%2) != parity_gamma) ) {
+    beta2 = v_add(beta2, d_beta);
+    b2 = abs_sum_v(beta2);
+  }
+
+  if ( (g > 2) &&
+       ((g2%2) == parity_beta) ) {
+    gamma2 = v_add(gamma2, d_gamma);
+    g2 = abs_sum_v(gamma2);
+  }
+
+  _vprint("#  Hibiscus3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "a2:", alpha2, "b2:", beta2, "g2:", gamma2);
+
+  _vprint("#    Hibiscus3dasync.A");
+
+  let u = v_clone(p);
+  yield* Peony3DAsync(u, beta, gamma2, alpha2);
+
+  _vprint("#    Hibiscus3dasync.B");
+
+  u = v_add(p, v_sub(beta, d_beta), gamma2);
+  yield* Peony3DAsync(u, v_sub(gamma, gamma2), v_sub(beta2, beta), alpha2);
+
+  _vprint("#    Hibiscus3dasync.C");
+
+  u = v_add(p, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
+  yield* Hibiscus3DAsync(u, alpha, v_neg(beta2), v_sub(gamma2, gamma));
+
+  _vprint("#    Hibiscus3dasync.D");
+
+  u = v_add(p, v_sub(alpha, d_alpha), beta2, v_sub(gamma, d_gamma));
+  yield* Peony3DAsync(u, v_sub(beta, beta2), v_sub(gamma2, gamma), v_sub(alpha2, alpha));
+
+  _vprint("#    Hibiscus3dasync.E");
+
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
+  yield* Peony3DAsync(u, v_neg(beta), v_neg(gamma2), v_sub(alpha2, alpha));
+
+  return;
+}
+
+function Hibiscus3D(width, height, depth) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0],
+      gamma = [0,0,depth];
+
+  let pnt = [];
+
+  let p3xyz = Hibiscus3DAsync(p, alpha, beta, gamma);
+  for (let hv = p3xyz.next() ; !hv.done ; hv = p3xyz.next()) {
+    let v = hv.value;
+    pnt.push(v);
+  }
+
+  return pnt;
+}
+
+
+
+//--------------------------//
+//  _ __  ___ ___ _ _ _  _  //
+// | '_ \/ -_) _ \ ' \ || | //
+// | .__/\___\___/_||_\_, | //
+// |_|                |__/  //
+//--------------------------//
+
+/*
+ * abg | |a|+|b|-1 | |a|+|b|+|g| | |a|.|b|.|g| | P | D |
+ * -----------------------------------------------------
+ * 000 |    1      |      0      |      0      | x |   |
+ * 001 |    1      |      1      |      0      | x | x |
+ * 010 |    0      |      1      |      0      |   | x |
+ * 011 |    0      |      0      |      0      |   |   |
+ * 100 |    0      |      1      |      0      |   | x |
+ * 101 |    0      |      0      |      0      |   |   |
+ * 110 |    1      |      0      |      0      | x |   |
+ * 111 |    1      |      1      |      1      |   |   |
+ *
+ *
+ * -> ______@_____________
+ *   /     /      /      /|
+ *  /------------------o/ |
+ *  | a_2 | a_ 1 | a_0 | /
+ *  o------------@------/
+ *
+ *  o - start/end point
+ *  @ - intermediate points
+ *
+ *  Guiseppe for a_2 a_1, Peony for a_0
+ *
+ *  abg | a_2 | a_1 |  a_0    |
+ *  ---------------------------
+ *  000 |  0  |  0  |   0 (x) |
+ *  001 |  1  |  1  |   0 (x) |
+ *  010 |  1  |  1  |   1     |
+ *  011 |  0  |  0  |   0     |
+ *  100 |  0  |  0  |   1     |
+ *  101 |  1  |  1  |   1     |
+ *  110 |  1  |  1  |   1 (x) |
+ *  111 |  0  |  0  |   1     |
+ *
+ *  I think the edge cases are when:
+ *
+ *  |alpha| = 2 (|beta| = 2)
+ *  |alpha| = 4 (|beta| = 2,3,4)
+ *  |alpha| = 3 (|beta| = 2,3)
+ *
+ *  We choose |alpha| >= |beta|.
+ *  When |alpha| even, alpha_{1,2,3} split into
+ *   000 or 110, for |alpha| = 6 -> 222, 114,
+ *   leaving |alpha| = 4 and 2 to handle.
+ *  When |alpha| odd, alpha_{1,2,3} split into
+ *   001, 111, for |alpha| = 5 -> 221, 113,
+ *   leaving |alpha| = 3.
+ *
+ *
+ */
+
+/* UPDATE:
+ *
+ * Simplified to:
+ *
+ * -> ____________________
+ *   /            /      /|
+ *  /-------------------/ o
+ *  |    a_1     | a_0 | /
+ *  o------------@------/
+ *
+ *  using the Gilbert curve (alpha endpoints) for o-@ (a_1)
+ *  and recursive Peony for @-0 (a_0).
+ *
+ *  We force a_1 even and let a_0 soak the remainder.
+ *
+ *  alpha is swapped for beta if its intiially smaller.
+ *
+ *
+ */
+
+
+// base case for when |alpha| == 2 and |beta| == 2
+//
+function *Peony3DAsync_2x2(p, alpha, beta, gamma) {
+
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let g_idx = 0;
+
+  let u = v_clone(p);
+
+  yield u;
+  u = v_add(u, d_alpha);
+  yield u;
+
+  for (g_idx=1; g_idx<g; g_idx++) {
+    u = v_add(u, d_gamma);
+
+    yield u;
+
+    u = ( (g_idx%2) ? v_add(u, v_neg(d_alpha)) : v_add(u, d_alpha) );
+    yield u;
+  }
+
+  u = v_add(u, d_beta);
+  for ( ; g_idx > 1; g_idx--) {
+    yield u;
+
+    u = ( (g_idx%2) ? v_add(u, v_neg(d_alpha)) : v_add(u, d_alpha) );
+    yield u;
+
+    u = v_sub(u, d_gamma);
+  }
+
+  yield v_add(p, d_beta);
+  yield v_add(p, v_add(d_alpha, d_beta));
+  return;
+}
+
+
+function Peony3D(width, height, depth) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0],
+      gamma = [0,0,depth];
+
+  let pnt = [];
+
+  let p3xyz = Peony3DAsync(p, alpha, beta, gamma);
+  for (let hv = p3xyz.next() ; !hv.done ; hv = p3xyz.next()) {
+    let v = hv.value;
+    pnt.push(v);
+  }
+
+  return pnt;
+}
+
+
+// we assume point starts at p and ends at
+// plane diagonal (alpha + beta).
+//
+function *Peony3DAsync(p, alpha, beta, gamma) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  _vprint("#Peony3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
+
+  if (a == 1) { yield* Gilbert2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Gilbert2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+
+  // make alpha largest of alpha, beta
+  //
+  if (a < b) { let u = alpha; alpha = beta; beta = u; }
+  a = abs_sum_v(alpha);
+  b = abs_sum_v(beta);
+  g = abs_sum_v(gamma);
+
+  _vprint("#  -->Peony3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
+
+  if (a < 3) {
+    yield* Peony3DAsync_2x2(p, alpha, beta, gamma);
+    return;
+  }
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha3_1 = v_divq(alpha, 3);
+  let alpha3_0 = v_sub(alpha, alpha3_1);
+
+  let a3_1 = abs_sum_v(alpha3_1);
+  let a3_0 = abs_sum_v(alpha3_0);
+
+  if (a3_0%2) {
+    alpha3_1 = v_add(alpha3_1, d_alpha);
+    alpha3_0 = v_sub(alpha3_0, d_alpha);
+
+    a3_1 = abs_sum_v(alpha3_1);
+    a3_0 = abs_sum_v(alpha3_0);
+  }
+
+  let u = v_clone(p);
+  yield* Hibiscus3DAsync(u, alpha3_0, beta, gamma);
+
+  u = v_add(p, alpha3_0);
+  yield* Peony3DAsync(u, alpha3_1, beta, gamma);
+
+
+  return;
+
+}
+
+function Peony3D(width, height, depth) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0],
+      gamma = [0,0,depth] ;
+
+  let pnt = [];
+
+  let g2xyz = Peony3DAsync(p, alpha, beta, gamma);
+  for (let hv = g2xyz.next() ; !hv.done ; hv = g2xyz.next()) {
+    let v = hv.value;
+    pnt.push( [v[0], v[1],v[2]] );
+  }
+
+  return pnt;
+}
+
+//------------------------
+//        _ _  __     _ _ 
+//  _ __ (_) |/ _|___(_) |
+// | '  \| | |  _/ _ \ | |
+// |_|_|_|_|_|_| \___/_|_|
+//------------------------
+
+function *Milfoil2x2x2Async(p, alpha, beta, gamma) {
+  let xyz = v_clone(p);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, d_beta);
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, d_gamma);
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, v_neg(d_beta));
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, d_alpha);
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, v_neg(d_gamma));
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, d_beta);
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+  xyz = v_add(xyz, d_gamma);
+  yield [ xyz[0], xyz[1], xyz[2] ];
+
+}
+
+// subdivision scheme:
+//
+// 2x1x1 (+z) 1x1x1 (-x) 1x2x1 (-z) 1x1x1 (+x) 1x1x2
+//
+//                ___o
+//               /  /|
+//            o_/__/ |
+//           /__|  | |
+//           |D | E|/
+//      ___   --o-- 
+//     /  /|
+//    / o/__
+//   /  /  /|
+//  /__o__/ o
+//  |C | B|/|
+//  |-----| |
+//  |  A  |/
+//  o-----
+//
+//
+// | a/b/g | A B C D E |  | a/b/g | A B C D E |
+// | ------------------|  |-------------------|
+// |   0   | 0 0 0 0 0 |  |   1   | 1 1 0 0 1 |
+// |   0   | 0 0 0 0 0 |  |   1   | 1 1 1 0 0 |
+// |   0   | 0 0 0 0 0 |  |   1   | 0 1 1 0 1 |
+// |       |           |  |                   |
+// |-------------------|  |-------------------|
+// |   0   | 0 1 1 1 1 |  |   1   | 1 1 0 0 1 |
+// |   0   | 1 1 0 1 1 |  |   1   | 0 0 1 1 1 |
+// |   1   | 0 1 1 0 1 |  |   0   | 1 1 1 1 0 |
+// | X     | x         |  |                   |
+// |-------------------|  |-------------------|
+// |   0   | 0 1 1 1 1 |  |   1   | 1 0 1 1 0 |
+// |   1   | 0 0 1 1 1 |  |   0   | 1 1 0 1 1 |
+// |   0   | 1 1 1 1 0 |  |   1   | 0 1 1 0 1 |
+// | X     | x         |  |                   |
+// |-------------------|  |-------------------|
+// |   1   | 1 1 0 0 1 |  |   0   | 0 1 1 1 1 |
+// |   0   | 1 1 0 1 1 |  |   1   | 1 1 1 0 0 |
+// |   0   | 1 1 1 1 0 |  |   1   | 1 0 0 1 1 |
+// | X     |     x     |  |                   |
+// |-------------------|  |-------------------|
+
+function *Milfoil3DAsync(p, alpha, beta, gamma) {
+
+  // 4*alpha + 2*beta + gamma
+  //
+  let parity_schedule = [
+    [0,0,0], [1,1,0], [1,0,1], [1,1,1],
+    [0,1,1], [1,1,0], [0,0,1], [0,1,0]
+  ]
+
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  _vprint("#Milfoil3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
+
+  if (a == 1) { yield* Guiseppe2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Guiseppe2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  if ( (a==2) && (b==2) && (g==2) ) {
+    yield* Milfoil2x2x2Async(p, alpha, beta, gamma);
+    return;
+  }
+
+  let alpha2 = v_div2(alpha);
+  let beta2  = v_div2(beta);
+  let gamma2 = v_div2(gamma);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
+
+  let parity_alpha  = a%2;
+  let parity_beta   = b%2;
+  let parity_gamma  = g%2;
+
+  // S0.a
+  //
+  if ( ((3*a) > (5*b)) ||
+       ((3*a) > (5*g)) ) {
+
+    if ((a > 2) && ((a2 % 2) == 1)) {
+      alpha2 = v_add(alpha2, d_alpha);
+      a2 = abs_sum_v(alpha2);
+    }
+
+    _vprint("#  Milfoil3dasync.S0.a: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "alpha2:", alpha2);
+
+    let u = v_clone(p);
+    yield* Hibiscus3DAsync( u, alpha2, beta, gamma );
+
+    u = v_add(p, alpha2);
+    yield* Milfoil3DAsync( u, v_sub(alpha, alpha2), beta, gamma );
+
+    return;
+  }
+
+  // S0.b
+  //
+  if ( ((3*b) > (5*a)) ||
+       ((3*b) > (5*g)) ) {
+
+    if ((b > 2) && ((b2 % 2) == 1)) {
+      beta2 = v_add(beta2, d_beta);
+      b2 = abs_sum_v(beta2);
+    }
+
+    _vprint("#  Milfoil3dasync.S0.b: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "alpha2:", alpha2);
+
+    let u = v_clone(p);
+    yield* Hibiscus3DAsync( u, beta2, gamma, alpha);
+
+    u = v_add(p, beta2);
+    yield* Milfoil3DAsync( u, v_sub(beta, beta2), gamma, alpha);
+
+    return;
+  }
+
+  // S0.g
+  //
+  if ( ((3*g) > (5*b)) ||
+       ((3*g) > (5*a)) ) {
+
+    if ((g > 2) && ((g2 % 2) == 1)) {
+      gamma2 = v_add(gamma2, d_gamma);
+      g2 = abs_sum_v(gamma2);
+    }
+
+    _vprint("#  Milfoil3dasync.S0.g: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma, "alpha2:", alpha2);
+
+    let u = v_clone(p);
+    yield* Hibiscus3DAsync( u, gamma2, beta, alpha);
+
+    u = v_add(p, gamma2);
+    yield* Milfoil3DAsync( u, alpha, beta, v_sub(gamma, gamma2) );
+
+    return;
+  }
+
+
+  let psidx = (4*(a%2)) + (2*(b%2)) + (g%2);
+  let psched = parity_schedule[psidx];
+  if ((a2%2) != psched[0]) { alpha2 = v_add(alpha2, d_alpha); a2++; }
+  if ((b2%2) != psched[1]) { beta2  = v_add(beta2, d_beta);   b2++; }
+  if ((g2%2) != psched[2]) { gamma2 = v_add(gamma2, d_gamma); g2++; }
+
+  let u = v_clone(p);
+  yield* Milfoil3DAsync(u, alpha, beta2, gamma2);
+
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta2, d_beta), gamma2);
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_neg(beta2), v_sub(gamma, gamma2));
+
+  u = v_add(p, v_sub(alpha2, d_alpha), v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, beta, v_neg(alpha2), v_sub(gamma2, gamma));
+
+  u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, alpha2, v_sub(beta2, beta), v_neg(gamma2));
+
+  u = v_add(p, alpha2, beta2);
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2), gamma);
+
+  return;
+}
+
+function Milfoil3D(width, height, depth) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0],
+      gamma = [0,0,depth] ;
+
+  let pnt = [];
+
+  let g2xyz = Milfoil3DAsync(p, alpha, beta, gamma);
+  for (let hv = g2xyz.next() ; !hv.done ; hv = g2xyz.next()) {
+    let v = hv.value;
+    pnt.push( [v[0], v[1],v[2]] );
+  }
+
+  return pnt;
+}
+
+
+//-------------------------------------
+//  _        _ _     _                 
+// | |_  ___| | |___| |__  ___ _ _ ___ 
+// | ' \/ -_) | / -_) '_ \/ _ \ '_/ -_)
+// |_||_\___|_|_\___|_.__/\___/_| \___|
+//-------------------------------------
+
+// attempts at a generalized Moore curve.
+//
+
+// all side lengths odd, notch is forced.
+// I don't know how to make it stable with the recursive
+// subdivision sttrategy for the non-notch case.
+// Instead, this is something that works.
+//
+// Attach two Peony curves together (diagonal endpoints in
+// plane), taking the maximum length to be the split point.
+// The subdivision will create an (even,odd,odd) and an
+// (odd,odd,odd) subdivision, where the (even,odd,odd)
+// Peony curve will have a notch in it.
+//
+function *Hellebore3DAsync_111(p, alpha, beta, gamma) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  if ( ((a%2)==0) ||
+       ((b%2)==0) ||
+       ((g%2)==0) ) { return -1; }
+
+  if ((a >= b) && (a >= g)) {
+    ///
+  }
+  else if ((b >= a) && (b >= g)) {
+    let _alpha = beta;
+    let _beta = gamma;
+    let _gamma = alpha;
+    alpha = _alpha;
+    beta = _beta;
+    gamma = _gamma;
+  }
+  else if ((g >= a) && (g >= b)) {
+    let _alpha = gamma;
+    let _beta = beta;
+    let _gamma = alpha;
+    alpha = _alpha;
+    beta = _beta;
+    gamma = _gamma;
+  }
+
+  a = abs_sum_v(alpha);
+  b = abs_sum_v(beta);
+  g = abs_sum_v(gamma);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta  = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha2 = v_div2(alpha);
+  let q = v_add(p, alpha2);
+  yield *Peony3DAsync(q, gamma, beta, v_neg(alpha2));
+
+  q = v_add(p, alpha2, d_alpha, v_sub(beta, d_beta), v_sub(gamma, d_gamma));
+  yield *Peony3DAsync(q, v_neg(beta), v_neg(gamma), v_sub(alpha, alpha2));
+
+  return;
+}
+
+function *Hellebore3DAsync_011(p, alpha, beta, gamma) {
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha2 = v_div2(alpha);
+  let beta2 = v_div2(beta);
+  let gamma2 = v_div2(gamma);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
+
+  let alpha2_odd = v_add(alpha2, d_alpha);;
+  if (a2%2) {
+    alpha2_odd = v_clone(alpha2);
+    alpha2 = v_add(alpha2, d_alpha);
+  }
+
+  if ((b2%2) == 1) { beta2 = v_add(beta2, d_beta); }
+  if ((g2%2) == 1) { gamma2 = v_add(gamma2, d_gamma); }
+
+  // A
+  //
+  let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2, d_beta));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2), gamma2);
+
+  // B
+  //
+  u = v_add(p, gamma2);
+  yield* Milfoil3DAsync(u, alpha2_odd, beta2, v_sub(gamma, gamma2));
+
+  // C
+  //
+  u = v_add(p, v_sub(alpha2_odd, d_alpha), beta2, v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_neg(alpha2_odd), v_sub(beta, beta2), v_sub(gamma2, gamma));
+
+  // D
+  //
+  u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, alpha2_odd, v_sub(beta2, beta), v_neg(gamma2));
+
+  // E
+  //
+  u = v_add(p, alpha2_odd, beta2);
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2_odd), v_sub(beta, beta2), gamma2);
+
+  // F
+  //
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2);
+  yield* Milfoil3DAsync(u, v_sub(alpha2_odd, alpha), v_sub(beta2, beta), v_sub(gamma, gamma2));
+
+  // G
+  //
+  u = v_add(p, alpha2_odd, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2_odd), v_neg(beta2), v_sub(gamma2, gamma));
+
+  // H
+  //
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2, v_neg(gamma2));
+
+  return;
+}
+
+function *Hellebore3DAsync_101(p, alpha, beta, gamma) {
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha2 = v_div2(alpha);
+  let beta2 = v_div2(beta);
+  let gamma2 = v_div2(gamma);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
+
+  let beta2_odd = v_add(beta2, d_beta);;
+  if (b2%2) {
+    beta2_odd = v_clone(beta2);
+    beta2 = v_add(beta2, d_beta);
+  }
+
+  if ((a2%2) == 1) { alpha2 = v_add(alpha2, d_alpha); }
+  if ((g2%2) == 0) { gamma2 = v_add(gamma2, d_gamma); }
+
+  // A
+  //
+  let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2_odd, d_beta));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2_odd), gamma2);
+
+  // B
+  //
+  u = v_add(p, gamma2);
+  yield* Milfoil3DAsync(u, alpha2, beta2, v_sub(gamma, gamma2));
+
+  // C
+  //
+  u = v_add(p, v_sub(alpha2, d_alpha), beta2, v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_sub(beta, beta2), v_sub(gamma2, gamma));
+
+  // D
+  //
+  u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, alpha2, v_sub(beta2_odd, beta), v_neg(gamma2));
+
+  // E
+  //
+  u = v_add(p, alpha2, beta2_odd);
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2_odd), gamma2);
+
+  // F
+  //
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2);
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_sub(beta2_odd, beta), v_sub(gamma, gamma2));
+
+  // G
+  //
+  u = v_add(p, alpha2, v_sub(beta2_odd, d_beta), v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_neg(beta2_odd), v_sub(gamma2, gamma));
+
+  // H
+  //
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2_odd, v_neg(gamma2));
+
+}
+
+function *Hellebore3DAsync_110(p, alpha, beta, gamma) {
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha2 = v_div2(alpha);
+  let beta2 = v_div2(beta);
+  let gamma2 = v_div2(gamma);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
+
+  let gamma2_odd = v_add(gamma2, d_gamma);;
+  if (g2%2) {
+    gamma2_odd = v_clone(gamma2);
+    gamma2 = v_add(gamma2, d_gamma);
+  }
+
+  if ((a2%2) == 1) { alpha2 = v_add(alpha2, d_alpha); }
+  if ((b2%2) == 1) { beta2 = v_add(beta2, d_beta); }
+
+  // A
+  //
+  let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2, d_beta));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2), gamma2);
+
+  // B
+  //
+  u = v_add(p, gamma2);
+  yield* Milfoil3DAsync(u, alpha2, beta2, v_sub(gamma, gamma2));
+
+  // C
+  //
+  u = v_add(p, v_sub(alpha2, d_alpha), beta2, v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_sub(beta, beta2), v_sub(gamma2_odd, gamma));
+
+  // D
+  //
+  u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2_odd, d_gamma));
+  yield* Milfoil3DAsync(u, alpha2, v_sub(beta2, beta), v_neg(gamma2_odd));
+
+  // E
+  //
+  u = v_add(p, alpha2, beta2);
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2), gamma2_odd);
+
+  // F
+  //
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2_odd);
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_sub(beta2, beta), v_sub(gamma, gamma2_odd));
+
+  // G
+  //
+  u = v_add(p, alpha2, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_neg(beta2), v_sub(gamma2_odd, gamma));
+
+  // H
+  //
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2_odd, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2, v_neg(gamma2_odd));
+
+}
+
+// this subdivision method won't work
+//
+function *Hellebore3DAsync(p, alpha, beta, gamma) {
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
+  // notch case, fall through to simple Peony glue case.
+  //
+  if ((a%2) && (b%2) && (g%2)) {
+    yield *Hellebore3DAsync_111(p, alpha, beta, gamma);
+    return;
+  }
+
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+  let d_gamma = v_delta(gamma);
+
+  let alpha2 = v_div2(alpha);
+  let beta2 = v_div2(beta);
+  let gamma2 = v_div2(gamma);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+  let g2 = abs_sum_v(gamma2);
+
+  let s = ((a%2) + (b%2) + (g%2));
+
+  if (s == 2) {
+    if      ((a%2) == 0) { yield* Hellebore3DAsync_011(p, alpha, beta, gamma); }
+    else if ((b%2) == 0) { yield* Hellebore3DAsync_101(p, alpha, beta, gamma); }
+    else if ((g%2) == 0) { yield* Hellebore3DAsync_110(p, alpha, beta, gamma); }
+    return;
+  }
+
+  if (s == 0) {
+    if (a2%2) { alpha2  = v_add(alpha2, d_alpha); }
+    if (b2%2) { beta2   = v_add(beta2, d_beta); }
+    if (g2%2) { gamma2  = v_add(gamma2, d_gamma); }
+  }
+  else if (s == 1) {
+    if ((a2%2) == 0) { alpha2  = v_add(alpha2, d_alpha); }
+    if ((b2%2) == 0) { beta2   = v_add(beta2, d_beta); }
+    if ((g2%2) == 0) { gamma2  = v_add(gamma2, d_gamma); }
+  }
+
+  a2 = abs_sum_v(alpha2);
+  b2 = abs_sum_v(beta2);
+  g2 = abs_sum_v(gamma2);
+
+  let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2, d_beta));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2), gamma2);
+
+  u = v_add(p, gamma2);
+  yield* Milfoil3DAsync(u, alpha2, beta2, v_sub(gamma, gamma2));
+
+
+  u = v_add(p, v_sub(alpha2, d_alpha), beta2, v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_neg(alpha2), v_sub(beta, beta2), v_sub(gamma2, gamma));
+
+  u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, alpha2, v_sub(beta2, beta), v_neg(gamma2));
+
+
+  u = v_add(p, alpha2, beta2);
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2), gamma2);
+
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2);
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_sub(beta2, beta), v_sub(gamma, gamma2));
+
+
+  u = v_add(p, alpha2, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_neg(beta2), v_sub(gamma2, gamma));
+
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2, d_gamma));
+  yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2, v_neg(gamma2));
+
+}
+
+// Generalized Moore curve (2d)
+//
+function *Hellebore2DAsync(p, alpha, beta) {
+
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+
+  let d_alpha = v_delta(alpha);
+  let d_beta = v_delta(beta);
+
+
+  let alpha2 = v_div2(alpha);
+  let beta2 = v_div2(beta);
+
+  let a2 = abs_sum_v(alpha2);
+  let b2 = abs_sum_v(beta2);
+
+  if ((a <= 2) && (b <= 2)) {
+    yield* Gilbert2DAsync( p, alpha, beta );
+    return;
+  }
+
+  if ( (a > 2) &&
+       ((a2 % 2) == 0) ) {
+    alpha2 = v_add(alpha2, d_alpha);
+    a2++;
+  }
+
+  if ( (b > 2) &&
+       ((b2 % 2) == 0) ) {
+    beta2 = v_add(beta2, d_beta);
+    b2++;
+  }
+
+  _vprint("#Hellebore2d: p:", p, "alpha:", alpha, "beta:", beta, "alpha2:", alpha2, "beta2:", beta2);
+
+  let u = v_add(p, v_sub(alpha2, d_alpha));
+  yield* Guiseppe2DAsync( u, v_neg(alpha2), beta2 );
+
+  u = v_add(p, beta2);
+  yield* Guiseppe2DAsync( u, alpha2, v_sub(beta, beta2) );
+
+  u = v_add(p, alpha2, v_sub(beta, d_beta));
+  yield* Guiseppe2DAsync( u, v_sub(alpha, alpha2), v_sub(beta2, beta) );
+
+  u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta2, d_beta));
+  yield* Guiseppe2DAsync( u, v_sub(alpha2, alpha), v_neg(beta2) );
+
+  return;
+}
+
+function Hellebore2D(width, height) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0];
+
+  let pnt = [];
+
+  let g2xyz = Hellebore2DAsync(p, alpha, beta);
+  for (let hv = g2xyz.next() ; !hv.done ; hv = g2xyz.next()) {
+    let v = hv.value;
+    pnt.push( [v[0], v[1]] );
+  }
+
+  return pnt;
+}
+
+function Hellebore3D(width, height, depth) {
+  let p = [0,0,0],
+      alpha = [width,0,0],
+      beta = [0,height,0],
+      gamma = [0, 0, depth];
+
+  let pnt = [];
+
+  let g2xyz = Hellebore3DAsync(p, alpha, beta, gamma);
+  for (let hv = g2xyz.next() ; !hv.done ; hv = g2xyz.next()) {
+    let v = hv.value;
+    pnt.push( [v[0], v[1],v[2]] );
+  }
+
+  return pnt;
+}
+
+//--------------------------
+//                  _       
+//  _ __ ___   __ _(_)_ __  
+// | '_ ` _ \ / _` | | '_ \ 
+// | | | | | | (_| | | | | |
+// |_| |_| |_|\__,_|_|_| |_|
+//--------------------------
+
+
 var OP_LIST = [
   "xy", "xyz", "xyzp",
   "xy2d", "d2xy",
   "xyz2d", "d2xyz",
 
   "xyz2da", "d2xyza",
-  "xy2da", "d2xya"
+  "xy2da", "d2xya",
+
+  "guiseppe2d",
+  "guiseppe3d",
+
+  "milfoil3d",
+
+  "peony3d",
+  "peony_test",
+
+  "hibiscus3d",
+
+  "hellebore2d",
+  "hellebore3d"
+
 ];
 
 
@@ -2391,6 +3958,78 @@ function _main(argv) {
 
     }
 
+    else if (op == "guiseppe2d") {
+
+      let p = Guiseppe2D(w,h);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0],p[i][1]);
+      }
+
+    }
+
+    else if (op == "guiseppe3d") {
+
+      let p = Guiseppe3D(w,h,d);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0],p[i][1], p[i][2]);
+      }
+
+    }
+
+    else if (op == "peony_test") {
+
+      _test_peony();
+
+    }
+
+    else if (op == "milfoil3d") {
+
+      let p = Milfoil3D(w,h,d);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0],p[i][1], p[i][2]);
+      }
+
+    }
+
+    else if (op == "peony3d") {
+
+      let p = Peony3D(w,h,d);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0],p[i][1], p[i][2]);
+      }
+
+    }
+
+    else if (op == "hibiscus3d") {
+
+      let p = Hibiscus3D(w,h,d);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0],p[i][1], p[i][2]);
+      }
+
+    }
+
+    else if (op == "hellebore2d") {
+
+      let p = Hellebore2D(w,h);
+      for (let i=0; i<p.length; i++) {
+        console.log(p[i][0],p[i][1]);
+      }
+
+    }
+
+    else if (op == "hellebore3d") {
+
+      let p = Hellebore3D(w,h,d);
+      for (let i=0; i<p.length; i++) {
+
+        if (p[i][0] < 0) { console.log("\n"); continue; }
+
+        console.log(p[i][0],p[i][1], p[i][2]);
+      }
+
+    }
+
   }
 }
 
@@ -2413,25 +4052,69 @@ if (typeof module !== "undefined") {
   module.exports["Gilbert3DAdapt_d2xyz"] = Gilbert3DAdapt_d2xyz;
   module.exports["Gilbert3DAdapt_xyz2d"] = Gilbert3DAdapt_xyz2d;
 
+  module.exports["Guiseppe2DAsync"] = Guiseppe2DAsync;
+  module.exports["Guiseppe2D"] = Guiseppe2D;
+
+  // cuboid diagonal start/end
+  // p(0,0,0) -> q( |alpha|-1, |beta|-1, |gamma|-1 )
+  //
+  // * stable
+  //   - swap so that alpha is the longest axis
+  //   - bulk recursion: (1x3x3, 1x3x3, 1x3x3) Guiseppe3d x 3
+  //   - reduces to (hibiscus, guiseppe) when middle troche is 0
+  // * pushes notch to last troche by ensuring valid cuboid
+  //   dimensions for all but the last troche
+  // * base case is a bit complicated as it takes into account
+  //   all 3x3x3 and smaller cuboids
+  // * has displeasing 'stacking' so probably shouldn't be used
+  //
+  //
+  module.exports["Guiseppe3DAsync"] = Guiseppe3DAsync;
+  module.exports["Guiseppe3D"] = Guiseppe3D;
+
+  // generalized Hilbert curve
+  // p(0,0,0) -> q( |alpha|-1, 0, 0)
+  //
+  // That is, start and end point are on the |alpha| axis.
+  //
+  // * stable
+  //   - (1x2x1, 1x1x1, 2x1x1, 1x1x1, 1x2x1)
+  //   - (peony, peony, hibiscus, peony, peony)
+  // * reduces to Hilbert for 2x2x2
+  // * uses S_0, S_1 and S_2 harmony subdivision
+  //
+  module.exports["Hibiscus3DAsync"] = Hibiscus3DAsync;
+  module.exports["Hibiscus3D"] = Hibiscus3D;
+
+  // In plane diagonal
+  // p(0,0,0) -> q( |alpha|-1, |beta|-1, 0)
+  //
+  // * stable
+  // * this might be in a state of "just to get something working"
+  //   as it looks like it's a 1/3 Hibiscus split and 2/3 Peony remainder
+  //
+  module.exports["Peony3DAsync"] = Peony3DAsync;
+  module.exports["Peony3D"] = Peony3D;
+
+  // Cuboid diagonal
+  // p(0,0,0) -> q( |alpha|-1, |beta|-1, |gamma|-1)
+  //
+  // * stable
+  // * only uses S_0 subdivision sscheme
+  //
+  module.exports["Milfoil3DAsync"] = Milfoil3DAsync;
+  module.exports["Milfoil3D"] = Milfoil3D;
+
+  // generalized Moore curve (wip)
+  //
+  // * stable for all non-notch cases
+  // * notch case reduces to two Peony curvse stacked
+  // * still needs some validation
+  //
+  module.exports["Hellebore3DAsync"] = Hellebore3DAsync;
+  module.exports["Hellebore3D"] = Hellebore3D;
+
   module.exports["ADAPT_METHOD"] = GILBERT_ADAPT_METHOD;
-}
-
-else {
-  var Gilbert = {
-    "xy" : Gilbert2D,
-    "xyz" : Gilbert3D,
-
-    "d2xya" : Gilbert2DAdapt_d2xy,
-    "xy2da" : Gilbert2DAdapt_xy2d,
-
-    "d2xyza" : Gilbert3DAdapt_d2xyz,
-    "xyz2da" : Gilbert3DAdapt_xyz2d,
-
-    "d2xy" : Gilbert2D_d2xyz,
-    "xy2d" : Gilbert2D_xyz2d,
-    "d2xyz" : Gilbert3D_d2xyz,
-    "xyz2d" : Gilbert3D_xyz2d
-  };
 }
 
 //---

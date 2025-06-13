@@ -3,7 +3,7 @@
 
 var njs = numeric;
 
-var CANVAS_ID = 'gilbert3d_examples';
+var CANVAS_ID = 'gilbert3d_abg_examples';
 var g_fig_ctx = {};
 
 var RECT_COLOR = "rgb(100,100,100)";
@@ -301,7 +301,7 @@ function squeeze(p, a,b) {
 // going up, so we need to do an extra x/y and x-flip for the returned gilbert curve
 // to be consistent with the displayed reference axis.
 //
-function mkg3curve(xy, whd, s) {
+function mkg3curve(xy, whd, s, pnts) {
   s = ((typeof s === "undefined") ? 1 : s);
   //flipxy = ((typeof flipxy === "undefined") ? {"y":false, "x": false} : flipxy);
 
@@ -314,11 +314,24 @@ function mkg3curve(xy, whd, s) {
   let pnt3 = [];
   let pnt2 = [];
   let pnt32 = [];
-  for (let idx=0; idx<N; idx++) {
-    //let _p3 = Gilbert3DAdapt_d2xyz(idx, whd[0], whd[1], whd[2], true);
-    let _p3 = Gilbert3DAdapt_d2xyz(idx, whd[0], whd[1], whd[2], GILBERT_ADAPT_METHOD['AXIS']);
-    //let p3 = Gilbert3D_d2xyz(idx, 0, [0,0,0], [0,whd[0],0], [whd[1],0,0], [0,0,whd[2]]);
 
+  let cycle = false;
+  let cell_n = N;
+
+  if (typeof pnts === "undefined") {
+    pnts = [];
+    for (let idx=0; idx<N; idx++) {
+      pnts.push( Gilbert3DAdapt_d2xyz(idx, whd[0], whd[1], whd[2], GILBERT_ADAPT_METHOD['AXIS']) );
+    }
+  }
+  else {
+    if (N < pnts.length) { cycle = true; }
+    N = pnts.length;
+  }
+
+
+  for (let idx=0; idx<N; idx++) {
+    let _p3 = pnts[idx];
 
     let p3 = [ (whd[1]-_p3[1]-1), _p3[0], _p3[2] ];
 
@@ -361,6 +374,7 @@ function mkg3curve(xy, whd, s) {
   let fg_lw = 5;
   let bg_diam = 8;
 
+
   for (let idx=0; idx<n; idx++) {
 
     let p3 = pnt32[idx][0];
@@ -369,16 +383,30 @@ function mkg3curve(xy, whd, s) {
 
     let draw_lines = [];
 
-    if (p_idx > 0) {
-      let nei_idx = p_idx-1;
+    if (cycle) {
+
+      let nei_idx = (p_idx-1+cell_n)%cell_n;
       let q2 = pnt32[ idx_bp[nei_idx] ][1];
+      draw_lines.push( [p2, q2] );
+
+      nei_idx = (p_idx+1)%cell_n;
+      q2 = pnt32[ idx_bp[nei_idx] ][1];
       draw_lines.push( [p2, q2] );
     }
 
-    if (p_idx < (n-1)) {
-      let nei_idx = p_idx+1;
-      let q2 = pnt32[ idx_bp[nei_idx] ][1];
-      draw_lines.push( [p2, q2] );
+    else {
+
+      if (p_idx > 0) {
+        let nei_idx = p_idx-1;
+        let q2 = pnt32[ idx_bp[nei_idx] ][1];
+        draw_lines.push( [p2, q2] );
+      }
+
+      if (p_idx < (n-1)) {
+        let nei_idx = p_idx+1;
+        let q2 = pnt32[ idx_bp[nei_idx] ][1];
+        draw_lines.push( [p2, q2] );
+      }
     }
 
     for (let ii=0; ii<draw_lines.length; ii++) {
@@ -432,7 +460,7 @@ function mkg3curve(xy, whd, s) {
 }
 
 
-function gilbert3d_examples() {
+function gilbert3d_abg_examples() {
   let two = new Two({"fitted":true});
   g_fig_ctx["two"] = two;
 
@@ -454,11 +482,29 @@ function gilbert3d_examples() {
   let ex = 250,
       ey = 250;
 
+  let pnts = [];
+
   //mkg3curve([lx+35,35], [4, 4, 4], 10, {"y":true, "x":false});
   two.makeText("i)", 25, 60, font_style);
-  mkg3curve([40,170], [4, 4, 4], 30);
+  pnts = Hibiscus3D(3,3,3);
+  mkg3curve([40,170], [3, 3, 3], 30, pnts);
 
-  two.makeText("ii)", 210, 60, font_style);
+  two.makeText("ii)", 170, 60, font_style);
+  pnts = Peony3D(3,3,3);
+  mkg3curve([190,170], [3, 3, 3], 30, pnts);
+
+  two.makeText("iii)", 310, 60, font_style);
+  pnts = Milfoil3D(3,3,3);
+  mkg3curve([330,170], [3, 3, 3], 30, pnts);
+
+  two.makeText("iv)", 40, 250, font_style);
+  pnts = Hellebore3D(4,4,4)
+  pnts.push( pnts[0] );
+  mkg3curve([60,350], [4, 4, 4], 30, pnts);
+
+  two.update();
+  return;
+
   mkg3curve([230,190], [4, 4, 5], 30);
 
   two.makeText("iii)", 390, 60, font_style);
@@ -483,23 +529,5 @@ function gilbert3d_examples() {
   axis_fig(40,45,20);
 
   two.update();
-
-  /*
-  two.makeText("i)", lx, 50, font_style);
-  mkgcurve([lx+35,35], [8, 8], 10, {"y":true, "x":false});
-
-  two.makeText("ii)", lx + 140, 50, font_style);
-  mkgcurve([lx+160,35], [18, 6], 10, {"y":true, "x":false});
-
-  two.makeText("iii)", lx, 150, font_style);
-  mkgcurve([lx+10,160], [13, 8], 10, {"y":true, "x":false});
-
-  two.makeText("iv)", lx + 140, 150, font_style);
-  mkgcurve([lx+170,130], [14, 14], 10, {"y":true, "x":false});
-
-  two.update();
-
-  return two;
-  */
 }
 
