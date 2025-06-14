@@ -2249,7 +2249,7 @@ function Gilbert2D(w,h) {
 // |___/               |_|  |_|         //
 //--------------------------------------//
 
-function *Guiseppe2DAsync_line(p, alpha, beta) {
+function *Giuseppe2DAsync_line(p, alpha, beta) {
   let a = abs_sum_v(alpha);
   let b = abs_sum_v(beta);
 
@@ -2277,7 +2277,7 @@ function *Guiseppe2DAsync_line(p, alpha, beta) {
   return;
 }
 
-function *Guiseppe2DAsync_base(p, alpha, beta) {
+function *Giuseppe2DAsync_base(p, alpha, beta) {
 
   let a = abs_sum_v(alpha);
   let b = abs_sum_v(beta);
@@ -2302,7 +2302,7 @@ function *Guiseppe2DAsync_base(p, alpha, beta) {
   let d_m = [];
 
   if ((a == 1) || (b == 1)) {
-    yield* Guiseppe2DAsync_line(p, alpha, beta);
+    yield* Giuseppe2DAsync_line(p, alpha, beta);
     return;
   }
 
@@ -2320,19 +2320,19 @@ function *Guiseppe2DAsync_base(p, alpha, beta) {
 
 // we assume point starts at p and ends at diagonal
 //
-function *Guiseppe2DAsync(p, alpha, beta) {
+function *Giuseppe2DAsync(p, alpha, beta) {
   let a = abs_sum_v(alpha);
   let b = abs_sum_v(beta);
 
-  _vprint("#Guiseppe2dasync: p:", p, "alpha:", alpha, "beta:", beta);
+  _vprint("#Giuseppe2dasync: p:", p, "alpha:", alpha, "beta:", beta);
 
   if ((a == 1) || (b == 1)) {
-    yield* Guiseppe2DAsync_line(p, alpha, beta);
+    yield* Giuseppe2DAsync_line(p, alpha, beta);
     return;
   }
 
   if ((a <= 3) && (b <= 3)) {
-    yield* Guiseppe2DAsync_base(p, alpha, beta);
+    yield* Giuseppe2DAsync_base(p, alpha, beta);
     return;
   }
 
@@ -2377,32 +2377,32 @@ function *Guiseppe2DAsync(p, alpha, beta) {
   }
 
   let q = v_clone(p);
-  yield* Guiseppe2DAsync( q,
+  yield* Giuseppe2DAsync( q,
                           alpha3_0,
                           beta );
 
   q = v_add( p, v_add(alpha3_0, v_sub(beta, d_beta)) );
-  yield* Guiseppe2DAsync( q,
+  yield* Giuseppe2DAsync( q,
                           alpha3_1,
                           v_neg(beta) );
 
   q = v_add( p, v_add(alpha3_0, alpha3_1) );
-  yield* Guiseppe2DAsync( q,
+  yield* Giuseppe2DAsync( q,
                           alpha3_2,
                           beta );
 
   return;
 }
 
-function *Guiseppe3DAsync_base(p, alpha, beta, gamma) {
+function *Giuseppe3DAsync_base(p, alpha, beta, gamma) {
   let a = abs_sum_v(alpha);
   let b = abs_sum_v(beta);
   let g = abs_sum_v(gamma);
 
 
-  if (a == 1) { yield* Guiseppe2DAsync(p, beta, gamma); return; }
-  if (b == 1) { yield* Guiseppe2DAsync(p, alpha, gamma); return; }
-  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+  if (a == 1) { yield* Giuseppe2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Giuseppe2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Giuseppe2DAsync(p, alpha, beta); return; }
 
   let d_alpha = v_delta(alpha);
   let d_beta  = v_delta(beta);
@@ -2410,20 +2410,20 @@ function *Guiseppe3DAsync_base(p, alpha, beta, gamma) {
 
   let s = a + b + g;
 
-  _vprint("#  guisepped3dasync_base: s:", s);
+  _vprint("#  giusepped3dasync_base: s:", s);
 
   // 3x3x3
   //
   if (s == 9) {
 
     let u = v_clone(p);
-    yield* Guiseppe2DAsync(u, beta, gamma);
+    yield* Giuseppe2DAsync(u, beta, gamma);
 
     u = v_add(p, v_add( v_add( v_sub(beta, d_beta), v_sub(gamma, d_gamma) ), d_alpha ) );
-    yield* Guiseppe2DAsync(u, v_neg(beta), v_neg(gamma));
+    yield* Giuseppe2DAsync(u, v_neg(beta), v_neg(gamma));
 
     u = v_add(p, v_mul(2, d_alpha));
-    yield* Guiseppe2DAsync(u, beta, gamma);
+    yield* Giuseppe2DAsync(u, beta, gamma);
 
     return;
   }
@@ -2530,19 +2530,19 @@ function *Guiseppe3DAsync_base(p, alpha, beta, gamma) {
 // we assume point starts at p and ends at
 // diagonal (alpha + beta + gamma).
 //
-function *Guiseppe3DAsync(p, alpha, beta, gamma) {
+function *Giuseppe3DAsync(p, alpha, beta, gamma) {
   let a = abs_sum_v(alpha);
   let b = abs_sum_v(beta);
   let g = abs_sum_v(gamma);
 
-  _vprint("#Guiseppe3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
+  _vprint("#Giuseppe3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
 
-  if (a == 1) { yield* Guiseppe2DAsync(p, beta, gamma); return; }
-  if (b == 1) { yield* Guiseppe2DAsync(p, alpha, gamma); return; }
-  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+  if (a == 1) { yield* Giuseppe2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Giuseppe2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Giuseppe2DAsync(p, alpha, beta); return; }
 
   if ((a <= 3) && (b <= 3) && (g <= 3)) {
-    yield* Guiseppe3DAsync_base(p, alpha, beta, gamma);
+    yield* Giuseppe3DAsync_base(p, alpha, beta, gamma);
     return;
   }
 
@@ -2610,7 +2610,7 @@ function *Guiseppe3DAsync(p, alpha, beta, gamma) {
     cuboid_parity2 = (a3_2 * b * g) % 2;
   }
 
-  _vprint("#  >>Guiseppe3dasync: alpha3[]:", alpha3_0, alpha3_1, alpha3_2);
+  _vprint("#  >>Giuseppe3dasync: alpha3[]:", alpha3_0, alpha3_1, alpha3_2);
 
   if ( a3_1 == 0 ) {
 
@@ -2621,7 +2621,7 @@ function *Guiseppe3DAsync(p, alpha, beta, gamma) {
                             gamma );
 
     q = v_add( p, alpha3_0 );
-    yield* Guiseppe3DAsync( q,
+    yield* Giuseppe3DAsync( q,
                             alpha3_2,
                             beta,
                             gamma );
@@ -2632,19 +2632,19 @@ function *Guiseppe3DAsync(p, alpha, beta, gamma) {
 
 
   let q = v_clone(p);
-  yield* Guiseppe3DAsync( q,
+  yield* Giuseppe3DAsync( q,
                           alpha3_0,
                           beta,
                           gamma );
 
   q = v_add( p, alpha3_0, v_sub(beta, d_beta), v_sub(gamma, d_gamma) );
-  yield* Guiseppe3DAsync( q,
+  yield* Giuseppe3DAsync( q,
                           alpha3_1,
                           v_neg(beta),
                           v_neg(gamma) );
 
   q = v_add( p, alpha3_0, alpha3_1);
-  yield* Guiseppe3DAsync( q,
+  yield* Giuseppe3DAsync( q,
                           alpha3_2,
                           beta,
                           gamma );
@@ -2653,14 +2653,14 @@ function *Guiseppe3DAsync(p, alpha, beta, gamma) {
 }
 
 
-function Guiseppe2D(width, height) {
+function Giuseppe2D(width, height) {
   let p = [0,0,0],
       alpha = [width,0,0],
       beta = [0,height,0];
 
   let pnt = [];
 
-  let g2xy = Guiseppe2DAsync(p, alpha, beta);
+  let g2xy = Giuseppe2DAsync(p, alpha, beta);
   for (let hv = g2xy.next() ; !hv.done ; hv = g2xy.next()) {
     let v = hv.value;
     pnt.push( [v[0], v[1]] );
@@ -2669,7 +2669,7 @@ function Guiseppe2D(width, height) {
   return pnt;
 }
 
-function Guiseppe3D(width, height,depth) {
+function Giuseppe3D(width, height,depth) {
   let p = [0,0,0],
       alpha = [width,0,0],
       beta = [0,height,0],
@@ -2677,7 +2677,7 @@ function Guiseppe3D(width, height,depth) {
 
   let pnt = [];
 
-  let g2xyz = Guiseppe3DAsync(p, alpha, beta, gamma);
+  let g2xyz = Giuseppe3DAsync(p, alpha, beta, gamma);
   for (let hv = g2xyz.next() ; !hv.done ; hv = g2xyz.next()) {
     let v = hv.value;
     pnt.push( [v[0], v[1],v[2]] );
@@ -2908,7 +2908,7 @@ function Hibiscus3D(width, height, depth) {
  *  o - start/end point
  *  @ - intermediate points
  *
- *  Guiseppe for a_2 a_1, Peony for a_0
+ *  Giuseppe for a_2 a_1, Peony for a_0
  *
  *  abg | a_2 | a_1 |  a_0    |
  *  ---------------------------
@@ -3034,7 +3034,7 @@ function *Peony3DAsync(p, alpha, beta, gamma) {
 
   if (a == 1) { yield* Gilbert2DAsync(p, beta, gamma); return; }
   if (b == 1) { yield* Gilbert2DAsync(p, alpha, gamma); return; }
-  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+  if (g == 1) { yield* Giuseppe2DAsync(p, alpha, beta); return; }
 
   // make alpha largest of alpha, beta
   //
@@ -3193,9 +3193,9 @@ function *Milfoil3DAsync(p, alpha, beta, gamma) {
 
   _vprint("#Milfoil3dasync: p:", p, "alpha:", alpha, "beta:", beta, "gamma:", gamma);
 
-  if (a == 1) { yield* Guiseppe2DAsync(p, beta, gamma); return; }
-  if (b == 1) { yield* Guiseppe2DAsync(p, alpha, gamma); return; }
-  if (g == 1) { yield* Guiseppe2DAsync(p, alpha, beta); return; }
+  if (a == 1) { yield* Giuseppe2DAsync(p, beta, gamma); return; }
+  if (b == 1) { yield* Giuseppe2DAsync(p, alpha, gamma); return; }
+  if (g == 1) { yield* Giuseppe2DAsync(p, alpha, beta); return; }
 
   let d_alpha = v_delta(alpha);
   let d_beta  = v_delta(beta);
@@ -3701,16 +3701,16 @@ function *Hellebore2DAsync(p, alpha, beta) {
   _vprint("#Hellebore2d: p:", p, "alpha:", alpha, "beta:", beta, "alpha2:", alpha2, "beta2:", beta2);
 
   let u = v_add(p, v_sub(alpha2, d_alpha));
-  yield* Guiseppe2DAsync( u, v_neg(alpha2), beta2 );
+  yield* Giuseppe2DAsync( u, v_neg(alpha2), beta2 );
 
   u = v_add(p, beta2);
-  yield* Guiseppe2DAsync( u, alpha2, v_sub(beta, beta2) );
+  yield* Giuseppe2DAsync( u, alpha2, v_sub(beta, beta2) );
 
   u = v_add(p, alpha2, v_sub(beta, d_beta));
-  yield* Guiseppe2DAsync( u, v_sub(alpha, alpha2), v_sub(beta2, beta) );
+  yield* Giuseppe2DAsync( u, v_sub(alpha, alpha2), v_sub(beta2, beta) );
 
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta2, d_beta));
-  yield* Guiseppe2DAsync( u, v_sub(alpha2, alpha), v_neg(beta2) );
+  yield* Giuseppe2DAsync( u, v_sub(alpha2, alpha), v_neg(beta2) );
 
   return;
 }
@@ -3765,8 +3765,8 @@ var OP_LIST = [
   "xyz2da", "d2xyza",
   "xy2da", "d2xya",
 
-  "guiseppe2d",
-  "guiseppe3d",
+  "giuseppe2d",
+  "giuseppe3d",
 
   "milfoil3d",
 
@@ -3958,18 +3958,18 @@ function _main(argv) {
 
     }
 
-    else if (op == "guiseppe2d") {
+    else if (op == "giuseppe2d") {
 
-      let p = Guiseppe2D(w,h);
+      let p = Giuseppe2D(w,h);
       for (let i=0; i<p.length; i++) {
         console.log(p[i][0],p[i][1]);
       }
 
     }
 
-    else if (op == "guiseppe3d") {
+    else if (op == "giuseppe3d") {
 
-      let p = Guiseppe3D(w,h,d);
+      let p = Giuseppe3D(w,h,d);
       for (let i=0; i<p.length; i++) {
         console.log(p[i][0],p[i][1], p[i][2]);
       }
@@ -4052,16 +4052,16 @@ if (typeof module !== "undefined") {
   module.exports["Gilbert3DAdapt_d2xyz"] = Gilbert3DAdapt_d2xyz;
   module.exports["Gilbert3DAdapt_xyz2d"] = Gilbert3DAdapt_xyz2d;
 
-  module.exports["Guiseppe2DAsync"] = Guiseppe2DAsync;
-  module.exports["Guiseppe2D"] = Guiseppe2D;
+  module.exports["Giuseppe2DAsync"] = Giuseppe2DAsync;
+  module.exports["Giuseppe2D"] = Giuseppe2D;
 
   // cuboid diagonal start/end
   // p(0,0,0) -> q( |alpha|-1, |beta|-1, |gamma|-1 )
   //
   // * stable
   //   - swap so that alpha is the longest axis
-  //   - bulk recursion: (1x3x3, 1x3x3, 1x3x3) Guiseppe3d x 3
-  //   - reduces to (hibiscus, guiseppe) when middle troche is 0
+  //   - bulk recursion: (1x3x3, 1x3x3, 1x3x3) Giuseppe3d x 3
+  //   - reduces to (hibiscus, giuseppe) when middle troche is 0
   // * pushes notch to last troche by ensuring valid cuboid
   //   dimensions for all but the last troche
   // * base case is a bit complicated as it takes into account
@@ -4069,8 +4069,8 @@ if (typeof module !== "undefined") {
   // * has displeasing 'stacking' so probably shouldn't be used
   //
   //
-  module.exports["Guiseppe3DAsync"] = Guiseppe3DAsync;
-  module.exports["Guiseppe3D"] = Guiseppe3D;
+  module.exports["Giuseppe3DAsync"] = Giuseppe3DAsync;
+  module.exports["Giuseppe3D"] = Giuseppe3D;
 
   // generalized Hilbert curve
   // p(0,0,0) -> q( |alpha|-1, 0, 0)

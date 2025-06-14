@@ -12,7 +12,7 @@ var LINE_COLOR = "rgb(81,166,10)";
 var BEG_COLOR = "rgb(80,80,140)";
 var END_COLOR = "rgb(120,180,180)";
 
-
+function squeeze(p, a,b) { return a + (b-a)*p; }
 
 function _dl() {
   var ele = document.getElementById(CANVAS_ID);
@@ -264,9 +264,60 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
   two.update();
 }
 
-function squeeze(p, a,b) {
-  return a + (b-a)*p;
+function mkgcurve(xy, wh, s, flipxy, pnts) {
+  s = ((typeof s === "undefined") ? 1 : s);
+  flipxy = ((typeof flipxy === "undefined") ? {"y":false, "x": false} : flipxy);
+
+  let two = g_fig_ctx.two;
+
+  let W = wh[0];
+  let H = wh[1];
+
+  let n = wh[0]*wh[1];
+
+  if (typeof pnts === "undefined") {
+    pnts = [];
+    for (let idx=0; idx<n; idx++) {
+      pnts.push(gilbert.d2xy(idx, wh[0], wh[1]));
+    }
+  }
+
+  for (let idx=1; idx<n; idx++) {
+    //let p = gilbert.d2xy(idx-1, wh[0], wh[1]);
+    //let q = gilbert.d2xy(  idx, wh[0], wh[1]);
+    let p = { "x": pnts[idx-1][0], "y": pnts[idx-1][1] };
+    let q = { "x": pnts[idx][0], "y": pnts[idx][1] };
+
+    if (flipxy.y) {
+      p.y = H - p.y;
+      q.y = H - q.y;
+    }
+
+    if (flipxy.x) {
+      p.x = W - p.x;
+      q.x = W - q.x;
+    }
+
+    q.x *= s; q.x += xy[0];
+    q.y *= s; q.y += xy[1];
+
+    p.x *= s; p.x += xy[0];
+    p.y *= s; p.y += xy[1];
+
+    let hue = Math.floor(360*idx / (W*H)).toString();
+    let sat = "95%";
+    let lit = '45%';
+    let clr = "hsl(" + [ hue,sat,lit ].join(",") + ")";
+
+    let line = two.makeLine(p.x, p.y, q.x, q.y);
+    line.noFill();
+    line.stroke = clr;
+    line.linewidth = 2;
+    line.cap = "round";
+
+  }
 }
+
 
 // There's some trickery here.
 // The goals are to create a 3d gilbert curve figure that:
@@ -483,24 +534,33 @@ function gilbert3d_abg_examples() {
       ey = 250;
 
   let pnts = [];
+  let color_map_hibiscus_3x3x3 = [0,0,0,0,0,0, 1,1, 2,2,2, 3,3, 4,4,4,4, 4,4,4,4, 4,4,4,4];
 
   //mkg3curve([lx+35,35], [4, 4, 4], 10, {"y":true, "x":false});
-  two.makeText("i)", 25, 60, font_style);
+  two.makeText("Hibiscus:", 50, 60, font_style);
   pnts = Hibiscus3D(3,3,3);
-  mkg3curve([40,170], [3, 3, 3], 30, pnts);
+  mkg3curve([40,170], [3, 3, 3], 30, pnts, color_map_hibiscus_3x3x3);
 
-  two.makeText("ii)", 170, 60, font_style);
+  two.makeText("Peony:", 190, 60, font_style);
   pnts = Peony3D(3,3,3);
   mkg3curve([190,170], [3, 3, 3], 30, pnts);
 
-  two.makeText("iii)", 310, 60, font_style);
+  two.makeText("Milfoil:", 340, 60, font_style);
   pnts = Milfoil3D(3,3,3);
   mkg3curve([330,170], [3, 3, 3], 30, pnts);
 
-  two.makeText("iv)", 40, 250, font_style);
+  two.makeText("Hellebore3d:", 490, 60, font_style);
   pnts = Hellebore3D(4,4,4)
-  pnts.push( pnts[0] );
-  mkg3curve([60,350], [4, 4, 4], 30, pnts);
+  //pnts.push( pnts[0] );
+  mkg3curve([480,200], [4, 4, 4], 30, pnts);
+
+  two.makeText("Giuseppe2d:", 70, 250, font_style);
+  pnts = Giuseppe2D(11,11);
+  mkgcurve([50,280], [11, 11], 10, {"x": false, "y": true}, pnts);
+
+  two.makeText("Hellebore2d:", 270, 250, font_style);
+  pnts = Hellebore2D(16,16);
+  mkgcurve([250,280], [16, 16], 10, {"x": false, "y": true}, pnts);
 
   two.update();
   return;
