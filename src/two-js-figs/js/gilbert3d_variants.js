@@ -30,7 +30,7 @@ var _PROJECT_VEC = [
 
 var PROJECT_VEC = [
   [ Math.sqrt(3)/2,-Math.sqrt(3)/2, 0 ],
-  [ 1/2, 1/2, 1 ]
+  [ -1/2, -1/2,-1 ]
 ];
 
 var njs = numeric;
@@ -448,51 +448,48 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
 
   let dw = 1/4;
   let js = s0*dw;
-  let D = 1.8;
+  let D = 1.35;
 
   let cuboid_size = [
     [1,2,1],
-
-    //debug
-    [1,2,1],
     [1,1,1],
-    //debug
-
-    //[1,1,1],
-    //[2,1,1],
-    //[1,1,1],
-    //[1,2,1]
+    [2,1,1],
+    [1,1,1],
+    [1,2,1]
   ];
 
 
   let cxyz = [
     [ 0, 0,  -D],
 
-    //debug
+    [ 0, 1,   D],
+    [ 0, -1.45,   D],
+    [ 1, 1,   D],
+
     [ 1, 0,  -D],
-    [ 1, 3,  -D],
-    //debug
-
-    //[ 0, 0,   D],
-
-    //[ 1, 1, D],
-    //[ D, 0, 1],
-    //[ D, 1, 1],
-    //[-D, 1, 1],
-    //[-D, 1, 0],
-    //[ D, 1, 0]
   ];
 
+  // WIP!
+  //
+  // block fig offsets docks by it's own dw/2 (1/4 / 2),
+  // so we're fighting against it trying to figure out how to
+  // compensate.
+  //
+  //
   let dock_xyz = [
 
     // A
-    [ D + 1 - dw, 0, 0 ],
-    [ D , 0, 0 ],
+    [0,0,-D], [-dw/2,2-dw/2,1-D-dw/2],
+
+    [1,0,-D],[1,0,1-D]
+
+    //[ dw, dw, -D ],
+    //[ dw, 2-dw, -D+1 - 2*dw ],
 
 
     // B
-    [ -D + 1 - dw, 0, 0],
-    [ -D + 1 - dw, 0, 1 - dw],
+    //[ dw, 2-dw, D-dw   ],
+    //[ dw, 1+dw, D + 1 ],
 
     /*
     // C
@@ -522,16 +519,7 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
 
   ];
 
-  let order = [3,1, 4,0,2, 5,6, 7];
-  order = [6,5,1,2, 7,4,0,3];
-
-  //DEBUG
-  //DEBUG
-  order = [];
-  let _n = cuboid_size.length-1;
-  for (let i=0; i<cuboid_size.length; i++) { order.push(_n-i); }
-  //DEBUG
-  //DEBUG
+  let order = [4,0, 3,1,2];
 
   block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
 
@@ -780,31 +768,19 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
     // front face
     [
       [0,0,0],
-      [lXYZ[0],0,0],
-      [lXYZ[0],0,lXYZ[2]],
       [0,0,lXYZ[2]],
+      [lXYZ[0],0,lXYZ[2]],
+      [lXYZ[0],0,0],
     ],
 
     // right face
     //
     [
       [lXYZ[0],0,0],
-      [lXYZ[0],lXYZ[1],0],
-      [lXYZ[0],lXYZ[1],lXYZ[2]],
       [lXYZ[0],0,lXYZ[2]],
-    ],
-
-    // top face
-    //
-    [
-      [0,0,lXYZ[2]],
-      [0,lXYZ[1],lXYZ[2]],
       [lXYZ[0],lXYZ[1],lXYZ[2]],
-      [lXYZ[0],0,lXYZ[2]]
+      [lXYZ[0],lXYZ[1],0],
     ],
-  //];
-
-  //let _faces3d = [
 
     // left face
     //
@@ -824,6 +800,17 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
       [0,lXYZ[1],0]
     ],
 
+
+    // top face
+    //
+    [
+      [0,0,lXYZ[2]],
+      [0,lXYZ[1],lXYZ[2]],
+      [lXYZ[0],lXYZ[1],lXYZ[2]],
+      [lXYZ[0],0,lXYZ[2]]
+    ],
+
+
     // back face
     [
       [0,lXYZ[1],0],
@@ -831,7 +818,7 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
       [lXYZ[0],lXYZ[1],lXYZ[2]],
       [0,lXYZ[1],lXYZ[2]]
     ]
-  ]
+  ];
 
 
   let faces2d = [];
@@ -846,8 +833,8 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
     let _pnorm = cross3( PROJECT_VEC[0], PROJECT_VEC[1] );
 
     let _d = njs.dot( _face_norm, _pnorm );
-    console.log("face:", fid, "(", _face, ") --> ", _d);
-    if (_d > 0) { continue; };
+    //console.log("face:", fid, "(", _face, ") --> ", _d);
+    if (_d < 0) { continue; };
 
     let f2idx = faces2d.length;
     faces2d.push([]);
@@ -948,8 +935,11 @@ function gilbert3d_variants() {
   let vr = [0,0,1];
   let theta = Math.PI/4 + Math.PI/6;
   theta=0;
+  theta = +Math.PI/48;
 
-  hibiscus_block3d(300, 160, 40, vr, theta);
+  theta = Math.PI/8;
+
+  hibiscus_block3d(300, 250, 40, vr, theta);
 
   //mk_iso_cuboid( 50, 50, 20, "rgb(128,0,0)", "rgb(255,0,0)", [2,1,1], 1, [0,0,1], 0);
   //mk_iso_cuboid( 50, 50, 20, "rgb(128,0,0)", "rgb(255,0,0)", [1,2,1], 1, [0,0,1], 0);
