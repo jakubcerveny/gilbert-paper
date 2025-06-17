@@ -447,8 +447,10 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
   theta = ((typeof theta === "undefined") ? 0 : theta);
 
   let dw = 1/4;
+  let dw2 = dw/2;
   let js = s0*dw;
-  let D = 1.35;
+  let D = 1.39;
+  let D_2 = -1.45;
 
   let cuboid_size = [
     [1,2,1],
@@ -463,60 +465,37 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
     [ 0, 0,  -D],
 
     [ 0, 1,   D],
-    [ 0, -1.45,   D],
+    [ 0, D_2,   D],
     [ 1, 1,   D],
 
     [ 1, 0,  -D],
   ];
 
-  // WIP!
-  //
-  // block fig offsets docks by it's own dw/2 (1/4 / 2),
-  // so we're fighting against it trying to figure out how to
-  // compensate.
-  //
-  //
   let dock_xyz = [
 
     // A
-    [0,0,-D], [-dw/2,2-dw/2,1-D-dw/2],
-
-    [1,0,-D],[1,0,1-D]
-
-    //[ dw, dw, -D ],
-    //[ dw, 2-dw, -D+1 - 2*dw ],
-
+    //
+    [dw2,dw2,-D+dw2], [0+dw2,2-dw2,1-D-dw2],
 
     // B
-    //[ dw, 2-dw, D-dw   ],
-    //[ dw, 1+dw, D + 1 ],
+    //
+    [dw2,2-dw2, D+dw2],[dw2,1+dw2,D+1-dw2],
 
-    /*
+
     // C
-    [ -D + 1 - dw, 0, 1 ],
-    [ -D + 1 - dw, 1-dw, 1 ],
+    //
+    [ dw2, 1+D_2-dw2, D+1-dw2],
+    [ 2-dw2, 1+D_2-dw2, D+1-dw2],
 
     // D
-    [ D, 1-dw, 1 ],
-    [ D+1-dw, 1-dw, 1 ],
+    //
+    [2-dw2,1+dw2,D+1-dw2],
+    [2-dw2,2-dw2, D+dw2],
 
     // E
-    [ D+1-dw, 1, 1 ],
-    [ D, 1, 1 ],
-
-    // F
-    [-D+1-dw, 1, 1 ],
-    [-D+1-dw, 2-dw, 1],
-
-    // F
-    [-D+1-dw, 2-dw, 1-dw],
-    [-D+1-dw, 2-dw, 0],
-
-    // G
-    [ D, 2-dw, 0],
-    [ D+1-dw, 2-dw, 0]
-    */
-
+    //
+    [2-dw2,2-dw2,1-D-dw2],
+    [2-dw2,dw2,-D+dw2],
   ];
 
   let order = [4,0, 3,1,2];
@@ -524,6 +503,70 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
   block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
 
   return;
+}
+
+function peony_block3d(x0,y0,s0,vr,theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.39;
+  let D_2 = -1.45;
+
+  let cuboid_size = [
+    [1,2,1],
+    [1,1,1],
+    [2,1,1],
+    [1,1,1],
+    [1,2,1]
+  ];
+
+
+  let cxyz = [
+    [ 0, 0,  -D],
+
+    [ 0, 1,   D],
+    [ 0, D_2,   D],
+    [ 1, 1,   D],
+
+    [ 1, 0,  -D],
+  ];
+
+  let dock_xyz = [
+
+    // A
+    //
+    [dw2,dw2,-D+dw2], [0+dw2,2-dw2,1-D-dw2],
+
+    // B
+    //
+    [dw2,2-dw2, D+dw2],[dw2,1+dw2,D+1-dw2],
+
+
+    // C
+    //
+    [ dw2, 1+D_2-dw2, D+1-dw2],
+    [ 2-dw2, 1+D_2-dw2, D+1-dw2],
+
+    // D
+    //
+    [2-dw2,1+dw2,D+1-dw2],
+    [2-dw2,2-dw2, D+dw2],
+
+    // E
+    //
+    [2-dw2,2-dw2,1-D-dw2],
+    [2-dw2,dw2,-D+dw2],
+  ];
+
+  let order = [4,0, 3,1,2];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
+
+  return;
+
 }
 
 function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta) {
@@ -536,53 +579,53 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta) {
 
   let qs = s0*Math.sqrt(3)/2;
 
-  let dw = 1/4;
-  let js = s0*dw;
+  //let dw = 1/4;
+  //let js = s0*dw;
 
-  let jx = (s0 - js)*Math.sqrt(3)/2,
-      jy = (s0 - js)/2;
+  let js = s0/4;
+
+  //let jx = (s0 - js)*Math.sqrt(3)/2,
+  //    jy = (s0 - js)/2;
 
   let proj_cxy = [];
   for (let i=0; i<dock_xyz.length; i++) {
-    let _cxyz = njs.mul(s0, rodrigues( njs.add([dw/2, dw/2, dw/2], dock_xyz[i]), vr, theta));
+    let djs = -1/8;
+    djs = 0;
+
+    let _cxyz = njs.mul(s0, rodrigues( njs.add([djs,djs,djs], dock_xyz[i]), vr, theta));
     let cxy = njs.add( [x0,y0], _project( _cxyz[0], _cxyz[1], _cxyz[2]) );
     proj_cxy.push( cxy );
   }
+
 
   for (let _i=0; _i<cxyz.length; _i++) {
     let i = order[_i];
     let rxyz = njs.mul( s0, rodrigues( cxyz[i], vr, theta ) );
 
-
     let cxy = njs.add( [x0,y0], _project( rxyz[0], rxyz[1], rxyz[2]) );
-
-
-    console.log(x0,y0,s0, cxyz[i], vr, theta, "-->", rxyz, cxy, "(??", _project(rxyz[0],rxyz[1], rxyz[2]), ")");
 
     let lco = lPAL[i];
     let fco = PAL[i];
 
     let cs = njs.mul( s0, cuboid_size[i] );
     mk_iso_cuboid(cxy[0],cxy[1],1, lco, fco, cs, 2, vr, theta);
-
-    // special case where we want the majority of the line to be occluded by subsequent draws
-    //
-    if (i == 3) {
-      let li = proj_cxy.length-3;
-      _Line( proj_cxy[li][0], proj_cxy[li][1], proj_cxy[li+1][0], proj_cxy[li+1][1], "rgb(60,60,60)", 2.8, 0.9 );
-    }
-
   }
+
 
   for (let i=0; i<dock_xyz.length; i++) {
 
-    let jxyz = njs.mul(s0, rodrigues(dock_xyz[i], vr, theta));
+    let djs = -1/8;
+    let jxyz = njs.mul(s0, rodrigues( njs.add( [djs, djs, djs], dock_xyz[i] ), vr, theta));
     let jxy = njs.add( [x0,y0], _project( jxyz[0], jxyz[1], jxyz[2]) );
 
-    let cxyz = njs.mul(s0, rodrigues( njs.add([dw/2, dw/2, dw/2], dock_xyz[i]), vr, theta));
+    let cxyz = njs.mul(s0, rodrigues(dock_xyz[i], vr, theta));
     let cxy = njs.add( [x0,y0], _project( cxyz[0], cxyz[1], cxyz[2]) );
 
-    mk_iso_cuboid( jxy[0],jxy[1],js, "rgb(0,0,0)", "rgb(0,0,0)", [1,1,1], 0, vr, theta, 0.3);
+    let lco = "rgb(0,0,0)";
+    let fco = "rgb(0,0,0)";
+    let cs = njs.mul( js, [1,1,1] );
+
+    mk_iso_cuboid( jxy[0],jxy[1],1, lco,fco, cs, 1, vr, theta, 0.2);
 
     let _c = two.makeCircle( cxy[0], cxy[1],  4 );
     _c.noStroke();
@@ -598,8 +641,9 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta) {
   }
 
   for (let i=1; i<(proj_cxy.length-1); i+=2) {
-    if (i==(proj_cxy.length-3)) { continue; }
-    _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgb(60,60,60)", 2.8, 0.9);
+    let alpha = 0.9;
+    if (i==(proj_cxy.length-3)) { alpha = 0.5; }
+    _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgb(60,60,60)", 2.8, alpha);
   }
 
   two.update();
@@ -825,9 +869,7 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
   let V = [],
       P = [];
 
-
   for (let fid=0; fid<faces3d.length; fid++) {
-
     let _face = faces3d[fid];
     let _face_norm = cross3( njs.sub( _face[1], _face[0] ), njs.sub( _face[2], _face[1] ) );
     let _pnorm = cross3( PROJECT_VEC[0], PROJECT_VEC[1] );
@@ -847,6 +889,8 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
 
     let p = two.makePath(V[f2idx], true);
     P.push( p );
+
+    //console.log("V:", V,"p:",p);
 
     p.fill = fco;
     p.opacity = alpha;
@@ -937,13 +981,9 @@ function gilbert3d_variants() {
   theta=0;
   theta = +Math.PI/48;
 
-  theta = Math.PI/8;
+  theta = Math.PI/12;
 
   hibiscus_block3d(300, 250, 40, vr, theta);
-
-  //mk_iso_cuboid( 50, 50, 20, "rgb(128,0,0)", "rgb(255,0,0)", [2,1,1], 1, [0,0,1], 0);
-  //mk_iso_cuboid( 50, 50, 20, "rgb(128,0,0)", "rgb(255,0,0)", [1,2,1], 1, [0,0,1], 0);
-  //mk_iso_cuboid( 50, 50, 20, "rgb(128,0,0)", "rgb(255,0,0)", [1,1,2], 1, [0,0,1], 0);
 
   axis_fig(50,230, 20, vr, theta);
 }
