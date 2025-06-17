@@ -420,7 +420,8 @@ function axis_fig(x0,y0,s, vr, theta) {
     if (use_abg) {
 
       if (xyz == 1) {
-        mathjax2twojs( _latex_id[xyz], x0+txy[0]-20, y0+txy[1]-8, 0.018 );
+        //mathjax2twojs( _latex_id[xyz], x0+txy[0]-20, y0+txy[1]-8, 0.018 );
+        mathjax2twojs( _latex_id[xyz], x0+txy[0]+12, y0+txy[1]-8, 0.018 );
       }
       else {
         mathjax2twojs( _latex_id[xyz], x0+txy[0]-5, y0+txy[1], 0.018 );
@@ -450,7 +451,8 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
   let dw2 = dw/2;
   let js = s0*dw;
   let D = 1.39;
-  let D_2 = -1.45;
+  D = 1.49;
+  let D_2 = -2.05;
 
   let cuboid_size = [
     [1,2,1],
@@ -498,9 +500,10 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
     [2-dw2,dw2,-D+dw2],
   ];
 
-  let order = [4,0, 3,1,2];
+  let order = [0,4, 1,3,2];
 
-  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, {"1": 1} );
 
   return;
 }
@@ -512,11 +515,11 @@ function peony_block3d(x0,y0,s0,vr,theta) {
   let dw = 1/4;
   let dw2 = dw/2;
   let js = s0*dw;
-  let D = 1.39;
+  let D = 1.09;
   let D_2 = -1.45;
 
   let cuboid_size = [
-    [2,1,1],
+    [1.5,1,1],
     [1,1,1],
   ];
 
@@ -529,12 +532,12 @@ function peony_block3d(x0,y0,s0,vr,theta) {
 
   let dock_xyz = [
 
-    [ -D+dw2, dw2, dw2 ], [-D+2-dw2, dw2, dw2],
+    [ -D+dw2, dw2, dw2 ], [-D+1.5-dw2, dw2, dw2],
     [ D+dw2, dw2, dw2], [D+1-dw2, 1-dw2,dw2],
 
   ];
 
-  let order = [1, 0];
+  let order = [0, 1];
 
   block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
 
@@ -550,36 +553,47 @@ function milfoil_block3d(x0,y0,s0,vr,theta) {
   let js = s0*dw;
   let D = 1.39;
   let D_2 = -1.45;
+  let D_a = 0.9;
+  D_a = 0;
 
   let cuboid_size = [
     [2,1,1],
     [1,1,1],
+    [1,2,1],
+    [1,1,1],
+    [1,1,2],
   ];
 
 
   let cxyz = [
-    [ -D, 0,  0],
-
-    [ D, 0,   0],
+    [ 0+D_a, -D, 0],
+    [ 1+D_a, -D, 1],
+    [ 0-D_a, -D, 1],
+    [ 0-D_a, D+1, 0],
+    [ 1+D_a, D+1, 0 ],
   ];
 
   let dock_xyz = [
+    [ 0+D_a+dw2, 0-D+dw2, 0+dw2], [2+D_a-dw2, 1-D-dw2, 1-dw2],
+    [ 2+D_a-dw2, 1-D-dw2, 1+dw2], [1+D_a+dw2, 0-D+dw2, 2-dw2],
+    [ 1+D_a-dw2, 0-D+dw2, 2-dw2], [0+D_a+dw2, 2-D-dw2, 1+dw2],
 
-    [ -D+dw2, dw2, dw2 ], [-D+2-dw2, dw2, dw2],
-    [ D+dw2, dw2, dw2], [D+1-dw2, 1-dw2,dw2],
-
+    [ 0-D_a+dw2, 2+D-dw2, 1-dw2], [1-D_a-dw2, 1+D+dw2, 0+dw2],
+    [ 1-D_a+dw2, 1+D+dw2, 0+dw2], [2-D_a-dw2, 2+D-dw2, 2-dw2],
   ];
 
-  let order = [1, 0];
+  let order = [0,2,1,  3,4];
 
-  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, {"5":1});
 
   return;
 }
 
-function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta) {
+function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, dim_conn) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
   theta = ((typeof theta === "undefined") ? 0 : theta); //-Math.PI/9 + 0.2;
+  dim_conn = ((typeof dim_conn === "undefined") ? [] : dim_conn);
+
 
   let two = g_fig_ctx.two;
 
@@ -648,9 +662,10 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta) {
 
   }
 
+
   for (let i=1; i<(proj_cxy.length-1); i+=2) {
     let alpha = 0.9;
-    if (i==(proj_cxy.length-3)) { alpha = 0.5; }
+    if (i in dim_conn) { alpha = 0.5; }
     _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgb(60,60,60)", 2.8, alpha);
   }
 
@@ -879,7 +894,11 @@ function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
 
   for (let fid=0; fid<faces3d.length; fid++) {
     let _face = faces3d[fid];
+
+
     let _face_norm = cross3( njs.sub( _face[1], _face[0] ), njs.sub( _face[2], _face[1] ) );
+    _face_norm = cross3( rodrigues( njs.sub( _face[1], _face[0] ), vr, theta), rodrigues( njs.sub( _face[2], _face[1] ), vr, theta) );
+
     let _pnorm = cross3( PROJECT_VEC[0], PROJECT_VEC[1] );
 
     let _d = njs.dot( _face_norm, _pnorm );
@@ -981,6 +1000,11 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
 function gilbert3d_variants() {
   let two = g_fig_ctx.two;
 
+  let font_style = {
+    "size": 18,
+    "family": "Libertine, Linux Libertine 0"
+  };
+
   var ele = document.getElementById("gilbert3d_variants");
   two.appendTo(ele);
 
@@ -991,12 +1015,23 @@ function gilbert3d_variants() {
 
   theta = Math.PI/12;
 
+  theta = -Math.PI/2 - 1*Math.PI/40;
+
+  theta = -Math.PI/2 + Math.PI/20;
+
+
+  two.makeText("Hibiscus:",70, 120, font_style);
   hibiscus_block3d(100, 250, 40, vr, theta);
 
+  two.makeText("Peony:",300, 120, font_style);
   peony_block3d(300, 250, 40, vr, theta);
+
+  two.makeText("Milfoil:",500, 120, font_style);
   milfoil_block3d(500, 250, 40, vr, theta);
 
   axis_fig(50,60, 20, vr, theta);
+
+  two.update();
 }
 
 
