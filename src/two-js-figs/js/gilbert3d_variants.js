@@ -516,57 +516,65 @@ function peony_block3d(x0,y0,s0,vr,theta) {
   let D_2 = -1.45;
 
   let cuboid_size = [
-    [1,2,1],
-    [1,1,1],
     [2,1,1],
     [1,1,1],
-    [1,2,1]
   ];
 
 
   let cxyz = [
-    [ 0, 0,  -D],
+    [ -D, 0,  0],
 
-    [ 0, 1,   D],
-    [ 0, D_2,   D],
-    [ 1, 1,   D],
-
-    [ 1, 0,  -D],
+    [ D, 0,   0],
   ];
 
   let dock_xyz = [
 
-    // A
-    //
-    [dw2,dw2,-D+dw2], [0+dw2,2-dw2,1-D-dw2],
+    [ -D+dw2, dw2, dw2 ], [-D+2-dw2, dw2, dw2],
+    [ D+dw2, dw2, dw2], [D+1-dw2, 1-dw2,dw2],
 
-    // B
-    //
-    [dw2,2-dw2, D+dw2],[dw2,1+dw2,D+1-dw2],
-
-
-    // C
-    //
-    [ dw2, 1+D_2-dw2, D+1-dw2],
-    [ 2-dw2, 1+D_2-dw2, D+1-dw2],
-
-    // D
-    //
-    [2-dw2,1+dw2,D+1-dw2],
-    [2-dw2,2-dw2, D+dw2],
-
-    // E
-    //
-    [2-dw2,2-dw2,1-D-dw2],
-    [2-dw2,dw2,-D+dw2],
   ];
 
-  let order = [4,0, 3,1,2];
+  let order = [1, 0];
 
   block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
 
   return;
+}
 
+function milfoil_block3d(x0,y0,s0,vr,theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.39;
+  let D_2 = -1.45;
+
+  let cuboid_size = [
+    [2,1,1],
+    [1,1,1],
+  ];
+
+
+  let cxyz = [
+    [ -D, 0,  0],
+
+    [ D, 0,   0],
+  ];
+
+  let dock_xyz = [
+
+    [ -D+dw2, dw2, dw2 ], [-D+2-dw2, dw2, dw2],
+    [ D+dw2, dw2, dw2], [D+1-dw2, 1-dw2,dw2],
+
+  ];
+
+  let order = [1, 0];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
+
+  return;
 }
 
 function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta) {
@@ -983,9 +991,12 @@ function gilbert3d_variants() {
 
   theta = Math.PI/12;
 
-  hibiscus_block3d(300, 250, 40, vr, theta);
+  hibiscus_block3d(100, 250, 40, vr, theta);
 
-  axis_fig(50,230, 20, vr, theta);
+  peony_block3d(300, 250, 40, vr, theta);
+  milfoil_block3d(500, 250, 40, vr, theta);
+
+  axis_fig(50,60, 20, vr, theta);
 }
 
 

@@ -20,6 +20,7 @@
 // Running from the command line will list options.
 //
 
+var VERSION = "0.2.0";
 var VERBOSE = 0;
 
 function _vprint() {
@@ -3780,10 +3781,19 @@ var OP_LIST = [
 
 ];
 
+function _show_version() {
+  console.log("version:", VERSION);
+}
 
-function _show_help(msg) {
+function _show_help(msg, hide_version) {
   msg = ((typeof msg !== "undefined") ? msg : "");
+  hide_version = ((typeof hide_version === "undefined") ? false : hide_version);
   if (msg.length > 0) { console.log(msg, "\n"); }
+
+  if (!hide_version) {
+    console.log("");
+    _show_version();
+  }
 
   let op_list = OP_LIST;
 
