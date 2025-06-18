@@ -35,6 +35,45 @@ var PROJECT_VEC = [
 
 var njs = numeric;
 
+var PAL5 = [
+  'rgb(215,25,28)',
+  'rgb(253,174,97)',
+  'rgb(255,255,159)',
+  'rgb(171,221,164)',
+  'rgb(43,131,186)',
+];
+
+var PAL2 = [
+  'rgb(215,25,28)',
+  'rgb(43,131,186)',
+];
+
+
+var lPAL5 = [
+  'rgb(120,25,28)',
+  'rgb(203,134,37)',
+  'rgb(215,215,191)',
+  'rgb(121,181,124)',
+  'rgb(13,91,136)',
+];
+
+var lPAL2 = [
+  'rgb(120,25,28)',
+  'rgb(13,91,136)',
+];
+
+var PAL8 = [
+  '#ce6f4f',
+  '#e89e50',
+  '#d4b247',
+  '#b3c359',
+  '#84d17e',
+  '#41d9aa',
+  '#00dad9',
+  '#00d9ff'
+];
+
+
 var PAL = [
   'rgb(215,25,28)',
   'rgb(253,174,97)',
@@ -594,6 +633,17 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
   theta = ((typeof theta === "undefined") ? 0 : theta); //-Math.PI/9 + 0.2;
   dim_conn = ((typeof dim_conn === "undefined") ? [] : dim_conn);
 
+  let pal = PAL8;
+  let lpal = lPAL5;
+
+  if (cxyz.length == 5) {
+    pal = PAL5; 
+    lpal = lPAL5;
+  }
+  if (cxyz.length == 2) {
+    pal = PAL2;
+    lpal = lPAL2;
+  }
 
   let two = g_fig_ctx.two;
 
@@ -601,13 +651,7 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
 
   let qs = s0*Math.sqrt(3)/2;
 
-  //let dw = 1/4;
-  //let js = s0*dw;
-
   let js = s0/4;
-
-  //let jx = (s0 - js)*Math.sqrt(3)/2,
-  //    jy = (s0 - js)/2;
 
   let proj_cxy = [];
   for (let i=0; i<dock_xyz.length; i++) {
@@ -626,8 +670,8 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
 
     let cxy = njs.add( [x0,y0], _project( rxyz[0], rxyz[1], rxyz[2]) );
 
-    let lco = lPAL[i];
-    let fco = PAL[i];
+    let lco = lpal[i];
+    let fco = pal[i];
 
     let cs = njs.mul( s0, cuboid_size[i] );
     mk_iso_cuboid(cxy[0],cxy[1],1, lco, fco, cs, 2, vr, theta);
@@ -672,37 +716,29 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
   two.update();
 }
 
-/*
-function curve3d_fig(x0,y0,s) {
-  let two = g_fig_ctx.two;
-
-  let q = s*Math.sqrt(3)/2;
-
-  let rotaxis = [.5, 0.5, 1],
-      rotangle = Math.PI/25;
-
-  rotaxis = [-0.0,0.5,2.25];
-  rotangle = -0.251;
-
-  let pfac = 30;
-
-  let idx_region_xy = [
-    [0,8,  _project( 2,-1,-0.0, pfac)],
-    [8,24, _project(-1,-1,-1, pfac)],
-    [24,40,_project( 4, -3, 2, pfac)],
-    [40,56,_project(-1, 1, 1, pfac)],
-    [56,64,_project( 0.5, 3.5,-0, pfac)]
+function curve3d_hibiscus(x0,y0, s, vr, theta) {
+  let idx_region_xy_4 = [
+    [0,24],
+    [24,28],
+    [28,36],
+    [36,40],
+    [40,64],
   ];
 
-  idx_region_xy = [
-    [0,8,  _project( 2, .5, -1, pfac)],
-    [8,24, _project( 0, 0, 0, pfac)],
-    [24,40,_project( 2, .5, -1, pfac)],
-    [40,56,_project( 0, 0, 0, pfac)],
-    [56,64,_project( 2, .5, -1, pfac)]
+  let idx_region_xy_5 = [
+    [0,20],
+    [20,32],
+    [32,77],
+    [77,95],
+    [95,125],
   ];
+  let idx_region_xy = idx_region_xy_5;
 
-  let N = 4;
+  let WHD = [5,5,5];
+
+  let pnts = Hibiscus3D(WHD[0],WHD[1],WHD[2]);
+
+  let order = [0,4,1,3,2];
 
   let col = [
     PAL[0],
@@ -714,23 +750,128 @@ function curve3d_fig(x0,y0,s) {
     PAL[4],
   ];
 
+  return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+}
+
+function curve3d_peony(x0,y0, s, vr, theta) {
+  let idx_region_xy_5 = [
+    [0,95],
+    [95,125],
+  ];
+
+  let idx_region_xy_744 = [
+    [0,64],
+    [64,112],
+  ];
+
+  let idx_region_xy = idx_region_xy_5;
+  idx_region_xy = idx_region_xy_744;
+
+  let WHD = [7,4,4];
+
+  let pnts = Peony3D(WHD[0],WHD[1],WHD[2]);
+
+  let order = [0,1];
+
+  let col = [
+    PAL[0],
+    PAL[4],
+  ];
+
+  return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+}
+
+function curve3d_milfoil(x0,y0, s, vr, theta) {
+  let idx_region_xy_4 = [
+    [0,24],
+    [24,28],
+    [28,36],
+    [36,40],
+    [40,64],
+  ];
+
+  let idx_region_xy_5 = [
+    [0,30],
+    [30,57],
+    [57,87],
+    [87,95],
+    [95,125],
+  ];
+  let idx_region_xy = idx_region_xy_5;
+
+  let WHD = [5,5,5];
+
+  let pnts = Milfoil3D(WHD[0],WHD[1],WHD[2]);
+
+  let order = [0,3,4,2,1];
+
+  let col = [
+    PAL[0],
+    PAL[1],
+
+    '#aa9803',
+
+    PAL[3],
+    PAL[4],
+  ];
+
+  return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+}
+
+function curve3d_fig(x0,y0,s,vr, theta, pnts, idx_region_xy, WHD, order, col ) {
+  let two = g_fig_ctx.two;
+
+  let q = s*Math.sqrt(3)/2;
+
+  let pfac = 30;
+
+  /*
+  let idx_region_xy_4 = [
+    [0,24,  _project( 2, .5, -1, pfac)],
+    [24,28, _project( 0, 0, 0, pfac)],
+    [28,36,_project( 2, .5, -1, pfac)],
+    [36,40,_project( 0, 0, 0, pfac)],
+    [40,64,_project( 2, .5, -1, pfac)]
+  ];
+
+  let idx_region_xy_5 = [
+    [0,20,  _project( 2, .5, -1, pfac)],
+    [20,32, _project( 0, 0, 0, pfac)],
+    [32,77,_project( 2, .5, -1, pfac)],
+    [77,95,_project( 0, 0, 0, pfac)],
+    [95,125,_project( 2, .5, -1, pfac)]
+  ];
+
+
+  let idx_region_xy = idx_region_xy_5;
+  */
+
   let prv_beg = [-1,-1],
       prv_end = [-1,-1];
-
-  let order = [4,3,2,1,0];
 
   let join_points = [];
   let curve_points  = [];
   let endpoint = [];
 
+  //let N = 5;
+
+  //let pnts = Hibiscus3D(N,N,N);
+
+  let pnt_color = [];
+
+  let n_group = idx_region_xy.length;
+
+  let beg_end_proj_pnt = [];
+  for (let idx=0; idx < n_group; idx++) { beg_end_proj_pnt.push( [] ); }
+
+
   for (let _gidx=0; _gidx<idx_region_xy.length; _gidx++) {
 
     let gidx = order[_gidx];
-    gidx = _gidx;
+    //gidx = _gidx;
 
     let _beg = idx_region_xy[gidx][0];
     let _end = idx_region_xy[gidx][1];
-    let dxy = idx_region_xy[gidx][2];
 
     let cur_beg = [-1,-1],
         cur_end = [-1,-1];
@@ -739,14 +880,15 @@ function curve3d_fig(x0,y0,s) {
     let _p = [];
     for (let idx=_beg; idx<_end; idx++) {
 
-      let _xyz = gilbert_d2xyz(idx, N,N,N);
-      let xyz = rodrigues( [N-_xyz.y, _xyz.x, _xyz.z], rotaxis, rotangle );
+      let _xyz = pnts[idx];
+      let xyz = njs.mul(s, rodrigues( [_xyz[0], _xyz[1], _xyz[2]], vr, theta ));
 
-      let xy = njs.add(dxy, njs.add( _project(xyz[0], xyz[1], xyz[2],s), [x0,y0] ));
+      let xy = njs.add( _project(xyz[0], xyz[1], xyz[2],s), [x0,y0] );
       _p.push(xy);
 
-      if ((idx==0) || (idx==(N*N*N-1))) {
-        //two.makeCircle(xy[0], xy[1], 4);
+      let sz = WHD[0]*WHD[1]*WHD[2];
+      //if ((idx==0) || (idx==(N*N*N-1))) {
+      if ((idx==0) || (idx==(sz-1))) {
         endpoint.push( [xy[0], xy[1]] );
       }
 
@@ -755,28 +897,34 @@ function curve3d_fig(x0,y0,s) {
       else if (idx == (_end-1)) { cur_end = xy; }
     }
 
-    if (_gidx>0) {
-      join_points.push( [[prv_end[0],prv_end[1]], [cur_beg[0], cur_beg[1]]] );
-    }
+    beg_end_proj_pnt[gidx] = [cur_beg, cur_end];
+
+    //if (_gidx>0) {
+    //if (gidx>0) { join_points.push( [[prv_end[0],prv_end[1]], [cur_beg[0], cur_beg[1]]] ); }
+
     prv_beg = cur_beg;
     prv_end = cur_end;
 
     curve_points.push(_p);
 
+    pnt_color.push( col[gidx] );
+
   }
 
-  let jp = join_points[3];
-  _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(60,60,60)", 4, 0.7);
+  for (let idx=1; idx < n_group; idx++) {
+    let prv_end = beg_end_proj_pnt[idx-1][1];
+    let cur_beg = beg_end_proj_pnt[idx][0];
 
-  for (let _gidx=0; _gidx< curve_points.length; _gidx++) {
+    join_points.push( [[prv_end[0],prv_end[1]], [cur_beg[0], cur_beg[1]]] );
+  }
 
-    let gidx = _gidx
-    let _p = curve_points[gidx];
+  for (let idx=0; idx< curve_points.length; idx++) {
+    let _p = curve_points[idx];
 
     let v = makeTwoVector(_p);
     let p = two.makePath(v);
     p.linewidth = 4;
-    p.stroke = col[gidx];
+    p.stroke = pnt_color[idx];
 
     p.noFill();
 
@@ -794,11 +942,10 @@ function curve3d_fig(x0,y0,s) {
     if (i==0) { c.fill = "rgb(0,0,0)"; }
   }
 
+
   for (let gidx=0; gidx<join_points.length; gidx++) {
     let jp = join_points[gidx];
-    if (gidx != 3) {
-      _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(60,60,60)", 4, 0.7);
-    }
+    _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(60,60,60)", 4, 0.7);
 
     let _r = 3.5;
 
@@ -817,7 +964,6 @@ function curve3d_fig(x0,y0,s) {
 
   two.update();
 }
-*/
 
 function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
@@ -1023,11 +1169,19 @@ function gilbert3d_variants() {
   two.makeText("Hibiscus:",70, 120, font_style);
   hibiscus_block3d(100, 250, 40, vr, theta);
 
-  two.makeText("Peony:",300, 120, font_style);
-  peony_block3d(300, 250, 40, vr, theta);
+  //curve3d_fig(300, 250, 30, vr, theta+Math.PI/48);
+  curve3d_hibiscus(300,290,28, vr, theta + Math.PI/48);
 
-  two.makeText("Milfoil:",500, 120, font_style);
-  milfoil_block3d(500, 250, 40, vr, theta);
+
+  two.makeText("Peony:",70, 340, font_style);
+  peony_block3d(100, 450, 40, vr, theta);
+
+  curve3d_peony(300,460,20, vr, theta + Math.PI/48);
+
+  two.makeText("Milfoil:",70, 520, font_style);
+  milfoil_block3d(100, 650, 40, vr, theta);
+
+  curve3d_milfoil(300,680,28, vr, theta);
 
   axis_fig(50,60, 20, vr, theta);
 
