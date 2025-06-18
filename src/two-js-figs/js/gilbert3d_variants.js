@@ -35,6 +35,8 @@ var PROJECT_VEC = [
 
 var njs = numeric;
 
+
+
 var PAL5 = [
   'rgb(215,25,28)',
   'rgb(253,174,97)',
@@ -145,6 +147,17 @@ var g_fig_ctx = {
 
 //----
 //----
+
+function hsl_lerp(p) {
+  let hue = Math.floor(360*p).toString();
+  let sat = "95%";
+  let lit = '35%';
+
+  sat = '60%';
+  lit = '55%';
+  return "hsl(" + [ hue,sat,lit ].join(",") + ")";
+}
+
 
 // 3d cross product.
 //
@@ -716,6 +729,20 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
   two.update();
 }
 
+function mk_colormap_f(_range, _pal) {
+  return function(_t) {
+    let _n = _range[ _range.length-1 ][1];
+    let _tidx = Math.floor(_t*_n);
+
+    for (let _i=0; _i<_range.length; _i++) {
+      if ((_tidx >= _range[_i][0]) && (_tidx < _range[_i][1])) {
+        return _pal[_i];
+      }
+    }
+    return _pal[ _pal.length-1 ];
+  };
+}
+
 function curve3d_hibiscus(x0,y0, s, vr, theta) {
   let idx_region_xy_4 = [
     [0,24],
@@ -750,7 +777,11 @@ function curve3d_hibiscus(x0,y0, s, vr, theta) {
     PAL[4],
   ];
 
-  return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+  //return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+  let colormap_f = mk_colormap_f(idx_region_xy, col);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
 }
 
 function curve3d_peony(x0,y0, s, vr, theta) {
@@ -778,7 +809,11 @@ function curve3d_peony(x0,y0, s, vr, theta) {
     PAL[4],
   ];
 
-  return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+  //return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+
+  let colormap_f = mk_colormap_f(idx_region_xy, col);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
 }
 
 function curve3d_milfoil(x0,y0, s, vr, theta) {
@@ -815,7 +850,10 @@ function curve3d_milfoil(x0,y0, s, vr, theta) {
     PAL[4],
   ];
 
-  return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+  //return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
+
+  let colormap_f = mk_colormap_f(idx_region_xy, col);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
 }
 
 function curve3d_fig(x0,y0,s,vr, theta, pnts, idx_region_xy, WHD, order, col ) {
@@ -825,37 +863,12 @@ function curve3d_fig(x0,y0,s,vr, theta, pnts, idx_region_xy, WHD, order, col ) {
 
   let pfac = 30;
 
-  /*
-  let idx_region_xy_4 = [
-    [0,24,  _project( 2, .5, -1, pfac)],
-    [24,28, _project( 0, 0, 0, pfac)],
-    [28,36,_project( 2, .5, -1, pfac)],
-    [36,40,_project( 0, 0, 0, pfac)],
-    [40,64,_project( 2, .5, -1, pfac)]
-  ];
-
-  let idx_region_xy_5 = [
-    [0,20,  _project( 2, .5, -1, pfac)],
-    [20,32, _project( 0, 0, 0, pfac)],
-    [32,77,_project( 2, .5, -1, pfac)],
-    [77,95,_project( 0, 0, 0, pfac)],
-    [95,125,_project( 2, .5, -1, pfac)]
-  ];
-
-
-  let idx_region_xy = idx_region_xy_5;
-  */
-
   let prv_beg = [-1,-1],
       prv_end = [-1,-1];
 
   let join_points = [];
   let curve_points  = [];
   let endpoint = [];
-
-  //let N = 5;
-
-  //let pnts = Hibiscus3D(N,N,N);
 
   let pnt_color = [];
 
@@ -964,6 +977,176 @@ function curve3d_fig(x0,y0,s,vr, theta, pnts, idx_region_xy, WHD, order, col ) {
 
   two.update();
 }
+
+//----
+//----
+//----
+
+
+// There's some trickery here.
+// The goals are to create a 3d gilbert curve figure that:
+//
+// - is rotated at a nice angle for good viewing
+// - is orthographic (non-perspective)
+// - has an outline for the edges to get a better sense of depth
+// - has 'dots' at vertex points to give a sense for where the
+//   verticies are
+// - is an SVG image
+//
+// All these machinations (custom projection, custom rotations, etc.)
+// are pretty much so we can save figures into SVG.
+// two.js is a 2d library, so we need to do some 3d stuff ourselves.
+//
+// To acheive this we:
+//
+// - generate a 3d gilbert curve
+// - rotate it in 3d appropriately
+// - project down to 2d
+// - keep the 3d, 2d and index points
+// - sort by the rotated vectors, depth first (see the 'sort' function below
+//   where we do the lazy projection, project onto the 'away' vector that's the
+//   cross product of the lazy projection vectors)
+// - draw the circle for the vertex and a white line, larger than the colored line,
+//   halfway from each source vertex to the neighbor (making sure to use 'butt' cap
+//   so no artifacts on the curve are seen)
+// - finally, draw the colored line, again drawing from the source vertex to halfway
+//   to each of it's neighboring verticies (rounded cap)
+//
+// The figure has alpha going up and to the right, beta going left and up and gamma
+// going up, so we need to do an extra x/y and x-flip for the returned gilbert curve
+// to be consistent with the displayed reference axis.
+//
+function mkg3curve(xy, whd, s, vr, theta, pnts, colormap_f ) {
+  s = ((typeof s === "undefined") ? 1 : s);
+
+  if (typeof colormap_f === "undefined") {
+    console.log(">>> using default");
+    colormap_f = function(_t) { return hsl_lerp(_t); }
+  }
+
+  let two = g_fig_ctx.two;
+
+  let N = whd[0]*whd[1]*whd[2];
+
+  let pnt3 = [];
+  let pnt2 = [];
+  let pnt32 = [];
+  for (let idx=0; idx<N; idx++) {
+    let p3 = pnts[idx];
+    pnt3.push( p3 );
+
+    let txyz = njs.mul(s, rodrigues(p3, vr, theta));
+    let txy = njs.add(xy, _project( txyz[0], txyz[1], txyz[2] ));
+
+    pnt2.push(txy);
+    pnt32.push([txyz,txy,idx]);
+  }
+
+  pnt32.sort( function(a,b) {
+
+    // inverse lazy projection
+    //
+    let _zz = cross3([s,s,0], [1/2, -1/2, -1]);
+    let R = njs.norm2(_zz);
+
+    let da = njs.dot(_zz,a[0]) / R;
+    let db = njs.dot(_zz,b[0]) / R;
+
+    if (da > db) { return -1; }
+    if (da < db) { return  1; }
+    return 0;
+  });
+
+  let idx_bp = [];
+
+  let n = pnt32.length;
+  for (let idx=0; idx<n; idx++) { idx_bp.push(0); }
+  for (let idx=0; idx<n; idx++) {
+    let p_idx = pnt32[idx][2];
+    idx_bp[p_idx] = idx;
+  }
+
+  let bg_co = "rgb(255,255,255)";
+
+  let fg_lw = 5;
+  let bg_diam = 8;
+
+  fg_lw = 3;
+  bg_diam = 6;
+
+  for (let idx=0; idx<n; idx++) {
+
+    let p3 = pnt32[idx][0];
+    let p2 = pnt32[idx][1];
+    let p_idx = pnt32[idx][2];
+
+    let draw_lines = [];
+
+    if (p_idx > 0) {
+      let nei_idx = p_idx-1;
+      let q2 = pnt32[ idx_bp[nei_idx] ][1];
+      draw_lines.push( [p2, q2] );
+    }
+
+    if (p_idx < (n-1)) {
+      let nei_idx = p_idx+1;
+      let q2 = pnt32[ idx_bp[nei_idx] ][1];
+      draw_lines.push( [p2, q2] );
+    }
+
+    for (let ii=0; ii<draw_lines.length; ii++) {
+      let p2 = draw_lines[ii][0];
+      let q2 = draw_lines[ii][1];
+
+      qm = [
+        p2[0] + (q2[0] - p2[0])/2,
+        p2[1] + (q2[1] - p2[1])/2,
+      ];
+
+      //let co = hsl_lerp( p_idx / n );
+      let co = colormap_f( p_idx / n );
+
+      let l_bg = two.makeLine( p2[0], p2[1], qm[0], qm[1] );
+      l_bg.noFill();
+      l_bg.stroke = bg_co;
+      l_bg.linewidth = bg_diam;
+      l_bg.cap = "butt";
+
+      let _c = two.makeCircle( p2[0], p2[1], 3*bg_diam/5 );
+      _c.noStroke();
+      _c.fill = bg_co;
+
+      _c.fill = "rgb(220,220,220)";
+    }
+
+    for (let ii=0; ii<draw_lines.length; ii++) {
+      let p2 = draw_lines[ii][0];
+      let q2 = draw_lines[ii][1];
+
+      qm = [
+        p2[0] + (q2[0] - p2[0])/2,
+        p2[1] + (q2[1] - p2[1])/2,
+      ];
+
+      //let co = hsl_lerp( p_idx / n );
+      let co = colormap_f( p_idx / n );
+
+      let l = two.makeLine( p2[0], p2[1], qm[0], qm[1] );
+      l.noFill();
+      l.stroke = co;
+      l.linewidth = fg_lw;
+      l.cap = "round";
+    }
+
+  }
+
+}
+
+
+
+//----
+//----
+//----
 
 function mk_iso_cuboid( x0,y0,s, lco, fco, lXYZ, lw, vr, theta, alpha) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
