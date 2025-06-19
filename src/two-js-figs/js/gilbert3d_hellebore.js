@@ -1225,32 +1225,33 @@ function hellebore_111_block3d(x0,y0,s0, vr, theta) {
   let dw = 1/4;
   let dw2 = dw/2;
   let js = s0*dw;
-  let D = 1.49;
+  let D = 1.1;
 
   let ls = 1.3;
 
   let cuboid_size = [
-    [2,2,1],
-    [2,2,ls],
+    [1,2,2],
+    [ls,2,2],
 
   ];
 
 
   let cxyz = [
-    [  0,  0,  -D],
-    [  0,  0,   D],
+    [  -D,  0,   0],
+    [   D,  0,   0],
   ];
 
   let dock_dxyz = [
 
     // A
     //
-    [2-dw2,2-dw2,1-dw2],
-    [dw2,dw2,1-dw2],
+    [1-dw2,2-dw2,dw2],
+    [1-dw2,dw2,dw2],
 
     // B
     //
-    [dw2,dw2,dw2], [2-dw2,2-dw2,dw2],
+    [dw2,dw2,dw2],
+    [dw2,2-dw2,dw2],
   ];
 
   let dock_xyz = [];
@@ -1405,27 +1406,97 @@ function mk_colormap_f(_range, _pal) {
 
 function curve3d_hellebore(x0,y0, s, vr, theta) {
 
-  idx_region_xy = [
-    0,
-    64,
-    90,
-    114,
-    144,
-    160,
-    172,
-    186,
-    216
-  ];
+  let idx_region_xy = [ 0, 64, 96, 112, 144, 160, 168, 184, 216 ];
 
   let WHD = [6,6,6];
 
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2], function(p,a,b,g) { console.log(">>", p, a, b, g); } );
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
+}
+
+function curve3d_s1_100_hellebore(x0,y0, s, vr, theta) {
+
+  let idx_region_xy = [ 0, 27, 54, 81, 108, 144, 180, 216, 252 ];
+  let WHD = [7,6,6];
+
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
+}
+
+function curve3d_s1_010_hellebore(x0,y0, s, vr, theta) {
+
+  let idx_region_xy = [ 0, 27, 54, 90, 126, 162, 198, 225, 252 ];
+  let WHD = [6,7,6];
+
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
+}
+
+function curve3d_s1_001_hellebore(x0,y0, s, vr, theta) {
+
+  let idx_region_xy = [ 0, 27, 63, 99, 126, 153, 189, 225, 252 ];
+  let WHD = [6,6,7];
+
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
+}
+
+function curve3d_110_hellebore(x0,y0, s, vr, theta) {
+
+  idx_region_xy = [ 0, 64, 96, 132, 168, 195, 222, 258, 294 ];
+  let WHD = [7,7,6];
+
   let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
 
-  let order = [0,1,2,3,4,5,6,7];
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
 
-  let col = PAL8;
+  return;
+}
 
-  let colormap_f = mk_colormap_f(idx_region_xy, col);
+function curve3d_101_hellebore(x0,y0, s, vr, theta) {
+
+  idx_region_xy = [ 0, 36, 100, 132, 168, 195, 231, 267, 294 ];
+  let WHD = [7,6,7];
+
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
+}
+
+function curve3d_011_hellebore(x0,y0, s, vr, theta) {
+
+  idx_region_xy = [ 0, 64, 100, 127, 163, 199, 226, 262, 294 ];
+  let WHD = [6,7,7];
+
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL8);
+  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
+
+  return;
+}
+
+function curve3d_111_hellebore(x0,y0, s, vr, theta) {
+
+  idx_region_xy = [ 0, 147, 343 ];
+  let WHD = [7,7,7];
+
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
+  let colormap_f = mk_colormap_f(idx_region_xy, PAL2);
   mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
 
   return;
@@ -1811,26 +1882,56 @@ function gilbert3d_hellebore() {
   two.makeText("Hellebore:",70, 120, font_style);
   hellebore_block3d(250, 190, 40, vr, theta);
 
+  //---
+
   two.makeText("000:",30, txt_y[0], font_style);
   hellebore_s0_block3d(gfx_x[0], gfx_y[0], 40, vr, theta);
 
   curve3d_hellebore( gfx_x[0]+curve_dxy[0], gfx_y[0]+curve_dxy[1], curve_s, vr, theta);
   curve3d_hellebore( gfx_x[0]+curve_dxy[2], gfx_y[0]+curve_dxy[3], curve_s, vr, theta + Math.PI);
 
+  //---
+
   two.makeText("001,010,100:",70, txt_y[1], font_style);
   hellebore_s1_block3d(gfx_x[0], gfx_y[1], 40, vr, theta);
+
+  let dy = Math.abs(curve_dxy[1] - curve_dxy[3]);
+
+  curve3d_s1_001_hellebore( gfx_x[0]+curve_dxy[0], gfx_y[1]+curve_dxy[1], curve_s, vr, theta);
+  curve3d_s1_010_hellebore( gfx_x[0]+curve_dxy[0], gfx_y[1]+dy, curve_s, vr, theta);
+  curve3d_s1_100_hellebore( gfx_x[0]+curve_dxy[0], gfx_y[1]+2.5*dy, curve_s, vr, theta);
+
+  //---
 
   two.makeText("011:",txt_x[1], txt_y[0], font_style);
   hellebore_011_block3d(gfx_x[1], gfx_y[0], 40, vr, theta);
 
+  curve3d_011_hellebore( gfx_x[1]+curve_dxy[0], gfx_y[0] + curve_dxy[1], curve_s, vr, theta);
+  curve3d_011_hellebore( gfx_x[1]+curve_dxy[2] + 8, gfx_y[0] + curve_dxy[3]+15, curve_s, vr, theta + Math.PI);
+
+
+  //---
+
   two.makeText("101:",txt_x[1], txt_y[1], font_style);
   hellebore_101_block3d(gfx_x[1], gfx_y[1], 40, vr, theta);
+
+  curve3d_101_hellebore( gfx_x[1]+curve_dxy[0], gfx_y[1] + curve_dxy[1], curve_s, vr, theta);
+  curve3d_101_hellebore( gfx_x[1]+curve_dxy[2] + 13, gfx_y[1] + curve_dxy[3]+15, curve_s, vr, theta + Math.PI);
+
+  //---
 
   two.makeText("110:",txt_x[2], txt_y[0], font_style);
   hellebore_110_block3d(gfx_x[2], gfx_y[0], 40, vr, theta);
 
+  curve3d_110_hellebore( gfx_x[2]+curve_dxy[0], gfx_y[0] + curve_dxy[1], curve_s, vr, theta);
+  curve3d_110_hellebore( gfx_x[2]+curve_dxy[2] + 13, gfx_y[0] + curve_dxy[3], curve_s, vr, theta + Math.PI);
+
+  //---
+
   two.makeText("111:",txt_x[2], txt_y[1], font_style);
-  hellebore_111_block3d(gfx_x[2], gfx_y[1], 40, vr, theta);
+  hellebore_111_block3d(gfx_x[2] + 20, gfx_y[1], 40, vr, theta);
+
+  curve3d_111_hellebore( gfx_x[2]+curve_dxy[0], gfx_y[1] + curve_dxy[1], curve_s, vr, theta);
 
   axis_fig(50,60, 20, vr, theta);
   two.update();

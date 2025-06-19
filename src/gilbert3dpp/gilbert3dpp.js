@@ -3402,6 +3402,10 @@ function *Hellebore3DAsync_011(p, alpha, beta, gamma) {
   let beta2 = v_div2(beta);
   let gamma2 = v_div2(gamma);
 
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
+
   let a2 = abs_sum_v(alpha2);
   let b2 = abs_sum_v(beta2);
   let g2 = abs_sum_v(gamma2);
@@ -3415,45 +3419,79 @@ function *Hellebore3DAsync_011(p, alpha, beta, gamma) {
   if ((b2%2) == 1) { beta2 = v_add(beta2, d_beta); }
   if ((g2%2) == 1) { gamma2 = v_add(gamma2, d_gamma); }
 
+  a2 = abs_sum_v(alpha2);
+  b2 = abs_sum_v(beta2);
+  g2 = abs_sum_v(gamma2);
+
+
+  let a2u = abs_sum_v(alpha2_odd);
+  let idx = 0;
+  if (VERBOSE >= 2) { console.log("#hellebore.011.a:", idx); }
+
+
   // A
   //
   let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2, d_beta));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2), gamma2);
+
+  idx += a2*b2*g2;
+  if (VERBOSE >= 2) { console.log("#hellebore.011.b:", idx); }
 
   // B
   //
   u = v_add(p, gamma2);
   yield* Milfoil3DAsync(u, alpha2_odd, beta2, v_sub(gamma, gamma2));
 
+  idx += a2u*b2*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.011.c:", idx); }
+
   // C
   //
   u = v_add(p, v_sub(alpha2_odd, d_alpha), beta2, v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_neg(alpha2_odd), v_sub(beta, beta2), v_sub(gamma2, gamma));
+
+  idx += a2u*(b-b2)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.011.d:", idx); }
 
   // D
   //
   u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
   yield* Milfoil3DAsync(u, alpha2_odd, v_sub(beta2, beta), v_neg(gamma2));
 
+  idx += a2u*(b-b2)*(g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.011.e:", idx); }
+
   // E
   //
   u = v_add(p, alpha2_odd, beta2);
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2_odd), v_sub(beta, beta2), gamma2);
+
+  idx += (a-a2u)*(b-b2)*(g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.011.f:", idx); }
 
   // F
   //
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2);
   yield* Milfoil3DAsync(u, v_sub(alpha2_odd, alpha), v_sub(beta2, beta), v_sub(gamma, gamma2));
 
+  idx += (a-a2u)*(b-b2)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.011.g:", idx); }
+
   // G
   //
   u = v_add(p, alpha2_odd, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2_odd), v_neg(beta2), v_sub(gamma2, gamma));
 
+  idx += (a-a2u)*(b2)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.011.h:", idx); }
+
   // H
   //
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2, v_neg(gamma2));
+
+  idx += (a-a2)*b2*g2;
+  if (VERBOSE >= 2) { console.log("#hellebore.011.fin:", idx); }
 
   return;
 }
@@ -3466,6 +3504,10 @@ function *Hellebore3DAsync_101(p, alpha, beta, gamma) {
   let alpha2 = v_div2(alpha);
   let beta2 = v_div2(beta);
   let gamma2 = v_div2(gamma);
+
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
   let a2 = abs_sum_v(alpha2);
   let b2 = abs_sum_v(beta2);
@@ -3480,45 +3522,77 @@ function *Hellebore3DAsync_101(p, alpha, beta, gamma) {
   if ((a2%2) == 1) { alpha2 = v_add(alpha2, d_alpha); }
   if ((g2%2) == 0) { gamma2 = v_add(gamma2, d_gamma); }
 
+  a2 = abs_sum_v(alpha2);
+  b2 = abs_sum_v(beta2);
+  g2 = abs_sum_v(gamma2);
+
+  let b2u = abs_sum_v(beta2_odd);
+  let idx = 0;
+  if (VERBOSE >= 2) { console.log("#hellebore.101.a:", idx, "(+", a2*b2u*g2, ")"); }
+
   // A
   //
   let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2_odd, d_beta));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2_odd), gamma2);
+
+  idx += a2*b2u*g2;
+  if (VERBOSE >= 2) { console.log("#hellebore.101.b:", idx, "(+", a2*b2*(g-g2), ")"); }
 
   // B
   //
   u = v_add(p, gamma2);
   yield* Milfoil3DAsync(u, alpha2, beta2, v_sub(gamma, gamma2));
 
+  idx += a2*b2*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.c:", idx, "(+", a2*(b-b2)*(g-g2), ")"); }
+
   // C
   //
   u = v_add(p, v_sub(alpha2, d_alpha), beta2, v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_sub(beta, beta2), v_sub(gamma2, gamma));
+
+  idx += a2*(b-b2)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.d:", idx, "(+", a2*(b-b2u)*(g2), ")"); }
 
   // D
   //
   u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
   yield* Milfoil3DAsync(u, alpha2, v_sub(beta2_odd, beta), v_neg(gamma2));
 
+  idx += a2*(b-b2u)*(g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.e:", idx, "(+", (a-a2)*(b-b2u)*(g2), ")"); }
+
   // E
   //
   u = v_add(p, alpha2, beta2_odd);
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2_odd), gamma2);
+
+  idx += (a-a2)*(b-b2u)*(g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.f:", idx, "(+", (a-a2)*(b-b2u)*(g-g2), ")"); }
 
   // F
   //
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2);
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_sub(beta2_odd, beta), v_sub(gamma, gamma2));
 
+  idx += (a-a2)*(b-b2u)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.g:", idx, "(+", (a-a2)*(b2u)*(g-g2), ")"); }
+
   // G
   //
   u = v_add(p, alpha2, v_sub(beta2_odd, d_beta), v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_neg(beta2_odd), v_sub(gamma2, gamma));
 
+  idx += (a-a2)*(b2u)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.h:", idx, "(+", (a-a2)*(b2u)*(g2), ")"); }
+
   // H
   //
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2_odd, v_neg(gamma2));
+
+  idx += (a-a2)*(b2u)*(g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.101.end:", idx ); }
 
 }
 
@@ -3530,6 +3604,10 @@ function *Hellebore3DAsync_110(p, alpha, beta, gamma) {
   let alpha2 = v_div2(alpha);
   let beta2 = v_div2(beta);
   let gamma2 = v_div2(gamma);
+
+  let a = abs_sum_v(alpha);
+  let b = abs_sum_v(beta);
+  let g = abs_sum_v(gamma);
 
   let a2 = abs_sum_v(alpha2);
   let b2 = abs_sum_v(beta2);
@@ -3544,45 +3622,80 @@ function *Hellebore3DAsync_110(p, alpha, beta, gamma) {
   if ((a2%2) == 1) { alpha2 = v_add(alpha2, d_alpha); }
   if ((b2%2) == 1) { beta2 = v_add(beta2, d_beta); }
 
+  a2 = abs_sum_v(alpha2);
+  b2 = abs_sum_v(beta2);
+  g2 = abs_sum_v(gamma2);
+
+  let g2u = abs_sum_v(gamma2_odd);
+  let idx = 0;
+  if (VERBOSE >= 2) { console.log("#hellebore.110.a:", idx, "(+", a2*b2*g2, ")"); }
+
   // A
   //
   let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2, d_beta));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2), gamma2);
+
+  idx += a2*b2*g2;
+  if (VERBOSE >= 2) { console.log("#hellebore.110.b:", idx, "(+", a2*b2*(g-g2), ")"); }
 
   // B
   //
   u = v_add(p, gamma2);
   yield* Milfoil3DAsync(u, alpha2, beta2, v_sub(gamma, gamma2));
 
+  idx += a2*b2*(g-g2);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.c:", idx, "(+", a2*(b-b2)*(g-g2u), ")"); }
+
   // C
   //
   u = v_add(p, v_sub(alpha2, d_alpha), beta2, v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_sub(beta, beta2), v_sub(gamma2_odd, gamma));
+
+  idx += a2*(b-b2)*(g-g2u);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.d:", idx, "(+", a2*(b-b2)*(g2u), ")"); }
 
   // D
   //
   u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2_odd, d_gamma));
   yield* Milfoil3DAsync(u, alpha2, v_sub(beta2, beta), v_neg(gamma2_odd));
 
+  idx += a2*(b-b2)*(g2u);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.e:", idx, "(+", (a-a2)*(b-b2)*(g2u), ")"); }
+
   // E
   //
   u = v_add(p, alpha2, beta2);
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2), gamma2_odd);
+
+  idx += (a-a2)*(b-b2)*(g2u);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.f:", idx, "(+", (a-a2)*(b-b2)*(g-g2u), ")"); }
+
 
   // F
   //
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2_odd);
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_sub(beta2, beta), v_sub(gamma, gamma2_odd));
 
+  idx += (a-a2)*(b-b2)*(g-g2u);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.f:", idx, "(+", (a-a2)*(b2)*(g-g2u), ")"); }
+
+
   // G
   //
   u = v_add(p, alpha2, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_neg(beta2), v_sub(gamma2_odd, gamma));
 
+  idx += (a-a2)*(b2)*(g-g2u);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.f:", idx, "(+", (a-a2)*(b2)*(g2u), ")"); }
+
   // H
   //
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2_odd, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2, v_neg(gamma2_odd));
+
+  idx += (a-a2)*(b2)*(g2u);
+  if (VERBOSE >= 2) { console.log("#hellebore.110.h:", idx); }
+
 
 }
 
@@ -3636,29 +3749,53 @@ function *Hellebore3DAsync(p, alpha, beta, gamma) {
   b2 = abs_sum_v(beta2);
   g2 = abs_sum_v(gamma2);
 
+  let idx = 0;
+  if (VERBOSE >= 2) { console.log("#hellebore.(000|001|010|100).a:", idx, "(+", a2*b2*g2, ")"); }
+
   let u = v_add(p, v_sub(alpha2, d_alpha), v_sub(beta2, d_beta));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_neg(beta2), gamma2);
+
+  idx += a2*b2*g2;
+  if (VERBOSE >= 2) { console.log("#b:", idx, "(+", a2*b2*(g-g2), ")"); }
 
   u = v_add(p, gamma2);
   yield* Milfoil3DAsync(u, alpha2, beta2, v_sub(gamma, gamma2));
 
+  idx += a2*b2*(g-g2);
+  if (VERBOSE >= 2) { console.log("#c:", idx, "(+", a2*(b-b2)*(g-g2), ")"); }
 
   u = v_add(p, v_sub(alpha2, d_alpha), beta2, v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_neg(alpha2), v_sub(beta, beta2), v_sub(gamma2, gamma));
 
+  idx += a2*(b-b2)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#d:", idx, "(+", a2*(b-b2)*(g2), ")"); }
+
   u = v_add(p, v_sub(beta, d_beta), v_sub(gamma2, d_gamma));
   yield* Milfoil3DAsync(u, alpha2, v_sub(beta2, beta), v_neg(gamma2));
+
+  idx += (a2)*(b-b2)*(g2);
+  if (VERBOSE >= 2) { console.log("#e:", idx, "(+", (a-a2)*(b-b2)*(g2), ")"); }
 
 
   u = v_add(p, alpha2, beta2);
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_sub(beta, beta2), gamma2);
 
+  idx += (a-a2)*(b-b2)*(g2);
+  if (VERBOSE >= 2) { console.log("#f:", idx, "(+", (a-a2)*(b-b2)*(g-g2), ")"); }
+
+
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(beta, d_beta), gamma2);
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), v_sub(beta2, beta), v_sub(gamma, gamma2));
+
+  idx += (a-a2)*(b-b2)*(g-g2);
+  if (VERBOSE >= 2) { console.log("#g:", idx, "(+", (a-a2)*(b2)*(g-g2), ")"); }
 
 
   u = v_add(p, alpha2, v_sub(beta2, d_beta), v_sub(gamma, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha, alpha2), v_neg(beta2), v_sub(gamma2, gamma));
+
+  idx += (a-a2)*(b2)*(g-g2);
+  if (VERBOSE >=2 ) { console.log("#h:", idx, "(+", (a-a2)*(b2)*(g2), ")"); }
 
   u = v_add(p, v_sub(alpha, d_alpha), v_sub(gamma2, d_gamma));
   yield* Milfoil3DAsync(u, v_sub(alpha2, alpha), beta2, v_neg(gamma2));
