@@ -64,17 +64,39 @@ var lPAL2 = [
   'rgb(13,91,136)',
 ];
 
-var PAL8 = [
-  '#ce6f4f',
-  '#e89e50',
-  '#d4b247',
-  '#b3c359',
-  '#84d17e',
-  '#41d9aa',
-  '#00dad9',
-  '#00d9ff'
-];
+var PAL8 = [ '#ce6f4f', '#e89e50', '#d4b247', '#b3c359', '#84d17e', '#41d9aa', '#00dad9', '#00d9ff' ];
+PAL8 = [ '#ff3c24', '#96009a', '#006bb3', '#778500', '#ff5cb9', '#00d8ff', '#61ea92', '#ecb500', ];
+PAL8 = [ '#f64842', '#6103b7', '#006b8d', '#7f8300', '#ff67b4', '#36cdff', '#6cea91', '#f3b200', ];
+PAL8 = [ '#ed6a97', '#edaffc', '#97e4fe', '#2bf3d8', '#2fda80', '#5dbd43', '#879c16', '#be8651', ];
 
+PAL8 = [ '#c96462', '#ce4906', '#859a2c', '#41ac73', '#4489d5', '#9a75b9', '#d8743f', '#e28271', ];
+
+PAL8 = [ "#E6F1E9", "#EAF3E8", "#F0F4E6", "#F7F6E6", "#F5F2DF", "#F7E8D5", "#EDD5C5", "#DCBEB0", "#B59790", "#D6C2C0" ];
+PAL8 = [ "#FDFCE8", "#F1F3E5", "#E4E9E2", "#D7DFDF", "#CAD5DB", "#BDCBD8", "#B1C2D5", "#A4B8D2", "#97AECF", "#8AA4CB" ];
+PAL8 = [ '#777777', "#008042", "#6FA253", "#B7C370", "#FCE498", "#D78287", "#BF5688", "#7C1D6F", '#777777' ];
+PAL8 = ['#777777', "#443F90", "#685BA7", "#A599CA", "#F5DDEB", "#F492A5", "#EA6E8A", "#D21C5E" ];
+PAL8 = [ '#777777', "#045275", "#089099", "#7CCBA2", "#FCDE9C", "#F0746E", "#DC3977", "#7C1D6F" ];
+PAL8 = [ '#777777', "#009392", "#39B185", "#9CCB86", "#E9E29C", "#EEB479", "#E88471", "#CF597E"];
+
+var lPAL8 = [];
+for (let i=0; i<PAL8.length; i++) {
+  let rgb = _hex2rgb(PAL8[i]);
+  let hsv = RGBtoHSV(rgb.r, rgb.g, rgb.b);
+
+  //hsv.s *= 0.8;
+  //hsv.v *= 0.8;
+
+  hsv.s *= 0.7;
+  hsv.v *= 0.7;
+
+
+  let dst_rgb = HSVtoRGB(hsv.h, hsv.s, hsv.v);
+  let dst_rgb_str =  "rgb(" +
+              Math.floor(dst_rgb.r).toString() + "," +
+              Math.floor(dst_rgb.g).toString() + "," +
+              Math.floor(dst_rgb.b).toString() + ")";
+  lPAL8.push(dst_rgb_str);
+}
 
 var PAL = [
   'rgb(215,25,28)',
@@ -147,6 +169,107 @@ var g_fig_ctx = {
 
 //----
 //----
+
+function _hex2rgb(rgb) {
+  let s = 0;
+  let d = 2;
+  if (rgb[0] == '#') {
+    rgb = rgb.slice(1);
+  }
+  if (rgb.length==3) { d = 1; }
+  let hxr = rgb.slice(s,s+d);
+  if (hxr.length==1) { hxr += hxr; }
+  s += d;
+
+  let hxg = rgb.slice(s,s+d);
+  if (hxg.length==1) { hxg += hxg; }
+  s += d;
+
+  let hxb = rgb.slice(s,s+d);
+  if (hxb.length==1) { hxb += hxb; }
+  s += d;
+
+  let v = { "r": parseInt(hxr,16), "g": parseInt(hxg,16), "b": parseInt(hxb,16) };
+  return v;
+}
+
+
+
+//  https://stackoverflow.com/a/17243070
+// From user Paul S. (https://stackoverflow.com/users/1615483/paul-s)
+//
+/* accepts parameters
+ * h  Object = {h:x, s:y, v:z}
+ * OR 
+ * h, s, v
+ * 0 <= h,s,v, <=1
+*/
+function HSVtoRGB(h, s, v) {
+  var r, g, b, i, f, p, q, t;
+  if (arguments.length === 1) { s = h.s, v = h.v, h = h.h; }
+  i = Math.floor(h * 6);
+  f = h * 6 - i;
+  p = v * (1 - s);
+  q = v * (1 - f * s);
+  t = v * (1 - (1 - f) * s);
+  switch (i % 6) {
+    case 0: r = v, g = t, b = p; break;
+    case 1: r = q, g = v, b = p; break;
+    case 2: r = p, g = v, b = t; break;
+    case 3: r = p, g = q, b = v; break;
+    case 4: r = t, g = p, b = v; break;
+    case 5: r = v, g = p, b = q; break;
+  }
+  return {
+    r: Math.round(r * 255),
+    g: Math.round(g * 255),
+    b: Math.round(b * 255)
+  };
+}
+
+/* accepts parameters
+ * r  Object = {r:x, g:y, b:z}
+ * OR 
+ * r, g, b
+ *
+ * 0 <= r,g,b <= 255
+*/
+function RGBtoHSV(r, g, b) {
+  if (arguments.length === 1) { g = r.g, b = r.b, r = r.r; }
+  var max = Math.max(r, g, b), min = Math.min(r, g, b),
+    d = max - min,
+    h,
+    s = (max === 0 ? 0 : d / max),
+    v = max / 255;
+
+  switch (max) {
+    case min: h = 0; break;
+    case r: h = (g - b) + d * (g < b ? 6: 0); h /= 6 * d; break;
+    case g: h = (b - r) + d * 2; h /= 6 * d; break;
+    case b: h = (r - g) + d * 4; h /= 6 * d; break;
+  }
+
+  return { h: h, s: s, v: v };
+}
+
+function HSVtoHSL(h, s, v) {
+  if (arguments.length === 1) { s = h.s, v = h.v, h = h.h; }
+  var _h = h,
+    _s = s * v, _l = (2 - s) * v;
+  _s /= (_l <= 1) ? _l : 2 - _l;
+  _l /= 2;
+  return { h: _h, s: _s, l: _l };
+}
+
+function HSLtoHSV(h, s, l) {
+  if (arguments.length === 1) { s = h.s, l = h.l, h = h.h; }
+  var _h = h, _s, _v; l *= 2;
+  s *= (l <= 1) ? l : 2 - l;
+  _v = (l + s) / 2;
+  _s = (2 * s) / (l + s);
+  return { h: _h, s: _s, v: _v };
+}
+
 
 function hsl_lerp(p) {
   let hue = Math.floor(360*p).toString();
@@ -247,7 +370,7 @@ function toRGBAa(rgba) {
 }
 
 function _dl() {
-  var ele = document.getElementById("gilbert3d_variants");
+  var ele = document.getElementById("gilbert3d_hellebore");
   let defs = document.getElementById("custom_defs");
 
   // very hacky, find the defs definition, take the defs
@@ -495,7 +618,7 @@ function axis_fig(x0,y0,s, vr, theta) {
 }
 
 
-function hibiscus_block3d(x0,y0,s0, vr, theta) {
+function hellebore_block3d(x0,y0,s0, vr, theta) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
   theta = ((typeof theta === "undefined") ? 0 : theta);
 
@@ -504,150 +627,620 @@ function hibiscus_block3d(x0,y0,s0, vr, theta) {
   let js = s0*dw;
   let D = 1.39;
   D = 1.49;
-  let D_2 = -2.05;
 
   let cuboid_size = [
-    [1,2,1],
     [1,1,1],
-    [2,1,1],
     [1,1,1],
-    [1,2,1]
+
+    [1,1,1],
+    [1,1,1],
+
+    [1,1,1],
+    [1,1,1],
+
+    [1,1,1],
+    [1,1,1]
   ];
 
 
   let cxyz = [
-    [ 0, 0,  -D],
+    [ -D, -D,  -D],
+    [ -D, -D,   D],
 
-    [ 0, 1,   D],
-    [ 0, D_2,   D],
-    [ 1, 1,   D],
+    [ -D,  D,   D],
+    [ -D,  D,  -D],
 
-    [ 1, 0,  -D],
+    [  D,  D,  -D],
+    [  D,  D,   D],
+
+    [  D, -D,   D],
+    [  D, -D,  -D],
   ];
 
-  let dock_xyz = [
-
+  let dock_dxyz = [
     // A
     //
-    [dw2,dw2,-D+dw2], [0+dw2,2-dw2,1-D-dw2],
+    [1-dw2,1-dw2,dw2], [dw2,dw2,1-dw2],
 
     // B
     //
-    [dw2,2-dw2, D+dw2],[dw2,1+dw2,D+1-dw2],
-
+    [dw2,dw2,dw2], [1-dw2,1-dw2,1-dw2],
 
     // C
     //
-    [ dw2, 1+D_2-dw2, D+1-dw2],
-    [ 2-dw2, 1+D_2-dw2, D+1-dw2],
+    [1-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
 
     // D
     //
-    [2-dw2,1+dw2,D+1-dw2],
-    [2-dw2,2-dw2, D+dw2],
+    [dw2,1-dw2,1-dw2], [1-dw2,dw2,dw2],
 
     // E
     //
-    [2-dw2,2-dw2,1-D-dw2],
-    [2-dw2,dw2,-D+dw2],
-  ];
+    [dw2,dw2,dw2], [1-dw2,1-dw2,1-dw2],
 
-  let order = [0,4, 1,3,2];
+    // F
+    //
+    [1-dw2,1-dw2,0], [dw2,dw2,1-dw2],
 
+    // G
+    //
+    [dw2,1-dw2,1-dw2], [1-dw2,dw2,dw2],
 
-  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, {"1": 1} );
-
-  return;
-}
-
-function peony_block3d(x0,y0,s0,vr,theta) {
-  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
-  theta = ((typeof theta === "undefined") ? 0 : theta);
-
-  let dw = 1/4;
-  let dw2 = dw/2;
-  let js = s0*dw;
-  let D = 1.09;
-  let D_2 = -1.45;
-
-  let cuboid_size = [
-    [1.5,1,1],
-    [1,1,1],
-  ];
-
-
-  let cxyz = [
-    [ -D, 0,  0],
-
-    [ D, 0,   0],
-  ];
-
-  let dock_xyz = [
-
-    [ -D+dw2, dw2, dw2 ], [-D+1.5-dw2, dw2, dw2],
-    [ D+dw2, dw2, dw2], [D+1-dw2, 1-dw2,dw2],
+    // H
+    //
+    [1-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
 
   ];
 
-  let order = [0, 1];
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
+
+  let order = [0,1, 2,3, 4,5, 6,7];
 
   block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta);
 
   return;
 }
 
-function milfoil_block3d(x0,y0,s0,vr,theta) {
+function hellebore_s0_block3d(x0,y0,s0, vr, theta) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
   theta = ((typeof theta === "undefined") ? 0 : theta);
 
   let dw = 1/4;
   let dw2 = dw/2;
   let js = s0*dw;
-  let D = 1.39;
-  let D_2 = -1.45;
-  let D_a = 0.9;
-  D_a = 0;
+  let D = 1.49;
+
+  let ls = 1.3;
 
   let cuboid_size = [
-    [2,1,1],
     [1,1,1],
-    [1,2,1],
-    [1,1,1],
-    [1,1,2],
+    [1,1,ls],
+
+    [1,ls,ls],
+    [1,ls,1],
+
+    [ls,ls,1],
+    [ls,ls,ls],
+
+    [ls,1,ls],
+    [ls,1,1]
   ];
 
 
   let cxyz = [
-    [ 0+D_a, -D, 0],
-    [ 1+D_a, -D, 1],
-    [ 0-D_a, -D, 1],
-    [ 0-D_a, D+1, 0],
-    [ 1+D_a, D+1, 0 ],
+    [  0,  0,  -D],
+    [  0,  0,   D],
+
+    [  0,  1,   D],
+    [  0,  1,  -D],
+
+    [  1,  1,  -D],
+    [  1,  1,   D],
+
+    [  1,  0,   D],
+    [  1,  0,  -D],
   ];
 
-  let dock_xyz = [
-    [ 0+D_a+dw2, 0-D+dw2, 0+dw2], [2+D_a-dw2, 1-D-dw2, 1-dw2],
-    [ 2+D_a-dw2, 1-D-dw2, 1+dw2], [1+D_a+dw2, 0-D+dw2, 2-dw2],
-    [ 1+D_a-dw2, 0-D+dw2, 2-dw2], [0+D_a+dw2, 2-D-dw2, 1+dw2],
+  let dock_dxyz = [
 
-    [ 0-D_a+dw2, 2+D-dw2, 1-dw2], [1-D_a-dw2, 1+D+dw2, 0+dw2],
-    [ 1-D_a+dw2, 1+D+dw2, 0+dw2], [2-D_a-dw2, 2+D-dw2, 2-dw2],
+    // A
+    //
+    [1-dw2,1-dw2,dw2], [dw2,dw2,1-dw2],
+
+    // B
+    //
+    [dw2,dw2,dw2], [1-dw2,1-dw2,ls-dw2],
+
+    // C
+    //
+    [1-dw2,dw2,ls-dw2], [dw2,ls-dw2,dw2],
+
+    // D
+    //
+    [dw2,ls-dw2,1-dw2], [1-dw2,dw2,dw2],
+
+    // E
+    //
+    [dw2,dw2,dw2], [ls-dw2,ls-dw2,1-dw2],
+
+    // F
+    //
+    [ls-dw2,ls-dw2,dw2], [dw2,dw2,ls-dw2],
+
+    // G
+    //
+    [dw2,1-dw2,ls-dw2], [ls-dw2,dw2,dw2],
+
+    // H
+    //
+    [ls-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
+
   ];
 
-  let order = [0,2,1,  3,4];
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
 
-  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, {"5":1});
+  let order = [2,3, 0,1, 4,5, 6,7];
+
+  let skip = [0,3,4,7,8,11,12,15];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, [5,6], skip);
 
   return;
 }
 
-function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, dim_conn) {
+function hellebore_s1_block3d(x0,y0,s0, vr, theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.59;
+
+  let ls = 1.3;
+
+  let cuboid_size = [
+    [ls,ls,ls],
+    [ls,ls,1],
+
+    [ls,1,1],
+    [ls,1,ls],
+
+    [1,1,ls],
+    [1,1,1],
+
+    [1,ls,1],
+    [1,ls,ls]
+  ];
+
+
+  let cxyz = [
+    [  0,  0,  -D],
+    [  0,  0,   D],
+
+    [  0,  ls,   D],
+    [  0,  ls,  -D],
+
+    [  ls,  ls,  -D],
+    [  ls,  ls,   D],
+
+    [  ls,  0,   D],
+    [  ls,  0,  -D],
+  ];
+
+  let dock_dxyz = [
+    // A
+    //
+    [ls-dw2,ls-dw2,dw2], [dw2,dw2,ls-dw2],
+
+    // B
+    //
+    [dw2,dw2,dw2], [ls-dw2,ls-dw2,1-dw2],
+
+    // C
+    //
+    [ls-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
+
+    // D
+    //
+    [dw2,1-dw2,ls-dw2], [ls-dw2,dw2,dw2],
+
+    // E
+    //
+    [dw2,dw2,dw2], [1-dw2,1-dw2,ls-dw2],
+
+    // F
+    //
+    [1-dw2,1-dw2,dw2], [dw2,dw2,1-dw2],
+
+    // G
+    //
+    [dw2,ls-dw2,1-dw2], [1-dw2,dw2,dw2],
+
+    // H
+    //
+    [1-dw2,dw2,ls-dw2], [dw2,ls-dw2,dw2],
+
+  ];
+
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
+
+  let order = [2,3, 0,1, 4,5, 6,7];
+
+  let skip = [0,3,4,7,8,11,12,15];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta,[5,6],skip);
+
+  return;
+}
+
+function hellebore_011_block3d(x0,y0,s0, vr, theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.59;
+
+  let ls = 1.3;
+
+  let lm = (1+ls)/2;
+  let xxx= 1;
+
+  let cuboid_size = [
+    [  1,  1,  1 ],
+    [ lm, lm, ls ],
+
+    [ lm, lm, ls ],
+    [ ls, ls,  1 ],
+
+    [  1, ls,  1 ],
+    [ lm, lm, ls ],
+
+    [ lm, lm, ls ],
+    [ ls,  1, 1 ]
+  ];
+
+
+  let cxyz = [
+    [  0,  0,  -D],
+    [  0,  0,   D],
+
+    [  0,  lm,   D],
+    [  0,  1,  -D],
+
+    [  ls,  1,  -D],
+    [  lm,  lm,   D],
+
+    [  lm,  0,   D],
+    [  1,  0,  -D],
+  ];
+
+  let dock_dxyz = [
+    // A
+    //
+    [1-dw2,1-dw2,dw2], [dw2,dw2,1-dw2],
+
+    // B
+    //
+    [dw2,dw2,dw2], [lm-dw2,lm-dw2,ls-dw2],
+
+    // C
+    //
+    [lm-dw2,dw2,ls-dw2], [dw2,lm-dw2,dw2],
+
+    // D
+    //
+    [dw2,ls-dw2,1-dw2], [ls-dw2,dw2,dw2],
+
+    // E
+    //
+    [dw2,dw2,dw2], [1-dw2,ls-dw2,1-dw2],
+
+    // F
+    //
+    [lm-dw2,lm-dw2,dw2], [dw2,dw2,ls-dw2],
+
+    // G
+    //
+    [dw2,lm-dw2,ls-dw2], [lm-dw2,dw2,dw2],
+
+    // H
+    //
+    [ls-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
+
+  ];
+
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
+
+  let order = [2,3, 0,1, 4,5, 6,7];
+
+  let skip = [0,3,4,7,8,11,12,15];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta,[5,6],skip);
+
+  return;
+}
+
+function hellebore_101_block3d(x0,y0,s0, vr, theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.59;
+
+  let ls = 1.25;
+
+  let lm = (1+ls)/2;
+  let xxx= 1;
+
+  let cuboid_size = [
+    [  1,  lm,  ls ],
+
+    // B
+    [ 1, ls, 1 ],
+
+    // C
+    [ 1,  1, 1 ],
+
+    [ 1,  lm, ls ],
+
+    [  ls, lm,  ls ],
+
+    //F
+    [ ls, ls, 1 ],
+
+    // G
+    [ ls, 1, 1],
+
+    [ ls,  lm, ls ]
+  ];
+
+
+  let cxyz = [
+    [  0,  0,  -D],
+    [  0,  0,   D],
+
+    [  0,  ls,   D],
+    [  0,  lm,  -D],
+
+    [  1,  lm,  -D],
+    [  1,  1,   D],
+
+    [  1,  0,   D],
+    [  1,  0,  -D],
+  ];
+
+  let dock_dxyz = [
+
+
+    // A
+    //
+    [1-dw2,lm-dw2,dw2], [dw2,dw2,ls-dw2],
+
+    // B
+    //
+    [dw2,dw2,dw2], [1-dw2,ls-dw2,1-dw2],
+
+    // C
+    //
+    [1-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
+
+    // D
+    //
+    [dw2,lm-dw2,ls-dw2], [1-dw2,dw2,dw2],
+
+    // E
+    //
+    [dw2,dw2,dw2], [ls-dw2,lm-dw2,ls-dw2],
+
+    // F
+    //
+    [ls-dw2,ls-dw2,dw2], [dw2,dw2,1-dw2],
+
+    // G
+    //
+    [dw2,lm-dw2,1-dw2], [ls-dw2,dw2,dw2],
+
+    // H
+    //
+    [ls-dw2,dw2,ls-dw2], [dw2,lm-dw2,dw2],
+
+  ];
+
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    if ((2*i) >= dock_dxyz.length) { continue; }
+    if ((2*i+1) >= dock_dxyz.length) { continue; }
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
+
+  let order = [2,3, 0,1, 4,5, 6,7];
+
+  let skip = [0,3,4,7,8,11,12,15];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, [5,6], skip);
+
+  return;
+}
+
+function hellebore_110_block3d(x0,y0,s0, vr, theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.59;
+
+  let ls = 1.25;
+
+  let lm = (1+ls)/2;
+  let xxx= 1;
+
+  let cuboid_size = [
+    [  1,  lm,  ls ],
+
+    // B
+    [ 1, ls, 1 ],
+
+    // C
+    [ 1,  1, 1 ],
+
+    [ 1,  lm, ls ],
+
+    [  ls, lm,  ls ],
+
+    //F
+    [ ls, ls, 1 ],
+
+    // G
+    [ ls, 1, 1],
+
+    [ ls,  lm, ls ]
+  ];
+
+
+  let cxyz = [
+    [  0,  0,  -D],
+    [  0,  0,   D],
+
+    [  0,  ls,   D],
+    [  0,  lm,  -D],
+
+    [  1,  lm,  -D],
+    [  1,  1,   D],
+
+    [  1,  0,   D],
+    [  1,  0,  -D],
+  ];
+
+  let dock_dxyz = [
+
+
+    // A
+    //
+    [1-dw2,lm-dw2,dw2], [dw2,dw2,ls-dw2],
+
+    // B
+    //
+    [dw2,dw2,dw2], [1-dw2,ls-dw2,1-dw2],
+
+    // C
+    //
+    [1-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
+
+    // D
+    //
+    [dw2,lm-dw2,ls-dw2], [1-dw2,dw2,dw2],
+
+    // E
+    //
+    [dw2,dw2,dw2], [ls-dw2,lm-dw2,ls-dw2],
+
+    // F
+    //
+    [ls-dw2,ls-dw2,dw2], [dw2,dw2,1-dw2],
+
+    // G
+    //
+    [dw2,lm-dw2,1-dw2], [ls-dw2,dw2,dw2],
+
+    // H
+    //
+    [ls-dw2,dw2,ls-dw2], [dw2,lm-dw2,dw2],
+
+  ];
+
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    if ((2*i) >= dock_dxyz.length) { continue; }
+    if ((2*i+1) >= dock_dxyz.length) { continue; }
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
+
+  let order = [2,3, 0,1, 4,5, 6,7];
+
+  let skip = [0,3,4,7,8,11,12,15];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, [5,6], skip);
+
+  return;
+}
+
+function in_array(idx, a) {
+  for (let i=0; i<a.length; i++) {
+    if (a[i] == idx) { return true; }
+  }
+  return false;
+}
+
+
+function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, dim_conn, skip) {
   vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
   theta = ((typeof theta === "undefined") ? 0 : theta); //-Math.PI/9 + 0.2;
   dim_conn = ((typeof dim_conn === "undefined") ? [] : dim_conn);
+  skip = ((typeof skip === "undefined") ? [] : skip);
 
   let pal = PAL8;
-  let lpal = lPAL5;
+  let lpal = lPAL8;
 
   if (cxyz.length == 5) {
     pal = PAL5; 
@@ -693,6 +1286,7 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
 
   for (let i=0; i<dock_xyz.length; i++) {
 
+
     let djs = -1/8;
     let jxyz = njs.mul(s0, rodrigues( njs.add( [djs, djs, djs], dock_xyz[i] ), vr, theta));
     let jxy = njs.add( [x0,y0], _project( jxyz[0], jxyz[1], jxyz[2]) );
@@ -704,26 +1298,40 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
     let fco = "rgb(0,0,0)";
     let cs = njs.mul( js, [1,1,1] );
 
-    mk_iso_cuboid( jxy[0],jxy[1],1, lco,fco, cs, 1, vr, theta, 0.2);
+    if (!in_array(i, skip)) {
 
-    let _c = two.makeCircle( cxy[0], cxy[1],  4 );
-    _c.noStroke();
+      let iso_cuboid_alpha = 0.2;
+      if (in_array(i, dim_conn)) { iso_cuboid_alpha = 0.05; }
 
-    _c.opacity = 0.9;
-    if ((i==0) || (i==(dock_xyz.length-1))) { _c.fill = "rgb(255,255,255)"; }
-    else                                    { _c.fill = "rgb(0,0,0)"; }
+      mk_iso_cuboid( jxy[0],jxy[1],1, lco,fco, cs, 1, vr, theta, iso_cuboid_alpha);
 
-    if (i==0) { _c.fill = "rgb(0,0,0)"; }
-    else if (i==(dock_xyz.length-1))  { _c.fill = "rgb(255,255,255)"; }
-    else                              { _c.fill = "rgb(60,60,60)"; }
+      let _c = two.makeCircle( cxy[0], cxy[1],  4 );
+      _c.noStroke();
+
+      _c.opacity = 0.9;
+      //if (i in dim_conn) { _c.opacity = 0.3; }
+      if (in_array(i, dim_conn)) { _c.opacity= 0.3; }
+
+      //if ((i==0) || (i==(dock_xyz.length-1))) { _c.fill = "rgb(255,255,255)"; }
+      //else                                    { _c.fill = "rgb(0,0,0)"; }
+
+      if (i==0) { _c.fill = "rgb(0,0,0)"; }
+      else if (i==(dock_xyz.length-1))  { _c.fill = "rgb(255,255,255)"; }
+      else                              { _c.fill = "rgb(60,60,60)"; }
+    }
 
   }
 
 
-  for (let i=1; i<(proj_cxy.length-1); i+=2) {
+  for (let i=1; i<proj_cxy.length; i+=2) {
     let alpha = 0.9;
-    if (i in dim_conn) { alpha = 0.5; }
-    _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i+1][0], proj_cxy[i+1][1], "rgb(60,60,60)", 2.8, alpha);
+
+    let i_nxt = (i+1)%(proj_cxy.length);
+
+    if (in_array(i, skip) && in_array(i_nxt, skip)) { continue; }
+    if (in_array(i, dim_conn) && in_array(i_nxt, dim_conn)) { alpha = 0.2; }
+
+    _Line( proj_cxy[i][0], proj_cxy[i][1], proj_cxy[i_nxt][0], proj_cxy[i_nxt][1], "rgb(60,60,60)", 2.8, alpha);
   }
 
   two.update();
@@ -1326,7 +1934,7 @@ function mathjax2twojs(_id,x,y,s,s_sub) {
   two.update();
 }
 
-function gilbert3d_variants() {
+function gilbert3d_hellebore() {
   let two = g_fig_ctx.two;
 
   let font_style = {
@@ -1334,43 +1942,33 @@ function gilbert3d_variants() {
     "family": "Libertine, Linux Libertine 0"
   };
 
-  var ele = document.getElementById("gilbert3d_variants");
+  var ele = document.getElementById("gilbert3d_hellebore");
   two.appendTo(ele);
 
   let vr = [0,0,1];
   let theta = Math.PI/4 + Math.PI/6;
-  theta=0;
-  theta = +Math.PI/48;
 
-  theta = Math.PI/12;
+  theta = -Math.PI/2 + Math.PI/9;
 
-  theta = -Math.PI/2 - 1*Math.PI/40;
+  two.makeText("Hellebore:",70, 120, font_style);
+  hellebore_block3d(250, 190, 40, vr, theta);
 
-  theta = -Math.PI/2 + Math.PI/20;
+  two.makeText("000:",30, 290, font_style);
+  hellebore_s0_block3d(50, 480, 40, vr, theta);
 
+  two.makeText("001,010,100:",70, 590, font_style);
+  hellebore_s1_block3d(50, 780, 40, vr, theta);
 
-  two.makeText("Hibiscus:",70, 120, font_style);
-  hibiscus_block3d(100, 250, 40, vr, theta);
+  two.makeText("011:",490, 290, font_style);
+  hellebore_011_block3d(450, 480, 40, vr, theta);
 
-  //curve3d_fig(300, 250, 30, vr, theta+Math.PI/48);
-  curve3d_hibiscus(300,290,26, vr, theta );
-  curve3d_hibiscus(700,280,26, vr, theta + Math.PI);
+  two.makeText("101:",490, 590, font_style);
+  hellebore_101_block3d(450, 780, 40, vr, theta);
 
-
-  two.makeText("Peony:",70, 340, font_style);
-  peony_block3d(100, 450, 40, vr, theta);
-
-  curve3d_peony(300,440,20, vr, theta);
-  curve3d_peony(650,460,20, vr, theta + Math.PI);
-
-  two.makeText("Milfoil:",70, 520, font_style);
-  milfoil_block3d(100, 650, 40, vr, theta);
-
-  curve3d_milfoil(320,690,26, vr, theta);
-  curve3d_milfoil(700,680,26, vr, theta + Math.PI);
+  two.makeText("110:",890, 290, font_style);
+  hellebore_110_block3d(850, 480, 40, vr, theta);
 
   axis_fig(50,60, 20, vr, theta);
-
   two.update();
 }
 
