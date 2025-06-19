@@ -1129,40 +1129,33 @@ function hellebore_110_block3d(x0,y0,s0, vr, theta) {
   let xxx= 1;
 
   let cuboid_size = [
-    [  1,  lm,  ls ],
-
-    // B
-    [ 1, ls, 1 ],
+    [  1,   1,  1 ],
+    [  1,   1, ls ],
 
     // C
-    [ 1,  1, 1 ],
+    [  1,  ls,  lm ],
+    [  1,  ls,  lm ],
 
-    [ 1,  lm, ls ],
+    [ ls,  ls,  lm ],
+    [ ls,  ls,  lm ],
 
-    [  ls, lm,  ls ],
-
-    //F
-    [ ls, ls, 1 ],
-
-    // G
-    [ ls, 1, 1],
-
-    [ ls,  lm, ls ]
+    [ ls,   1,  1 ],
+    [ ls,   1, ls ]
   ];
 
 
   let cxyz = [
-    [  0,  0,  -D],
-    [  0,  0,   D],
+    [  0, -D,  0],
+    [  0, -D,  1],
 
-    [  0,  ls,   D],
-    [  0,  lm,  -D],
+    [  0,  D,  lm],
+    [  0,  D,  0],
 
-    [  1,  lm,  -D],
-    [  1,  1,   D],
+    [  1,  D,  0],
+    [  1,  D,  lm],
 
-    [  1,  0,   D],
-    [  1,  0,  -D],
+    [  1, -D,  ls],
+    [  1, -D,  0],
   ];
 
   let dock_dxyz = [
@@ -1170,35 +1163,35 @@ function hellebore_110_block3d(x0,y0,s0, vr, theta) {
 
     // A
     //
-    [1-dw2,lm-dw2,dw2], [dw2,dw2,ls-dw2],
+    [1-dw2,1-dw2,dw2], [dw2,dw2,1-dw2],
 
     // B
     //
-    [dw2,dw2,dw2], [1-dw2,ls-dw2,1-dw2],
+    [dw2,dw2,dw2], [1-dw2,1-dw2,ls-dw2],
 
     // C
     //
-    [1-dw2,dw2,1-dw2], [dw2,1-dw2,dw2],
+    [1-dw2,dw2,lm-dw2], [dw2,ls-dw2,dw2],
 
     // D
     //
-    [dw2,lm-dw2,ls-dw2], [1-dw2,dw2,dw2],
+    [dw2,ls-dw2,lm-dw2], [1-dw2,dw2,dw2],
 
     // E
     //
-    [dw2,dw2,dw2], [ls-dw2,lm-dw2,ls-dw2],
+    [dw2,dw2,dw2], [ls-dw2,ls-dw2,lm-dw2],
 
     // F
     //
-    [ls-dw2,ls-dw2,dw2], [dw2,dw2,1-dw2],
+    [ls-dw2,ls-dw2,dw2], [dw2,dw2,lm-dw2],
 
     // G
     //
-    [dw2,lm-dw2,1-dw2], [ls-dw2,dw2,dw2],
+    [dw2,1-dw2,1-dw2], [ls-dw2,dw2,dw2],
 
     // H
     //
-    [ls-dw2,dw2,ls-dw2], [dw2,lm-dw2,dw2],
+    [ls-dw2,dw2,ls-dw2], [dw2,1-dw2,dw2],
 
   ];
 
@@ -1216,14 +1209,73 @@ function hellebore_110_block3d(x0,y0,s0, vr, theta) {
     dock_xyz.push( xyz1 );
   }
 
-  let order = [2,3, 0,1, 4,5, 6,7];
+  let order = [3,2, 0,1, 4,5,  7,6];
 
-  let skip = [0,3,4,7,8,11,12,15];
+  let skip = [0,1,2, 5,6,7,8,9,10,  13,14,15];
 
   block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, [5,6], skip);
 
   return;
 }
+
+function hellebore_111_block3d(x0,y0,s0, vr, theta) {
+  vr = ((typeof vr === "undefined") ? [0,0,1] : vr);
+  theta = ((typeof theta === "undefined") ? 0 : theta);
+
+  let dw = 1/4;
+  let dw2 = dw/2;
+  let js = s0*dw;
+  let D = 1.49;
+
+  let ls = 1.3;
+
+  let cuboid_size = [
+    [2,2,1],
+    [2,2,ls],
+
+  ];
+
+
+  let cxyz = [
+    [  0,  0,  -D],
+    [  0,  0,   D],
+  ];
+
+  let dock_dxyz = [
+
+    // A
+    //
+    [2-dw2,2-dw2,1-dw2],
+    [dw2,dw2,1-dw2],
+
+    // B
+    //
+    [dw2,dw2,dw2], [2-dw2,2-dw2,dw2],
+  ];
+
+  let dock_xyz = [];
+  for (let i=0; i<cxyz.length; i++) {
+    let xyz0 = [],
+        xyz1 = [];
+    for (let j=0; j<3; j++) {
+      xyz0.push( cxyz[i][j] + dock_dxyz[2*i][j] );
+      xyz1.push( cxyz[i][j] + dock_dxyz[2*i+1][j] );
+    }
+    dock_xyz.push( xyz0 );
+    dock_xyz.push( xyz1 );
+  }
+
+  let order = [0,1];
+
+  let skip = [0,3,4,7,8,11,12,15];
+  skip = [];
+
+  block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, [], skip);
+
+  return;
+}
+
+
 
 function in_array(idx, a) {
   for (let i=0; i<a.length; i++) {
@@ -1339,251 +1391,44 @@ function block3d_fig(x0,y0,s0, cuboid_size, cxyz, dock_xyz, order, vr, theta, di
 
 function mk_colormap_f(_range, _pal) {
   return function(_t) {
-    let _n = _range[ _range.length-1 ][1];
+    let _n = _range[ _range.length-1 ];
     let _tidx = Math.floor(_t*_n);
 
-    for (let _i=0; _i<_range.length; _i++) {
-      if ((_tidx >= _range[_i][0]) && (_tidx < _range[_i][1])) {
-        return _pal[_i];
+    for (let _i=1; _i<_range.length; _i++) {
+      if ((_tidx >= _range[_i-1]) && (_tidx < _range[_i])) {
+        return _pal[_i-1];
       }
     }
     return _pal[ _pal.length-1 ];
   };
 }
 
-function curve3d_hibiscus(x0,y0, s, vr, theta) {
-  let idx_region_xy_4 = [
-    [0,24],
-    [24,28],
-    [28,36],
-    [36,40],
-    [40,64],
+function curve3d_hellebore(x0,y0, s, vr, theta) {
+
+  idx_region_xy = [
+    0,
+    64,
+    90,
+    114,
+    144,
+    160,
+    172,
+    186,
+    216
   ];
 
-  let idx_region_xy_5 = [
-    [0,20],
-    [20,32],
-    [32,77],
-    [77,95],
-    [95,125],
-  ];
-  let idx_region_xy = idx_region_xy_5;
+  let WHD = [6,6,6];
 
-  let WHD = [5,5,5];
+  let pnts = Hellebore3D(WHD[0],WHD[1],WHD[2]);
 
-  let pnts = Hibiscus3D(WHD[0],WHD[1],WHD[2]);
+  let order = [0,1,2,3,4,5,6,7];
 
-  let order = [0,4,1,3,2];
+  let col = PAL8;
 
-  let col = [
-    PAL[0],
-    PAL[1],
-
-    '#aa9803',
-
-    PAL[3],
-    PAL[4],
-  ];
-
-  //return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
   let colormap_f = mk_colormap_f(idx_region_xy, col);
   mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
 
   return;
-}
-
-function curve3d_peony(x0,y0, s, vr, theta) {
-  let idx_region_xy_5 = [
-    [0,95],
-    [95,125],
-  ];
-
-  let idx_region_xy_744 = [
-    [0,64],
-    [64,112],
-  ];
-
-  let idx_region_xy = idx_region_xy_5;
-  idx_region_xy = idx_region_xy_744;
-
-  let WHD = [7,4,4];
-
-  let pnts = Peony3D(WHD[0],WHD[1],WHD[2]);
-
-  let order = [0,1];
-
-  let col = [
-    PAL[0],
-    PAL[4],
-  ];
-
-  //return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
-
-  let colormap_f = mk_colormap_f(idx_region_xy, col);
-  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
-
-}
-
-function curve3d_milfoil(x0,y0, s, vr, theta) {
-  let idx_region_xy_4 = [
-    [0,24],
-    [24,28],
-    [28,36],
-    [36,40],
-    [40,64],
-  ];
-
-  let idx_region_xy_5 = [
-    [0,30],
-    [30,57],
-    [57,87],
-    [87,95],
-    [95,125],
-  ];
-  let idx_region_xy = idx_region_xy_5;
-
-  let WHD = [5,5,5];
-
-  let pnts = Milfoil3D(WHD[0],WHD[1],WHD[2]);
-
-  let order = [0,3,4,2,1];
-
-  let col = [
-    PAL[0],
-    PAL[1],
-
-    '#aa9803',
-
-    PAL[3],
-    PAL[4],
-  ];
-
-  //return curve3d_fig(x0,y0,s, vr, theta, pnts, idx_region_xy, WHD, order, col);
-
-  let colormap_f = mk_colormap_f(idx_region_xy, col);
-  mkg3curve([x0,y0], WHD, s, vr, theta, pnts, colormap_f);
-}
-
-function curve3d_fig(x0,y0,s,vr, theta, pnts, idx_region_xy, WHD, order, col ) {
-  let two = g_fig_ctx.two;
-
-  let q = s*Math.sqrt(3)/2;
-
-  let pfac = 30;
-
-  let prv_beg = [-1,-1],
-      prv_end = [-1,-1];
-
-  let join_points = [];
-  let curve_points  = [];
-  let endpoint = [];
-
-  let pnt_color = [];
-
-  let n_group = idx_region_xy.length;
-
-  let beg_end_proj_pnt = [];
-  for (let idx=0; idx < n_group; idx++) { beg_end_proj_pnt.push( [] ); }
-
-
-  for (let _gidx=0; _gidx<idx_region_xy.length; _gidx++) {
-
-    let gidx = order[_gidx];
-    //gidx = _gidx;
-
-    let _beg = idx_region_xy[gidx][0];
-    let _end = idx_region_xy[gidx][1];
-
-    let cur_beg = [-1,-1],
-        cur_end = [-1,-1];
-
-
-    let _p = [];
-    for (let idx=_beg; idx<_end; idx++) {
-
-      let _xyz = pnts[idx];
-      let xyz = njs.mul(s, rodrigues( [_xyz[0], _xyz[1], _xyz[2]], vr, theta ));
-
-      let xy = njs.add( _project(xyz[0], xyz[1], xyz[2],s), [x0,y0] );
-      _p.push(xy);
-
-      let sz = WHD[0]*WHD[1]*WHD[2];
-      //if ((idx==0) || (idx==(N*N*N-1))) {
-      if ((idx==0) || (idx==(sz-1))) {
-        endpoint.push( [xy[0], xy[1]] );
-      }
-
-
-      if      (idx == _beg)     { cur_beg = xy; }
-      else if (idx == (_end-1)) { cur_end = xy; }
-    }
-
-    beg_end_proj_pnt[gidx] = [cur_beg, cur_end];
-
-    //if (_gidx>0) {
-    //if (gidx>0) { join_points.push( [[prv_end[0],prv_end[1]], [cur_beg[0], cur_beg[1]]] ); }
-
-    prv_beg = cur_beg;
-    prv_end = cur_end;
-
-    curve_points.push(_p);
-
-    pnt_color.push( col[gidx] );
-
-  }
-
-  for (let idx=1; idx < n_group; idx++) {
-    let prv_end = beg_end_proj_pnt[idx-1][1];
-    let cur_beg = beg_end_proj_pnt[idx][0];
-
-    join_points.push( [[prv_end[0],prv_end[1]], [cur_beg[0], cur_beg[1]]] );
-  }
-
-  for (let idx=0; idx< curve_points.length; idx++) {
-    let _p = curve_points[idx];
-
-    let v = makeTwoVector(_p);
-    let p = two.makePath(v);
-    p.linewidth = 4;
-    p.stroke = pnt_color[idx];
-
-    p.noFill();
-
-    p.join = "round";
-    p.cap = "round";
-    p.closed = false;
-
-  }
-
-  for (let i=0; i<endpoint.length; i++) {
-    let c = two.makeCircle( endpoint[i][0], endpoint[i][1], 4 );
-    c.linewidth = 1;
-    c.stroke = '#000';
-    c.fill = 'rgb(250,250,250)';
-    if (i==0) { c.fill = "rgb(0,0,0)"; }
-  }
-
-
-  for (let gidx=0; gidx<join_points.length; gidx++) {
-    let jp = join_points[gidx];
-    _Line1( jp[0][0], jp[0][1], jp[1][0], jp[1][1], "rgb(60,60,60)", 4, 0.7);
-
-    let _r = 3.5;
-
-    let _c0 = two.makeCircle( jp[0][0], jp[0][1], _r);
-    _c0.linewidth = 0;
-    _c0.stroke = "#000"
-    _c0.fill = "rgb(60,60,60)";
-    _c0.opacity = 0.8;
-
-    let _c1 = two.makeCircle( jp[1][0], jp[1][1], _r);
-    _c1.linewidth = 0;
-    _c1.stroke = "#000"
-    _c1.fill = "rgb(60,60,60)";
-    _c1.opacity = 0.8;
-  }
-
-  two.update();
 }
 
 //----
@@ -1950,23 +1795,42 @@ function gilbert3d_hellebore() {
 
   theta = -Math.PI/2 + Math.PI/9;
 
+  let txt_x = [70, 490, 890];
+  let gfx_x = [50, 450, 850];
+
+  let txt_y = [290, 590];
+  let gfx_y = [480, 780];
+
+  txt_y = [300, 630];
+  gfx_y = [490, 830];
+
+  let curve_s = 12;
+  let curve_dxy = [210,-50,
+                   309, 50];
+
   two.makeText("Hellebore:",70, 120, font_style);
   hellebore_block3d(250, 190, 40, vr, theta);
 
-  two.makeText("000:",30, 290, font_style);
-  hellebore_s0_block3d(50, 480, 40, vr, theta);
+  two.makeText("000:",30, txt_y[0], font_style);
+  hellebore_s0_block3d(gfx_x[0], gfx_y[0], 40, vr, theta);
 
-  two.makeText("001,010,100:",70, 590, font_style);
-  hellebore_s1_block3d(50, 780, 40, vr, theta);
+  curve3d_hellebore( gfx_x[0]+curve_dxy[0], gfx_y[0]+curve_dxy[1], curve_s, vr, theta);
+  curve3d_hellebore( gfx_x[0]+curve_dxy[2], gfx_y[0]+curve_dxy[3], curve_s, vr, theta + Math.PI);
 
-  two.makeText("011:",490, 290, font_style);
-  hellebore_011_block3d(450, 480, 40, vr, theta);
+  two.makeText("001,010,100:",70, txt_y[1], font_style);
+  hellebore_s1_block3d(gfx_x[0], gfx_y[1], 40, vr, theta);
 
-  two.makeText("101:",490, 590, font_style);
-  hellebore_101_block3d(450, 780, 40, vr, theta);
+  two.makeText("011:",txt_x[1], txt_y[0], font_style);
+  hellebore_011_block3d(gfx_x[1], gfx_y[0], 40, vr, theta);
 
-  two.makeText("110:",890, 290, font_style);
-  hellebore_110_block3d(850, 480, 40, vr, theta);
+  two.makeText("101:",txt_x[1], txt_y[1], font_style);
+  hellebore_101_block3d(gfx_x[1], gfx_y[1], 40, vr, theta);
+
+  two.makeText("110:",txt_x[2], txt_y[0], font_style);
+  hellebore_110_block3d(gfx_x[2], gfx_y[0], 40, vr, theta);
+
+  two.makeText("111:",txt_x[2], txt_y[1], font_style);
+  hellebore_111_block3d(gfx_x[2], gfx_y[1], 40, vr, theta);
 
   axis_fig(50,60, 20, vr, theta);
   two.update();
