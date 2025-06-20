@@ -1245,13 +1245,13 @@ function hellebore_111_block3d(x0,y0,s0, vr, theta) {
 
     // A
     //
-    [1-dw2,2-dw2,dw2],
+    [1-dw2,2-dw2,2-dw2],
     [1-dw2,dw2,dw2],
 
     // B
     //
     [dw2,dw2,dw2],
-    [dw2,2-dw2,dw2],
+    [dw2,2-dw2,2-dw2],
   ];
 
   let dock_xyz = [];
