@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  2 JUN 2025 20:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  23 DEC 2025 02:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2044,7 +2044,7 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 Here is how much of TeX's memory you used:
  42645 strings out of 480171
  833084 string characters out of 5894489
- 1217601 words of memory out of 5000000
+ 1217600 words of memory out of 5000000
  59155 multiletter control sequences out of 15000+600000
  661539 words of font info for 412 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
