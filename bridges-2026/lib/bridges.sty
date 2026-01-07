@@ -1,0 +1,122 @@
+% LaTeX style file for Brides Conference Proceedings
+%
+% 11 May 2006
+%
+% Helmer Aslaksen
+% Department of Mathematics
+% National University of Singapore
+% Singapore 117543
+% aslaksen@math.nus.edu.sg
+% www.math.nus.edu.sg/aslaksen/
+%
+% Updated 28 Nov 2017 		
+% Bruce Torrence	
+% http://faculty.rmc.edu/btorrenc/	
+%				
+% - Added \usepackage{newtxtext} and \usepackage{newtxmath} to switch the default fonts to 
+%   txfonts (essentially Times New Roman, but with full symbolic support for mathematics).
+% - Added \usepackage{caption} to customize caption formatting, replacing earlier re-definition 
+%   of \@makecaption, which failed to italicize caption text, provide hanging indent for 
+%   multi-line captions, and to center the caption.
+% - Added \usepackage{titlesec} to customize section/subsection formatting, replacing 
+%   earlier re-definition of \@startsection, which did not simultaneously allow centering 
+%   of sections AND left-alignment of subsections. Also defined subsubsections to behave
+%   like subsections, but with "runin" so text begins on the same line as the heading.
+%
+%
+%
+% To use this file, please put it in the same directory as your TeX file
+% (or some other place where TeX will find it),
+% add the 11pt option
+% \documentclass[11pt]{article}
+% to get 11 point type,
+% add the line
+% \usepackage{bridges} to your preamble to load this package,
+% and add
+% \thispagestyle{empty}
+% after \maketitle to remove page numbers on the first page.
+
+% To get 2.5cm margins on all pages.
+\usepackage[margin=2.5cm,noheadfoot]{geometry}
+
+% Use Times Roman font for text.
+\usepackage{newtxtext}
+
+% Use Times Roman font for mathematics.  
+\usepackage{newtxmath}
+
+% Remove page numbers.
+\pagestyle{empty}
+
+% Set the indentation at the start of paragraphs.
+\setlength{\parindent}{0.3in}
+
+% Set a spacing between paragraphs.
+\setlength{\parskip}{.5ex}
+
+% LaTeX adds space before the title and uses 17 point non bold font.
+% I've removed space to make the top margin 3 cm on the first page
+% and changed the text to 16 point bold.
+% The author's name and address is set in 12 point by default.
+\def\@maketitle{%
+  \newpage
+  \null
+  \vspace*{-0.1cm}%
+  \begin{center}%
+  \let \footnote \thanks
+    {\fontsize{16}{18}\selectfont\bfseries \@title \par}%
+    \vskip 1em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1em}
+
+
+% Make abstract heading 12 point bold and text 9 point.
+\renewenvironment{abstract}{%
+        \footnotesize
+        \begin{center}%
+          {\bfseries\large \abstractname\vspace{-.5ex}\vspace{\z@}}%
+        \end{center}%
+        \quotation}
+
+% Remove the indentation of the first line of paragraphs in the abstract
+% and add space between the lines in the paragraph.
+\renewenvironment{quotation}
+               {\list{}{\listparindent 0em%
+                        \itemindent    \listparindent
+                        \rightmargin   \leftmargin
+                        \parsep        9\p@ \@plus\p@}%
+                \item\relax}
+               {\endlist}
+
+
+% Make the labels of figure and table captions bold, while caption text is italic and centered, 
+% with hanging indent for multi-line captions
+\usepackage[format=plain,labelfont=bf,textfont=it,format=hang,justification=centering]{caption}
+
+
+% Format Headings:
+\usepackage{titlesec}
+% Make the section headings: 12 pt, bold, centered
+\titleformat{\section} % {⟨format⟩}{⟨label⟩}{⟨sep⟩}{⟨before-code⟩}[⟨after-code⟩]
+  {\centering\normalfont\large\bfseries}{\thesection}{1em}{}[\vspace{-1ex}] 
+% Make the subsection headings: 11 pt, bold, italic, left justified
+\titleformat{\subsection}
+  {\normalfont\bfseries\itshape\raggedright}{\thesubsection}{1em}{}
+\titlespacing*{\subsection} % The * keeps the first paragraph non-indented
+  {0ex}{1.5ex plus .1ex minus .2ex}{0.5ex minus .1ex} % {⟨left⟩}{⟨above⟩}{⟨below⟩}[⟨right⟩]
+% Also define subsubsection; like subsection, but "runin" is enabled, so first 
+% paragraph begins on same line as heading
+\titleformat{\subsubsection}[runin]
+  {\normalfont\bfseries\itshape}{\thesubsubsection.}{0.25em}{}  
+\titlespacing{\subsubsection} % 
+  {0ex}{1.5ex plus .1ex minus .2ex}{1em} % {⟨left⟩}{⟨before⟩}{⟨after⟩}[⟨right⟩]
+  
+

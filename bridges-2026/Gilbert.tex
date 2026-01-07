@@ -1,0 +1,148 @@
+%% The first command in your LaTeX source must be the \documentclass command.
+%%
+%% Options:
+%% twocolumn : Two column layout.
+%% hf: enable header and footer.
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{bridges}
+\usepackage{graphicx}
+
+\usepackage[colorlinks=true, urlcolor=blue, citecolor=black, linkcolor=black]{hyperref}
+\usepackage{subcaption}
+
+
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+
+%\usepackage{svg}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{tikz}
+
+\urlstyle{rm}
+
+
+%%
+%% One can fix some overfulls
+\sloppy
+
+%%
+%% Minted listings support 
+%% Need pygment <http://pygments.org/> <http://pypi.python.org/pypi/Pygments>
+\usepackage{listings}
+
+%% auto break lines
+\lstset{breaklines=true}
+
+\title{ A Generalized 2D and 3D Hilbert Curve }
+\author{ Jakub \v{C}erven\'{y} and Zzyv Zzyzek }
+%\input{AUTHOR.tex}
+
+\date{}
+
+%%
+%% Rights management information.
+%% CC-BY is default license.
+%\copyrightyear{2026}
+%\copyrightclause{Copyright for this paper by its authors.
+%  Use permitted under Creative Commons License Attribution 4.0
+%  International (CC BY 4.0).}
+
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+\maketitle
+
+%%
+%% This command is for the conference information
+%\conference{EXAG 2024: AIIDE Workshop on Experimental AI in Games, November 18--22, 2024, Lexington, KY, USA}
+%\input{CONFERENCE.tex}
+
+
+\begin{abstract}
+The two and three dimensional Hilbert curves are fractal space filling curves that
+map the unit interval to the unit square or unit cube while preserving locality, or
+  notions of distance.
+We present the Gilbert curve,
+a conceptually straight forward generalization of the Hilbert curve,
+that works on arbitrary rectangular regions, overcoming the limitation of the Hilbert
+  curve that requires side lengths be exact powers of two.
+The construction provides reasonable worst case run-time guarantees for random
+access lookups for both two and three dimensions.
+We provide experiments showing comparable quality in locality of the Gilbert curve
+to the Hilbert curve for a range of cuboid regions and discuss some limitations of
+  the construction algorithm.
+\end{abstract}
+
+
+%\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+%\newcommand{\specialcellCenter}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+  \input{01-intro.tex}
+
+%\input{01-Introduction.tex}
+%\input{02-Related-Work.tex}
+%\input{03-Algorithm.tex}
+%\input{04-Results.tex}
+%\input{05-Conclusion.tex}
+
+
+%\bibliographystyle{unsrtnat}
+%\bibliography{06-References}
+
+
+{\setlength{\baselineskip}{13pt} % tighten line spacing for bibliography
+\raggedright        % no right justification for References
+\begin{thebibliography}{99}
+
+
+  \bibitem{lutanho2003} L. Tautenhahn. ``Draw a space-filling curve of arbitrary size.'' 2003. \url{https://lutanho.net/pic2html/draw_sfc.html}.
+
+
+%
+%\bibitem{Chang}
+%W. Chang. \LaTeX\ \textit{Cheat Sheet}. 2014. \url{http://wch.github.io/latexsheet/}.
+%
+%\bibitem{EJCx}
+%M.\ Chladn\'y and M.\ \v Skoviera. ``Factorisation of Snarks.'' \textit{Electronic Journal
+%of Combinatorics}, vol.~17, no.~1, R32, 2010.
+%\url{http://www.combinatorics.org/Volume_17/PDF/v17i1r32.pdf}.
+%
+%\bibitem{Coxeter} H.\ S.\ M.\ Coxeter. ``The Non-Euclidean Symmetry of Escher's Picture
+%Circle Limit III.'' \textit{Leonardo}, vol.~12, no.~1, 1979, pp.~19--25.
+%
+%\bibitem{easychair} EasyChair. Log in page. \url{https://easychair.org/account/signin.cgi}.
+%
+%\bibitem{Gratzer} G.\ Gr\"atzer. \textit{More Math Into} \LaTeX, 4th ed. Springer, 2007.
+%
+%\bibitem{Sequin2016} C.\ H.\ S\'equin. ``From Klein Bottles to Modular Super-Bottles.''
+%\textit{Bridges Conference Proceedings}, Jyv\"askyl\"a, Finland, Aug. 9--13,
+%2016, pp.~41--48. \url{http://archive.bridgesmathart.org/2016/bridges2016-41.html}.
+%
+
+\end{thebibliography}
+} % end setlength, raggedright
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
+  \label{fig:footerGilbert}
+\end{figure}
+
+%  \caption{ Illustrative examples of Hamiltonian paths height/width that are even/even, even/odd and odd/odd, respectively, when starting from the lower left hand corner }
+
+
+
+%\appendix
+%\input{07-Appendix.tex}
+%\input{08-Appendix-Alg.tex}
+
+
+\end{document}
+

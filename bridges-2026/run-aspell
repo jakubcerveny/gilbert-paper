@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# https://unix.stackexchange.com/questions/325869/aspell-how-to-ignore-words-permanently/325870#325870
+#
+
+for fn in `echo Gilbert.tex 01-Introduction.tex  02-Related-Work.tex  03-Algorithm.tex  04-Results.tex  05-Conclusion.tex  07-Appendix.tex 08-Appendix-Alg.tex` ; do
+  aspell --home-dir=. --personal=jargon.txt -t -c "$fn"
+done
+
