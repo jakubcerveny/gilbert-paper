@@ -468,6 +468,7 @@ function gilbert3d_examples() {
 
   two.makeText("ii)", 330, 80, font_style);
   mkg3curve([350,220], [6, 6, 6], 30);
+  //mkg3curve([350,220], [7, 7, 7], 30);
 
   //mkg3curve([40,420], [8, 4, 4], 30);
   two.makeText("iii)", 25, 320, font_style);
