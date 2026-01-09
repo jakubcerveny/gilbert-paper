@@ -128,69 +128,76 @@ kindly provided the reasoning for the constants used in the eccentric split }.
 \end{figure}
 
 
-\section*{Valid Paths from Grid Parity}
+%\section*{Valid Paths from Grid Parity}
 
-\begin{figure}[!htb]
+%\begin{figure}[!htb]
+%
+%  \begin{minipage}{0.48\textwidth}
+%
+%    \centering
+%    %\begin{table}[h]
+%    %  \centering
+%      \begin{tabular}[t]{cr|cc}
+%        \multicolumn{2}{c}{ \multirow{2}{*}{Path Possible} } & \multicolumn{2}{c}{Volume} \\
+%        & & \textit{even} & \textit{odd} \\
+%        \hline
+%          %\multirow{2}{*}{$|\alpha| \bmod 2$} & \textit{even} & Yes & Yes \\
+%          \multirow{2}{*}{ $|\alpha|$ } & \textit{even} & Yes & Yes \\
+%           & \textit{odd} & \textbf{No} & Yes \\
+%         \hline
+%      \end{tabular}
+%      \caption{ $|\alpha|$ is the distance of endpoints.
+%                A Hamiltonian path is possible only when $|\alpha|$ is even or both
+%                $|\alpha|$ and the volume are odd. }
+%      \label{table:pathTable}
+%    %\end{table}
+%
+%  \end{minipage}\hfill
+%  \begin{minipage}{0.48\textwidth}
+%
+%    \centering
+%    \includegraphics[width=\linewidth]{simple_hampath.pdf}
+%    \caption{ Examples of Hamiltonian paths for small grid sizes. A red `x' corresponds to no possible path for the chosen endpoints. }
+%    \label{fig:exampleHampath}
+%
+%  \end{minipage}
+%
+%\end{figure}
 
-  \begin{minipage}{0.48\textwidth}
-
-    \centering
-    %\begin{table}[h]
-    %  \centering
-      \begin{tabular}[t]{cr|cc}
-        \multicolumn{2}{c}{ \multirow{2}{*}{Path Possible} } & \multicolumn{2}{c}{Volume} \\
-        & & \textit{even} & \textit{odd} \\
-        \hline
-          %\multirow{2}{*}{$|\alpha| \bmod 2$} & \textit{even} & Yes & Yes \\
-          \multirow{2}{*}{ $|\alpha|$ } & \textit{even} & Yes & Yes \\
-           & \textit{odd} & \textbf{No} & Yes \\
-         \hline
-      \end{tabular}
-      \caption{ $|\alpha|$ is the distance of endpoints.
-                A Hamiltonian path is possible only when $|\alpha|$ is even or both
-                $|\alpha|$ and the volume are odd. }
-      \label{table:pathTable}
-    %\end{table}
-
-  \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
-
-    \centering
-    \includegraphics[width=\linewidth]{simple_hampath.pdf}
-    \caption{ Examples of Hamiltonian paths for small grid sizes. A red `x' corresponds to no possible path for the chosen endpoints. }
-    \label{fig:exampleHampath}
-
-  \end{minipage}
-
-
-\end{figure}
-
-The feasibility of determining whether there exists a non intersecting path, called a \textit{Hamiltonian path},
-connecting endpoints on the corners in a rectangular cuboid
-grid region can be accomplished through parity arguments.
-Label grid cell points in a volume as 0 or 1,
-alternating between labels with every axis-aligned single step move.
-Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
-volume is odd, or different parity if the volume is even.
-
-For a path starting at $(0,0,0)$ and ending $|\alpha|$ steps in one of the axis-aligned dimensions,
-then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
-Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with areas $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
-where a red cross indicating a precluded endpoint.
-
-Assuming a curve starts from position $p_s=(0,0,0)$ and has proposed
-endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
-We focus on optimizing for providing a notch-free path when all side lengths are even and allow notches when $|\alpha|$ is odd in 2D
-or when one of the side lengths is odd in 3D.
-
-The 2D Gilbert curve limits the number of notches to one.
-The 3D Gilbert curve's subdivision strategy creates a notch when the distance between endpoints is odd,
-potentially creating more than one notch.
-
-In both the 2D and 3D case, when the original side lengths are all even, no notches will be present.
-
+%The feasibility of determining whether there exists a non intersecting path, called a \textit{Hamiltonian path},
+%connecting endpoints on the corners in a rectangular cuboid
+%grid region can be accomplished through parity arguments.
+%Label grid cell points in a volume as 0 or 1,
+%alternating between labels with every axis-aligned single step move.
+%Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
+%volume is odd, or different parity if the volume is even.
+%
+%For a path starting at $(0,0,0)$ and ending $|\alpha|$ steps in one of the axis-aligned dimensions,
+%then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
+%Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with areas $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
+%where a red cross indicating a precluded endpoint.
+%
+%Assuming a curve starts from position $p_s=(0,0,0)$ and has proposed
+%endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
+%We focus on optimizing for providing a notch-free path when all side lengths are even and allow notches when $|\alpha|$ is odd in 2D
+%or when one of the side lengths is odd in 3D.
+%
+%The 2D Gilbert curve limits the number of notches to one.
+%The 3D Gilbert curve's subdivision strategy creates a notch when the distance between endpoints is odd,
+%potentially creating more than one notch.
+%
+%In both the 2D and 3D case, when the original side lengths are all even, no notches will be present.
+%
 
 \section*{Subdivision Strategies}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\linewidth]{config_production.pdf}
+  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
+  \label{fig:production2d}
+\end{figure}
+
 
 \begin{figure}[!htb]
 
@@ -209,15 +216,8 @@ In both the 2D and 3D case, when the original side lengths are all even, no notc
 
 \end{figure}
 
-\begin{figure*}[ht]
-  \centering
-  \includegraphics[width=\linewidth]{config_production.pdf}
-  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
-  \label{fig:production2d}
-\end{figure*}
-
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
-Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{gilbert3DJSplit} shows the 3D template.
+Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
 
 
 When dividing into sub-regions, side lengths are chosen to be integral and with even side lengths preferred
@@ -245,95 +245,6 @@ The subdivision scheme will keep the notch in a single region, limiting the notc
 For the 3D Gilbert curve, if any of the subdivided regions has endpoints that lay in a direction with
 odd length, a notch will appear.
 This means the number of notches for the 3D Gilbert curve isn't limited to one.
-
-
-Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
-Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
-can be ignored if a purely 2D curve is desired.
-The generalization to 3D allows the Gilbert2D function to be used unaltered when the
-3D Gilbert curve needs to trace out in-plane sub-curves.
-
-The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
-the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
-
-Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
-and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
-where the context is clear.
-
-
-\begin{minipage}[ht]{0.48\linewidth}
-\begin{algorithm}[H]
-  \begin{algorithmic}
-
-    \State \textit{\# $p, \alpha, \beta \in \mathbb{Z}^3$}
-    \Function{Gilbert2D}{$p$, $\alpha$, $\beta$}
-      \State $\alpha_2, \beta_2  = \text{div}(\alpha, 2), \text{div}(\beta, 2)$
-      \If{ $(|\beta| \equiv 1)$ }
-        \State \textbf{yield} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\alpha|$
-      \ElsIf{ $(|\alpha| \equiv 1)$ }
-        \State \textbf{yield} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\beta|$
-      \ElsIf{ $(2 |\alpha| > 3 |\beta|)$ }
-        \If{ $(|\alpha_2| > 2)$ and $(|\alpha_2| \bmod{2} \equiv 1)$ }
-          \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
-        \EndIf
-        \State \textbf{yield} Gilbert2D($p$, $\alpha_2$, $\beta$)
-        \State \textbf{yield} Gilbert2D($p + \alpha_2$, $\alpha - \alpha_2$, $\beta$)
-      \Else
-        \If{ $(|\beta_2| > 2)$ and $(|\beta_2| \bmod{2} \equiv 1)$ }
-          \State $\beta_2 \leftarrow \beta_2 + \delta(\beta)$
-        \EndIf
-        \State \textbf{yield} Gilbert2D($p$, \\ \hskip9.75em $\beta_2$, $\alpha_2$)
-        \State \textbf{yield} Gilbert2D($p + \beta_2$, \\ \hskip9.75em $\alpha$, $(\beta - \beta_2)$)
-        \State \textbf{yield} Gilbert2D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$, \\ \hskip9.75em $\beta_2$, $-(\alpha - \alpha_2)$)
-      \EndIf
-    \EndFunction
-
-  \end{algorithmic}
-\end{algorithm}
-\end{minipage}\hfill
-\begin{minipage}[ht]{0.48\linewidth}
-\begin{algorithm}[H]
-  \begin{algorithmic}
-
-    \State \textit{\# $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$}
-    \Function{Gilbert3D}{$p$, $\alpha$, $\beta$, $\gamma$}
-
-    \State
-    \State\textit{\# Parity of dimensions}
-
-    \State $\alpha_0 \leftarrow (|\alpha|\bmod{2})$
-    \State $\beta_0 \leftarrow (|\beta|\bmod{2})$
-    \State $\gamma_0 \leftarrow (|\gamma|\bmod{2})$
-
-    \State
-    \State\textit{\# Base cases }
-    \State \textbf{if} ($(|\alpha|\equiv 2)$ and $(|\beta|\equiv 2)$ and $(|\gamma| \equiv 2)$)
-    \State \hskip1.5em \Return Hilbert3D($p$,$\alpha$,$\beta$,$\gamma$)
-    \State \Return Gilbert2D($p$,$\beta$,$\gamma$) \textbf{if} $(|\alpha| \equiv 1)$
-    \State \Return Gilbert2D($p$,$\alpha$,$\gamma$) \textbf{if} $(|\beta| \equiv 1)$
-    \State \Return Gilbert2D($p$,$\alpha$,$\beta$) \textbf{if} $(|\gamma| \equiv 1)$
-
-    \State
-    \State\textit{\# Eccentric cases }
-
-    \State \textbf{if }$(3 |\alpha|>5|\beta|) \text{ and } (3|\alpha|>5|\gamma|))$
-    \State \hskip1.5em \Return $S _ 0$($p$,$\alpha$,$\beta$,$\gamma$)
-    \State \textbf{if }$(2 |\beta| > 3 |\gamma|) \text{ or }(2 |\beta| > 3 |\alpha|))$
-    \State \hskip1.5em \Return $S _ 2$($p$,$\alpha$,$\beta$,$\gamma$)
-    \State \textbf{if }$(2 |\gamma| > 3 |\beta|)$
-    \State \hskip1.5em \Return $S _ 1$($p$,$\alpha$,$\beta$,$\gamma$)
-
-    \State
-    \State \textit{\# Bulk recursion }
-    \State \Return $J _ 0$($p$,$\alpha$,$\beta$,$\gamma$) \textbf{if} $(\gamma_0 \equiv 0)$
-    \State \Return $J _ 1$($p$,$\alpha$,$\beta$,$\gamma$) \textbf{if} $(\alpha_0 \equiv 0)$or$(\beta_0\equiv 0)$
-    \State \Return $J _ 2$($p$,$\alpha$,$\beta$,$\gamma$)
-
-    \EndFunction
-
-  \end{algorithmic}
-\end{algorithm}
-\end{minipage}
 
 \section*{Eccentric Subdivision}
 
@@ -381,22 +292,19 @@ where the context is clear.
 \end{figure}
 
 
-
-
-When side lengths become too lopsided, an alternate subdivision scheme is chosen to split along
-the larger side length or lengths.
+When side lengths become too lopsided, an alternate \textit{eccentric} subdivision scheme is chosen to split along
+the larger side length.
 
 For each eccentric subdivision, a proportion threshold needs to be chosen to determine when a side
 lengths become too lopsided to warrant an alternate subdivision.
-Here we motivate the eccentric subdivision and the constants chosen for it.
+Here we motivate the eccentric subdivision constants for the 2D case.
 
-Consider a \textit{defect} function, $\lambda _ d : \mathbb{N}^d \mapsto \mathbb{N}$, that measures the area or volume relative
-to what the area or volume would be if it just the minimum side length were taken:
+Consider a \textit{defect} function, $\lambda _ 2 : \mathbb{N}^2 \mapsto \mathbb{N}$, that measures the area relative
+to what the area would be if it just the minimum side length were taken:
 
 $$
 \begin{array}{ll}
   \lambda _ 2 (|\alpha|,|\beta|) = \frac{ |\alpha| \cdot |\beta| }{ \text{min}(|\alpha|,|\beta|)^2 } \\
-  \lambda _ 3 (|\alpha|,|\beta|,|\gamma|) = \frac{ |\alpha| \cdot |\beta| \cdot |\gamma| }{ \text{min}(|\alpha|,|\beta|,|\gamma|)^3 }
 \end{array}
 $$
 
@@ -406,23 +314,16 @@ define the \textit{average defect} of the subdivided volume to be the sum of def
 
 $$
 \begin{array}{l}
-  \lambda _ {s} ( V _ 1 ) = \sum _ {k} \frac{ \text{Vol}(V _ {0,k}) }{ \text{Vol}( V _ 0 ) } \cdot \lambda( V _ {0,k} )
+  \lambda _ {s} ( V _ 1 ) = \sum _ {k} \frac{ \text{Vol}(V _ {0,k}) }{ \text{Vol}( V _ 0 ) } \cdot \lambda _ 2( V _ {0,k} )
 \end{array}
 $$
 
 The defect gives a coarse idea of how lopsided or \textit{eccentric} a cuboid region is.
 If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
+Reducing the average defect attempts to make each subdivided region more square-like.
+When subdivided areas are more square-like, we say that the subdivided regions are more \textit{harmonious}.
 
-Reducing the average defect attempts to make each subdivided cuboid more cube-like.
-When subdivided cuboids are more cube-like, we say that the subdivided regions are more \textit{harmonious}.
-The same idea is applied for 2D rectangles and rectangular regions that are more square like are said to be
-more harmonious.
-
-We work out the threshold value for the eccentric split of the 2D case.
-Threshold values for the 3D case are not provided in this paper.
-
-For the 2D Gilbert curve,
-if the $\alpha$ side length is significantly longer than the $\beta$ side length,
+If the $\alpha$ side length is significantly longer than the $\beta$ side length,
 we want to subdivide the rectangle into two nearly equal regions and recursively find
 a Gilbert curve in each region.
 We will justify the constant $(3/2)$ as the ratio threshold to split on using an argument
@@ -461,6 +362,132 @@ be assured a defect reduction.
 
 In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
 \footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
+
+
+Defect reductions for the 3D case can be done but are more complated.
+The constants for the 3D subdivision in this paper were observed to yield visually pleasing results.
+
+\section*{Algorithm}
+
+
+\begin{minipage}[ht]{0.45\linewidth}
+\begin{algorithm}[H]
+  \caption{ }
+  \label{alg:gilbert2d}
+  \begin{algorithmic}
+
+    \State \textit{\# $p, \alpha, \beta \in \mathbb{Z}^3$}
+    \Function{Gilbert2D}{$p$, $\alpha$, $\beta$}
+      \State $\alpha_2, \beta_2  = \text{div}(\alpha, 2), \text{div}(\beta, 2)$
+      \If{ $(|\beta| \equiv 1)$ }
+        \State \textbf{yield} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\alpha|$
+      \ElsIf{ $(|\alpha| \equiv 1)$ }
+        \State \textbf{yield} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\beta|$
+      \ElsIf{ $(2 |\alpha| > 3 |\beta|)$ }
+        \If{ $(|\alpha_2| > 2)$ and \\ \hskip4.12em $(|\alpha_2| \bmod{2} \equiv 1)$ }
+          \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
+        \EndIf
+        \State \textbf{yield} Gilbert2D($p$, $\alpha_2$, $\beta$)
+        \State \textbf{yield} Gilbert2D($p + \alpha_2$, $\alpha - \alpha_2$, $\beta$)
+      \Else
+        \If{ $(|\beta_2| > 2)$ and \\ \hskip4.12em $(|\beta_2| \bmod{2} \equiv 1)$ }
+          \State $\beta_2 \leftarrow \beta_2 + \delta(\beta)$
+        \EndIf
+        \State \textbf{yield} Gilbert2D($p$, \\ \hskip9.75em $\beta_2$, $\alpha_2$)
+        \State \textbf{yield} Gilbert2D($p + \beta_2$, \\ \hskip9.75em $\alpha$, $(\beta - \beta_2)$)
+        \State \textbf{yield} Gilbert2D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$, \\ \hskip9.75em $\beta_2$, $-(\alpha - \alpha_2)$)
+      \EndIf
+    \EndFunction
+
+  \end{algorithmic}
+\end{algorithm}
+\end{minipage}\hfill
+\begin{minipage}[ht]{0.45\linewidth}
+\begin{algorithm}[H]
+  \caption{ }
+  \label{alg:gilbert3d}
+  \begin{algorithmic}
+
+    \State \textit{\# $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$}
+    \Function{Gilbert3D}{$p$, $\alpha$, $\beta$, $\gamma$}
+
+    \State
+    \State\textit{\# Parity of dimensions}
+
+    \State $\alpha_0 \leftarrow (|\alpha|\bmod{2})$
+    \State $\beta_0 \leftarrow (|\beta|\bmod{2})$
+    \State $\gamma_0 \leftarrow (|\gamma|\bmod{2})$
+
+    \State
+    \State\textit{\# Base cases }
+    \State \textbf{if} ($(|\alpha|\equiv 2)$ and $(|\beta|\equiv 2)$ and $(|\gamma| \equiv 2)$)
+    \State \hskip1.5em \Return Hilbert3D($p$,$\alpha$,$\beta$,$\gamma$)
+    \State \Return Gilbert2D($p$,$\beta$,$\gamma$) \textbf{if} $(|\alpha| \equiv 1)$
+    \State \Return Gilbert2D($p$,$\alpha$,$\gamma$) \textbf{if} $(|\beta| \equiv 1)$
+    \State \Return Gilbert2D($p$,$\alpha$,$\beta$) \textbf{if} $(|\gamma| \equiv 1)$
+
+    \State
+    \State\textit{\# Eccentric cases }
+
+    \State \textbf{if }$(3 |\alpha|>5|\beta|) \text{ and } (3|\alpha|>5|\gamma|))$
+    \State \hskip1.5em \Return $S _ 0$($p$,$\alpha$,$\beta$,$\gamma$)
+    \State \textbf{if }$(2 |\beta| > 3 |\gamma|) \text{ or }(2 |\beta| > 3 |\alpha|))$
+    \State \hskip1.5em \Return $S _ 2$($p$,$\alpha$,$\beta$,$\gamma$)
+    \State \textbf{if }$(2 |\gamma| > 3 |\beta|)$
+    \State \hskip1.5em \Return $S _ 1$($p$,$\alpha$,$\beta$,$\gamma$)
+
+    \State
+    \State \textit{\# Bulk recursion }
+    \State \Return $J _ 0$($p$,$\alpha$,$\beta$,$\gamma$) \textbf{if} $(\gamma_0 \equiv 0)$
+    \State \Return $J _ 1$($p$,$\alpha$,$\beta$,$\gamma$) \textbf{if} $(\alpha_0 \equiv 0)$or$(\beta_0\equiv 0)$
+    \State \Return $J _ 2$($p$,$\alpha$,$\beta$,$\gamma$)
+
+    \EndFunction
+
+  \end{algorithmic}
+\end{algorithm}
+\end{minipage}
+
+
+Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
+Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
+can be ignored if a purely 2D curve is desired.
+The generalization to 3D allows the Gilbert2D function to be used unaltered when the
+3D Gilbert curve needs to trace out in-plane sub-curves.
+
+The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
+the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
+
+Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
+and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
+where the context is clear.
+
+
+\section*{Conclusion and Future Directions}
+
+Generalizing a Hilbert space filling curve to arbirary side lengths is not a well posed problem
+and is open to interpretation.
+The Gilbert curve presented in this paper provides one intepretation for generalizing space filling
+curves to arbitrary side lengths.
+
+When desinging an algorithm to generalize the Hilbert curve, four features that might be desirable are:
+
+\begin{itemize}
+  \item \textit{Hilbert-esque} \\ The resulting approximation yields the Hilbert curve on side lengths that are exact powers of two
+  \item \textit{Stabilty} \\ Curve realizations converge as the cuboid side lengths increase proportionally
+  \item \textit{Harmony} \\ Realizations use eccentric splits to reduce the \textit{defect}
+  \item \textit{Notch-Limited} \\ Curve realizations are notch free unless a single notch is necessary
+\end{itemize}
+
+The 2D Gilbert curve presented here has all of these properties while the 3D Gilbert curve lacks harmony and the notch-limited feature.
+
+Future work could focus on creating 3D Gilbert curve that has all of these features, perhaps by relaxing strict endpoint requirements
+at the cuboid corners.
+Some other natural ideas are to extend the concepts above to other space filling curves or ciruits,
+or, more generally, to try and create an arbitrary space filling curve in a cuboid region with arbitrary endpoints.
+
+A libre/free implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
+repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/gilbert} }.
 
 
 
