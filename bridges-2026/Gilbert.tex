@@ -67,18 +67,23 @@
 
 
 \begin{abstract}
-The two and three dimensional Hilbert curves are fractal space filling curves that
-map the unit interval to the unit square or unit cube while preserving a notion
+  The two and three dimensional Hilbert curves are fractal space filling curves that
+  map the unit interval to the unit square or unit cube while preserving a notion
   of closeness, or locality, after the map.
- We present the Gilbert curve,
-a conceptually straight forward generalization of the Hilbert curve,
-that works on arbitrary rectangular regions, overcoming the limitation of the Hilbert
+  We present the Gilbert curve,
+  a conceptually straight forward generalization of the Hilbert curve,
+  that works on arbitrary rectangular regions, overcoming the limitation of the Hilbert
   curve that requires side lengths be exact powers of two.
-The construction provides reasonable worst case run-time guarantees for random
-access lookups for both two and three dimensions.
-We provide experiments showing comparable quality in locality of the Gilbert curve
-to the Hilbert curve for a range of cuboid regions and discuss some limitations of
-  the construction algorithm.
+  Our construction of the Gilbert curve provides a notion of \textit{harmony}
+  that provide alternate subdivision schemes when a side length is much larger than the rest,
+  creating more visual pleasing curves as a result.
+
+
+%The construction provides reasonable worst case run-time guarantees for random
+%access lookups for both two and three dimensions.
+%We provide experiments showing comparable quality in locality of the Gilbert curve
+%to the Hilbert curve for a range of cuboid regions and discuss some limitations of
+%  the construction algorithm.
 \end{abstract}
 
 
@@ -101,7 +106,7 @@ space filling curve.
 Tautenhahn also included policies for when to subdivide regions preferentially in only one dimension
 that help to create more \textit{harmonious} curve realizations.
 Tautenhahn's exploration details the parity arguments necessary for when a subdivision scheme can be employed
-without creating diagonal moves (\textit{notches}).
+without creating diagonal moves, which we call \textit{notches} here.
 
 
 In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve.
@@ -194,7 +199,6 @@ later\footnotemark[1].
 %In both the 2D and 3D case, when the original side lengths are all even, no notches will be present.
 %
 
-\section*{Subdivision Strategies}
 
 
 \begin{figure}[!htb]
@@ -214,35 +218,33 @@ later\footnotemark[1].
 
 \end{figure}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\linewidth]{config_production.pdf}
-  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
-  \label{fig:production2d}
-\end{figure}
-
+\section*{Subdivision Strategies}
 
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
 Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
 
+The vectors $\alpha, \beta, \gamma \in \mathbb{Z}^3$ provide generalized notions of width ($\alpha$), height ($\beta$),
+and depth ($\gamma$), so that we can transform rectangular or cuboid regions as necessary for the recursion.
+Each of $\alpha, \beta, \gamma$ will only have one non-zero component and will be orthogonal to each other,
+representing a current snapshot of the current frame of reference.
 
 When dividing into sub-regions, side lengths are chosen to be integral and with even side lengths preferred
-for the first subdivided region.
+for the first subdivided region (region \textit{A} in figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert3DJSplit}).
 A path is recursively chosen for each of the subregions and, after resolution, endpoints are connected.
+Figure \ref{fig:production2d} shows the choice in 2D of even or odd regions depending on side length parity.
 
 When regions have a side length that is much larger than the rest, another subdivision scheme is used.
-We call these cases \textit{eccentric subdivisions} as the larger side length makes the
+We call these cases \textit{eccentric subdivisions}, as the larger side length makes the
 region lopsided.
 
 If one side length is much larger than the rest, both the 2D and 3D Gilbert curve split the region in two.
 For the 3D case, if one side length is much smaller than the rest but with the remaining lengths roughly equal,
 the region is subdivided as if it were a 2D Gilbert curve, taking the smaller side length as the ``flat'' dimension.
 
-The eccentric subdivision schemes provide a more visually pleasing solution as regimented subdivisions might paths
+The eccentric subdivision schemes provide a more visually pleasing solution as regimented subdivisions might take paths
 that are long and skinny or wide and squat.
-We will briefly go over motivations for choosing how to choose these constants and why the particular value of
-constants was chosen in the next section.
-
+In the next section, we will briefly go over motivations for the threshold values of when to use the eccentric subdivision
+schemes.
 
 For the 2D Gilbert curve, if $|\alpha|$ is odd, there will be a diagonal move, or \textit{notch}, for the
 resulting path.
@@ -251,6 +253,15 @@ The subdivision scheme will keep the notch in a single region, limiting the notc
 For the 3D Gilbert curve, if any of the subdivided regions has endpoints that lay in a direction with
 odd length, a notch will appear.
 This means the number of notches for the 3D Gilbert curve isn't limited to one.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\linewidth]{config_production.pdf}
+  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
+  \label{fig:production2d}
+\end{figure}
+
+
 
 \section*{Eccentric Subdivision}
 
@@ -315,8 +326,8 @@ $$
 $$
 
 If there is a disjoint subdivision of a volume $V_0$ to $V_1  = ( V _ {0,0}, V _ {0,1}, \dots, V _ {0,m-1} )$,
-$V _ 0  = \cup _ {k} V _ {0,k}$,
-define the \textit{average defect} of the subdivided volume to be the sum of defects weighted by their proportional volumee:
+($V _ 0  = \cup _ {k} V _ {0,k}$),
+define the subdivided volume's \textit{average defect} to be the sum of defects weighted by their proportional volume:
 
 $$
 \begin{array}{l}
@@ -324,7 +335,7 @@ $$
 \end{array}
 $$
 
-The defect gives a coarse idea of how lopsided or \textit{eccentric} a cuboid region is.
+The defect gives a coarse idea of how lopsided or \textit{eccentric} a region is.
 If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
 Reducing the average defect attempts to make each subdivided region more square-like.
 When subdivided areas are more square-like, we say that the subdivided regions are more \textit{harmonious}.
@@ -332,46 +343,48 @@ When subdivided areas are more square-like, we say that the subdivided regions a
 If the $\alpha$ side length is significantly longer than the $\beta$ side length,
 we want to subdivide the rectangle into two nearly equal regions and recursively find
 a Gilbert curve in each region.
-We will justify the constant $(3/2)$ as the ratio threshold to split on using an argument
+We will justify the constant $(3/2)$ as the ratio threshold to split on, using an argument
 originally developed by L. Tautenhahn \footnote{ Given to us through personal communication with L. Tautenhahn }.
 
-The defect of a rectangle of side length $|\alpha|$ and $|\beta|$ is, with $|\alpha| > |\beta|$:
+The defect of a rectangle with side length $|\alpha|$ and $|\beta|$, assuming $|\alpha| > |\beta|$, is $(|\alpha| / |\beta|)$.
+After subdivision, if we assume $|\alpha| < 2 |\beta|$, the resulting defect is $2 |\beta| / |\alpha|$.
+For a defect reduction, we search for conditions in which the ratio of the resulting defect to the original defect is less than unity,
+giving the equation $|\alpha| / |\beta| > \sqrt{2}$.
 
-$$
-\begin{array}{ll}
-  \lambda_2(|\alpha|, |\beta|) & = |\alpha| \cdot |\beta| / |\beta|^2 \\
-   & = |\alpha| / |\beta|
-\end{array}
-$$
-
-After a subdivision, if we assume $|\alpha| < 2 |\beta|$, the defect is:
-
-$$
-\begin{array}{ll}
-  \lambda_2(|\alpha|/2, |\beta|) & = \frac{|\alpha|}{2} \cdot |\beta| / (\frac{|\alpha|}{2})^2 \\
-   & = 2 |\beta| / |\alpha|
-\end{array}
-$$
-
-We're looking for the condition when there's a defect reduction, so
-
-$$
-\begin{array}{ll}
-    & \lambda_2(|\alpha|/2, |\beta|)  < \lambda_2(|\alpha|, |\beta|) \\
-\to & 2 |\beta| / |\alpha| < |\alpha| / |\beta| \\
-  \to & \sqrt{2} < |\alpha| / |\beta| \\
-\end{array}
-$$
+%$$
+%\begin{array}{ll}
+%  \lambda_2(|\alpha|, |\beta|) & = |\alpha| \cdot |\beta| / |\beta|^2 \\
+%   & = |\alpha| / |\beta|
+%\end{array}
+%$$
+%
+%After a subdivision, if we assume $|\alpha| < 2 |\beta|$, the defect is:
+%
+%$$
+%\begin{array}{ll}
+%  \lambda_2(|\alpha|/2, |\beta|) & = \frac{|\alpha|}{2} \cdot |\beta| / (\frac{|\alpha|}{2})^2 \\
+%   & = 2 |\beta| / |\alpha|
+%\end{array}
+%$$
+%
+%We're looking for the condition when there's a defect reduction, so
+%
+%$$
+%\begin{array}{ll}
+%    & \lambda_2(|\alpha|/2, |\beta|)  < \lambda_2(|\alpha|, |\beta|) \\
+%\to & 2 |\beta| / |\alpha| < |\alpha| / |\beta| \\
+%  \to & \sqrt{2} < |\alpha| / |\beta| \\
+%\end{array}
+%$$
 
 Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
 be assured a defect reduction.
-
 In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
 \footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
 
-
-Defect reductions for the 3D case can be done but are more complated.
-The constants for the 3D subdivision in this paper were observed to yield visually pleasing results.
+Defect reductions for the 3D case can be done, but are more complicated.
+The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
+without concern for defect optimization.
 
 \section*{Algorithm}
 
@@ -417,36 +430,33 @@ The constants for the 3D subdivision in this paper were observed to yield visual
     \State \textit{\# $p, \alpha, \beta, \gamma \in \mathbb{Z}^3$}
     \Function{Gilbert3D}{$p$, $\alpha$, $\beta$, $\gamma$}
 
-    \State
-    \State\textit{\# Parity of dimensions}
-
-    \State $\alpha_0 \leftarrow (|\alpha|\bmod{2})$
-    \State $\beta_0 \leftarrow (|\beta|\bmod{2})$
-    \State $\gamma_0 \leftarrow (|\gamma|\bmod{2})$
-
-    \State
-    \State\textit{\# Base cases }
-    \State \textbf{if} ($(|\alpha|\equiv 2)$ and $(|\beta|\equiv 2)$ and $(|\gamma| \equiv 2)$)
-    \State \hskip1.5em \Return Hilbert3D($p$,$\alpha$,$\beta$,$\gamma$)
     \State \Return Gilbert2D($p$,$\beta$,$\gamma$) \textbf{if} $(|\alpha| \equiv 1)$
     \State \Return Gilbert2D($p$,$\alpha$,$\gamma$) \textbf{if} $(|\beta| \equiv 1)$
     \State \Return Gilbert2D($p$,$\alpha$,$\beta$) \textbf{if} $(|\gamma| \equiv 1)$
 
-    \State
-    \State\textit{\# Eccentric cases }
+    \State $\alpha_2 \leftarrow \text{div}(\alpha,2) + \Delta(\alpha _ 2, \alpha)$
+    \State $\beta_2 \leftarrow \text{div}(\beta,2) + \Delta(\beta _ 2, \beta)$
+    \State $\gamma_2 \leftarrow \text{div}(\gamma,2) + \Delta(\gamma _ 2, \gamma)$
 
-    \State \textbf{if }$(3 |\alpha|>5|\beta|) \text{ and } (3|\alpha|>5|\gamma|))$
-    \State \hskip1.5em \Return $S _ 0$($p$,$\alpha$,$\beta$,$\gamma$)
-    \State \textbf{if }$(2 |\beta| > 3 |\gamma|) \text{ or }(2 |\beta| > 3 |\alpha|))$
-    \State \hskip1.5em \Return $S _ 2$($p$,$\alpha$,$\beta$,$\gamma$)
-    \State \textbf{if }$(2 |\gamma| > 3 |\beta|)$
-    \State \hskip1.5em \Return $S _ 1$($p$,$\alpha$,$\beta$,$\gamma$)
+    \State \textbf{if }$(2 |\alpha|>3|\beta|) \text{ and } (2|\alpha|>3|\gamma|))$
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\alpha _ 2$,$\beta$,$\gamma$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + \alpha _ 2$,$\alpha - \alpha _ 2$,$\beta$,$\gamma$)
+    \State \textbf{if }$(3 |\beta| > 4 |\gamma|)$
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\beta _ 2$,$\gamma$,$\alpha _ 2$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\alpha$,$\beta - \beta _ 2$,$\gamma$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + $ \\ \hskip9.75em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.75em $-\beta _ 2$,$\gamma$,$-(\alpha - \alpha _ 2)$)
+    \State \textbf{if }$(3 |\gamma| > 4 |\beta|)$
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\gamma _ 2$,$\alpha _ 2$,$\beta$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + \gamma _ 2$,$\alpha$, $\beta$, $\gamma - \gamma _ 2$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\alpha - \delta(\alpha))$ \\ \hskip9.75em $(\gamma2 - \delta(\gamma))$, \\ \hskip9.5em $-\gamma _ 2$,$-(\alpha-\alpha _ 2)$, $\beta$)
 
     \State
-    \State \textit{\# Bulk recursion }
-    \State \Return $J _ 0$($p$,$\alpha$,$\beta$,$\gamma$) \textbf{if} $(\gamma_0 \equiv 0)$
-    \State \Return $J _ 1$($p$,$\alpha$,$\beta$,$\gamma$) \textbf{if} $(\alpha_0 \equiv 0)$or$(\beta_0\equiv 0)$
-    \State \Return $J _ 2$($p$,$\alpha$,$\beta$,$\gamma$)
+    \State \textbf{else }$(3 |\beta| > 4 |\gamma|)$
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\beta _ 2$,$\gamma _ 2$,$\alpha _ 2$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\gamma$,$\alpha _ 2$,$\beta _ 2$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\beta _ 2 - \delta(\beta)) +$ \\ \hskip9.75em $(\gamma - \delta(\gamma))$, \\ \hskip9.5em $\alpha$,$-\beta_2$,$-(\gamma-\gamma_2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\alpha _ 2 - \delta(\alpha)) +$ \\ \hskip9.75em $\beta _ 2 (\gamma - \delta(\gamma))$, \\ \hskip9.5em $-\gamma$,$-(\alpha - \alpha_2)$,$(\beta-\beta_2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.5em $-\beta _ 2$,$-\gamma _ 2$,$-(\alpha - \alpha_2)$)
 
     \EndFunction
 
@@ -461,12 +471,15 @@ can be ignored if a purely 2D curve is desired.
 The generalization to 3D allows the Gilbert2D function to be used unaltered when the
 3D Gilbert curve needs to trace out in-plane sub-curves.
 
-The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
-the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
-
 Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
 and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
 where the context is clear.
+
+The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
+the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
+To make things more concise, a convenience function is used,
+$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textbf{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2)$,
+that prefers even lengths in the non-degenerate case.
 
 
 \section*{Conclusion and Future Directions}
