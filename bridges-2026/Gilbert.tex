@@ -22,6 +22,8 @@
 \usepackage{caption}
 \usepackage{tikz}
 
+\usepackage[bottom]{footmisc}
+
 \urlstyle{rm}
 
 
@@ -101,12 +103,15 @@ that help to create more \textit{harmonious} curve realizations.
 Tautenhahn's exploration details the parity arguments necessary for when a subdivision scheme can be employed
 without creating diagonal moves (\textit{notches}).
 
+
 In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve.
 We further extend Tautenhahn's core ideas on when to use alternate subdivision schemes when one length is much
 larger than the rest, what we call \textit{eccentric cases}, and apply them to a 3D generalized Hilbert curve.
 Tautenhahn's unpublished reasoning behind the constants used in the 2d eccentric split case are briefly discussed
-later \footnote{ Through personal communication with the authors, Tautenhahn
-kindly provided the reasoning for the constants used in the eccentric split }.
+%later\footnote{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
+later\footnotemark[1].
+
+\footnotetext[1]{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
 
 \begin{figure}[!htb]
 
@@ -191,13 +196,6 @@ kindly provided the reasoning for the constants used in the eccentric split }.
 
 \section*{Subdivision Strategies}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\linewidth]{config_production.pdf}
-  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
-  \label{fig:production2d}
-\end{figure}
-
 
 \begin{figure}[!htb]
 
@@ -215,6 +213,14 @@ kindly provided the reasoning for the constants used in the eccentric split }.
   \end{minipage}
 
 \end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\linewidth]{config_production.pdf}
+  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
+  \label{fig:production2d}
+\end{figure}
+
 
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
 Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
@@ -465,10 +471,10 @@ where the context is clear.
 
 \section*{Conclusion and Future Directions}
 
-Generalizing a Hilbert space filling curve to arbirary side lengths is not a well posed problem
-and is open to interpretation.
-The Gilbert curve presented in this paper provides one intepretation for generalizing space filling
-curves to arbitrary side lengths.
+The Gilbert curve presented in this paper provides one intepretation for a generalized Hilbert
+curve in 2D and 3D to arbitrary side lengths.
+Generaliing a Hilbert space filling curve to arbitrary side lengths is not a well posed problem
+and is open to interpretation, and the solution presented here is one such adaptation.
 
 When desinging an algorithm to generalize the Hilbert curve, four features that might be desirable are:
 
