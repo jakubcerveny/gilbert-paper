@@ -478,12 +478,15 @@ and is open to interpretation, and the solution presented here is one such adapt
 
 When desinging an algorithm to generalize the Hilbert curve, four features that might be desirable are:
 
-\begin{itemize}
-  \item \textit{Hilbert-esque} \\ The resulting approximation yields the Hilbert curve on side lengths that are exact powers of two
-  \item \textit{Stabilty} \\ Curve realizations converge as the cuboid side lengths increase proportionally
-  \item \textit{Harmony} \\ Realizations use eccentric splits to reduce the \textit{defect}
-  \item \textit{Notch-Limited} \\ Curve realizations are notch free unless a single notch is necessary
-\end{itemize}
+\begin{table}[h]
+  \centering
+  \begin{tabular}[t]{l|l}
+    \textit{Hilbert-esque} & Reduces to a Hilbert curve when side lengths are equal and are exact powers of two \\
+    \textit{Stabilty} & Curve realizations converge as the cuboid side lengths increase proportionally \\
+    \textit{Harmony} & Realizations use eccentric splits to reduce the \textit{defect} \\
+    \textit{Notch-Limited} & Curve realizations are notch free unless a single notch is necessary \\
+  \end{tabular}
+\end{table}
 
 The 2D Gilbert curve presented here has all of these properties while the 3D Gilbert curve lacks harmony and the notch-limited feature.
 
