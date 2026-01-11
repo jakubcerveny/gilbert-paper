@@ -3,8 +3,8 @@ TODO
 
 ###### 2026-01-10
 
-* subdivision strategies, provide gilbert curve with 3 colors showing main
-  subdivision scheme (fills out whitespace from main 2d subdivision)
+* ~subdivision strategies, provide gilbert curve with 3 colors showing main
+  subdivision scheme (fills out whitespace from main 2d subdivision)~
 * eccentric subdivision:
   - provide colored subdivision alpha for 2d and 3d (to be put side-by-side)
     with constants put in

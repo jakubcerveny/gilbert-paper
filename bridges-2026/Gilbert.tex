@@ -21,6 +21,7 @@
 \usepackage{multirow}
 \usepackage{caption}
 \usepackage{tikz}
+\usepackage{transparent}
 
 \usepackage[bottom]{footmisc}
 
@@ -208,7 +209,7 @@ later\footnotemark[1].
     \begin{minipage}{1.0\textwidth}
       \centering
       \includegraphics[width=\linewidth]{gilbert2d_mainsubdiv.pdf}
-      \caption{ Subdivision strategy for the 2D Gilbert curve. }
+      \caption{ Subdivision template for the 2D Gilbert curve. }
       \label{fig:main2dsubdiv}
     \end{minipage}
 
@@ -223,13 +224,13 @@ later\footnotemark[1].
   \begin{minipage}{0.45\textwidth}
     \centering
     \includegraphics[width=\linewidth]{gilbert3d_explode.pdf}
-    \caption{ The main subdivision strategy for the 3D Gilbert curve. }
+    \caption{ The main subdivision template for the 3D Gilbert curve. }
     \label{fig:gilbert3DJSplit}
   \end{minipage}
 
 \end{figure}
 
-\section*{Subdivision Strategies}
+\section*{Subdivision Templates}
 
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
 Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
@@ -277,7 +278,7 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one.
 
 \begin{figure}[h]
 
-  \begin{minipage}[ht]{0.48\linewidth}
+  \begin{minipage}[ht]{0.47\linewidth}
 
     \centering
     \includegraphics[width=0.925\linewidth]{gilbert2d_eccentric_simple.pdf}
@@ -302,27 +303,27 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one.
 
 \section*{Eccentric Subdivision}
 
-\begin{figure}[h]
-  \begin{minipage}[ht]{0.48\linewidth}
-
-    \centering
-    \includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_lt.pdf}
-    \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
-              and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
-    \label{fig:eccentric_beta_lt}
-
-  \end{minipage}\hfill
-  \begin{minipage}[ht]{0.48\linewidth}
-
-  \centering
-  \includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_lt.pdf}
-  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
-            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
-  \label{fig:eccentric_gamma_lt}
-
-  \end{minipage}
-\end{figure}
-
+%\begin{figure}[h]
+%  \begin{minipage}[ht]{0.48\linewidth}
+%
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_lt.pdf}
+%    \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
+%              and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
+%    \label{fig:eccentric_beta_lt}
+%
+%  \end{minipage}\hfill
+%  \begin{minipage}[ht]{0.48\linewidth}
+%
+%  \centering
+%  \includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_lt.pdf}
+%  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
+%            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
+%  \label{fig:eccentric_gamma_lt}
+%
+%  \end{minipage}
+%\end{figure}
+%
 
 When side lengths become too lopsided, an alternate \textit{eccentric} subdivision scheme is chosen to split along
 the larger side length.
@@ -401,12 +402,10 @@ Defect reductions for the 3D case can be done, but are more complicated.
 The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
 without concern for defect optimization.
 
-\section*{Algorithm}
-
 
 \begin{minipage}[ht]{0.45\linewidth}
 \begin{algorithm}[H]
-  \caption{ }
+  \caption{Gilbert 2D}
   \label{alg:gilbert2d}
   \begin{algorithmic}
 
@@ -437,8 +436,32 @@ without concern for defect optimization.
 \end{algorithm}
 \end{minipage}\hfill
 \begin{minipage}[ht]{0.45\linewidth}
+
+  foo
+
+\end{minipage}
+
+\section*{Algorithm}
+
+Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
+Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
+can be ignored if a purely 2D curve is desired.
+The generalization to 3D allows the Gilbert2D function to be used unaltered when the
+3D Gilbert curve needs to trace out in-plane sub-curves.
+
+Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
+and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
+where the context is clear.
+
+The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
+the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
+To make things more concise, a convenience function is used,
+$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textbf{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2)$,
+that prefers even lengths in the non-degenerate case.
+
+\begin{minipage}[ht]{0.45\linewidth}
 \begin{algorithm}[H]
-  \caption{ }
+  \caption{Gilbert 3D}
   \label{alg:gilbert3d}
   \begin{algorithmic}
 
@@ -459,49 +482,47 @@ without concern for defect optimization.
     \State \textbf{if }$(3 |\beta| > 4 |\gamma|)$
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\beta _ 2$,$\gamma$,$\alpha _ 2$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\alpha$,$\beta - \beta _ 2$,$\gamma$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p + $ \\ \hskip9.75em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.75em $-\beta _ 2$,$\gamma$,$-(\alpha - \alpha _ 2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + $ \\ \hskip9.125em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.125em $-\beta _ 2$,$\gamma$,$-(\alpha - \alpha _ 2)$)
     \State \textbf{if }$(3 |\gamma| > 4 |\beta|)$
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\gamma _ 2$,$\alpha _ 2$,$\beta$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + \gamma _ 2$,$\alpha$, $\beta$, $\gamma - \gamma _ 2$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\alpha - \delta(\alpha))$ \\ \hskip9.75em $(\gamma2 - \delta(\gamma))$, \\ \hskip9.5em $-\gamma _ 2$,$-(\alpha-\alpha _ 2)$, $\beta$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha - \delta(\alpha))$ \\ \hskip9.125em $(\gamma2 - \delta(\gamma))$, \\ \hskip9.5em $-\gamma _ 2$,$-(\alpha-\alpha _ 2)$, $\beta$)
 
     \State
-    \State \textbf{else }$(3 |\beta| > 4 |\gamma|)$
+    \State \textbf{else }
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\beta _ 2$,$\gamma _ 2$,$\alpha _ 2$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\gamma$,$\alpha _ 2$,$\beta _ 2$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\beta _ 2 - \delta(\beta)) +$ \\ \hskip9.75em $(\gamma - \delta(\gamma))$, \\ \hskip9.5em $\alpha$,$-\beta_2$,$-(\gamma-\gamma_2)$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\alpha _ 2 - \delta(\alpha)) +$ \\ \hskip9.75em $\beta _ 2 (\gamma - \delta(\gamma))$, \\ \hskip9.5em $-\gamma$,$-(\alpha - \alpha_2)$,$(\beta-\beta_2)$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.75em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.5em $-\beta _ 2$,$-\gamma _ 2$,$-(\alpha - \alpha_2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta)) +$ \\ \hskip9.125em $(\gamma - \delta(\gamma))$, \\ \hskip9.5em $\alpha$,$-\beta_2$,$-(\gamma-\gamma_2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha _ 2 - \delta(\alpha)) +$ \\ \hskip9.125em $\beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip9.5em $-\gamma$,$-(\alpha - \alpha_2)$,$(\beta-\beta_2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.5em $-\beta _ 2$,$-\gamma _ 2$,$-(\alpha - \alpha_2)$)
 
     \EndFunction
 
   \end{algorithmic}
 \end{algorithm}
+\end{minipage}\hfill
+\begin{minipage}[ht]{0.45\linewidth}
+
+
+	\begin{minipage}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
+		\label{fig:gilbert3d_eccentric_alpha}
+	\end{minipage}\hfill
+	\begin{minipage}{0.48\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
+		\label{fig:foobar}
+	\end{minipage}
+
 \end{minipage}
-
-
-Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
-Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
-can be ignored if a purely 2D curve is desired.
-The generalization to 3D allows the Gilbert2D function to be used unaltered when the
-3D Gilbert curve needs to trace out in-plane sub-curves.
-
-Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
-and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
-where the context is clear.
-
-The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
-the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
-To make things more concise, a convenience function is used,
-$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textbf{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2)$,
-that prefers even lengths in the non-degenerate case.
 
 
 \section*{Conclusion and Future Directions}
 
 The Gilbert curve presented in this paper provides one intepretation for a generalized Hilbert
 curve in 2D and 3D to arbitrary side lengths.
-Generaliing a Hilbert space filling curve to arbitrary side lengths is not a well posed problem
+Generalizing a Hilbert space filling curve to arbitrary side lengths is not a well posed problem
 and is open to interpretation, and the solution presented here is one such adaptation.
 
 When desinging an algorithm to generalize the Hilbert curve, four features that might be desirable are:
@@ -568,6 +589,7 @@ repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/g
 
 \begin{figure}[ht]
   \centering
+  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
   \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
   \label{fig:footerGilbert}
 \end{figure}
