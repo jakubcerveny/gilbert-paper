@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  11 JAN 2026 04:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  11 JAN 2026 18:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1180,28 +1180,27 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 379.
 See the caption package documentation for explanation.
 
-<gilbert2d_eccentric_simple.pdf, id=168, 338.76563pt x 248.42813pt>
-File: gilbert2d_eccentric_simple.pdf Graphic file (type pdf)
-<use gilbert2d_eccentric_simple.pdf>
-Package pdftex.def Info: gilbert2d_eccentric_simple.pdf  used on input line 387
-.
+<gilbert2d_bulk.pdf, id=168, 338.76563pt x 248.42813pt>
+File: gilbert2d_bulk.pdf Graphic file (type pdf)
+<use gilbert2d_bulk.pdf>
+Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 387.
 (pdftex.def)             Requested size: 186.65758pt x 136.88608pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 388.
 See the caption package documentation for explanation.
 
-File: gilbert2d_example_eccentric.pdf Graphic file (type pdf)
-<use gilbert2d_example_eccentric.pdf>
-Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 39
-6.
-(pdftex.def)             Requested size: 201.79132pt x 134.53548pt.
+<gilbert2d_bulk_example.pdf, id=169, 338.76563pt x 248.42813pt>
+File: gilbert2d_bulk_example.pdf Graphic file (type pdf)
+<use gilbert2d_bulk_example.pdf>
+Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 396.
+(pdftex.def)             Requested size: 201.79132pt x 147.98524pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 397.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_alpha.pdf, id=169, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_alpha.pdf, id=170, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_alpha.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_alpha.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_alpha.pdf  used on input line 452.
@@ -1212,7 +1211,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 453.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_alpha_example.pdf, id=170, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_alpha_example.pdf, id=171, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_alpha_example.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_alpha_example.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_alpha_example.pdf  used on input l
@@ -1223,7 +1222,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 459.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_beta_simple.pdf, id=171, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_beta_simple.pdf, id=172, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_simple.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_simple.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_beta_simple.pdf  used on input lin
@@ -1234,7 +1233,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 467.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_beta_example.pdf, id=172, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_beta_example.pdf, id=173, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_example.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_example.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_beta_example.pdf  used on input li
@@ -1245,7 +1244,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 474.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_gamma_simple.pdf, id=173, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_gamma_simple.pdf, id=174, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_simple.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_simple.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_simple.pdf  used on input li
@@ -1256,7 +1255,7 @@ Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 481.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_gamma_example.pdf, id=174, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_gamma_example.pdf, id=175, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_example.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_example.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_example.pdf  used on input l
@@ -1291,10 +1290,14 @@ See the caption package documentation for explanation.
 
 pdfTeX warning: pdflatex (file ./gilbert2d_example_eccentric.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
-> <./gilbert2d_eccentric_simple.pdf
+> <./gilbert2d_bulk.pdf
 
-pdfTeX warning: pdflatex (file ./gilbert2d_eccentric_simple.pdf): PDF inclusion
-: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ./gilbert2d_bulk.pdf): PDF inclusion: multiple p
+dfs with page group included in a single page
+> <./gilbert2d_bulk_example.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert2d_bulk_example.pdf): PDF inclusion: mu
+ltiple pdfs with page group included in a single page
 >] [5 <./gilbert3d_eccentric_alpha.pdf> <./gilbert3d_eccentric_alpha_example.pd
 f
 
@@ -1321,10 +1324,10 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 28050 strings out of 480171
- 496919 string characters out of 5894489
- 748990 words of memory out of 5000000
- 45447 multiletter control sequences out of 15000+600000
+ 28057 strings out of 480171
+ 497069 string characters out of 5894489
+ 748991 words of memory out of 5000000
+ 45453 multiletter control sequences out of 15000+600000
  563157 words of font info for 161 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  84i,10n,131p,412b,508s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1350,10 +1353,10 @@ texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/zt
 mr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (7 pages, 474941 bytes).
+Output written on Gilbert.pdf (7 pages, 474421 bytes).
 PDF statistics:
- 398 PDF objects out of 1000 (max. 8388607)
- 284 compressed objects within 3 object streams
+ 394 PDF objects out of 1000 (max. 8388607)
+ 281 compressed objects within 3 object streams
  34 named destinations out of 1000 (max. 500000)
- 88 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

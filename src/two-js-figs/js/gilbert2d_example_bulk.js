@@ -127,6 +127,7 @@ function mkgcurve(xy, wh, s, opt) {
     let p = gilbert.d2xy(idx-1, wh[0], wh[1]);
     let q = gilbert.d2xy(  idx, wh[0], wh[1]);
 
+
     if (opt.y) {
       p.y = H - p.y;
       q.y = H - q.y;
@@ -174,7 +175,31 @@ function mkgcurve(xy, wh, s, opt) {
 
     if (( (idx-1) < idx0 ) &&
         ( idx >= idx0 )) {
-      let _c = two.makeCircle((p.x + q.x)/2, (p.y + q.y)/2, 8);
+      let _c = two.makeCircle(p.x, p.y, 8);
+      //_c.fill = "rgb(240,240,240)";
+      //_c.fill = "rgb(0,0,0)";
+      _c.noFill();
+      _c.linewidth = 3;
+      _c.stroke = "rgb(0,0,0)";
+      //_c.stroke = "rgb(240,240,240)";
+      _c.opacity = 0.8;
+
+      _c.fill = "rgb(0,0,0)";
+      _c.noStroke();
+      _c.opacity = opacity;
+    }
+
+    if (( (idx-1) < idx1 ) &&
+        ( idx >= idx1 )) {
+      let _c = two.makeCircle(p.x, p.y, 8);
+      //_c.fill = "rgb(240,240,240)";
+      //_c.fill = "rgb(0,0,0)";
+      _c.noFill();
+      _c.linewidth = 3;
+      _c.stroke = "rgb(0,0,0)";
+      //_c.stroke = "rgb(240,240,240)";
+      _c.opacity = 0.8;
+
       _c.fill = "rgb(0,0,0)";
       _c.noStroke();
       _c.opacity = opacity;
@@ -206,7 +231,7 @@ function mk_shadow_text(txt, x,y, fs) {
   txt_fg.fill = clr;
 }
 
-function gilbert2d_example_eccentric() {
+function gilbert2d_example_bulk() {
   let two = new Two({"fitted":true});
   g_fig_ctx["two"] = two;
 
@@ -235,27 +260,15 @@ function gilbert2d_example_eccentric() {
       cx = 255 + sx,
       cy = 195 + sy;
 
-  //mkgcurve([sx,sy], [34, 26], 10, {"y":true, "x":false});
+  sx = 10;
+  sy = 0;
 
-  ax = sx + 65;
-  ay = sy + 135;
+  let idx0 = 21*16;
+  let idx1 = idx0 + (42*14) + 1;
 
-  cx = sx + 190;
-  cy = sy + 135;
+  mkgcurve([sx,sy], [42, 30], 10.5, {"y":true, "x":false, "idx_pal": [idx0,idx1]});
 
-  bx = sx + 126;
-  by = sy + 50;
 
-  let idx0 = 
-
-  mkgcurve([sx,sy], [28, 18], 10, {"y":true, "x":false, "idx_pal": [252]});
-
-  /*
-  //let txt_A = two.makeText("A", 85, 190, font_style);
-  mk_shadow_text("A", ax, ay, font_style);
-  mk_shadow_text("B", bx, by, font_style);
-  mk_shadow_text("C", cx, cy, font_style);
-  */
 
   let use_frame = false;
   if (use_frame) {

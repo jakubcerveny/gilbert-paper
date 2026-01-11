@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Gilbert3D Eccentric Gamma Example</title>
+  <title>Gilbert2D Bulk Main Subdivision</title>
 
 
   <script>
@@ -22,11 +22,10 @@
   </script>
   <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
 
-  <script type='text/javascript' src='js/gilbert.js'></script>
-  <script type='text/javascript' src='js/gilbert3dpp.js'></script>
-  <script type='text/javascript' src='js/two.js'></script>
   <script type='text/javascript' src='js/numeric.js'></script>
-  <script type='text/javascript' src='js/gilbert3d_eccentric_gamma_example.js'></script>
+
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/gilbert2d_bulk_simple.js'></script>
 
   <script type='text/javascript' src='js/FileSaver.js'></script>
 
@@ -35,18 +34,23 @@
 
 <body>
 
-
   <div id='alpha' style='display:none;'>$\alpha$</div>
   <div id='beta' style='display:none;'>$\beta$</div>
-  <div id='gamma' style='display:none;'>$\gamma$</div>
+
+  <div id='abs_alpha' style='display:none;'>$|\alpha|$</div>
+  <div id='abs_alpha_d_2' style='display:none;'>$|\alpha|/2$</div>
+  <div id='abs_beta' style='display:none;'>$|\beta|$</div>
+  <div id='sigma_abs_beta' style='display:none;'>$|\alpha| > (3 / 2) |\beta|$</div>
 
 
-  <div id='gilbert3d_examples' style='width:350px;height:250px;'> </div>
+
+
+  <div id='gilbert2d_mainsubdiv' style='width:450px;height:330px;'> </div>
 </body>
 
 <script>
   function mathjax_ready() {
-    gilbert3d_gamma_example();
+    gilbert2d_bulk_simple();
   }
 </script>
 <html>
