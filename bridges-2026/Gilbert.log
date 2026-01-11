@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  10 JAN 2026 20:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  10 JAN 2026 21:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1138,70 +1138,66 @@ File: config_production.pdf Graphic file (type pdf)
 <use config_production.pdf>
 Package pdftex.def Info: config_production.pdf  used on input line 270.
 (pdftex.def)             Requested size: 472.03123pt x 269.73264pt.
-<gilbert2d_eccentric_appendix.pdf, id=140, 338.76563pt x 248.42813pt>
-File: gilbert2d_eccentric_appendix.pdf Graphic file (type pdf)
-<use gilbert2d_eccentric_appendix.pdf>
-Package pdftex.def Info: gilbert2d_eccentric_appendix.pdf  used on input line 2
-84.
-(pdftex.def)             Requested size: 226.57297pt x 166.15788pt.
-<gilbert3d_eccentric_appendix_s0.pdf, id=141, 263.48438pt x 188.20313pt>
-File: gilbert3d_eccentric_appendix_s0.pdf Graphic file (type pdf)
-<use gilbert3d_eccentric_appendix_s0.pdf>
-Package pdftex.def Info: gilbert3d_eccentric_appendix_s0.pdf  used on input lin
-e 293.
-(pdftex.def)             Requested size: 226.57297pt x 161.84578pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+<gilbert2d_eccentric_simple.pdf, id=140, 338.76563pt x 248.42813pt>
+File: gilbert2d_eccentric_simple.pdf Graphic file (type pdf)
+<use gilbert2d_eccentric_simple.pdf>
+Package pdftex.def Info: gilbert2d_eccentric_simple.pdf  used on input line 283
+.
+(pdftex.def)             Requested size: 209.58067pt x 153.69785pt.
+<gilbert2d_example_eccentric.pdf, id=141, 225.84375pt x 150.5625pt>
+File: gilbert2d_example_eccentric.pdf Graphic file (type pdf)
+<use gilbert2d_example_eccentric.pdf>
+Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 29
+1.
+(pdftex.def)             Requested size: 226.57297pt x 151.05835pt.
 <gilbert3d_eccentric_beta_lt.pdf, id=142, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_lt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_beta_lt.pdf  used on input line 30
-5.
+9.
 (pdftex.def)             Requested size: 226.57297pt x 171.6499pt.
 <gilbert3d_eccentric_gamma_lt.pdf, id=143, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_lt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_lt.pdf  used on input line 3
-14.
+18.
 (pdftex.def)             Requested size: 226.57297pt x 171.6499pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 335.
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 335.
-[3 <./config_production.pdf>]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 394.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 394.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 394.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 405.
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 410.
- [4 <./gilbert2d_eccentric_appendix.pdf> <./gilbert3d_eccentric_appendix_s0.pdf
+[3 <./config_production.pdf> <./gilbert2d_eccentric_simple.pdf
 
+pdfTeX warning: pdflatex (file ./gilbert2d_eccentric_simple.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+> <./gilbert2d_example_eccentric.pdf
 
-pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_appendix_s0.pdf): PDF incl
-usion: multiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ./gilbert2d_example_eccentric.pdf): PDF inclusio
+n: multiple pdfs with page group included in a single page
 >]
-Overfull \vbox (234.19044pt too high) has occurred while \output is active []
-
-
-[5 <./gilbert3d_eccentric_beta_lt.pdf> <./gilbert3d_eccentric_gamma_lt.pdf
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 339.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 6.1pt on input line 339.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 9.0pt on input line 398.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 398.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 5.5pt on input line 398.
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 409.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
+(Font)              scaled to size 10.95pt on input line 414.
+ [4 <./gilbert3d_eccentric_beta_lt.pdf> <./gilbert3d_eccentric_gamma_lt.pdf
 
 pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_gamma_lt.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
->]
-<gilbert_bd50x10.pdf, id=286, 561.22173pt x 110.28703pt>
+>] [5]
+<gilbert_bd50x10.pdf, id=267, 561.22173pt x 110.28703pt>
 File: gilbert_bd50x10.pdf Graphic file (type pdf)
 <use gilbert_bd50x10.pdf>
-Package pdftex.def Info: gilbert_bd50x10.pdf  used on input line 567.
+Package pdftex.def Info: gilbert_bd50x10.pdf  used on input line 571.
 (pdftex.def)             Requested size: 472.03123pt x 92.75993pt.
  [6 <./gilbert_bd50x10.pdf>] (./Gilbert.aux)
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
@@ -1209,8 +1205,8 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  27958 strings out of 480171
- 494120 string characters out of 5894489
- 747809 words of memory out of 5000000
+ 494086 string characters out of 5894489
+ 745665 words of memory out of 5000000
  45377 multiletter control sequences out of 15000+600000
  563157 words of font info for 161 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
@@ -1237,10 +1233,10 @@ texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/zt
 mr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (6 pages, 346446 bytes).
+Output written on Gilbert.pdf (6 pages, 343377 bytes).
 PDF statistics:
- 357 PDF objects out of 1000 (max. 8388607)
- 252 compressed objects within 3 object streams
+ 338 PDF objects out of 1000 (max. 8388607)
+ 239 compressed objects within 3 object streams
  20 named destinations out of 1000 (max. 500000)
  68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
