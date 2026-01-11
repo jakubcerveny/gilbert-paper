@@ -333,7 +333,7 @@ lengths become too lopsided to warrant an alternate subdivision.
 Here we motivate the eccentric subdivision constants for the 2D case.
 
 Consider a \textit{defect} function, $\lambda _ 2 : \mathbb{N}^2 \mapsto \mathbb{N}$, that measures the area relative
-to what the area would be if it just the minimum side length were taken:
+to what the area would be if just the minimum side length were taken:
 
 $$
 \begin{array}{ll}
@@ -400,7 +400,7 @@ In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is
 
 Defect reductions for the 3D case can be done, but are more complicated.
 The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
-without concern for defect optimization.
+without concern for optimization of defect reduction.
 
 
 \begin{minipage}[ht]{0.45\linewidth}
@@ -501,18 +501,59 @@ that prefers even lengths in the non-degenerate case.
   \end{algorithmic}
 \end{algorithm}
 \end{minipage}\hfill
-\begin{minipage}[ht]{0.45\linewidth}
+\begin{minipage}[ht]{0.49\linewidth}
 
-
-	\begin{minipage}{0.48\textwidth}
+	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
 		\label{fig:gilbert3d_eccentric_alpha}
+		\captionof{figure}{ }
 	\end{minipage}\hfill
-	\begin{minipage}{0.48\textwidth}
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
+		\label{fig:gilbert3d_eccentric_alpha_example}
+		\captionof{figure}{ }
+	\end{minipage}
+
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_simple.pdf}
+		\label{fig:gilbert3d_eccentric_beta}
+		\captionof{figure}{ }
+		%\captionof{figure}{Eccentric oblong $\beta$ template}
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
+		\label{fig:gilbert3d_eccentric_alpha_example_xxx}
+		\captionof{figure}{ }
+	\end{minipage}
+
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_simple.pdf}
+		\label{fig:gilbert3d_eccentric_gamma}
+		\captionof{figure}{ }
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
+		\label{fig:gilbert3d_eccentric_alpha_example_yyy}
+		\captionof{figure}{ }
+	\end{minipage}
+
+	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
-		\label{fig:foobar}
+		\label{fig:gilbert3d_eccentric_alpha_zzz}
+		\captionof{figure}{ }
+	\end{minipage}\hfill
+	\begin{minipage}{0.49\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
+		\label{fig:gilbert3d_eccentric_alpha_example_zzz}
+		\captionof{figure}{ }
 	\end{minipage}
 
 \end{minipage}
@@ -544,7 +585,7 @@ at the cuboid corners.
 Some other natural ideas are to extend the concepts above to other space filling curves or ciruits,
 or, more generally, to try and create an arbitrary space filling curve in a cuboid region with arbitrary endpoints.
 
-A libre/free implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
+A libre/free/open implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
 repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/gilbert} }.
 
 
