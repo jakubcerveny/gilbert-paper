@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  10 JAN 2026 16:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  10 JAN 2026 20:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1104,12 +1104,18 @@ Package pdftex.def Info: gilbert3d_orig_examples.pdf  used on input line 132.
 <gilbert2d_mainsubdiv.pdf, id=10, 526.96875pt x 263.48438pt>
 File: gilbert2d_mainsubdiv.pdf Graphic file (type pdf)
 <use gilbert2d_mainsubdiv.pdf>
-Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 208.
+Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 210.
 (pdftex.def)             Requested size: 259.6186pt x 129.81606pt.
-<gilbert3d_explode.pdf, id=11, 210.7875pt x 271.0125pt>
+<gilbert2d_example_mainsubdiv.pdf, id=11, 210.7875pt x 150.5625pt>
+File: gilbert2d_example_mainsubdiv.pdf Graphic file (type pdf)
+<use gilbert2d_example_mainsubdiv.pdf>
+Package pdftex.def Info: gilbert2d_example_mainsubdiv.pdf  used on input line 2
+17.
+(pdftex.def)             Requested size: 168.7505pt x 120.53745pt.
+<gilbert3d_explode.pdf, id=12, 210.7875pt x 271.0125pt>
 File: gilbert3d_explode.pdf Graphic file (type pdf)
 <use gilbert3d_explode.pdf>
-Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 214.
+Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 225.
 (pdftex.def)             Requested size: 212.41261pt x 273.10841pt.
  [1
 
@@ -1118,62 +1124,66 @@ Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 214.
 
 pdfTeX warning: pdflatex (file ./gilbert3d_orig_examples.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
->] [2 <./gilbert2d_mainsubdiv.pdf> <./gilbert3d_explode.pdf
+>] [2 <./gilbert2d_mainsubdiv.pdf> <./gilbert2d_example_mainsubdiv.pdf
+
+pdfTeX warning: pdflatex (file ./gilbert2d_example_mainsubdiv.pdf): PDF inclusi
+on: multiple pdfs with page group included in a single page
+> <./gilbert3d_explode.pdf
 
 pdfTeX warning: pdflatex (file ./gilbert3d_explode.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]
-<config_production.pdf, id=104, 1053.9375pt x 602.25pt>
+<config_production.pdf, id=139, 1053.9375pt x 602.25pt>
 File: config_production.pdf Graphic file (type pdf)
 <use config_production.pdf>
-Package pdftex.def Info: config_production.pdf  used on input line 259.
+Package pdftex.def Info: config_production.pdf  used on input line 270.
 (pdftex.def)             Requested size: 472.03123pt x 269.73264pt.
-<gilbert2d_eccentric_appendix.pdf, id=105, 338.76563pt x 248.42813pt>
+<gilbert2d_eccentric_appendix.pdf, id=140, 338.76563pt x 248.42813pt>
 File: gilbert2d_eccentric_appendix.pdf Graphic file (type pdf)
 <use gilbert2d_eccentric_appendix.pdf>
 Package pdftex.def Info: gilbert2d_eccentric_appendix.pdf  used on input line 2
-73.
+84.
 (pdftex.def)             Requested size: 226.57297pt x 166.15788pt.
-<gilbert3d_eccentric_appendix_s0.pdf, id=106, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_appendix_s0.pdf, id=141, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_appendix_s0.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_appendix_s0.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_appendix_s0.pdf  used on input lin
-e 282.
+e 293.
 (pdftex.def)             Requested size: 226.57297pt x 161.84578pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<gilbert3d_eccentric_beta_lt.pdf, id=107, 248.42813pt x 188.20313pt>
+<gilbert3d_eccentric_beta_lt.pdf, id=142, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_lt.pdf>
-Package pdftex.def Info: gilbert3d_eccentric_beta_lt.pdf  used on input line 29
-4.
+Package pdftex.def Info: gilbert3d_eccentric_beta_lt.pdf  used on input line 30
+5.
 (pdftex.def)             Requested size: 226.57297pt x 171.6499pt.
-<gilbert3d_eccentric_gamma_lt.pdf, id=108, 248.42813pt x 188.20313pt>
+<gilbert3d_eccentric_gamma_lt.pdf, id=143, 248.42813pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_lt.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_lt.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_lt.pdf  used on input line 3
-03.
+14.
 (pdftex.def)             Requested size: 226.57297pt x 171.6499pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 324.
+(Font)              scaled to size 8.0pt on input line 335.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 324.
+(Font)              scaled to size 6.1pt on input line 335.
 [3 <./config_production.pdf>]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 383.
+(Font)              scaled to size 9.0pt on input line 394.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 383.
+(Font)              scaled to size 7.3pt on input line 394.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 383.
+(Font)              scaled to size 5.5pt on input line 394.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 394.
+put line 405.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 399.
+(Font)              scaled to size 10.95pt on input line 410.
  [4 <./gilbert2d_eccentric_appendix.pdf> <./gilbert3d_eccentric_appendix_s0.pdf
 
 
@@ -1188,23 +1198,23 @@ Overfull \vbox (234.19044pt too high) has occurred while \output is active []
 pdfTeX warning: pdflatex (file ./gilbert3d_eccentric_gamma_lt.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
 >]
-<gilbert_bd50x10.pdf, id=251, 561.22173pt x 110.28703pt>
+<gilbert_bd50x10.pdf, id=286, 561.22173pt x 110.28703pt>
 File: gilbert_bd50x10.pdf Graphic file (type pdf)
 <use gilbert_bd50x10.pdf>
-Package pdftex.def Info: gilbert_bd50x10.pdf  used on input line 556.
+Package pdftex.def Info: gilbert_bd50x10.pdf  used on input line 567.
 (pdftex.def)             Requested size: 472.03123pt x 92.75993pt.
  [6 <./gilbert_bd50x10.pdf>] (./Gilbert.aux)
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27950 strings out of 480171
- 493816 string characters out of 5894489
- 747725 words of memory out of 5000000
- 45370 multiletter control sequences out of 15000+600000
+ 27958 strings out of 480171
+ 494120 string characters out of 5894489
+ 747809 words of memory out of 5000000
+ 45377 multiletter control sequences out of 15000+600000
  563157 words of font info for 161 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 84i,9n,131p,388b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 84i,10n,131p,388b,516s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1227,10 +1237,10 @@ texmf-dist/fonts/type1/public/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/zt
 mr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (6 pages, 337637 bytes).
+Output written on Gilbert.pdf (6 pages, 346446 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 223 compressed objects within 3 object streams
+ 357 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
  20 named destinations out of 1000 (max. 500000)
- 63 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 68 words of extra memory for PDF output out of 10000 (max. 10000000)
 
