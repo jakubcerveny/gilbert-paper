@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gilbert2D Main Subdivision</title>
+
+
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, 
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+  };
+  </script>
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+
+  <script type='text/javascript' src='js/numeric.js'></script>
+
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/gilbert2d_eccentric_simple1.js'></script>
+
+  <script type='text/javascript' src='js/FileSaver.js'></script>
+
+
+</head>
+
+<body>
+
+  <div id='abs_alpha' style='display:none;'>$|\alpha|$</div>
+  <div id='abs_alpha_d_2' style='display:none;'>$|\alpha|/2$</div>
+  <div id='abs_beta' style='display:none;'>$|\beta|$</div>
+  <div id='sigma_abs_beta' style='display:none;'>$|\alpha| &gt; (3 / 2) |\beta|$</div>
+
+
+
+
+  <div id='gilbert2d_mainsubdiv' style='width:420px;height:300px;'> </div>
+</body>
+
+<script>
+  function mathjax_ready() {
+    gilbert2d_eccentric_simple();
+  }
+</script>
+<html>
+

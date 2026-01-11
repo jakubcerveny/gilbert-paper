@@ -997,7 +997,7 @@ function gilbert3d_eccentric_alpha() {
   //two.makeRectangle( two.width/2, two.height/2, two.width, two.height);
 
   scale = 35;
-  let cxy = [115,190];
+  let cxy = [115,180];
 
   let cuboid_size = [2,2,2];
   let _sm = 0.8*scale;
@@ -1012,8 +1012,8 @@ function gilbert3d_eccentric_alpha() {
 
   //mathjax2twojs("alpha_gt_beta", cxy[0]+(1.135*scale), cxy[1]+20, latex_name_scale);
   //mathjax2twojs("alpha_gt_gamma", cxy[0]+(1.135*scale), cxy[1]+45, latex_name_scale);
-  mathjax2twojs("alpha_gt_beta", cxy[0]+(1.135*scale), cxy[1]+25, latex_name_scale);
-  mathjax2twojs("alpha_gt_gamma", cxy[0]+(1.135*scale), cxy[1]+54, latex_name_scale);
+  mathjax2twojs("alpha_gt_beta", cxy[0]+(1.135*scale), cxy[1]+(.8*scale), latex_name_scale);
+  mathjax2twojs("alpha_gt_gamma", cxy[0]+(1.135*scale), cxy[1]+(1.6*scale), latex_name_scale);
   rbracket( [cxy[0] + (2.35*scale), cxy[1]-5], _sl/3, 5*_sm, - theta*0.87);
 
   //mathjax2twojs("abs_gamma", cxy[0]-(1.55*scale), cxy[1]+18, latex_name_scale);

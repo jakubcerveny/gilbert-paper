@@ -61,12 +61,6 @@
 
 \maketitle
 
-%%
-%% This command is for the conference information
-%\conference{EXAG 2024: AIIDE Workshop on Experimental AI in Games, November 18--22, 2024, Lexington, KY, USA}
-%\input{CONFERENCE.tex}
-
-
 \begin{abstract}
   The two and three dimensional Hilbert curves are fractal space filling curves that
   map the unit interval to the unit square or unit cube while preserving a notion
@@ -78,26 +72,7 @@
   Our construction of the Gilbert curve provides a notion of \textit{harmony}
   that provide alternate subdivision schemes when a side length is much larger than the rest,
   creating more visual pleasing curves as a result.
-
-
-%The construction provides reasonable worst case run-time guarantees for random
-%access lookups for both two and three dimensions.
-%We provide experiments showing comparable quality in locality of the Gilbert curve
-%to the Hilbert curve for a range of cuboid regions and discuss some limitations of
-%  the construction algorithm.
 \end{abstract}
-
-
-%\newcommand{\specialcell}[2][c]{\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
-%\newcommand{\specialcellCenter}[2][c]{\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
-
-%  \input{01-intro.tex}
-
-%\input{01-Introduction.tex}
-%\input{02-Related-Work.tex}
-%\input{03-Algorithm.tex}
-%\input{04-Results.tex}
-%\input{05-Conclusion.tex}
 
 
 \section*{Generalized Hilbert Curves}
@@ -276,54 +251,32 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one.
 
 
 
-\begin{figure}[h]
-
-  \begin{minipage}[ht]{0.47\linewidth}
-
-    \centering
-    \includegraphics[width=0.925\linewidth]{gilbert2d_eccentric_simple.pdf}
-    \caption{ Eccentric subdivision when $|\alpha|$ oblong relative to $|\beta|$ }
-    \label{fig:eccentric_2d}
-
-  \end{minipage}\hfill
-  \begin{minipage}[ht]{0.48\linewidth}
-
-    \centering
-    \includegraphics[width=1.0\linewidth]{gilbert2d_example_eccentric.pdf}
-    \caption{ Example Gilbert 2D eccentric split when width is oblong relative to height }
-    \label{fig:eccentric_2d_example}
-
-%    \centering
-%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s0.pdf}
-%    \caption{ An $S_0$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split. }
-%    \label{fig:eccentric_s0}
-%
-  \end{minipage}
-\end{figure}
-
-\section*{Eccentric Subdivision}
-
 %\begin{figure}[h]
-%  \begin{minipage}[ht]{0.48\linewidth}
+%
+%  \begin{minipage}[ht]{0.47\linewidth}
 %
 %    \centering
-%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_lt.pdf}
-%    \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
-%              and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
-%    \label{fig:eccentric_beta_lt}
+%    \includegraphics[width=0.925\linewidth]{gilbert2d_eccentric_simple.pdf}
+%    \caption{ Eccentric subdivision when $|\alpha|$ oblong relative to $|\beta|$ }
+%    \label{fig:eccentric_2d}
 %
 %  \end{minipage}\hfill
 %  \begin{minipage}[ht]{0.48\linewidth}
 %
-%  \centering
-%  \includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_lt.pdf}
-%  \caption{ An $S_1$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split
-%            and the split point ratio, $\rho$, to reduce the defect for a more harmonious subdivision. }
-%  \label{fig:eccentric_gamma_lt}
+%    \centering
+%    \includegraphics[width=1.0\linewidth]{gilbert2d_example_eccentric.pdf}
+%    \caption{ Example Gilbert 2D eccentric split when width is oblong relative to height }
+%    \label{fig:eccentric_2d_example}
 %
+%%    \centering
+%%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s0.pdf}
+%%    \caption{ An $S_0$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split. }
+%%    \label{fig:eccentric_s0}
+%%
 %  \end{minipage}
 %\end{figure}
-%
+
+\section*{Eccentric Subdivision}
 
 When side lengths become too lopsided, an alternate \textit{eccentric} subdivision scheme is chosen to split along
 the larger side length.
@@ -367,32 +320,6 @@ After subdivision, if we assume $|\alpha| < 2 |\beta|$, the resulting defect is 
 For a defect reduction, we search for conditions in which the ratio of the resulting defect to the original defect is less than unity,
 giving the equation $|\alpha| / |\beta| > \sqrt{2}$.
 
-%$$
-%\begin{array}{ll}
-%  \lambda_2(|\alpha|, |\beta|) & = |\alpha| \cdot |\beta| / |\beta|^2 \\
-%   & = |\alpha| / |\beta|
-%\end{array}
-%$$
-%
-%After a subdivision, if we assume $|\alpha| < 2 |\beta|$, the defect is:
-%
-%$$
-%\begin{array}{ll}
-%  \lambda_2(|\alpha|/2, |\beta|) & = \frac{|\alpha|}{2} \cdot |\beta| / (\frac{|\alpha|}{2})^2 \\
-%   & = 2 |\beta| / |\alpha|
-%\end{array}
-%$$
-%
-%We're looking for the condition when there's a defect reduction, so
-%
-%$$
-%\begin{array}{ll}
-%    & \lambda_2(|\alpha|/2, |\beta|)  < \lambda_2(|\alpha|, |\beta|) \\
-%\to & 2 |\beta| / |\alpha| < |\alpha| / |\beta| \\
-%  \to & \sqrt{2} < |\alpha| / |\beta| \\
-%\end{array}
-%$$
-
 Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
 be assured a defect reduction.
 In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
@@ -400,7 +327,7 @@ In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is
 
 Defect reductions for the 3D case can be done, but are more complicated.
 The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
-without concern for optimization of defect reduction.
+without concern for optimizing defect reduction.
 
 
 \begin{minipage}[ht]{0.45\linewidth}
@@ -437,27 +364,44 @@ without concern for optimization of defect reduction.
 \end{minipage}\hfill
 \begin{minipage}[ht]{0.45\linewidth}
 
-  foo
+  \begin{minipage}[ht]{0.49\linewidth}
+
+    \centering
+    \includegraphics[width=0.925\linewidth]{gilbert2d_eccentric_alpha1.pdf}
+    \captionof{figure}{ }
+    \label{fig:eccentric_2d_alg}
+
+  \end{minipage}\hfill
+  \begin{minipage}[ht]{0.47\linewidth}
+
+    \centering
+    \includegraphics[width=1.0\linewidth]{gilbert2d_example_eccentric.pdf}
+    \captionof{figure}{ }
+    \label{fig:eccentric_2d_example_alg}
+
+  \end{minipage}
+
+  \begin{minipage}[ht]{0.95\linewidth}
+
+    \centering
+    \includegraphics[width=0.925\linewidth]{gilbert2d_eccentric_simple.pdf}
+    \captionof{figure}{ }
+    \label{fig:eccentric_2d_alg1}
+
+  \end{minipage}
+
+  \begin{minipage}[ht]{0.95\linewidth}
+
+    \centering
+    \includegraphics[width=1.0\linewidth]{gilbert2d_example_eccentric.pdf}
+    \captionof{figure}{ }
+    \label{fig:eccentric_2d_example_alg1}
+
+  \end{minipage}
 
 \end{minipage}
 
-\section*{Algorithm}
 
-Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
-Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
-can be ignored if a purely 2D curve is desired.
-The generalization to 3D allows the Gilbert2D function to be used unaltered when the
-3D Gilbert curve needs to trace out in-plane sub-curves.
-
-Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
-and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
-where the context is clear.
-
-The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
-the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
-To make things more concise, a convenience function is used,
-$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textbf{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2)$,
-that prefers even lengths in the non-degenerate case.
 
 \begin{minipage}[ht]{0.45\linewidth}
 \begin{algorithm}[H]
@@ -506,14 +450,14 @@ that prefers even lengths in the non-degenerate case.
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
-		\label{fig:gilbert3d_eccentric_alpha}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_eccentric_alpha}
 	\end{minipage}\hfill
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
-		\label{fig:gilbert3d_eccentric_alpha_example}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_eccentric_alpha_example}
 	\end{minipage}
 
 	\begin{minipage}{0.49\textwidth}
@@ -525,8 +469,8 @@ that prefers even lengths in the non-degenerate case.
 	\end{minipage}\hfill
 	\begin{minipage}{0.49\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
-		\label{fig:gilbert3d_eccentric_alpha_example_xxx}
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_example.pdf}
+		\label{fig:gilbert3d_eccentric_beta_example}
 		\captionof{figure}{ }
 	\end{minipage}
 
@@ -538,8 +482,8 @@ that prefers even lengths in the non-degenerate case.
 	\end{minipage}\hfill
 	\begin{minipage}{0.49\textwidth}
 		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
-		\label{fig:gilbert3d_eccentric_alpha_example_yyy}
+		\includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_example.pdf}
+		\label{fig:gilbert3d_eccentric_gamma_example}
 		\captionof{figure}{ }
 	\end{minipage}
 
@@ -559,12 +503,35 @@ that prefers even lengths in the non-degenerate case.
 \end{minipage}
 
 
+
+\section*{Algorithm}
+
+Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
+Note that $\alpha$ and $\beta$ are taken to be vectors in 3D, where the third dimension
+can be ignored if a purely 2D curve is desired.
+The generalization to 3D allows the Gilbert2D function to be used unaltered when the
+3D Gilbert curve needs to trace out in-plane sub-curves.
+
+Algorithm \ref{alg:gilbert2d} assumes standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$)
+and abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
+where the context is clear.
+The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
+the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
+To make things more concise, a convenience function is used,
+$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textbf{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2)$,
+that prefers even lengths in the non-degenerate case.
+
+Algorithm \ref{alg:gilbert3d} shows pseudo-code for computing the 3D Gilbert curve.
+Figures \ref{fig:gilbert3d_eccentric_alpha}, \ref{fig:gilbert3d_eccentric_alpha_example} show the various shape templates
+used to subdivide the region and an example curve with color coded regions.
+
+
 \section*{Conclusion and Future Directions}
 
 The Gilbert curve presented in this paper provides one intepretation for a generalized Hilbert
 curve in 2D and 3D to arbitrary side lengths.
-Generalizing a Hilbert space filling curve to arbitrary side lengths is not a well posed problem
-and is open to interpretation, and the solution presented here is one such adaptation.
+Generalizing a Hilbert space filling curve to arbitrary side lengths is open to intepretation
+and the solution presented here is one such adaptation.
 
 When desinging an algorithm to generalize the Hilbert curve, four features that might be desirable are:
 
@@ -574,7 +541,7 @@ When desinging an algorithm to generalize the Hilbert curve, four features that 
     \textit{Hilbert-esque} & Reduces to a Hilbert curve when side lengths are equal and are exact powers of two \\
     \textit{Stabilty} & Curve realizations converge as the cuboid side lengths increase proportionally \\
     \textit{Harmony} & Realizations use eccentric splits to reduce the \textit{defect} \\
-    \textit{Notch-Limited} & Curve realizations are notch free unless a single notch is necessary \\
+    \textit{Notch-Limited} & Curve realizations are notch free or limited to a single notch if necessary \\
   \end{tabular}
 \end{table}
 
@@ -587,12 +554,6 @@ or, more generally, to try and create an arbitrary space filling curve in a cubo
 
 A libre/free/open implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
 repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/gilbert} }.
-
-
-
-
-%\bibliographystyle{unsrtnat}
-%\bibliography{06-References}
 
 
 {\setlength{\baselineskip}{13pt} % tighten line spacing for bibliography
@@ -627,22 +588,12 @@ repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/g
 \end{thebibliography}
 } % end setlength, raggedright
 
-
-\begin{figure}[ht]
-  \centering
-  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
-  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
-  \label{fig:footerGilbert}
-\end{figure}
-
-%  \caption{ Illustrative examples of Hamiltonian paths height/width that are even/even, even/odd and odd/odd, respectively, when starting from the lower left hand corner }
-
-
-
-%\appendix
-%\input{07-Appendix.tex}
-%\input{08-Appendix-Alg.tex}
-
+%\begin{figure}[ht]
+%  \centering
+%  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
+%  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
+%  \label{fig:footerGilbert}
+%\end{figure}
 
 \end{document}
 
