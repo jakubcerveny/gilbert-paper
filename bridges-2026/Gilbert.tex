@@ -42,7 +42,6 @@
 
 \title{ A Generalized 2D and 3D Hilbert Curve }
 \author{ Jakub \v{C}erven\'{y} and Zzyv Zzyzek }
-%\input{AUTHOR.tex}
 
 \date{}
 
@@ -217,7 +216,7 @@ representing a current snapshot of the current frame of reference.
 
 When dividing into sub-regions, side lengths are chosen to be integral and with even side lengths preferred
 for the first subdivided region (region \textit{A} in figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert3DJSplit}).
-A path is recursively chosen for each of the subregions and, after resolution, endpoints are connected.
+A path is recursively chosen for each of the sub-regions and, after resolution, endpoints are connected.
 Figure \ref{fig:production2d} shows the choice in 2D of even or odd regions depending on side length parity.
 
 When regions have a side length that is much larger than the rest, another subdivision scheme is used.
@@ -509,7 +508,7 @@ without concern for optimizing defect reduction.
 
 Algorithm \ref{alg:gilbert2d} and algorithm \ref{alg:gilbert3d} shows the pseudo-code for computing the Gilbert curve in
 2D and 3D respectively.
-After each subdivision, the origion and local axies are rotated to align with the sub
+After each subdivision, the origin and local axis are rotated to align with the sub
 region and recursively solved.
 In the base case where there is a unit length side, a curve in one lower dimension is output (a line for 2D and a 2D Gilbert curve for 3D).
 If the width like dimension, $\alpha$, is oblong relative to the height-like dimension, $\beta$,
@@ -544,7 +543,7 @@ that prefers even lengths in the non-degenerate case.
 
 Random access functions to convert from index to position or position to index can be created by modifying the presented algorithms
 with short circuit conditionals, bypassing path calculation but keeping a running total of positions that would have been traversed.
-Each subregion is an axis-aligned rectangle or cuboid, allowing for easy calculation of path length as the product of the side lengths for
+Each sub-region is an axis-aligned rectangle or cuboid, allowing for easy calculation of path length as the product of the side lengths for
 the given area or volume.
 
 %Algorithm \ref{alg:gilbert3d} shows pseudo-code for computing the 3D Gilbert curve.
@@ -557,18 +556,18 @@ the given area or volume.
 
 \section*{Conclusion and Future Directions}
 
-The Gilbert curve presented in this paper provides one intepretation for a generalized Hilbert
+The Gilbert curve presented in this paper provides one interpretation for a generalized Hilbert
 curve in 2D and 3D to arbitrary side lengths.
-Generalizing a Hilbert space filling curve to arbitrary side lengths is open to intepretation
+Generalizing a Hilbert space filling curve to arbitrary side lengths is open to interpretation
 and the solution presented here is one such adaptation.
 
-When desinging an algorithm to generalize the Hilbert curve, four features that might be desirable are:
+When designing an algorithm to generalize the Hilbert curve, four features that might be desirable are:
 
 \begin{table}[h]
   \centering
   \begin{tabular}[t]{l|l}
     \textit{Hilbert-esque} & Reduces to a Hilbert curve when side lengths are equal and are exact powers of two \\
-    \textit{Stabilty} & Curve realizations converge as the cuboid side lengths increase proportionally \\
+    \textit{Stability} & Curve realizations converge as the cuboid side lengths increase proportionally \\
     \textit{Harmony} & Realizations use eccentric splits to reduce the \textit{defect} \\
     \textit{Notch-Limited} & Curve realizations are notch free or limited to a single notch if necessary \\
   \end{tabular}
@@ -578,7 +577,7 @@ The 2D Gilbert curve presented here has all of these properties while the 3D Gil
 
 Future work could focus on creating 3D Gilbert curve that has all of these features, perhaps by relaxing strict endpoint requirements
 at the cuboid corners.
-Some other natural ideas are to extend the concepts above to other space filling curves or ciruits,
+Some other natural ideas are to extend the concepts above to other space filling curves or circuits,
 or, more generally, to try and create an arbitrary space filling curve in a cuboid region with arbitrary endpoints.
 
 A libre/free/open implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
@@ -594,7 +593,7 @@ repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/g
 
   \bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' 2009. 10.1093/bioinformatics/btp152.
 
-  \bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' 10.1007/11821045 31.
+  \bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-Hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' 10.1007/11821045 31.
 
   \bibitem{cortesi2011} A. Cortesi. ``Visualizing binaries with space-filling curves.'' \url{https://corte.si/posts/visualisation/binvis/}.
 

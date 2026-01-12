@@ -1,4 +1,4 @@
-personal_ws-1.1 en 63 
+personal_ws-1.1 en 71 
 Algorithmically
 Anders
 Arrwwid
@@ -12,7 +12,9 @@ Gotsman
 Haverkort
 Holzm
 IPv
+Jakub
 Jia
+Kamata
 Kupers
 Lera
 Lindenbaum
@@ -31,10 +33,13 @@ Sergeyev
 TODO
 Tautenhahn
 Tautenhahn's
+Ueshige
 Voorhies
 Walderveen
 Warshall
 Zhang
+Zzyv
+Zzyzek
 al
 algorithmically
 autocorrelation
@@ -43,8 +48,11 @@ cr
 discretized
 dst
 embeddings
+erven
+esque
 et
 forall
+genomic
 hm
 hoc
 inBounds
