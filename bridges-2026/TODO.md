@@ -5,11 +5,8 @@ TODO
 
 in-progress:
 
-* bullk template subdivision side-by-side with algorithm
-  - 2d
-  - 3d
-* references
 * additional pretty graphics (?)
+* provide function call with alpha, beta, gamma set initially
 
 As of this writing, the page count is just past 7.
 It would be nice to get it down to 6 but I'm not sure this is really realistic.
@@ -23,6 +20,13 @@ Some further things to talk about are:
 * talk about some other attempts at creating a generalized hilbert curve
 * add in some comments in code to highlight eccentric splits
 * have a vanity page of examples
+
+done:
+
+* ~bullk template subdivision side-by-side with algorithm~
+  - ~2d~
+  - ~3d~
+* ~references~
 
 ---
 

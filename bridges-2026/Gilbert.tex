@@ -1,8 +1,3 @@
-%% The first command in your LaTeX source must be the \documentclass command.
-%%
-%% Options:
-%% twocolumn : Two column layout.
-%% hf: enable header and footer.
 \documentclass[letterpaper,11pt]{article}
 \usepackage{amsmath, amsthm, amssymb}
 \usepackage{bridges}
@@ -10,8 +5,6 @@
 
 \usepackage[colorlinks=true, urlcolor=blue, citecolor=black, linkcolor=black]{hyperref}
 \usepackage{subcaption}
-
-
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
@@ -27,17 +20,8 @@
 
 \urlstyle{rm}
 
-
-%%
-%% One can fix some overfulls
 \sloppy
-
-%%
-%% Minted listings support 
-%% Need pygment <http://pygments.org/> <http://pypi.python.org/pypi/Pygments>
 \usepackage{listings}
-
-%% auto break lines
 \lstset{breaklines=true}
 
 \title{ A Generalized 2D and 3D Hilbert Curve }
@@ -45,17 +29,6 @@
 
 \date{}
 
-%%
-%% Rights management information.
-%% CC-BY is default license.
-%\copyrightyear{2026}
-%\copyrightclause{Copyright for this paper by its authors.
-%  Use permitted under Creative Commons License Attribution 4.0
-%  International (CC BY 4.0).}
-
-
-%%
-%% end of the preamble, start of the body of the document source.
 \begin{document}
 
 \maketitle
@@ -81,15 +54,28 @@ space filling curve.
 Tautenhahn also included policies for when to subdivide regions preferentially in only one dimension
 that help to create more \textit{harmonious} curve realizations.
 Tautenhahn's exploration details the parity arguments necessary for when a subdivision scheme can be employed
-without creating diagonal moves, which we call \textit{notches} here.
+without creating diagonal moves, where diagonal moves are called \textit{notches} here.
 
 
 In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve.
 We further extend Tautenhahn's core ideas on when to use alternate subdivision schemes when one length is much
 larger than the rest, what we call \textit{eccentric cases}, and apply them to a 3D generalized Hilbert curve.
-Tautenhahn's unpublished reasoning behind the constants used in the 2d eccentric split case are briefly discussed
+Tautenhahn's unpublished reasoning behind the constants used in the 2D eccentric split case are briefly discussed
 %later\footnote{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
 later\footnotemark[1].
+
+%????
+%The idea of generalizing Hilbert curves is not new and one notable 2D attempt was by Zhang, Kamata and Ueshige \ref{zhang2006}.
+%Whereas their method works for arbitrary side lengths, the resulting curves tend to have runs of straight lines for non powers of two
+%side lengths.
+%Further their is complicated with no clear way to generalize it 3D.
+%
+%Anders used a Hilbert curve mapping to
+%visualize the human genome as a 2D map \ref{anders2009}. Cortesi has
+%used a Hilbert curve to visualize binary files \ref{cortesi2011}.
+%
+%For a more technical introduction to the space filling curves, including the Hiblert curve, the reader is refered to Sagan \ref{sagan1994}.
+%
 
 \footnotetext[1]{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
 
@@ -113,7 +99,17 @@ later\footnotemark[1].
 \end{figure}
 
 
-%\section*{Valid Paths from Grid Parity}
+\begin{figure}[!htb]
+
+  \centering
+  \includegraphics[width=\linewidth]{simple_hampath_flat.pdf}
+  \caption{ Examples of Hamiltonian paths for small grid sizes. A red `x' corresponds to no possible path for the chosen endpoints. }
+  \label{fig:exampleHampath}
+
+\end{figure}
+
+
+\section*{Valid Paths from Grid Parity}
 
 %\begin{figure}[!htb]
 %
@@ -149,24 +145,36 @@ later\footnotemark[1].
 %
 %\end{figure}
 
-%The feasibility of determining whether there exists a non intersecting path, called a \textit{Hamiltonian path},
-%connecting endpoints on the corners in a rectangular cuboid
-%grid region can be accomplished through parity arguments.
-%Label grid cell points in a volume as 0 or 1,
-%alternating between labels with every axis-aligned single step move.
-%Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
-%volume is odd, or different parity if the volume is even.
-%
+The feasibility of determining whether there exists a non intersecting path, called a \textit{Hamiltonian path},
+connecting endpoints on the corners in a rectangular cuboid
+grid region can be accomplished through parity arguments.
+Label grid cell points in a volume as 0 or 1,
+alternating between labels with every axis-aligned single step move.
+Any Hamiltonian path that ends at one of the three remaining corners has to have the same parity as the starting point if the
+volume is odd, or different parity if the volume is even.
+
+Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with areas $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
+where a red cross indicating a precluded endpoint.
+When a Hamiltonian path is not precluded by the parity of the start and end point, we say that the endpoints are \textit{color compatible}.
+In general, color compatibility is a necessary, but insufficient, test for a Hamiltonicity.
+
+In the simpler case when the region is a rectangular cuboid and endpoints are on the corners of the cuboid region, color compatibility
+is a sufficient test for Hamiltonicity.
+This allows us a simple test to see if there is a Hamiltonian path within a rectangular region purely based on the parity of side lengths
+and the corner locations of the start and end points of the path.
+
+For the constructed 2D and 3D Gilbert curves in this paper, we don't use endpoints that are diagonal within a cuboid region and
+only use endpoints that are in line in a single axis-aligned direction.
+
 %For a path starting at $(0,0,0)$ and ending $|\alpha|$ steps in one of the axis-aligned dimensions,
 %then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
-%Figure \ref{fig:exampleHampath} illustrates this for starting position $(0,0)$ with areas $(2 \times 2)$, $(3 \times 2)$ and $(3 \times 3)$,
-%where a red cross indicating a precluded endpoint.
-%
+
 %Assuming a curve starts from position $p_s=(0,0,0)$ and has proposed
 %endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
+
 %We focus on optimizing for providing a notch-free path when all side lengths are even and allow notches when $|\alpha|$ is odd in 2D
 %or when one of the side lengths is odd in 3D.
-%
+
 %The 2D Gilbert curve limits the number of notches to one.
 %The 3D Gilbert curve's subdivision strategy creates a notch when the distance between endpoints is odd,
 %potentially creating more than one notch.
@@ -208,14 +216,15 @@ later\footnotemark[1].
 
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
 Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
+Figure \ref{fig:main2dsubdivExample} provides a 2D example of the main subdivision with regions labelled and color coded.
 
 The vectors $\alpha, \beta, \gamma \in \mathbb{Z}^3$ provide generalized notions of width ($\alpha$), height ($\beta$),
 and depth ($\gamma$), so that we can transform rectangular or cuboid regions as necessary for the recursion.
 Each of $\alpha, \beta, \gamma$ will only have one non-zero component and will be orthogonal to each other,
-representing a current snapshot of the current frame of reference.
+representing a snapshot of the current frame of reference.
 
-When dividing into sub-regions, side lengths are chosen to be integral and with even side lengths preferred
-for the first subdivided region (region \textit{A} in figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert3DJSplit}).
+When dividing into sub-regions, side lengths are chosen to be integral.
+Even side lengths are preferred for the first subdivided region (region \textit{A} in figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert3DJSplit}).
 A path is recursively chosen for each of the sub-regions and, after resolution, endpoints are connected.
 Figure \ref{fig:production2d} shows the choice in 2D of even or odd regions depending on side length parity.
 
@@ -223,22 +232,51 @@ When regions have a side length that is much larger than the rest, another subdi
 We call these cases \textit{eccentric subdivisions}, as the larger side length makes the
 region lopsided.
 
-If one side length is much larger than the rest, both the 2D and 3D Gilbert curve split the region in two.
-For the 3D case, if one side length is much smaller than the rest but with the remaining lengths roughly equal,
-the region is subdivided as if it were a 2D Gilbert curve, taking the smaller side length as the ``flat'' dimension.
-
-The eccentric subdivision schemes provide a more visually pleasing solution as regimented subdivisions might take paths
+The eccentric subdivision schemes provide a more visually pleasing partition of the space, as regimented subdivisions might take paths
 that are long and skinny or wide and squat.
-In the next section, we will briefly go over motivations for the threshold values of when to use the eccentric subdivision
-schemes.
+In the next section,
+We will briefly go over motivations for the threshold values for the 2D eccentric subdivision scheme in the next section
+but first provide a more detailed desciption of the template subdivision schemes for the 2D and 3D Gilbert curve below.
 
-For the 2D Gilbert curve, if $|\alpha|$ is odd, there will be a diagonal move, or \textit{notch}, for the
-resulting path.
-The subdivision scheme will keep the notch in a single region, limiting the notch count to one.
+\subsection*{2D Gilbert Curve}
 
-For the 3D Gilbert curve, if any of the subdivided regions has endpoints that lay in a direction with
+For the 2D Gilbert curve,
+if the width like dimension ($\alpha$) is much larger, the curve is split in half along
+the $\alpha$ length (figure \ref{fig:eccentric_2d_alg}, \ref{fig:eccentric_2d_example_alg}).
+If no eccentric split is done, the region is subdivided into two squares at the bottom and a rectangle on top, with endpoints
+joined on the outer perimeter.
+
+Each regions parity is chosen so as to try to keep color compatibility, ensuring a valid path if possible.
+When the side lengths are exact powers of two, the resulting curve is identical to the 2D Hilbert curve.
+
+If the region is odd parity, with both side lengths odd, a notch is forced and is directed to the upper right region,
+as illustrated by figure \ref{fig:production2d}.
+
+\subsection*{3D Gilbert Curve}
+
+In the normal case, a subdivision scheme is used to split the cuboid into five regions, two
+cube like regions where the path starts and stops, and three oblong cuboid regions for the middle portion of the path.
+Figure \ref{fig:gilbert3DJSplit} provides an exploded view of the main subdivision and where the endpoints line up.
+See also figure \ref{fig:gilbert3d_bulk_template} for the template and figure \ref{fig:gilbert3d_bulk_example}
+for a $10 \times 10 \times 10$ example, with each region color coded.
+
+Endpoints within a sub-divided region are kept on the exterior of the region and joined after the resulting recursion
+has completed.
+As with the 2D Gilbert, when side dimensions are equal and exact powers of two, the resulting curve is identical to the
+corresponding 3D Hilbert curve.
+
+Durcing the course of sub-division, if the width like dimension ($\alpha$) is much larger, the curve is split in half along
+the $\alpha$ length (figure \ref{fig:gilbert3d_eccentric_alpha}, \ref{fig:gilbert3d_eccentric_alpha_example}).
+If the $\alpha$ eccentric split is not triggered, the height-like dimension, $\beta$, is then compared to depth-like dimension, $\gamma$
+and if very much larger, an eccentric subdivision scheme is used that splits in the $\alpha$ and $\beta$ direction
+(figure \ref{fig:gilbert3d_eccentric_beta}, \ref{fig:gilbert3d_eccentric_beta_example}).
+If both $\alpha$ and $\beta$ are not much larger, a check is done to see if the depth-like dimension, $\gamma$, is much larger than 
+than the height-like dimension, $\beta$, splitting in the $\alpha$ and $\gamma$ direction if so
+(figure \ref{fig:gilbert3d_eccentric_gamma}, \ref{fig:gilbert3d_eccentric_gamma_example}).
+
+If any of the subdivided regions has endpoints that lay in a direction with
 odd length, a notch will appear.
-This means the number of notches for the 3D Gilbert curve isn't limited to one.
+This means the number of notches for the 3D Gilbert curve isn't limited to one in the case a side length is odd.
 
 \begin{figure}[!htb]
   \centering
@@ -246,34 +284,6 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one.
   \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
   \label{fig:production2d}
 \end{figure}
-
-
-
-
-%\begin{figure}[h]
-%
-%  \begin{minipage}[ht]{0.47\linewidth}
-%
-%    \centering
-%    \includegraphics[width=0.925\linewidth]{gilbert2d_eccentric_simple.pdf}
-%    \caption{ Eccentric subdivision when $|\alpha|$ oblong relative to $|\beta|$ }
-%    \label{fig:eccentric_2d}
-%
-%  \end{minipage}\hfill
-%  \begin{minipage}[ht]{0.48\linewidth}
-%
-%    \centering
-%    \includegraphics[width=1.0\linewidth]{gilbert2d_example_eccentric.pdf}
-%    \caption{ Example Gilbert 2D eccentric split when width is oblong relative to height }
-%    \label{fig:eccentric_2d_example}
-%
-%%    \centering
-%%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_appendix_s0.pdf}
-%%    \caption{ An $S_0$ eccentric subdivision showing the threshold, $\sigma$, used to determine when we should use this split. }
-%%    \label{fig:eccentric_s0}
-%%
-%  \end{minipage}
-%\end{figure}
 
 \section*{Eccentric Subdivision}
 
@@ -329,7 +339,7 @@ The constants for the 3D subdivision in this paper were observed to yield visual
 without concern for optimizing defect reduction.
 
 
-\begin{minipage}[ht]{0.45\linewidth}
+\begin{minipage}[!htb]{0.43\linewidth}
 \begin{algorithm}[H]
   \caption{Gilbert 2D}
   \label{alg:gilbert2d}
@@ -354,14 +364,14 @@ without concern for optimizing defect reduction.
         \EndIf
         \State \textbf{yield} Gilbert2D($p$, \\ \hskip9.75em $\beta_2$, $\alpha_2$)
         \State \textbf{yield} Gilbert2D($p + \beta_2$, \\ \hskip9.75em $\alpha$, $(\beta - \beta_2)$)
-        \State \textbf{yield} Gilbert2D($p + \alpha - \delta(\alpha) + \beta_2 - \delta(\beta)$, \\ \hskip9.75em $\beta_2$, $-(\alpha - \alpha_2)$)
+        \State \textbf{yield} Gilbert2D($p + (\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta_2 - \delta(\beta))$, \\ \hskip9.75em $\beta_2$, $-(\alpha - \alpha_2)$)
       \EndIf
     \EndFunction
 
   \end{algorithmic}
 \end{algorithm}
 \end{minipage}\hfill
-\begin{minipage}[ht]{0.45\linewidth}
+\begin{minipage}[!htb]{0.43\linewidth}
 
   \begin{minipage}[ht]{0.49\linewidth}
 
@@ -402,7 +412,7 @@ without concern for optimizing defect reduction.
 
 
 
-\begin{minipage}[ht]{0.45\linewidth}
+\begin{minipage}[ht]{0.5\linewidth}
 \begin{algorithm}[H]
   \caption{Gilbert 3D}
   \label{alg:gilbert3d}
@@ -444,7 +454,7 @@ without concern for optimizing defect reduction.
   \end{algorithmic}
 \end{algorithm}
 \end{minipage}\hfill
-\begin{minipage}[ht]{0.49\linewidth}
+\begin{minipage}[ht]{0.5\linewidth}
 
 	\begin{minipage}{0.49\textwidth}
 		\centering
@@ -517,20 +527,10 @@ For the 3D case, additional checks to see if the remaining side lengths are oblo
 Otherwise, the bulk recursion is executed.
 
 
-%Algorithm \ref{alg:gilbert2d} shows the pseudo-code for computing the 2D Gilbert curve.
-%After each subdivision, the origion and local axies are rotated to align with the sub
-%region and recursively solved.
-%In the base case where there is a unit length side, a line is output.
-%If the width like dimension, $\alpha$, is oblong relative to the height-like dimension, $\beta$,
-%an eccentric template is used.
-%Otherwise, the bulk recursion is executed on the three partioned regions.
-
 Note that even in the 2D case, $\alpha$ and $\beta$ are taken to be vectors in 3D.
-%, where the third dimension can be ignored if a purely 2D curve is desired.
 The generalization to 3D allows the Gilbert2D function to be used unaltered when the
 3D Gilbert curve needs to trace out in-plane sub-curves.
 
-%Algorithm \ref{alg:gilbert2d} assumes 
 The standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$) is used
 but abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
 where the context is clear.
@@ -551,8 +551,6 @@ the given area or volume.
 %used to subdivide the region and an example curve with color coded regions.
 %As with the \textit{Gilbert2D} function, base cases occur when one dimension is unit length, eccentric templates are used
 %for oblong side lengths and the bulk recursion is executed in all other cases.
-
-
 
 \section*{Conclusion and Future Directions}
 
@@ -588,16 +586,17 @@ repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/g
 \raggedright        % no right justification for References
 \begin{thebibliography}{99}
 
+  %\bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' \textit{Bioinformatics}, vol.~25, no.~10, pp. ~ 1231-1235, 2009.  \url{https://doi.org/10.1093/bioinformatics/btp152}
 
-  \bibitem{lutanho2003} L. Tautenhahn. ``Draw a space-filling curve of arbitrary size.'' 2003. \url{https://lutanho.net/pic2html/draw_sfc.html}.
+  %\bibitem{cortesi2011} A. Cortesi. \textit{Visualizing binaries with space-filling curves}. 2011. \url{https://corte.si/posts/visualisation/binvis/}.
 
-  \bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' 2009. 10.1093/bioinformatics/btp152.
+  %\bibitem{sagan1994} H. Sagan. \textit{Space-Filling Curves}, 1994 ed. Springer, 1994.
 
-  \bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-Hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' 10.1007/11821045 31.
+  \bibitem{lutanho2003} L. Tautenhahn. \textit{Draw a space-filling curve of arbitrary size}, 2003. \url{https://lutanho.net/pic2html/draw_sfc.html}.
 
-  \bibitem{cortesi2011} A. Cortesi. ``Visualizing binaries with space-filling curves.'' \url{https://corte.si/posts/visualisation/binvis/}.
+  %\bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-Hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' \textit{Advances in Machine Vision, Image Processing, and Pattern Analysis}, Berlin, Heidelberg, 2006, pp. 290-299.
 
-  \bibitem{sagan1994} H. Saga. ``Space-Filling Curves.'' 9783540942658.
+
 
 
 
