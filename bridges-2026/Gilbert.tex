@@ -4,25 +4,25 @@
 \usepackage{graphicx}
 
 \usepackage[colorlinks=true, urlcolor=blue, citecolor=black, linkcolor=black]{hyperref}
-\usepackage{subcaption}
+%\usepackage{subcaption}
 
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{hyperref}
 
 %\usepackage{svg}
-\usepackage{multirow}
-\usepackage{caption}
-\usepackage{tikz}
-\usepackage{transparent}
+%\usepackage{multirow}
+%\usepackage{caption}
+%\usepackage{tikz}
+%\usepackage{transparent}
 
-\usepackage[bottom]{footmisc}
+%\usepackage[bottom]{footmisc}
 
 \urlstyle{rm}
 
-\sloppy
+%\sloppy
 \usepackage{listings}
-\lstset{breaklines=true}
+%\lstset{breaklines=true}
 
 \title{ A Generalized 2D and 3D Hilbert Curve }
 \author{ Jakub \v{C}erven\'{y} and Zzyv Zzyzek }
@@ -32,6 +32,8 @@
 \begin{document}
 
 \maketitle
+
+\thispagestyle{empty}
 
 \begin{abstract}
   The two and three dimensional Hilbert curves are fractal space filling curves that
@@ -49,20 +51,64 @@
 
 \section*{Generalized Hilbert Curves}
 
+The discretized Hilbert curve recursively traces out a Hamiltonian path through a square region whose
+sides are exact powers of two.
+The Gilbert curve extends this idea to trace out a Hamiltonian path through to arbitrary axis-aligned
+cuboid regions.
+
+
+The design of the Gilbert curve is done to provide a:
+
+%\begin{itemize}
+%  \item Conceptually simple algorithm
+%  \item Valid algorithm on arbitrary rectangular regions in 2D and 3D
+%  \item Aesthetically pleasing resulting curve
+%\end{itemize}
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}[t]{l}
+    $\bullet$ Conceptually simple algorithm \\
+    $\bullet$ Valid algorithm on arbitrary rectangular regions in 2D and 3D \\
+    $\bullet$ Path trace that is aesthetically pleasing \\
+  \end{tabular}
+\end{table}
+
+\begin{figure}[!htb]
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{gilbert2d_examples.pdf}
+    \caption{ 2D Gilbert curves for i) $8 \times 8$, ii) $18 \times 6$, iv) $13 \times 8$ (with notch), iv) $14 \times 14$ }
+    \label{fig:gilbert2d_examples}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{gilbert3d_orig_examples.pdf}
+    \caption{ 3D Gilbert curves for i) $4 \times 4 \times 4$, ii) $6 \times 6 \times 6$, iii) $8 \times 4 \times 4$, iv) $5 \times 4 \times 4$ (with notch) }
+    \label{fig:examples3d}
+  \end{minipage}
+\end{figure}
+
+
 In a website application and scanned note \cite{lutanho2003}, Tautenhahn provided the basis for a generalized 2D
 space filling curve.
 Tautenhahn also included policies for when to subdivide regions preferentially in only one dimension
 that help to create more \textit{harmonious} curve realizations.
 Tautenhahn's exploration details the parity arguments necessary for when a subdivision scheme can be employed
-without creating diagonal moves, where diagonal moves are called \textit{notches} here.
+without creating diagonal moves. %, where diagonal moves are called \textit{notches} here.
 
 
 In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve.
 We further extend Tautenhahn's core ideas on when to use alternate subdivision schemes when one length is much
 larger than the rest, what we call \textit{eccentric cases}, and apply them to a 3D generalized Hilbert curve.
 Tautenhahn's unpublished reasoning behind the constants used in the 2D eccentric split case are briefly discussed
+later \footnote{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
 %later\footnote{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
-later\footnotemark[1].
+
+
+
+%\footnotemark[1].
+%\footnotetext[1]{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
 
 %????
 %The idea of generalizing Hilbert curves is not new and one notable 2D attempt was by Zhang, Kamata and Ueshige \ref{zhang2006}.
@@ -77,26 +123,6 @@ later\footnotemark[1].
 %For a more technical introduction to the space filling curves, including the Hiblert curve, the reader is refered to Sagan \ref{sagan1994}.
 %
 
-\footnotetext[1]{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
-
-\begin{figure}[!htb]
-
-  \begin{minipage}{0.48\textwidth}
-
-    \centering
-    \includegraphics[width=\linewidth]{gilbert2d_examples.pdf}
-    \caption{ 2D Gilbert curves for i) $8 \times 8$, ii) $18 \times 6$, iv) $13 \times 8$ (with notch), iv) $14 \times 14$ }
-    \label{fig:gilbert2d_examples}
-  \end{minipage}\hfill
-  \begin{minipage}{0.48\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{gilbert3d_orig_examples.pdf}
-    \caption{ 3D Gilbert curves for i) $4 \times 4 \times 4$, ii) $6 \times 6 \times 6$, iii) $8 \times 4 \times 4$, iv) $5 \times 4 \times 4$ (with notch) }
-    \label{fig:examples3d}
-
-  \end{minipage}
-
-\end{figure}
 
 
 \begin{figure}[!htb]
@@ -216,7 +242,7 @@ only use endpoints that are in line in a single axis-aligned direction.
 
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
 Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
-Figure \ref{fig:main2dsubdivExample} provides a 2D example of the main subdivision with regions labelled and color coded.
+Figure \ref{fig:main2dsubdivExample} provides a 2D example of the main subdivision with regions labeled and color coded.
 
 The vectors $\alpha, \beta, \gamma \in \mathbb{Z}^3$ provide generalized notions of width ($\alpha$), height ($\beta$),
 and depth ($\gamma$), so that we can transform rectangular or cuboid regions as necessary for the recursion.
@@ -234,38 +260,55 @@ region lopsided.
 
 The eccentric subdivision schemes provide a more visually pleasing partition of the space, as regimented subdivisions might take paths
 that are long and skinny or wide and squat.
+For example, partitioning a cuboid into eight roughly equal sub-regions leaves no room to absorb lopsided edge lengths.
 In the next section,
-We will briefly go over motivations for the threshold values for the 2D eccentric subdivision scheme in the next section
-but first provide a more detailed desciption of the template subdivision schemes for the 2D and 3D Gilbert curve below.
+we will briefly go over motivations for the threshold values for the 2D eccentric subdivision scheme
+but first provide a more detailed description of the template subdivision schemes for the 2D and 3D Gilbert curve.
 
 \subsection*{2D Gilbert Curve}
 
 For the 2D Gilbert curve,
-if the width like dimension ($\alpha$) is much larger, the curve is split in half along
-the $\alpha$ length (figure \ref{fig:eccentric_2d_alg}, \ref{fig:eccentric_2d_example_alg}).
-If no eccentric split is done, the region is subdivided into two squares at the bottom and a rectangle on top, with endpoints
+the region is subdivided into two squares at the bottom and a rectangle on top, with endpoints
 joined on the outer perimeter.
+This process is recursively applied until a trivial path can be produced.
+Figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert2d_bulk} two different representations of the template used for the
+subdivision.
+Figures \ref{fig:main2dsubdivExample} and \ref{fig:gilbert2d_bulk_example} show color coded examples for dimensions $26 \times 18$ and
+$42 \times 30$ respectively.
+
+If the width like dimension ($\alpha$) is much larger than the height like dimension ($\beta$),
+an alternate eccentric subdivision template is used to split the region in half along
+the $\alpha$ length (figure \ref{fig:eccentric_2d_alg}, \ref{fig:eccentric_2d_example_alg}).
 
 Each regions parity is chosen so as to try to keep color compatibility, ensuring a valid path if possible.
-When the side lengths are exact powers of two, the resulting curve is identical to the 2D Hilbert curve.
-
 If the region is odd parity, with both side lengths odd, a notch is forced and is directed to the upper right region,
 as illustrated by figure \ref{fig:production2d}.
 
+When the side lengths are exact powers of two, the resulting curve is identical to the 2D Hilbert curve.
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\linewidth]{config_production.pdf}
+  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
+  \label{fig:production2d}
+\end{figure}
+
+
 \subsection*{3D Gilbert Curve}
 
-In the normal case, a subdivision scheme is used to split the cuboid into five regions, two
-cube like regions where the path starts and stops, and three oblong cuboid regions for the middle portion of the path.
+In the normal case, a subdivision scheme is used to split the cuboid into five regions.
+Two cube like regions are partitioned where the path starts and stops, and three oblong cuboid regions are partitioned
+for the middle portion of the path.
 Figure \ref{fig:gilbert3DJSplit} provides an exploded view of the main subdivision and where the endpoints line up.
 See also figure \ref{fig:gilbert3d_bulk_template} for the template and figure \ref{fig:gilbert3d_bulk_example}
 for a $10 \times 10 \times 10$ example, with each region color coded.
 
-Endpoints within a sub-divided region are kept on the exterior of the region and joined after the resulting recursion
+Endpoints within a sub-divided region are kept on the exterior of the parent cuboid and joined after the resulting recursion
 has completed.
-As with the 2D Gilbert, when side dimensions are equal and exact powers of two, the resulting curve is identical to the
+As with the 2D Gilbert curve, when side dimensions are equal and exact powers of two, the resulting curve is identical to the
 corresponding 3D Hilbert curve.
 
-Durcing the course of sub-division, if the width like dimension ($\alpha$) is much larger, the curve is split in half along
+During the course of sub-division, if the width like dimension ($\alpha$) is much larger, the curve is split in half along
 the $\alpha$ length (figure \ref{fig:gilbert3d_eccentric_alpha}, \ref{fig:gilbert3d_eccentric_alpha_example}).
 If the $\alpha$ eccentric split is not triggered, the height-like dimension, $\beta$, is then compared to depth-like dimension, $\gamma$
 and if very much larger, an eccentric subdivision scheme is used that splits in the $\alpha$ and $\beta$ direction
@@ -277,67 +320,6 @@ than the height-like dimension, $\beta$, splitting in the $\alpha$ and $\gamma$ 
 If any of the subdivided regions has endpoints that lay in a direction with
 odd length, a notch will appear.
 This means the number of notches for the 3D Gilbert curve isn't limited to one in the case a side length is odd.
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\linewidth]{config_production.pdf}
-  \caption{ Enumeration of the subdivision template depending on different parities of $\alpha$ and $\beta$ dimensions. }
-  \label{fig:production2d}
-\end{figure}
-
-\section*{Eccentric Subdivision}
-
-When side lengths become too lopsided, an alternate \textit{eccentric} subdivision scheme is chosen to split along
-the larger side length.
-
-For each eccentric subdivision, a proportion threshold needs to be chosen to determine when a side
-lengths become too lopsided to warrant an alternate subdivision.
-Here we motivate the eccentric subdivision constants for the 2D case.
-
-Consider a \textit{defect} function, $\lambda _ 2 : \mathbb{N}^2 \mapsto \mathbb{N}$, that measures the area relative
-to what the area would be if just the minimum side length were taken:
-
-$$
-\begin{array}{ll}
-  \lambda _ 2 (|\alpha|,|\beta|) = \frac{ |\alpha| \cdot |\beta| }{ \text{min}(|\alpha|,|\beta|)^2 } \\
-\end{array}
-$$
-
-If there is a disjoint subdivision of a volume $V_0$ to $V_1  = ( V _ {0,0}, V _ {0,1}, \dots, V _ {0,m-1} )$,
-($V _ 0  = \cup _ {k} V _ {0,k}$),
-define the subdivided volume's \textit{average defect} to be the sum of defects weighted by their proportional volume:
-
-$$
-\begin{array}{l}
-  \lambda _ {s} ( V _ 1 ) = \sum _ {k} \frac{ \text{Vol}(V _ {0,k}) }{ \text{Vol}( V _ 0 ) } \cdot \lambda _ 2( V _ {0,k} )
-\end{array}
-$$
-
-The defect gives a coarse idea of how lopsided or \textit{eccentric} a region is.
-If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
-Reducing the average defect attempts to make each subdivided region more square-like.
-When subdivided areas are more square-like, we say that the subdivided regions are more \textit{harmonious}.
-
-If the $\alpha$ side length is significantly longer than the $\beta$ side length,
-we want to subdivide the rectangle into two nearly equal regions and recursively find
-a Gilbert curve in each region.
-We will justify the constant $(3/2)$ as the ratio threshold to split on, using an argument
-originally developed by L. Tautenhahn \footnote{ Given to us through personal communication with L. Tautenhahn }.
-
-The defect of a rectangle with side length $|\alpha|$ and $|\beta|$, assuming $|\alpha| > |\beta|$, is $(|\alpha| / |\beta|)$.
-After subdivision, if we assume $|\alpha| < 2 |\beta|$, the resulting defect is $2 |\beta| / |\alpha|$.
-For a defect reduction, we search for conditions in which the ratio of the resulting defect to the original defect is less than unity,
-giving the equation $|\alpha| / |\beta| > \sqrt{2}$.
-
-Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
-be assured a defect reduction.
-In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
-\footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
-
-Defect reductions for the 3D case can be done, but are more complicated.
-The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
-without concern for optimizing defect reduction.
-
 
 \begin{minipage}[!htb]{0.43\linewidth}
 \begin{algorithm}[H]
@@ -404,11 +386,104 @@ without concern for optimizing defect reduction.
     \centering
     \includegraphics[width=1.0\linewidth]{gilbert2d_bulk_example.pdf}
     \captionof{figure}{ }
-    \label{fig:eccentric_2d_bulk_example}
+    \label{fig:gilbert2d_bulk_example}
 
   \end{minipage}
 
 \end{minipage}
+
+
+
+
+
+
+\section*{Eccentric Subdivision}
+
+When side lengths become too lopsided, an alternate \textit{eccentric} subdivision scheme is chosen to split along
+the larger side length.
+
+For each eccentric subdivision, a proportion threshold needs to be chosen to determine when a side
+lengths become too lopsided to warrant an alternate subdivision.
+Here we motivate the eccentric subdivision constant for the 2D case.
+
+Consider a \textit{defect} function, $\lambda _ 2 : \mathbb{N}^2 \mapsto \mathbb{N}$, that measures the area relative
+to what the area would be if just the minimum side length were taken:
+
+$$
+\begin{array}{ll}
+  \lambda _ 2 (|\alpha|,|\beta|) = \frac{ |\alpha| \cdot |\beta| }{ \text{min}(|\alpha|,|\beta|)^2 } \\
+\end{array}
+$$
+
+If there is a disjoint subdivision of a volume $V_0$ to $V_1  = ( V _ {0,0}, V _ {0,1}, \dots, V _ {0,m-1} )$,
+($V _ 0  = \cup _ {k} V _ {0,k}$),
+define the subdivided volume's \textit{average defect} to be the sum of defects weighted by their proportional volume:
+
+$$
+\begin{array}{l}
+  \lambda _ {s} ( V _ 1 ) = \sum _ {k} \frac{ \text{Vol}(V _ {0,k}) }{ \text{Vol}( V _ 0 ) } \cdot \lambda _ 2( V _ {0,k} )
+\end{array}
+$$
+
+The defect gives a coarse idea of how lopsided or \textit{eccentric} a region is.
+If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
+Reducing the average defect attempts to make each subdivided region more square-like.
+When subdivided areas are more square-like, we say that the subdivided regions are more \textit{harmonious}.
+
+If the $\alpha$ side length is significantly longer than the $\beta$ side length,
+we want to subdivide the rectangle into two nearly equal regions and recursively find
+a Gilbert curve in each region.
+We will justify the constant $(3/2)$ as the ratio threshold to split on, using an argument
+originally developed by L. Tautenhahn \footnote{ Given to us through personal communication with L. Tautenhahn }.
+
+The defect of a rectangle with side length $|\alpha|$ and $|\beta|$, assuming $|\alpha| > |\beta|$, is $(|\alpha| / |\beta|)$.
+After subdivision, if we assume $|\alpha| < 2 |\beta|$, the resulting defect is $2 |\beta| / |\alpha|$.
+For a defect reduction, we search for conditions in which the ratio of the resulting defect to the original defect is less than unity,
+giving the equation $|\alpha| / |\beta| > \sqrt{2}$.
+
+Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
+be assured a defect reduction.
+In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
+\footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
+
+
+
+Defect reductions for the 3D case can be done, but is more complicated.
+The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
+without concern for optimizing defect reduction.
+
+\section*{Algorithm}
+
+
+Algorithm \ref{alg:gilbert2d} and algorithm \ref{alg:gilbert3d} shows the pseudo-code for computing the Gilbert curve in
+2D and 3D respectively.
+After each subdivision, the origin and local axis are rotated to align with the sub
+region and recursively solved.
+In the base case where there is a unit length side, a curve in one lower dimension is output (a line for 2D and a 2D Gilbert curve for 3D).
+If the width like dimension, $\alpha$, is oblong relative to the height-like dimension, $\beta$,
+an eccentric template is used.
+For the 3D case, additional checks to see if the remaining side lengths are oblong and, if so, the appropriate eccentric curves are applied.
+Otherwise, the bulk recursion is executed.
+
+
+Note that even in the 2D case, $\alpha$ and $\beta$ are taken to be vectors in 3D.
+The generalization to 3D allows the Gilbert2D function to be used unaltered when the
+3D Gilbert curve needs to trace out in-plane sub-curves.
+
+The standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$) is used
+but abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
+where the context is clear.
+The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
+the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
+The $\text{div}(a,b)$ function is used to do integer division, rounding towards zero in the case of a fractional result.
+To make things more concise, a convenience function is used,
+$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textit{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2 \textit{ else } 0)$,
+that prefers even lengths in the non-degenerate case.
+
+Random access functions to convert from index to position or position to index can be created by modifying the presented algorithms
+with short circuit conditionals, bypassing path calculation but keeping a running total of positions that would have been traversed.
+Each sub-region is an axis-aligned cuboid, allowing for easy calculation of path length as the product of side lengths for
+a given volume.
 
 
 
@@ -444,10 +519,10 @@ without concern for optimizing defect reduction.
     \State
     \State \textbf{else }
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\beta _ 2$,$\gamma _ 2$,$\alpha _ 2$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\gamma$,$\alpha _ 2$,$\beta _ 2$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\gamma$,$\alpha _ 2$,$(\beta - \beta _ 2)$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta)) +$ \\ \hskip9.125em $(\gamma - \delta(\gamma))$, \\ \hskip9.5em $\alpha$,$-\beta_2$,$-(\gamma-\gamma_2)$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha _ 2 - \delta(\alpha)) +$ \\ \hskip9.125em $\beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip9.5em $-\gamma$,$-(\alpha - \alpha_2)$,$(\beta-\beta_2)$)
-    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.5em $-\beta _ 2$,$-\gamma _ 2$,$-(\alpha - \alpha_2)$)
+    \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.5em $-\beta _ 2$,$\gamma _ 2$,$-(\alpha - \alpha_2)$)
 
     \EndFunction
 
@@ -468,89 +543,54 @@ without concern for optimizing defect reduction.
 		\captionof{figure}{ }
 		\label{fig:gilbert3d_eccentric_alpha_example}
 	\end{minipage}
+  
+  \vspace{3.0em}
 
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_simple.pdf}
-		\label{fig:gilbert3d_eccentric_beta}
 		\captionof{figure}{ }
-		%\captionof{figure}{Eccentric oblong $\beta$ template}
+		\label{fig:gilbert3d_eccentric_beta}
 	\end{minipage}\hfill
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_example.pdf}
-		\label{fig:gilbert3d_eccentric_beta_example}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_eccentric_beta_example}
 	\end{minipage}
+
+  \vspace{3.0em}
 
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_simple.pdf}
-		\label{fig:gilbert3d_eccentric_gamma}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_eccentric_gamma}
 	\end{minipage}\hfill
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_example.pdf}
-		\label{fig:gilbert3d_eccentric_gamma_example}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_eccentric_gamma_example}
 	\end{minipage}
+
+  \vspace{3.0em}
 
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_bulk_template.pdf}
-		\label{fig:gilbert3d_bulk_template}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_bulk_template}
 	\end{minipage}\hfill
 	\begin{minipage}{0.49\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{gilbert3d_bulk_example.pdf}
-		\label{fig:gilbert3d_bulk_example}
 		\captionof{figure}{ }
+		\label{fig:gilbert3d_bulk_example}
 	\end{minipage}
 
 \end{minipage}
 
-
-
-\section*{Algorithm}
-
-
-Algorithm \ref{alg:gilbert2d} and algorithm \ref{alg:gilbert3d} shows the pseudo-code for computing the Gilbert curve in
-2D and 3D respectively.
-After each subdivision, the origin and local axis are rotated to align with the sub
-region and recursively solved.
-In the base case where there is a unit length side, a curve in one lower dimension is output (a line for 2D and a 2D Gilbert curve for 3D).
-If the width like dimension, $\alpha$, is oblong relative to the height-like dimension, $\beta$,
-an eccentric template is used.
-For the 3D case, additional checks to see if the remaining side lengths are oblong and, if so, the appropriate eccentric curves are applied.
-Otherwise, the bulk recursion is executed.
-
-
-Note that even in the 2D case, $\alpha$ and $\beta$ are taken to be vectors in 3D.
-The generalization to 3D allows the Gilbert2D function to be used unaltered when the
-3D Gilbert curve needs to trace out in-plane sub-curves.
-
-The standard Euclidean two norm ($|v| = \sqrt{v_0^2 + v_1^2 + v_2^2}$) is used
-but abuses notation by allowing scalar to vector multiplication ($i \in \mathbb{Z}, v \in \mathbb{Z}^3, i \cdot v \to ( i \cdot v_0, i \cdot v_1, i \cdot v_2 )$).
-where the context is clear.
-The $\delta(\cdot)$ function returns one of the six directional vectors indicating which of
-the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
-The $\div(a,b)$ function is used to do integer division, rounding towards zero in the case of a fractional result.
-To make things more concise, a convenience function is used,
-$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textbf{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2)$,
-that prefers even lengths in the non-degenerate case.
-
-Random access functions to convert from index to position or position to index can be created by modifying the presented algorithms
-with short circuit conditionals, bypassing path calculation but keeping a running total of positions that would have been traversed.
-Each sub-region is an axis-aligned rectangle or cuboid, allowing for easy calculation of path length as the product of the side lengths for
-the given area or volume.
-
-%Algorithm \ref{alg:gilbert3d} shows pseudo-code for computing the 3D Gilbert curve.
-%Figures \ref{fig:gilbert3d_eccentric_alpha}, \ref{fig:gilbert3d_eccentric_alpha_example} show the various shape templates
-%used to subdivide the region and an example curve with color coded regions.
-%As with the \textit{Gilbert2D} function, base cases occur when one dimension is unit length, eccentric templates are used
-%for oblong side lengths and the bulk recursion is executed in all other cases.
 
 \section*{Conclusion and Future Directions}
 
@@ -625,12 +665,12 @@ repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/g
 \end{thebibliography}
 } % end setlength, raggedright
 
-%\begin{figure}[ht]
-%  \centering
-%  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
-%  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
-%  \label{fig:footerGilbert}
-%\end{figure}
+\begin{figure}[ht]
+  \centering
+  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
+  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
+  \label{fig:footerGilbert}
+\end{figure}
 
 \end{document}
 
