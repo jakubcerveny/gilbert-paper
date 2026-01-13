@@ -43,9 +43,9 @@
   a conceptually straight forward generalization of the Hilbert curve,
   that works on arbitrary rectangular regions, overcoming the limitation of the Hilbert
   curve that requires side lengths be exact powers of two.
-  Our construction of the Gilbert curve provides a notion of \textit{harmony}
+  Our construction of the Gilbert curve introduces a notion of \textit{harmony}
   that provide alternate subdivision schemes when a side length is much larger than the rest,
-  creating more visual pleasing curves as a result.
+  creating more visually pleasing curves as a result.
 \end{abstract}
 
 
@@ -171,7 +171,7 @@ later \footnote{Through personal communication with the authors, Tautenhahn kind
 %
 %\end{figure}
 
-The feasibility of determining whether there exists a non intersecting path, called a \textit{Hamiltonian path},
+The feasibility of determining whether there exists a non intersecting path of maximal length, called a \textit{Hamiltonian path},
 connecting endpoints on the corners in a rectangular cuboid
 grid region can be accomplished through parity arguments.
 Label grid cell points in a volume as 0 or 1,
@@ -185,9 +185,10 @@ When a Hamiltonian path is not precluded by the parity of the start and end poin
 In general, color compatibility is a necessary, but insufficient, test for a Hamiltonicity.
 
 In the simpler case when the region is a rectangular cuboid and endpoints are on the corners of the cuboid region, color compatibility
-is a sufficient test for Hamiltonicity.
+is sufficient for Hamiltonicity.
 This allows us a simple test to see if there is a Hamiltonian path within a rectangular region purely based on the parity of side lengths
 and the corner locations of the start and end points of the path.
+That is, when endpoints end on corners of a cuboid region, color compatibility determines if a Hamiltonian path exists.
 
 For the constructed 2D and 3D Gilbert curves in this paper, we don't use endpoints that are diagonal within a cuboid region and
 only use endpoints that are in line in a single axis-aligned direction.
@@ -241,8 +242,10 @@ only use endpoints that are in line in a single axis-aligned direction.
 \section*{Subdivision Templates}
 
 For both the 2D and 3D Gilbert curve, a subdivision template is chosen to recursively partition the region.
-Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:gilbert3DJSplit} shows the 3D template.
-Figure \ref{fig:main2dsubdivExample} provides a 2D example of the main subdivision with regions labeled and color coded.
+Figure \ref{fig:main2dsubdiv} shows the 2D template and figure \ref{fig:main2dsubdivExample} provides a 2D
+example of the main subdivision with regions labeled and color coded.
+Figure \ref{fig:gilbert3DJSplit} shows the 3D template with a small color coded example, along with indications
+on how to stitch each regions endpoints to their neighbors.
 
 The vectors $\alpha, \beta, \gamma \in \mathbb{Z}^3$ provide generalized notions of width ($\alpha$), height ($\beta$),
 and depth ($\gamma$), so that we can transform rectangular or cuboid regions as necessary for the recursion.
@@ -271,7 +274,7 @@ For the 2D Gilbert curve,
 the region is subdivided into two squares at the bottom and a rectangle on top, with endpoints
 joined on the outer perimeter.
 This process is recursively applied until a trivial path can be produced.
-Figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert2d_bulk} two different representations of the template used for the
+Figures \ref{fig:main2dsubdiv} and \ref{fig:gilbert2d_bulk} show two different representations of the template used for the
 subdivision.
 Figures \ref{fig:main2dsubdivExample} and \ref{fig:gilbert2d_bulk_example} show color coded examples for dimensions $26 \times 18$ and
 $42 \times 30$ respectively.
@@ -310,8 +313,8 @@ corresponding 3D Hilbert curve.
 
 During the course of sub-division, if the width like dimension ($\alpha$) is much larger, the curve is split in half along
 the $\alpha$ length (figure \ref{fig:gilbert3d_eccentric_alpha}, \ref{fig:gilbert3d_eccentric_alpha_example}).
-If the $\alpha$ eccentric split is not triggered, the height-like dimension, $\beta$, is then compared to depth-like dimension, $\gamma$
-and if very much larger, an eccentric subdivision scheme is used that splits in the $\alpha$ and $\beta$ direction
+If the $\alpha$ eccentric split is not triggered, the height-like dimension, $\beta$, is then compared to the depth-like dimension, $\gamma$
+and, if very much larger, an eccentric subdivision scheme is used that splits in the $\alpha$ and $\beta$ direction
 (figure \ref{fig:gilbert3d_eccentric_beta}, \ref{fig:gilbert3d_eccentric_beta_example}).
 If both $\alpha$ and $\beta$ are not much larger, a check is done to see if the depth-like dimension, $\gamma$, is much larger than 
 than the height-like dimension, $\beta$, splitting in the $\alpha$ and $\gamma$ direction if so
@@ -333,7 +336,7 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one i
       \If{ $(|\beta| \equiv 1)$ }
         \State \textbf{yield} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\alpha|$
       \ElsIf{ $(|\alpha| \equiv 1)$ }
-        \State \textbf{yield} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\beta|$
+        \State \textbf{yield} $p + i \cdot \delta(\beta)$ \textbf{forall} $i \in |\beta|$
       \ElsIf{ $(2 |\alpha| > 3 |\beta|)$ }
         \If{ $(|\alpha_2| > 2)$ and \\ \hskip4.12em $(|\alpha_2| \bmod{2} \equiv 1)$ }
           \State $\alpha_2 \leftarrow \alpha_2 + \delta(\alpha)$
@@ -346,7 +349,7 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one i
         \EndIf
         \State \textbf{yield} Gilbert2D($p$, \\ \hskip9.75em $\beta_2$, $\alpha_2$)
         \State \textbf{yield} Gilbert2D($p + \beta_2$, \\ \hskip9.75em $\alpha$, $(\beta - \beta_2)$)
-        \State \textbf{yield} Gilbert2D($p + (\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta_2 - \delta(\beta))$, \\ \hskip9.75em $\beta_2$, $-(\alpha - \alpha_2)$)
+        \State \textbf{yield} Gilbert2D($p + (\alpha - \delta(\alpha)) +$ \\ \hskip9.75em $(\beta_2 - \delta(\beta))$, \\ \hskip9.75em $-\beta_2$, $-(\alpha - \alpha_2)$)
       \EndIf
     \EndFunction
 
@@ -425,7 +428,8 @@ $$
 \end{array}
 $$
 
-The defect gives a coarse idea of how lopsided or \textit{eccentric} a region is.
+The definition of the defect function is ad-hoc and has potential issues but, regardless,
+gives a coarse idea of how lopsided or \textit{eccentric} a region is.
 If the defect is too high, we might want to split the larger sides while keeping the smaller sides the same size.
 Reducing the average defect attempts to make each subdivided region more square-like.
 When subdivided areas are more square-like, we say that the subdivided regions are more \textit{harmonious}.
@@ -447,8 +451,7 @@ In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is
 \footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
 
 
-
-Defect reductions for the 3D case can be done, but is more complicated.
+Defect reductions for the 3D case can be done, but are more complicated.
 The constants for the 3D subdivision in this paper were observed to yield visually pleasing results
 without concern for optimizing defect reduction.
 
@@ -477,13 +480,21 @@ The $\delta(\cdot)$ function returns one of the six directional vectors indicati
 the major signed axis aligned directions the input vector points to ($(\pm1,0,0), (0,\pm1,0),(0,0,\pm1)$).
 The $\text{div}(a,b)$ function is used to do integer division, rounding towards zero in the case of a fractional result.
 To make things more concise, a convenience function is used,
-$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} \delta(\rho) \textit{ if } |\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2 \textit{ else } 0)$,
-that prefers even lengths in the non-degenerate case.
+$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} (\textit{ if } (|\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2) \to \delta(\rho), \textit{ else } \to 0))$,
+to help coerce values to be even in the the non-degenerate case.
 
 Random access functions to convert from index to position or position to index can be created by modifying the presented algorithms
-with short circuit conditionals, bypassing path calculation but keeping a running total of positions that would have been traversed.
-Each sub-region is an axis-aligned cuboid, allowing for easy calculation of path length as the product of side lengths for
-a given volume.
+with short circuit conditionals, bypassing path calculation but keeping a running total of the path length that would have been traversed.
+Since each sub-region is an axis-aligned cuboid, path length within a region can easily be performed.
+
+Index to spatial position calculation can be
+done by skipping over regions that fall below the index and proceeding
+with the recursion for the region the index does occupy.
+%This process is repeated until the index point is found,
+%giving the spatial position desired.
+Spatial position to index lookups can be done by finding the region the position falls in
+and then recursively descending with the running index total until the position is encountered.
+Both these methods are then $O(\lg(N))$.
 
 
 
@@ -613,9 +624,11 @@ When designing an algorithm to generalize the Hilbert curve, four features that 
 
 The 2D Gilbert curve presented here has all of these properties while the 3D Gilbert curve lacks harmony and the notch-limited feature.
 
-Future work could focus on creating 3D Gilbert curve that has all of these features, perhaps by relaxing strict endpoint requirements
+%Future work could focus on creating a
+It would be interesting to have a
+3D Gilbert curve that has all of these features, perhaps by relaxing strict endpoint requirements
 at the cuboid corners.
-Some other natural ideas are to extend the concepts above to other space filling curves or circuits,
+Some other ideas are to extend the concepts above to other space filling curves or circuits,
 or, more generally, to try and create an arbitrary space filling curve in a cuboid region with arbitrary endpoints.
 
 A libre/free/open implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
