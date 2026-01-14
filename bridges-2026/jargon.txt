@@ -1,6 +1,8 @@
-personal_ws-1.1 en 72 
+personal_ws-1.1 en 82 
+Abbildung
 Algorithmically
 Anders
+Annalen
 Arrwwid
 Asano
 Butz
@@ -19,7 +21,9 @@ Kamata
 Kupers
 Lera
 Lindenbaum
+Linie
 Lipschitz
+Mathematische
 Matias
 Mazurkiewicz
 Mokbel
@@ -34,6 +38,7 @@ Sergeyev
 TODO
 Tautenhahn
 Tautenhahn's
+Ueber
 Ueshige
 Voorhies
 Walderveen
@@ -43,11 +48,15 @@ Zzyv
 Zzyzek
 al
 algorithmically
+auf
 autocorrelation
 breaklines
+chenst
 cr
 discretized
 dst
+ein
+einer
 embeddings
 erven
 esque
@@ -68,6 +77,7 @@ pre
 rl
 runtime
 sgn
+stetige
 xyz
 zag
 zig

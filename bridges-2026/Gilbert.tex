@@ -52,18 +52,11 @@
 \section*{Generalized Hilbert Curves}
 
 The discretized Hilbert curve recursively traces out a Hamiltonian path through a square region whose
-sides are exact powers of two.
+side length are equal and exact powers of two \cite{hilbert1891}.
 The Gilbert curve extends this idea to trace out a Hamiltonian path through to arbitrary axis-aligned
 cuboid regions.
 
-
 The design of the Gilbert curve is done to provide a:
-
-%\begin{itemize}
-%  \item Conceptually simple algorithm
-%  \item Valid algorithm on arbitrary rectangular regions in 2D and 3D
-%  \item Aesthetically pleasing resulting curve
-%\end{itemize}
 
 \begin{table}[h]
   \centering
@@ -97,6 +90,9 @@ that help to create more \textit{harmonious} curve realizations.
 Tautenhahn's exploration details the parity arguments necessary for when a subdivision scheme can be employed
 without creating diagonal moves. %, where diagonal moves are called \textit{notches} here.
 
+Another method that generalizes the Hilbert curve to arbitrary rectangle regions has been done by in Zhang, Kamata and Ueshige \cite{zhang2006}
+but their algorithm produces runs of straight line motifs througout the curve.
+We also find their algorithm to be complex and don't see any easy way to generalize their method to 3D.
 
 In this paper, we extend Tautenhahn's ideas to create a 2D and 3D generalized Hilbert curve.
 We further extend Tautenhahn's core ideas on when to use alternate subdivision schemes when one length is much
@@ -104,8 +100,6 @@ larger than the rest, what we call \textit{eccentric cases}, and apply them to a
 Tautenhahn's unpublished reasoning behind the constants used in the 2D eccentric split case are briefly discussed
 later \footnote{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
 %later\footnote{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
-
-
 
 %\footnotemark[1].
 %\footnotetext[1]{Through personal communication with the authors, Tautenhahn kindly provided the reasoning for the constants used in the eccentric split}.
@@ -283,9 +277,9 @@ If the width like dimension ($\alpha$) is much larger than the height like dimen
 an alternate eccentric subdivision template is used to split the region in half along
 the $\alpha$ length (figure \ref{fig:eccentric_2d_alg}, \ref{fig:eccentric_2d_example_alg}).
 
-Each regions parity is chosen so as to try to keep color compatibility, ensuring a valid path if possible.
-If the region is odd parity, with both side lengths odd, a notch is forced and is directed to the upper right region,
-as illustrated by figure \ref{fig:production2d}.
+Each regions parity is chosen so as to try and keep color compatibility, ensuring a valid path if possible.
+If the $\alpha$ axis line that the endpoints fall on is odd, with the orthogonal $\beta$ direction even, a notch is forced and is directed to the upper right region,
+as illustrated by the ``even/odd'' case in figure \ref{fig:production2d}.
 
 When the side lengths are exact powers of two, the resulting curve is identical to the 2D Hilbert curve.
 
@@ -400,13 +394,13 @@ This means the number of notches for the 3D Gilbert curve isn't limited to one i
 
 
 
-\section*{Eccentric Subdivision}
+\section*{Harmony Through Eccentric Subdivision}
 
 When side lengths become too lopsided, an alternate \textit{eccentric} subdivision scheme is chosen to split along
 the larger side length.
 
 For each eccentric subdivision, a proportion threshold needs to be chosen to determine when a side
-lengths become too lopsided to warrant an alternate subdivision.
+length become too lopsided to warrant an alternate subdivision.
 Here we motivate the eccentric subdivision constant for the 2D case.
 
 Consider a \textit{defect} function, $\lambda _ 2 : \mathbb{N}^2 \mapsto \mathbb{N}$, that measures the area relative
@@ -436,7 +430,7 @@ When subdivided areas are more square-like, we say that the subdivided regions a
 
 If the $\alpha$ side length is significantly longer than the $\beta$ side length,
 we want to subdivide the rectangle into two nearly equal regions and recursively find
-a Gilbert curve in each region.
+a Gilbert curve in each region (see figure \ref{fig:eccentric_2d_alg}).
 We will justify the constant $(3/2)$ as the ratio threshold to split on, using an argument
 originally developed by L. Tautenhahn \footnote{ Given to us through personal communication with L. Tautenhahn }.
 
@@ -447,8 +441,9 @@ giving the equation $|\alpha| / |\beta| > \sqrt{2}$.
 
 Since $\sqrt{2} \approx 1.4142 < (3/2)$, if we choose $|\alpha| / |\beta| > (3/2)$ we can
 be assured a defect reduction.
-In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is always reduced
-\footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
+In the case when $|\alpha| > 2 |\beta|$, it is easy to verify that the defect is reduced,
+resulting in a ratio of $(1/2)$.
+%\footnote{ The ratio of the defects before and after the split is $(1/2)$ }.
 
 
 Defect reductions for the 3D case can be done, but are more complicated.
@@ -485,16 +480,16 @@ to help coerce values to be even in the the non-degenerate case.
 
 Random access functions to convert from index to position or position to index can be created by modifying the presented algorithms
 with short circuit conditionals, bypassing path calculation but keeping a running total of the path length that would have been traversed.
-Since each sub-region is an axis-aligned cuboid, path length within a region can easily be performed.
+Since each sub-region is an axis-aligned cuboid, path length within a region can easily be calculated.
 
 Index to spatial position calculation can be
 done by skipping over regions that fall below the index and proceeding
 with the recursion for the region the index does occupy.
 %This process is repeated until the index point is found,
 %giving the spatial position desired.
-Spatial position to index lookups can be done by finding the region the position falls in
-and then recursively descending with the running index total until the position is encountered.
-Both these methods are then $O(\lg(N))$.
+Spatial position to index lookups can be done by finding the region the position occupies,
+then recursively descending, with the running index total, until the position is encountered.
+Both these methods then give an $O(\lg(N))$ algorithm for single index to position or position to index lookups.
 
 
 
@@ -610,6 +605,14 @@ curve in 2D and 3D to arbitrary side lengths.
 Generalizing a Hilbert space filling curve to arbitrary side lengths is open to interpretation
 and the solution presented here is one such adaptation.
 
+The locality property of space filling curves allows for visualization of one-dimensional data
+to higher dimensions to keep local correlation that might be presented.
+This idea has been used to visualize a variety of data sets, such genomic data \cite{anders2009}
+and binary executables \cite{cortesi2011}, as Hilbert curves,
+with a compromise that the data is padded to satisfy the power of two requirement of the Hilbert curve.
+The Gilbert curve offers a more immediate method to visualize data in this way and has already found
+uses for visualizations (\cite{lee2025}).
+
 When designing an algorithm to generalize the Hilbert curve, four features that might be desirable are:
 
 \begin{table}[h]
@@ -623,11 +626,9 @@ When designing an algorithm to generalize the Hilbert curve, four features that 
 \end{table}
 
 The 2D Gilbert curve presented here has all of these properties while the 3D Gilbert curve lacks harmony and the notch-limited feature.
-
-%Future work could focus on creating a
 It would be interesting to have a
 3D Gilbert curve that has all of these features, perhaps by relaxing strict endpoint requirements
-at the cuboid corners.
+at the sub-divided cuboid region corners.
 Some other ideas are to extend the concepts above to other space filling curves or circuits,
 or, more generally, to try and create an arbitrary space filling curve in a cuboid region with arbitrary endpoints.
 
@@ -639,51 +640,30 @@ repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/g
 \raggedright        % no right justification for References
 \begin{thebibliography}{99}
 
-  %\bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' \textit{Bioinformatics}, vol.~25, no.~10, pp. ~ 1231-1235, 2009.  \url{https://doi.org/10.1093/bioinformatics/btp152}
+  \bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' \textit{Bioinformatics}, vol.~25, no.~10, pp. ~ 1231-1235, 2009.  \url{https://doi.org/10.1093/bioinformatics/btp152}
 
-  %\bibitem{cortesi2011} A. Cortesi. \textit{Visualizing binaries with space-filling curves}. 2011. \url{https://corte.si/posts/visualisation/binvis/}.
+  \bibitem{cortesi2011} A. Cortesi. \textit{Visualizing binaries with space-filling curves}. 2011. \url{https://corte.si/posts/visualisation/binvis/}.
 
   %\bibitem{sagan1994} H. Sagan. \textit{Space-Filling Curves}, 1994 ed. Springer, 1994.
 
+  %\bibitem{hilbert1891} D. Hilbert. ``Ueber die stetige Abbildung einer Linie auf ein Fl{\"a}chenst{\"u}ck.'', \textit{Mathematische Annalen}, vol.~38, 1891, pp.~459-460
+
+  \bibitem{lee2025} S. Lee, K. Ma. ``HINTs: Sensemaking on large collections of documents with {\bf H}ypergraph vizualization and {\bf INT}elligent agents.'' \textit{IEEE Transactions on Visualization and Computer Graphics}, vo.~31, no.~9, 2025, pp.~5532-5546
+
   \bibitem{lutanho2003} L. Tautenhahn. \textit{Draw a space-filling curve of arbitrary size}, 2003. \url{https://lutanho.net/pic2html/draw_sfc.html}.
 
-  %\bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-Hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' \textit{Advances in Machine Vision, Image Processing, and Pattern Analysis}, Berlin, Heidelberg, 2006, pp. 290-299.
-
-
-
-
-
-
-%
-%\bibitem{Chang}
-%W. Chang. \LaTeX\ \textit{Cheat Sheet}. 2014. \url{http://wch.github.io/latexsheet/}.
-%
-%\bibitem{EJCx}
-%M.\ Chladn\'y and M.\ \v Skoviera. ``Factorisation of Snarks.'' \textit{Electronic Journal
-%of Combinatorics}, vol.~17, no.~1, R32, 2010.
-%\url{http://www.combinatorics.org/Volume_17/PDF/v17i1r32.pdf}.
-%
-%\bibitem{Coxeter} H.\ S.\ M.\ Coxeter. ``The Non-Euclidean Symmetry of Escher's Picture
-%Circle Limit III.'' \textit{Leonardo}, vol.~12, no.~1, 1979, pp.~19--25.
-%
-%\bibitem{easychair} EasyChair. Log in page. \url{https://easychair.org/account/signin.cgi}.
-%
-%\bibitem{Gratzer} G.\ Gr\"atzer. \textit{More Math Into} \LaTeX, 4th ed. Springer, 2007.
-%
-%\bibitem{Sequin2016} C.\ H.\ S\'equin. ``From Klein Bottles to Modular Super-Bottles.''
-%\textit{Bridges Conference Proceedings}, Jyv\"askyl\"a, Finland, Aug. 9--13,
-%2016, pp.~41--48. \url{http://archive.bridgesmathart.org/2016/bridges2016-41.html}.
-%
-
+  \bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-Hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' \textit{Advances in Machine Vision, Image Processing, and Pattern Analysis}, Berlin, Heidelberg, 2006, pp. 290-299.
 \end{thebibliography}
 } % end setlength, raggedright
 
-\begin{figure}[ht]
-  \centering
-  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
-  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
-  \label{fig:footerGilbert}
-\end{figure}
+%\begin{figure}[!htb]
+%  \centering
+%  %{\transparent{0.4}\includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}}
+%  \includegraphics[width=\linewidth]{gilbert_bd50x10.pdf}
+%  %\includegraphics[width=0.8\linewidth]{gilbert_fun_50x6.pdf}
+%  \label{fig:footerGilbert}
+%\end{figure}
+%
 
 \end{document}
 

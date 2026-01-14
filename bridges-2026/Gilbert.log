@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  12 JAN 2026 23:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  14 JAN 2026 05:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -768,37 +768,31 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 12.0pt on input line 38.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
 (Font)              scaled to size 9.0pt on input line 46.
+LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
+(Font)              scaled to size 10.95pt on input line 55.
+
+
+LaTeX Warning: Citation `hilbert1891' on page 1 undefined on input line 55.
+
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 70.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 70.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 70.
+(Font)              scaled to size 6.1pt on input line 63.
 <gilbert2d_examples.pdf, id=4, 301.125pt x 225.84375pt>
 File: gilbert2d_examples.pdf Graphic file (type pdf)
 <use gilbert2d_examples.pdf>
-Package pdftex.def Info: gilbert2d_examples.pdf  used on input line 80.
+Package pdftex.def Info: gilbert2d_examples.pdf  used on input line 73.
 (pdftex.def)             Requested size: 226.57297pt x 169.93721pt.
-LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 81.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.95pt on input line 81.
+(Font)              scaled to size 10.95pt on input line 74.
 <gilbert3d_orig_examples.pdf, id=5, 474.27188pt x 398.99063pt>
 File: gilbert3d_orig_examples.pdf Graphic file (type pdf)
 <use gilbert3d_orig_examples.pdf>
-Package pdftex.def Info: gilbert3d_orig_examples.pdf  used on input line 86.
+Package pdftex.def Info: gilbert3d_orig_examples.pdf  used on input line 79.
 (pdftex.def)             Requested size: 226.57297pt x 190.6062pt.
-LaTeX Font Info:    Trying to load font information for T1+ntxsups on input lin
-e 105.
-
-(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
-File: t1ntxsups.fd 2015/01/17 v1.0
-)
-LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 10.95pt on input line 105.
-LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 9.0pt on input line 105.
- [1
+[1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./gilbert2d_examples.pdf> 
 <./gilbert3d_orig_examples.pdf
@@ -806,30 +800,39 @@ LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
 pdfTeX warning: pdflatex (file ./gilbert3d_orig_examples.pdf): PDF inclusion: m
 ultiple pdfs with page group included in a single page
 >]
-<simple_hampath_flat.pdf, id=45, 828.09375pt x 188.20313pt>
+LaTeX Font Info:    Trying to load font information for T1+ntxsups on input lin
+e 101.
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
+File: t1ntxsups.fd 2015/01/17 v1.0
+)
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.95pt on input line 101.
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 9.0pt on input line 101.
+<simple_hampath_flat.pdf, id=46, 828.09375pt x 188.20313pt>
 File: simple_hampath_flat.pdf Graphic file (type pdf)
 <use simple_hampath_flat.pdf>
-Package pdftex.def Info: simple_hampath_flat.pdf  used on input line 131.
+Package pdftex.def Info: simple_hampath_flat.pdf  used on input line 125.
 (pdftex.def)             Requested size: 472.03123pt x 107.28262pt.
-<gilbert2d_mainsubdiv.pdf, id=47, 526.96875pt x 263.48438pt>
+<gilbert2d_mainsubdiv.pdf, id=48, 526.96875pt x 263.48438pt>
 File: gilbert2d_mainsubdiv.pdf Graphic file (type pdf)
 <use gilbert2d_mainsubdiv.pdf>
-Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 220.
+Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 214.
 (pdftex.def)             Requested size: 259.6186pt x 129.81606pt.
-<gilbert2d_example_mainsubdiv.pdf, id=48, 210.7875pt x 150.5625pt>
+<gilbert2d_example_mainsubdiv.pdf, id=49, 210.7875pt x 150.5625pt>
 File: gilbert2d_example_mainsubdiv.pdf Graphic file (type pdf)
 <use gilbert2d_example_mainsubdiv.pdf>
 Package pdftex.def Info: gilbert2d_example_mainsubdiv.pdf  used on input line 2
-27.
+21.
 (pdftex.def)             Requested size: 168.7505pt x 120.53745pt.
-<gilbert3d_explode.pdf, id=49, 210.7875pt x 271.0125pt>
+<gilbert3d_explode.pdf, id=50, 210.7875pt x 271.0125pt>
 File: gilbert3d_explode.pdf Graphic file (type pdf)
 <use gilbert3d_explode.pdf>
-Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 235.
+Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 229.
 (pdftex.def)             Requested size: 212.41261pt x 273.10841pt.
  [2 <./simple_hampath_flat.pdf>]
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/it' will be
-(Font)              scaled to size 10.95pt on input line 271.
+(Font)              scaled to size 10.95pt on input line 265.
  [3 <./gilbert2d_mainsubdiv.pdf> <./gilbert2d_example_mainsubdiv.pdf
 
 pdfTeX warning: pdflatex (file ./gilbert2d_example_mainsubdiv.pdf): PDF inclusi
@@ -839,60 +842,60 @@ on: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./gilbert3d_explode.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]
-<config_production.pdf, id=162, 1053.9375pt x 602.25pt>
+<config_production.pdf, id=164, 1053.9375pt x 602.25pt>
 File: config_production.pdf Graphic file (type pdf)
 <use config_production.pdf>
-Package pdftex.def Info: config_production.pdf  used on input line 294.
+Package pdftex.def Info: config_production.pdf  used on input line 288.
 (pdftex.def)             Requested size: 472.03123pt x 269.73264pt.
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 329.
+put line 323.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 334.
+(Font)              scaled to size 10.95pt on input line 328.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 335.
+(Font)              scaled to size 8.0pt on input line 329.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 335.
-<gilbert2d_eccentric_alpha1.pdf, id=172, 316.18124pt x 225.84375pt>
+(Font)              scaled to size 6.1pt on input line 329.
+<gilbert2d_eccentric_alpha1.pdf, id=174, 316.18124pt x 225.84375pt>
 File: gilbert2d_eccentric_alpha1.pdf Graphic file (type pdf)
 <use gilbert2d_eccentric_alpha1.pdf>
-Package pdftex.def Info: gilbert2d_eccentric_alpha1.pdf  used on input line 364
+Package pdftex.def Info: gilbert2d_eccentric_alpha1.pdf  used on input line 358
 .
 (pdftex.def)             Requested size: 91.99745pt x 65.7101pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 365.
+(caption)                particular \caption on input line 359.
 See the caption package documentation for explanation.
 
-<gilbert2d_example_eccentric.pdf, id=173, 225.84375pt x 150.5625pt>
+<gilbert2d_example_eccentric.pdf, id=175, 225.84375pt x 150.5625pt>
 File: gilbert2d_example_eccentric.pdf Graphic file (type pdf)
 <use gilbert2d_example_eccentric.pdf>
-Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 37
-2.
+Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 36
+6.
 (pdftex.def)             Requested size: 95.39613pt x 63.5988pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 373.
+(caption)                particular \caption on input line 367.
 See the caption package documentation for explanation.
 
-<gilbert2d_bulk.pdf, id=174, 338.76563pt x 248.42813pt>
+<gilbert2d_bulk.pdf, id=176, 338.76563pt x 248.42813pt>
 File: gilbert2d_bulk.pdf Graphic file (type pdf)
 <use gilbert2d_bulk.pdf>
-Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 381.
+Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 375.
 (pdftex.def)             Requested size: 178.35986pt x 130.802pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 382.
+(caption)                particular \caption on input line 376.
 See the caption package documentation for explanation.
 
-<gilbert2d_bulk_example.pdf, id=175, 338.76563pt x 248.42813pt>
+<gilbert2d_bulk_example.pdf, id=177, 338.76563pt x 248.42813pt>
 File: gilbert2d_bulk_example.pdf Graphic file (type pdf)
 <use gilbert2d_bulk_example.pdf>
-Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 390.
+Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 384.
 (pdftex.def)             Requested size: 192.82085pt x 141.40459pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 391.
+(caption)                particular \caption on input line 385.
 See the caption package documentation for explanation.
 
 [4 <./config_production.pdf>] [5 <./gilbert2d_eccentric_alpha1.pdf> <./gilbert2
@@ -909,101 +912,95 @@ dfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./gilbert2d_bulk_example.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 451.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 451.
-LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 451.
-<gilbert3d_eccentric_alpha.pdf, id=240, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_alpha.pdf, id=242, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_alpha.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_alpha.pdf>
-Package pdftex.def Info: gilbert3d_eccentric_alpha.pdf  used on input line 547.
+Package pdftex.def Info: gilbert3d_eccentric_alpha.pdf  used on input line 542.
 
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 548.
+(caption)                particular \caption on input line 543.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_alpha_example.pdf, id=241, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_alpha_example.pdf, id=243, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_alpha_example.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_alpha_example.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_alpha_example.pdf  used on input l
-ine 553.
+ine 548.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 554.
+(caption)                particular \caption on input line 549.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_beta_simple.pdf, id=242, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_beta_simple.pdf, id=244, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_simple.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_simple.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_beta_simple.pdf  used on input lin
-e 562.
+e 557.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 563.
+(caption)                particular \caption on input line 558.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_beta_example.pdf, id=243, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_beta_example.pdf, id=245, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_beta_example.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_beta_example.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_beta_example.pdf  used on input li
-ne 568.
+ne 563.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 569.
+(caption)                particular \caption on input line 564.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_gamma_simple.pdf, id=244, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_gamma_simple.pdf, id=246, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_simple.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_simple.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_simple.pdf  used on input li
-ne 577.
+ne 572.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 578.
+(caption)                particular \caption on input line 573.
 See the caption package documentation for explanation.
 
-<gilbert3d_eccentric_gamma_example.pdf, id=245, 263.48438pt x 188.20313pt>
+<gilbert3d_eccentric_gamma_example.pdf, id=247, 263.48438pt x 188.20313pt>
 File: gilbert3d_eccentric_gamma_example.pdf Graphic file (type pdf)
 <use gilbert3d_eccentric_gamma_example.pdf>
 Package pdftex.def Info: gilbert3d_eccentric_gamma_example.pdf  used on input l
-ine 583.
+ine 578.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 584.
+(caption)                particular \caption on input line 579.
 See the caption package documentation for explanation.
 
-<gilbert3d_bulk_template.pdf, id=246, 263.48438pt x 188.20313pt>
+<gilbert3d_bulk_template.pdf, id=248, 263.48438pt x 188.20313pt>
 File: gilbert3d_bulk_template.pdf Graphic file (type pdf)
 <use gilbert3d_bulk_template.pdf>
-Package pdftex.def Info: gilbert3d_bulk_template.pdf  used on input line 592.
+Package pdftex.def Info: gilbert3d_bulk_template.pdf  used on input line 587.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 593.
+(caption)                particular \caption on input line 588.
 See the caption package documentation for explanation.
 
-<gilbert3d_bulk_example.pdf, id=247, 263.48438pt x 188.20313pt>
+<gilbert3d_bulk_example.pdf, id=249, 263.48438pt x 188.20313pt>
 File: gilbert3d_bulk_example.pdf Graphic file (type pdf)
 <use gilbert3d_bulk_example.pdf>
-Package pdftex.def Info: gilbert3d_bulk_example.pdf  used on input line 598.
+Package pdftex.def Info: gilbert3d_bulk_example.pdf  used on input line 593.
 (pdftex.def)             Requested size: 115.64894pt x 82.6086pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 599.
+(caption)                particular \caption on input line 594.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (21.6812pt too wide) in paragraph at lines 501--604
+Overfull \hbox (21.6812pt too wide) in paragraph at lines 496--599
 []$[]$ $[]$ 
  []
 
@@ -1037,21 +1034,25 @@ ultiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./gilbert3d_bulk_example.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >]
-<gilbert_bd50x10.pdf, id=360, 561.22173pt x 110.28703pt>
-File: gilbert_bd50x10.pdf Graphic file (type pdf)
-<use gilbert_bd50x10.pdf>
-Package pdftex.def Info: gilbert_bd50x10.pdf  used on input line 684.
-(pdftex.def)             Requested size: 472.03123pt x 92.75993pt.
- [8 <./gilbert_bd50x10.pdf>] (./Gilbert.aux)
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 9.0pt on input line 636.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 636.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 5.5pt on input line 636.
+ [8] (./Gilbert.aux)
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17427 strings out of 480171
- 268367 string characters out of 5894489
- 545132 words of memory out of 5000000
- 35041 multiletter control sequences out of 15000+600000
- 565951 words of font info for 162 fonts, out of 8000000 for 9000
+ 17421 strings out of 480171
+ 268196 string characters out of 5894489
+ 545188 words of memory out of 5000000
+ 35038 multiletter control sequences out of 15000+600000
+ 564248 words of font info for 158 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  84i,10n,131p,304b,514s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{/usr/
@@ -1068,10 +1069,10 @@ t/fonts/type1/public/newtx/txsys.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /public/newtx/ztmb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/
 ztmbi.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (8 pages, 624177 bytes).
+Output written on Gilbert.pdf (8 pages, 623492 bytes).
 PDF statistics:
- 438 PDF objects out of 1000 (max. 8388607)
- 314 compressed objects within 4 object streams
- 35 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 446 PDF objects out of 1000 (max. 8388607)
+ 323 compressed objects within 4 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 96 words of extra memory for PDF output out of 10000 (max. 10000000)
 
