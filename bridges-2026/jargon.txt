@@ -1,16 +1,18 @@
-personal_ws-1.1 en 82 
+personal_ws-1.1 en 90 
 Abbildung
 Algorithmically
 Anders
 Annalen
 Arrwwid
 Asano
+Bioinformatics
 Butz
 Butz's
 Cholesky
 Cortesi
 Dafner
 Gotsman
+HINTs
 Hamiltonicity
 Haverkort
 Holzm
@@ -34,6 +36,7 @@ Peano
 Perdacher
 Rau
 Rong
+Sensemaking
 Sergeyev
 TODO
 Tautenhahn
@@ -57,10 +60,12 @@ discretized
 dst
 ein
 einer
+elligent
 embeddings
 erven
 esque
 et
+executables
 forall
 genomic
 hm
@@ -78,6 +83,9 @@ rl
 runtime
 sgn
 stetige
+vizualization
+vo
 xyz
+ypergraph
 zag
 zig
