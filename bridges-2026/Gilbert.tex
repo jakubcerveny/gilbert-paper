@@ -513,11 +513,11 @@ Both these methods then give an $O(\lg(N))$ algorithm for single index to positi
     \State \textbf{if }$(2 |\alpha|>3|\beta|) \text{ and } (2|\alpha|>3|\gamma|))$
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\alpha _ 2$,$\beta$,$\gamma$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + \alpha _ 2$,$\alpha - \alpha _ 2$,$\beta$,$\gamma$)
-    \State \textbf{if }$(3 |\beta| > 4 |\gamma|)$
+    \State \textbf{else if }$(3 |\beta| > 4 |\gamma|)$
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\beta _ 2$,$\gamma$,$\alpha _ 2$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + \beta _ 2$,$\alpha$,$\beta - \beta _ 2$,$\gamma$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + $ \\ \hskip9.125em $(\alpha - \delta(\alpha)) +$ \\ \hskip9.125em $(\beta _ 2 - \delta(\beta))$, \\ \hskip9.125em $-\beta _ 2$,$\gamma$,$-(\alpha - \alpha _ 2)$)
-    \State \textbf{if }$(3 |\gamma| > 4 |\beta|)$
+    \State \textbf{else if }$(3 |\gamma| > 4 |\beta|)$
     \State \hskip1.0em \textbf{yield} Gilbert3D($p$,$\gamma _ 2$,$\alpha _ 2$,$\beta$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p + \gamma _ 2$,$\alpha$, $\beta$, $\gamma - \gamma _ 2$)
     \State \hskip1.0em \textbf{yield} Gilbert3D($p +$ \\ \hskip9.125em $(\alpha - \delta(\alpha))$ \\ \hskip9.125em $(\gamma2 - \delta(\gamma))$, \\ \hskip9.5em $-\gamma _ 2$,$-(\alpha-\alpha _ 2)$, $\beta$)
