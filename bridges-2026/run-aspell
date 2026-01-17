@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# https://unix.stackexchange.com/questions/325869/aspell-how-to-ignore-words-permanently/325870#325870
+#
+
+fn="Gilbert.tex"
+aspell --home-dir=. --personal=jargon.txt -t -c "$fn"
+

@@ -127,12 +127,14 @@ function mkgcurve(xy, wh, s, flipxy) {
 
     let hue = Math.floor(360*idx / (W*H)).toString();
     let sat = "95%";
-    let lit = '35%';
+    let lit = '45%';
     let clr = "hsl(" + [ hue,sat,lit ].join(",") + ")";
 
     let line = two.makeLine(p.x, p.y, q.x, q.y);
     line.noFill();
     line.stroke = clr;
+    line.linewidth = 2;
+    line.cap = "round";
 
   }
 }

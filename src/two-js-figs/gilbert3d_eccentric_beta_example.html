@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Gilbert3D Eccentric Beta Example</title>
+
+
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }, 
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+  };
+  </script>
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+
+  <script type='text/javascript' src='js/gilbert.js'></script>
+  <script type='text/javascript' src='js/gilbert3dpp.js'></script>
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/numeric.js'></script>
+  <script type='text/javascript' src='js/gilbert3d_eccentric_beta_example.js'></script>
+
+  <script type='text/javascript' src='js/FileSaver.js'></script>
+
+
+</head>
+
+<body>
+
+
+  <div id='alpha' style='display:none;'>$\alpha$</div>
+  <div id='beta' style='display:none;'>$\beta$</div>
+  <div id='gamma' style='display:none;'>$\gamma$</div>
+
+
+  <div id='gilbert3d_examples' style='width:350px;height:250px;'> </div>
+</body>
+
+<script>
+  function mathjax_ready() {
+    gilbert3d_beta_example();
+  }
+</script>
+<html>
+

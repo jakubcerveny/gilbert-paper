@@ -1,0 +1,136 @@
+#!/bin/bash
+
+hilbert2d=''
+hilbert3d=''
+
+gilbert2d=''
+gilbert3d=''
+
+for op in $@ ; do
+  if [[ $op == "hilbert2d" ]] ; then
+    hilbert2d=1
+  elif [[ $op == "hilbert3d" ]] ; then
+    hilbert3d=1
+  elif [[ $op == "gilbert2d" ]] ; then
+    gilbert2d=1
+  elif [[ $op == "gilbert3d" ]] ; then
+    gilbert3d=1
+  elif [[ $op == "all" ]] ; then
+    hilbert2d=1
+    hilbert3d=1
+    gilbert2d=1
+    gilbert3d=1
+  elif [[ $op == "help" ]] ; then
+    echo ""
+    echo "create data collapse plots. Available options are:"
+    echo ""
+    echo "  hilbert2d"
+    echo "  hilbert3d"
+    echo "  gilbert2d"
+    echo "  gilbert3d"
+    echo "  all"
+    echo ""
+    exit
+  fi
+done
+
+
+
+if [[ $hilbert2d ]] ; then
+
+  for fn in `ls hilbert2d/hilbert2d_*.gp` ; do
+    echo $fn
+    bn=`basename $fn .gp`
+    wh=` echo "$bn" | cut -f2 -d_`
+    cat $fn | ./sfjs 1 1 1.5 > hilbert2d/dc_h2d_${wh}.gp
+  done
+
+#  rm -f h2d_dc.plot
+#  echo "set logscale"  >> h2d_dc.plot
+#  echo -n "plot " >> h2d_dc.plot
+#  first=1
+#  for fn in `ls hilbert2d/dc_*.gp` ; do
+#
+#    if [[ "$first" -ne 1 ]] ; then
+#      echo -n ","  >> h2d_dc.plot
+#    fi
+#    first=0
+#    echo -n " '$fn' with l" >> h2d_dc.plot
+#  done
+#  echo "" >> h2d_dc.plot
+
+fi
+
+if [[ $hilbert3d ]] ; then
+
+  for fn in `ls hilbert3d/hilbert3d_*.gp` ; do
+    echo $fn
+    bn=`basename $fn .gp`
+    wh=` echo "$bn" | cut -f2 -d_`
+    cat $fn | ./sfjs 1 1 1.33333333333 > hilbert3d/dc_h3d_${wh}.gp
+  done
+
+#  rm -f h3d_dc.plot
+#  echo "set logscale"  >> h3d_dc.plot
+#  echo -n "plot " >> h3d_dc.plot
+#  first=1
+#  for fn in `ls hilbert3d/dc_*.gp` ; do
+#
+#    if [[ "$first" -ne 1 ]] ; then
+#      echo -n ","  >> h3d_dc.plot
+#    fi
+#    first=0
+#    echo -n " '$fn' with l" >> h3d_dc.plot
+#  done
+#  echo "" >> h3d_dc.plot
+
+fi
+
+if [[ $gilbert2d ]] ; then
+  for fn in `ls gilbert2d/gilbert2d_*.gp` ; do
+    echo $fn
+    bn=`basename $fn .gp`
+    wh=` echo "$bn" | cut -f2 -d_`
+    cat $fn | ./sfjs 1 1 1.5 > gilbert2d/dc_g2d_${wh}.gp
+  done
+
+#  rm -f g2d_dc.plot
+#  echo "set logscale"  >> g2d_dc.plot
+#  echo -n "plot " >> g2d_dc.plot
+#  first=1
+#  for fn in `ls gilbert2d/dc_*.gp` ; do
+#
+#    if [[ "$first" -ne 1 ]] ; then
+#      echo -n ","  >> g2d_dc.plot
+#    fi
+#    first=0
+#    echo -n " '$fn' with l" >> g2d_dc.plot
+#  done
+#  echo "" >> g2d_dc.plot
+
+fi
+
+if [[ $gilbert3d ]] ; then
+
+  for fn in `ls gilbert3d/gilbert3d_*.gp` ; do
+    echo $fn
+    bn=`basename $fn .gp`
+    wh=` echo "$bn" | cut -f2 -d_`
+    cat $fn | ./sfjs 1 1 1.33333333333 > gilbert3d/dc_g3d_${wh}.gp
+  done
+
+#  rm -f g3d_dc.plot
+#  echo "set logscale"  >> g3d_dc.plot
+#  echo -n "plot " >> g3d_dc.plot
+#  first=1
+#  for fn in `ls gilbert3d/dc_*.gp` ; do
+#
+#    if [[ "$first" -ne 1 ]] ; then
+#      echo -n ","  >> g3d_dc.plot
+#    fi
+#    first=0
+#    echo -n " '$fn' with l" >> g3d_dc.plot
+#  done
+#  echo "" >> g3d_dc.plot
+
+fi

@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Gilbert.aux
+The style file: elsarticle-num-names.bst
+Database file #1: 06-References.bib
+Warning--entry type for "lutanho_2003" isn't style-file defined
+--line 465 of file 06-References.bib
+Warning--entry type for "cortesi_2011" isn't style-file defined
+--line 474 of file 06-References.bib
+I was expecting a `,' or a `}'---line 479 of file 06-References.bib
+ :   
+ :   lastaccessed = {May 11, 2025}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--entry type for "xkcd_195" isn't style-file defined
+--line 483 of file 06-References.bib
+Warning--entry type for "moore_2016" isn't style-file defined
+--line 604 of file 06-References.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty booktitle in kupers_2012
+Warning--empty pages in kupers_2012
+Warning--empty journal in haverkort_2016_howmany
+You've used 27 entries,
+            2918 wiz_defined-function locations,
+            1078 strings with 15688 characters,
+and the built_in function-call counts, 15385 in all, are:
+= -- 1202
+> -- 503
+< -- 23
++ -- 199
+- -- 163
+* -- 1705
+:= -- 2234
+add.period$ -- 66
+call.type$ -- 27
+change.case$ -- 187
+chr.to.int$ -- 26
+cite$ -- 30
+duplicate$ -- 1201
+empty$ -- 1190
+format.name$ -- 228
+if$ -- 2934
+int.to.chr$ -- 2
+int.to.str$ -- 1
+missing$ -- 220
+newline$ -- 125
+num.names$ -- 110
+pop$ -- 391
+preamble$ -- 1
+purify$ -- 189
+quote$ -- 0
+skip$ -- 345
+stack$ -- 0
+substring$ -- 579
+swap$ -- 795
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 228
+warning$ -- 3
+while$ -- 95
+width$ -- 0
+write$ -- 380
+(There was 1 error message)

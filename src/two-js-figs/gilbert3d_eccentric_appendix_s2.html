@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+
+  <title>fig</title>
+
+  <script type='text/javascript' src='js/gilbert.js'></script>
+  <script type='text/javascript' src='js/numeric.js'></script>
+  <script type='text/javascript' src='js/FileSaver.js'></script>
+
+  <script type='text/javascript' src='js/two.js'></script>
+  <script type='text/javascript' src='js/mp_path.js'></script>
+
+  <script>
+  MathJax = {
+    startup : { pageReady: () => {
+      let _r = MathJax.startup.defaultPageReady();
+      setTimeout(mathjax_ready, 1);
+      return _r;
+    }},
+    loader : { load: [ 'output/svg' ] },
+    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+    svg: {
+      //useGlobalCache: false }
+      fontCache: 'none' }
+      //fontCache: 'global' }
+  };
+  </script>
+
+  <script id='MathJax-script' type='text/javascript' async src='js/mathjax/es5/tex-svg.js'></script>
+  <script type='text/javascript' src='js/gilbert3d_eccentric_appendix_s2.js'></script>
+
+</head>
+
+<body>
+
+  <div id='alpha' style='display:none;'>$\alpha$</div>
+  <div id='beta' style='display:none;'>$\beta$</div>
+  <div id='gamma' style='display:none;'>$\gamma$</div>
+
+  <div id='wgg' style='display:none;'>$|\alpha| \gg |\beta| \sim |\gamma|$</div>
+  <div id='wll' style='display:none;'>$|\alpha| \ll |\beta| \sim |\gamma|$</div>
+
+  <div id='hgg' style='display:none;'>$|\beta| \gg |\alpha| \sim |\gamma|$</div>
+  <div id='hll' style='display:none;'>$|\beta| \ll |\alpha| \sim |\gamma|$</div>
+
+  <div id='dgg' style='display:none;'>$|\gamma| \gg |\alpha| \sim |\beta|$</div>
+  <div id='dll' style='display:none;'>$|\gamma| \ll |\alpha| \sim |\beta|$</div>
+
+  <div id='_wgg' style='display:none;'>$w \gg h \sim d$</div>
+  <div id='_wll' style='display:none;'>$w \ll h \sim d$</div>
+
+  <div id='_hgg' style='display:none;'>$h \gg w \sim d$</div>
+  <div id='_hll' style='display:none;'>$h \ll w \sim d$</div>
+
+  <div id='_dgg' style='display:none;'>$d \gg w \sim h$</div>
+  <div id='_dll' style='display:none;'>$d \ll w \sim h$</div>
+
+  <div id='S0' style='display:none;'>$S_0$</div>
+  <div id='S1' style='display:none;'>$S_1$</div>
+  <div id='S2' style='display:none;'>$S_2$</div>
+
+  <div id='one_m_rho' style='display:none;'>$(1-\rho) = 2/3$</div>
+  <div id='rho' style='display:none;'>$\rho = 1/3$</div>
+
+  <div id='one_m_rho_s' style='display:none;'>$(1-\rho)$</div>
+  <div id='rho_s' style='display:none;'>$\rho$</div>
+
+  <div id='sigma' style='display:none;'>$\sigma$</div>
+  <div id='sigma_s' style='display:none;'>$\sigma s$</div>
+  <div id='s_d_sigma' style='display:none;'>$\frac{s}{\sigma}$</div>
+  <div id='s' style='display:none;'>$s$</div>
+  <div id='one_half' style='display:none;'>$1/2$</div>
+
+
+  <div id='gilbert3d_eccentric_canvas' style='width:450px;height:330px;'> </div>
+
+</body>
+
+  <script>
+    function mathjax_ready() {
+      gilbert3d_eccentric_appendix_s2();
+    }
+  </script>
+
+<html>
+

@@ -1,0 +1,230 @@
+\begin{thebibliography}{27}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\href}[2]{#2}
+\providecommand{\path}[1]{#1}
+\providecommand{\DOIprefix}{doi:}
+\providecommand{\ArXivprefix}{arXiv:}
+\providecommand{\URLprefix}{URL: }
+\providecommand{\Pubmedprefix}{pmid:}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\path{#1}}}
+\providecommand{\Pubmed}[1]{\href{pmid:#1}{\path{#1}}}
+\providecommand{\bibinfo}[2]{#2}
+\ifx\xfnm\relax \def\xfnm[#1]{\unskip,\space#1}\fi
+%Type = Book
+\bibitem[{Hilbert et~al.(2004)Hilbert, Ewald, Hallett, Majer, and
+  Sieg}]{hilbert2004david}
+\bibinfo{author}{D.~Hilbert}, \bibinfo{author}{W.~Ewald},
+  \bibinfo{author}{M.~Hallett}, \bibinfo{author}{U.~Majer},
+  \bibinfo{author}{W.~Sieg}, \bibinfo{title}{David Hilbert's lectures on the
+  foundations of mathematics and physics, 1891-1933}, number
+  \bibinfo{number}{v. 5} in \bibinfo{series}{David Hilbert's lectures on the
+  foundations of mathematics and physics, 1891-1933},
+  \bibinfo{publisher}{Springer}, \bibinfo{year}{2004}. \URLprefix
+  \url{https://books.google.com/books?id=ooP9zAEACAAJ}.
+%Type = Book
+\bibitem[{Sagan(1994)}]{sagan_1994}
+\bibinfo{author}{H.~Sagan}, \bibinfo{title}{Space-Filling Curves},
+  Universitext, \bibinfo{publisher}{Springer New York}, \bibinfo{year}{1994}.
+  \URLprefix \url{https://books.google.com/books?id=gUfvAAAAMAAJ}.
+%Type = Inproceedings
+\bibitem[{Kupers(2012)}]{kupers_2012}
+\bibinfo{author}{A.~Kupers},
+\newblock \bibinfo{title}{On space-filling curves and the hahn-mazurkiewicz
+  theorem},
+\newblock \bibinfo{year}{2012}. \URLprefix
+  \url{https://api.semanticscholar.org/CorpusID:18446304}.
+%Type = Book
+\bibitem[{Wiener(1988)}]{wiener_1988}
+\bibinfo{author}{N.~Wiener}, \bibinfo{title}{The Fourier Integral and Certain
+  of its Applications}, \bibinfo{publisher}{Cambridge University Press},
+  \bibinfo{year}{1988}.
+%Type = Article
+\bibitem[{Lera and Sergeyev(2010)}]{lera_2010}
+\bibinfo{author}{D.~Lera}, \bibinfo{author}{Y.~Sergeyev},
+\newblock \bibinfo{title}{Lipschitz and hölder global optimization using
+  space-filling curves},
+\newblock \bibinfo{journal}{Applied Numerical Mathematics} \bibinfo{volume}{60}
+  (\bibinfo{year}{2010}) \bibinfo{pages}{115--129}. \URLprefix
+  \url{https://www.sciencedirect.com/science/article/pii/S0168927409001688}.
+  \DOIprefix\doi{https://doi.org/10.1016/j.apnum.2009.10.004}.
+%Type = Article
+\bibitem[{Asano et~al.(1997)Asano, Ranjan, Roos, Welzl, and
+  Widmayer}]{asano_1997}
+\bibinfo{author}{T.~Asano}, \bibinfo{author}{D.~Ranjan},
+  \bibinfo{author}{T.~Roos}, \bibinfo{author}{E.~Welzl},
+  \bibinfo{author}{P.~Widmayer},
+\newblock \bibinfo{title}{Space-filling curves and their use in the design of
+  geometric data structures},
+\newblock \bibinfo{journal}{Theoretical Computer Science} \bibinfo{volume}{181}
+  (\bibinfo{year}{1997}) \bibinfo{pages}{3--15}. \URLprefix
+  \url{https://www.sciencedirect.com/science/article/pii/S0304397596002599}.
+  \DOIprefix\doi{https://doi.org/10.1016/S0304-3975(96)00259-9}.
+%Type = Article
+\bibitem[{B{\"o}hm et~al.(2021)B{\"o}hm, Perdacher, and Plant}]{bohm_2021}
+\bibinfo{author}{C.~B{\"o}hm}, \bibinfo{author}{M.~Perdacher},
+  \bibinfo{author}{C.~Plant},
+\newblock \bibinfo{title}{A novel hilbert curve for cache-locality preserving
+  loops},
+\newblock \bibinfo{journal}{IEEE Transactions on Big Data} \bibinfo{volume}{7}
+  (\bibinfo{year}{2021}) \bibinfo{pages}{241--254}. \URLprefix
+  \url{https://api.semanticscholar.org/CorpusID:57781978}.
+%Type = Article
+\bibitem[{Niedermeier et~al.(2002)Niedermeier, Reinhardt, and
+  Sanders}]{niedermeier_2002}
+\bibinfo{author}{R.~Niedermeier}, \bibinfo{author}{K.~Reinhardt},
+  \bibinfo{author}{P.~Sanders},
+\newblock \bibinfo{title}{Towards optimal locality in mesh-indexings},
+\newblock \bibinfo{journal}{Discrete Applied Mathematics} \bibinfo{volume}{117}
+  (\bibinfo{year}{2002}) \bibinfo{pages}{211--237}. \URLprefix
+  \url{https://www.sciencedirect.com/science/article/pii/S0166218X00003267}.
+  \DOIprefix\doi{https://doi.org/10.1016/S0166-218X(00)00326-7}.
+%Type = Misc
+\bibitem[{Munroe(2006)}]{xkcd_195}
+\bibinfo{author}{R.~Munroe}, \bibinfo{title}{Map of the internet},
+  \bibinfo{year}{2006}. \URLprefix \url{https://xkcd.com/195/}.
+%Type = Article
+\bibitem[{Anders(2009)}]{anders_2009}
+\bibinfo{author}{S.~Anders},
+\newblock \bibinfo{title}{Visualization of genomic data with the hilbert
+  curve},
+\newblock \bibinfo{journal}{Bioinformatics} \bibinfo{volume}{25}
+  (\bibinfo{year}{2009}) \bibinfo{pages}{1231--1235}. \URLprefix
+  \url{https://doi.org/10.1093/bioinformatics/btp152}.
+  \DOIprefix\doi{10.1093/bioinformatics/btp152}.
+%Type = Misc
+\bibitem[{Cortesi(2011)}]{cortesi_2011}
+\bibinfo{author}{A.~Cortesi}, \bibinfo{title}{Visualizing binaries with
+  space-filling curves}, \bibinfo{year}{2011}. \URLprefix
+  \url{https://corte.si/posts/visualisation/binvis/}.
+%Type = Article
+\bibitem[{Hamilton and Rau-Chaplin(2008)}]{hamilton_2008}
+\bibinfo{author}{C.~H. Hamilton}, \bibinfo{author}{A.~Rau-Chaplin},
+\newblock \bibinfo{title}{Compact hilbert indices: Space-filling curves for
+  domains with unequal side lengths},
+\newblock \bibinfo{journal}{Information Processing Letters}
+  \bibinfo{volume}{105} (\bibinfo{year}{2008}) \bibinfo{pages}{155--163}.
+  \URLprefix
+  \url{https://www.sciencedirect.com/science/article/pii/S0020019007002153}.
+  \DOIprefix\doi{https://doi.org/10.1016/j.ipl.2007.08.034}.
+%Type = Article
+\bibitem[{Rong et~al.(2021)Rong, Zhang, and Lin}]{rong_2021}
+\bibinfo{author}{Y.~Rong}, \bibinfo{author}{X.~Zhang},
+  \bibinfo{author}{J.~Lin},
+\newblock \bibinfo{title}{Modified hilbert curve for rectangles and cuboids and
+  its application in entropy coding for image and video compression},
+\newblock \bibinfo{journal}{Entropy} \bibinfo{volume}{23}
+  (\bibinfo{year}{2021}). \URLprefix
+  \url{https://www.mdpi.com/1099-4300/23/7/836}.
+  \DOIprefix\doi{10.3390/e23070836}.
+%Type = Misc
+\bibitem[{Tautenhahn(2003)}]{lutanho_2003}
+\bibinfo{author}{L.~Tautenhahn}, \bibinfo{title}{draw a space-filling curve of
+  arbitrary size}, \bibinfo{year}{2003}. \URLprefix
+  \url{https://lutanho.net/pic2html/draw_sfc.html}.
+%Type = Misc
+\bibitem[{Haverkort(2016{\natexlab{a}})}]{haverkort_2016_inventory}
+\bibinfo{author}{H.~Haverkort}, \bibinfo{title}{An inventory of
+  three-dimensional hilbert space-filling curves},
+  \bibinfo{year}{2016}{\natexlab{a}}. \URLprefix
+  \url{https://arxiv.org/abs/1109.2323}.
+  \href{http://arxiv.org/abs/1109.2323}{{\tt arXiv:1109.2323}}.
+%Type = Article
+\bibitem[{Haverkort(2016{\natexlab{b}})}]{haverkort_2016_howmany}
+\bibinfo{author}{H.~Haverkort},
+\newblock \bibinfo{title}{How many three-dimensional hilbert curves are there?}
+   (\bibinfo{year}{2016}{\natexlab{b}}).
+  \DOIprefix\doi{10.48550/arXiv.1610.00155}.
+%Type = Inproceedings
+\bibitem[{Mokbel et~al.(2002)Mokbel, Aref, and Kamel}]{mokbel_2002}
+\bibinfo{author}{M.~F. Mokbel}, \bibinfo{author}{W.~G. Aref},
+  \bibinfo{author}{I.~Kamel},
+\newblock \bibinfo{title}{Performance of multi-dimensional space-filling
+  curves},
+\newblock in: \bibinfo{booktitle}{Proceedings of the 10th ACM International
+  Symposium on Advances in Geographic Information Systems}, GIS '02,
+  \bibinfo{publisher}{Association for Computing Machinery},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{year}{2002}, p.
+  \bibinfo{pages}{149–154}. \URLprefix
+  \url{https://doi.org/10.1145/585147.585179}.
+  \DOIprefix\doi{10.1145/585147.585179}.
+%Type = Article
+\bibitem[{Gotsman and Lindenbaum(1996)}]{gotsman_1996}
+\bibinfo{author}{C.~Gotsman}, \bibinfo{author}{M.~Lindenbaum},
+\newblock \bibinfo{title}{On the metric properties of discrete space-filling
+  curves},
+\newblock \bibinfo{journal}{IEEE Transactions on Image Processing}
+  \bibinfo{volume}{5} (\bibinfo{year}{1996}) \bibinfo{pages}{794--797}.
+  \DOIprefix\doi{10.1109/83.499920}.
+%Type = Article
+\bibitem[{Haverkort and {van Walderveen}(2010)}]{haverkort_2010}
+\bibinfo{author}{H.~Haverkort}, \bibinfo{author}{F.~{van Walderveen}},
+\newblock \bibinfo{title}{Locality and bounding-box quality of two-dimensional
+  space-filling curves},
+\newblock \bibinfo{journal}{Computational Geometry} \bibinfo{volume}{43}
+  (\bibinfo{year}{2010}) \bibinfo{pages}{131--147}. \URLprefix
+  \url{https://www.sciencedirect.com/science/article/pii/S0925772109000765}.
+  \DOIprefix\doi{https://doi.org/10.1016/j.comgeo.2009.06.002},
+  \bibinfo{note}{special Issue on the 24th European Workshop on Computational
+  Geometry (EuroCG'08)}.
+%Type = Misc
+\bibitem[{Haverkort(2010)}]{haverkort_2010_arrwwid}
+\bibinfo{author}{H.~Haverkort}, \bibinfo{title}{Recursive tilings and
+  space-filling curves with little fragmentation}, \bibinfo{year}{2010}.
+  \URLprefix \url{https://arxiv.org/abs/1002.1843}.
+  \href{http://arxiv.org/abs/1002.1843}{{\tt arXiv:1002.1843}}.
+%Type = Incollection
+\bibitem[{Voorhies(1991)}]{voorhies_1991}
+\bibinfo{author}{D.~Voorhies},
+\newblock \bibinfo{title}{I.8 - space-filling curves and a measure of
+  coherence},
+\newblock in: \bibinfo{editor}{J.~ARVO} (Ed.), \bibinfo{booktitle}{Graphics
+  Gems II}, \bibinfo{publisher}{Morgan Kaufmann}, \bibinfo{address}{San Diego},
+  \bibinfo{year}{1991}, pp. \bibinfo{pages}{26--30}. \URLprefix
+  \url{https://www.sciencedirect.com/science/article/pii/B9780080507545500189}.
+  \DOIprefix\doi{https://doi.org/10.1016/B978-0-08-050754-5.50018-9}.
+%Type = Article
+\bibitem[{Butz(1971)}]{butz_1971}
+\bibinfo{author}{A.~Butz},
+\newblock \bibinfo{title}{Alternative algorithm for hilbert's space-filling
+  curve},
+\newblock \bibinfo{journal}{IEEE Transactions on Computers}
+  \bibinfo{volume}{C-20} (\bibinfo{year}{1971}) \bibinfo{pages}{424--426}.
+  \DOIprefix\doi{10.1109/T-C.1971.223258}.
+%Type = Misc
+\bibitem[{Moore(2016)}]{moore_2016}
+\bibinfo{author}{D.~Moore}, \bibinfo{title}{Fast hilbert curve generation,
+  sorting and range queries}, \bibinfo{year}{2016}. \URLprefix
+  \url{https://web.archive.org/web/20160604090636/http://www.tiac.net/~sw/2008/10/Hilbert/moore/index.html}.
+%Type = Article
+\bibitem[{JIA et~al.(2022)JIA, LIANG, LI, LIU, CHEN, and DING}]{jia_2022}
+\bibinfo{author}{L.~JIA}, \bibinfo{author}{B.~LIANG}, \bibinfo{author}{M.~LI},
+  \bibinfo{author}{Y.~LIU}, \bibinfo{author}{Y.~CHEN},
+  \bibinfo{author}{J.~DING},
+\newblock \bibinfo{title}{Efficient 3d hilbert curve encoding and decoding
+  algorithms},
+\newblock \bibinfo{journal}{Chinese Journal of Electronics}
+  \bibinfo{volume}{31} (\bibinfo{year}{2022}) \bibinfo{pages}{277--284}.
+  \URLprefix
+  \url{https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/cje.2020.00.171}.
+  \DOIprefix\doi{https://doi.org/10.1049/cje.2020.00.171}.
+%Type = Misc
+\bibitem[{Holzmüller(2019)}]{holzmuller_2019}
+\bibinfo{author}{D.~Holzmüller}, \bibinfo{title}{Efficient neighbor-finding on
+  space-filling curves}, \bibinfo{year}{2019}. \URLprefix
+  \url{https://arxiv.org/abs/1710.06384}.
+  \href{http://arxiv.org/abs/1710.06384}{{\tt arXiv:1710.06384}}.
+%Type = Book
+\bibitem[{Madras and Slade(2013)}]{madras_2013}
+\bibinfo{author}{N.~Madras}, \bibinfo{author}{G.~Slade}, \bibinfo{title}{The
+  Self-Avoiding Walk}, Probability and Its Applications,
+  \bibinfo{publisher}{Birkh{\"a}user Boston}, \bibinfo{year}{2013}. \URLprefix
+  \url{https://books.google.com/books?id=JsoFCAAAQBAJ}.
+%Type = Book
+\bibitem[{Christensen and Moloney(2005)}]{christensen2005complexity}
+\bibinfo{author}{K.~Christensen}, \bibinfo{author}{N.~Moloney},
+  \bibinfo{title}{Complexity and Criticality}, Advanced physics texts,
+  \bibinfo{publisher}{Imperial College Press}, \bibinfo{year}{2005}. \URLprefix
+  \url{https://books.google.com/books?id=bAIM1_EoQu0C}.
+
+\end{thebibliography}

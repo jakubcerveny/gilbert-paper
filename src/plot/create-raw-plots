@@ -1,0 +1,104 @@
+#!/bin/bash
+
+hilbert2d=''
+hilbert3d=''
+
+gilbert2d=''
+gilbert3d=''
+
+for op in $@ ; do
+  if [[ $op == "hilbert2d" ]] ; then
+    hilbert2d=1
+  elif [[ $op == "hilbert3d" ]] ; then
+    hilbert3d=1
+  elif [[ $op == "gilbert2d" ]] ; then
+    gilbert2d=1
+  elif [[ $op == "gilbert3d" ]] ; then
+    gilbert3d=1
+  elif [[ $op == "all" ]] ; then
+    hilbert2d=1
+    hilbert3d=1
+    gilbert2d=1
+    gilbert3d=1
+  elif [[ $op == "help" ]] ; then
+    echo ""
+    echo "create raw plots. Available options are:"
+    echo ""
+    echo "  hilbert2d"
+    echo "  hilbert3d"
+    echo "  gilbert2d"
+    echo "  gilbert3d"
+    echo "  all"
+    echo ""
+    exit
+  fi
+done
+
+
+if [[ $hilbert2d ]] ; then
+  echo "#hilbert2d"
+
+  mkdir -p data/hilbert2d
+
+  node sfc.js hilbert 3 > data/hilbert2d/hilbert2d_16x16_dist.gp
+  node sfc.js hilbert 4 > data/hilbert2d/hilbert2d_32x32_dist.gp
+  node sfc.js hilbert 5 > data/hilbert2d/hilbert2d_64x64_dist.gp
+  node sfc.js hilbert 6 > data/hilbert2d/hilbert2d_128x128_dist.gp
+  node sfc.js hilbert 7 > data/hilbert2d/hilbert2d_256x256_dist.gp
+fi
+
+if [[ $hilbert3d ]] ; then
+  echo "#hilbert3d"
+
+  mkdir -p data/hilbert3d
+
+  node sfc.js hilbert3 2 > data/hilbert3d/hilbert3d_8x8x8_dist.gp
+  node sfc.js hilbert3 3 > data/hilbert3d/hilbert3d_16x16x16_dist.gp
+  node sfc.js hilbert3 4 > data/hilbert3d/hilbert3d_32x32x32_dist.gp
+  #node sfc.js hilbert3 5 > data/hilbert3d_64x64x64_dist.gp
+fi
+
+if [[ $gilbert2d ]] ; then
+  echo "#gilbert2d"
+
+
+  mkdir -p data/gilbert2d
+
+  for ew in `seq 7.75 0.25 8.25` ; do
+    for eh in `seq 7.75 0.25 8.25` ; do
+      echo "# W:2^$ew H:2^$eh"
+
+      W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`
+      H=`echo "e(l(2)*$eh)+(1/10000000)" | bc -l | sed 's/\..*//'`
+
+      echo "# W:$W (2^($ew)), H:$H (2^($eh))"
+
+      node sfc.js gilbert2d $ew $eh > data/gilbert2d/gilbert2d_${W}x${H}_dist.gp
+    done
+  done
+
+fi
+
+if [[ $gilbert3d ]] ; then
+  echo "#gilbert3d"
+
+  mkdir -p data/gilbert3d
+
+  for ew in `seq 4.75 0.25 5.25` ; do
+    for eh in `seq 4.75 0.25 5.25` ; do
+      for ed in `seq 4.75 0.25 5.25` ; do
+        echo "# W:2^$ew H:2^$eh D:2^$ed"
+
+        W=`echo "e(l(2)*$ew)+(1/10000000)" | bc -l | sed 's/\..*//'`
+        H=`echo "e(l(2)*$eh)+(1/10000000)" | bc -l | sed 's/\..*//'`
+        D=`echo "e(l(2)*$ed)+(1/10000000)" | bc -l | sed 's/\..*//'`
+
+        echo "# W:$W (2^($ew)), H:$H (2^($eh)), D:$D (2^($ed))"
+
+        node sfc.js gilbert3d $ew $eh $ed > data/gilbert3d/gilbert3d_${W}x${H}x${D}_dist.gp
+      done
+    done
+  done
+
+
+fi

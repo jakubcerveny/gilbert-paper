@@ -7,9 +7,11 @@
 var gilbert = {
   "xy2d": gilbert_xy2d,
   "d2xy": gilbert_d2xy,
+  "_d2xy": _gilbert_d2xy,
 
   "xyz2d": gilbert_xyz2d,
   "d2xyz": gilbert_d2xyz,
+  "_d2xyz": _gilbert_d2xyz
 };
 
 function sgn(x) {
@@ -68,6 +70,14 @@ function gilbert_xy2d(x,y,w,h) {
   return gilbert_xy2d_r(0, _q, _p, _a, _b);
 }
 
+function _gilbert_d2xy(idx,w,h) {
+  let _p = {"x": 0, "y": 0};
+  let _a = {"x": w, "y": 0};
+  let _b = {"x": 0, "y": h};
+
+  return gilbert_d2xy_r(idx,0,_p,_a,_b);
+}
+
 function gilbert_d2xy(idx,w,h) {
   let _p = {"x": 0, "y": 0};
   let _a = {"x": 0, "y": h};
@@ -94,6 +104,14 @@ function gilbert_xyz2d(x,y,z,w,h,d) {
     return gilbert_xyz2d_r(0, _q, _p, _b, _a, _c);
   }
   return gilbert_xyz2d_r(0, _q, _p, _c, _a, _b);
+}
+
+function _gilbert_d2xyz(idx,w,h,d) {
+  let _p = {"x": 0, "y": 0, "z": 0};
+  let _a = {"x": w, "y": 0, "z": 0};
+  let _b = {"x": 0, "y": h, "z": 0};
+  let _c = {"x": 0, "y": 0, "z": d};
+  return gilbert_d2xyz_r(idx, 0, _p, _a, _b, _c);
 }
 
 function gilbert_d2xyz(idx,w,h,d) {
