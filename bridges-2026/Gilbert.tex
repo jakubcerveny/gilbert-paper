@@ -43,8 +43,9 @@
   Hilbert construction applies most naturally to square or cubic grids with side lengths
   that are exact powers of two.
   We present the \emph{Gilbert curve}, a simple recursive, Hilbert-like construction that
-  produces Hamiltonian paths on \emph{arbitrary} 2D and \emph{even-sized} 3D axis-aligned rectangular grids.
-  Our construction explicitly manages endpoint parity constraints, and extends naturally
+%  produces Hamiltonian paths on \emph{even width} 2D rectangles and \emph{even sided} 3D rectangular cuboids.
+  produces paths on 2D rectangles and 3D rectangular cuboids.
+  Our construction explicitly manages endpoint parity constraints, which allows us to extend naturally
   to 3D.
 \end{abstract}
 
@@ -83,9 +84,15 @@ and can harm locality near boundaries.
 \end{figure}
 
 
+%This paper presents the \emph{Gilbert curve}, a recursive construction that produces a
+%Hamiltonian path (a non-self-intersecting path visiting every grid vertex exactly once)
+%on \textit{even width} 2D rectangles and \textit{even sided} 3D cuboids.
+%Our goal is a construction that is easy to implement, has a uniform recursive structure,
+%and reduces to the standard Hilbert curve in the power-of-two square/cube cases.
+%In this paper, we:
+
 This paper presents the \emph{Gilbert curve}, a recursive construction that produces a
-Hamiltonian path (a non-self-intersecting path visiting every grid vertex exactly once)
-on arbitrary 2D rectangles and 3D cuboids.
+paths for 2D rectangles and 3D cuboids.
 Our goal is a construction that is easy to implement, has a uniform recursive structure,
 and reduces to the standard Hilbert curve in the power-of-two square/cube cases.
 In this paper, we:
@@ -102,6 +109,11 @@ In this paper, we:
   \item We extend the same construction principles naturally to arbitrary 3D cuboid grids
         %, reusing the 2D routine for planar subproblems.
 \end{itemize}
+
+Parity constraints of path endpoints preclude all combinations of side lengths from having a strict Hamiltonian
+path, a non self-intersecting path visiting every grid cell exactly once without any diagonal
+moves, and we will address the conditions under which this happens later.
+
 
 %\begin{figure}[!htb]
 %  \centering
