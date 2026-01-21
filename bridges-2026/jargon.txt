@@ -1,4 +1,4 @@
-personal_ws-1.1 en 90 
+personal_ws-1.1 en 108 
 Abbildung
 Algorithmically
 Anders
@@ -11,12 +11,14 @@ Butz's
 Cholesky
 Cortesi
 Dafner
+Faloutsos
 Gotsman
 HINTs
 Hamiltonicity
 Haverkort
 Holzm
 IPv
+Jagadish
 Jakub
 Jia
 Kamata
@@ -36,6 +38,7 @@ Peano
 Perdacher
 Rau
 Rong
+Saltz
 Sensemaking
 Sergeyev
 TODO
@@ -51,11 +54,14 @@ Zzyv
 Zzyzek
 al
 algorithmically
+anisotropic
 auf
 autocorrelation
 breaklines
 chenst
 cr
+diag
+discretization
 discretized
 dst
 ein
@@ -73,18 +79,30 @@ hoc
 inBounds
 lder
 libre
+linearize
+linearizing
 ller's
 llr
 lookups
 lr
+mn
+mnp
 nxt
 pre
+pseudocode
+resampling
 rl
 runtime
 sgn
 stetige
+subpaths
+subproblem
+subproblems
+subregion
+subregions
 vizualization
 vo
+xkcd
 xyz
 ypergraph
 zag
