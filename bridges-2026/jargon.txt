@@ -1,4 +1,4 @@
-personal_ws-1.1 en 106 
+personal_ws-1.1 en 108 
 Abbildung
 Algorithmically
 Anders
@@ -54,11 +54,13 @@ Zzyv
 Zzyzek
 al
 algorithmically
+anisotropic
 auf
 autocorrelation
 breaklines
 chenst
 cr
+diag
 discretization
 discretized
 dst
