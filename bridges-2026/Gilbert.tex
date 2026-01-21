@@ -42,10 +42,9 @@
   used for linearizing 2D and 3D data. In their discrete form, however, the standard
   Hilbert construction applies most naturally to square or cubic grids with side lengths
   that are exact powers of two.
-  We present the \emph{Gilbert curve}, a simple recursive, Hilbert-like construction that
-  produces paths on 2D rectangles and 3D rectangular cuboids.
-  Our construction explicitly manages endpoint parity constraints, which allows us to extend naturally
-  from 2D to 3D.
+  We present the \emph{Gilbert curve}, a simple recursive, Hilbert-like discrete space-filling 
+  curve that produces Hamiltonian paths on all even-sized 2D rectangles and 3D rectangular cuboids,
+  with relaxed traversals in odd-sized cases.
 \end{abstract}
 
 
@@ -87,14 +86,14 @@ and reduces to a Hilbert curve in the power-of-two square/cube cases.
 In this paper, we:
 
 \begin{itemize}
-  \item We describe a simple recursive construction of Hilbert-like paths on arbitrary 2D rectangular grids
-  \item We formalize a parity condition on corner endpoints and use it to guide valid recursive subdivisions
-  \item We extend the same construction principles naturally to arbitrary 3D cuboid grids
+  \item Describe a simple recursive construction of Hilbert-like paths on arbitrary 2D rectangular grids
+  \item Formalize a parity condition on corner endpoints and use it to guide valid recursive subdivisions
+  \item Extend the same construction principles naturally to arbitrary 3D cuboid grids
 \end{itemize}
 
 In certain conditions, combinations of side length sizes and the parity of path endpoints 
 preclude a strict non self-intersecting path that visits every cell exactly once (a \textit{Hamiltonian path})
-without any diagonal moves.
+without any diagonal moves.  % diagonal "steps" instead?
 We will briefly address the conditions under which the Gilbert curve algorithm introduces diagonal moves throughout this paper.
 
 
@@ -106,8 +105,10 @@ We will briefly address the conditions under which the Gilbert curve algorithm i
 %power-of-two square (2D) and cubic (3D) grids.
 
 %Hilbert defined a space filling curve, which has been since named the \textit{Hilbert curve}, as a continuous map from the unit interval to the unit square \cite{hilbert1891}.
-Hilbert defined a continuous, space filling curve that maps the unit interval to the unit square, which as been since named the \textit{Hilbet curve} \cite{hilbert1891}.
-One discretization variant applies to square (2D) and cubic (3D) grids with equal sides that are powers of two.
+%Hilbert defined a continuous, space filling curve that maps the unit interval to the unit square, which as been since named the \textit{Hilbet curve} \cite{hilbert1891}.
+%One discretization variant applies to square (2D) and cubic (3D) grids with equal sides that are powers of two.
+Hilbert introduced a continuous space-filling curve from the unit interval to the unit square, known as the Hilbert curve \cite{hilbert1891}. 
+Its standard discrete form applies to square (2D) and cubic (3D) grids with equal power-of-two side lengths.
 
 In a website application and scanned note, Tautenhahn \cite{lutanho2003} presented a 2D construction for arbitrary sizes based on combining
 $3\times3$ Peano and $2\times2$ Hilbert block types.
@@ -146,7 +147,7 @@ If $N$ is odd, then $N-1$ is even and the endpoints must have the same color. If
 We call a pair of endpoints \emph{color compatible} if they satisfy Lemma \ref{lemma:colorCompatibility}.
 %Figure~\ref{fig:exampleHampath} illustrates the constraint for small 2D grids.
 Color compatibility is necessary, in general, for Hamiltonicity. For the specific family of corner-to-corner subproblems produced by our construction,
-it is also sufficient, and we implicitly use it to choose endpoints and subregions for the recursion.
+it is also sufficient: a trivial linear zig-zag path connecting color compatible corners is always possible. 
 
 %For a path starting at $(0,0,0)$ and ending $|\alpha|$ steps in one of the axis-aligned dimensions,
 %then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
