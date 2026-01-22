@@ -403,16 +403,18 @@ the standard 3D Hilbert curve.
     \State \hskip1.0em \textbf{else if }$(3 |\gamma| > 4 |\beta|)$
       \State \hskip2.0em  Gilbert3D($p,\gamma _ 2,\alpha _ 2,\beta$)
       \State \hskip2.0em  Gilbert3D($p + \gamma _ 2,\alpha, \beta, \gamma - \gamma _ 2$)
-      \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha))$ \\ \hskip6.25em $(\gamma_2 - \delta(\gamma))$, \\ \hskip6.0em $-\gamma _ 2,-(\alpha-\alpha _ 2), \beta$)
+      \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ +$ \\ \hskip6.25em $(\gamma_2 - \delta(\gamma))$, \\ \hskip6.0em $-\gamma _ 2,-(\alpha-\alpha _ 2), \beta$)
 
     \vskip0.5em
 
     \State \hskip1.0em \textbf{else }
       \State \hskip2.0em  Gilbert3D($p, \beta _ 2, \gamma _ 2, \alpha _ 2$)
       \State \hskip2.0em  Gilbert3D($p + \beta _ 2,\gamma,\alpha _ 2,(\beta - \beta _ 2)$)
-      \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta)) +$ \\ \hskip6.25em $(\gamma - \delta(\gamma))$, \\ \hskip6.5em $\alpha,-\beta_2,-(\gamma-\gamma_2)$)
-      \State \hskip2.0em  Gilbert3D($p  +$ \\ \hskip6.25em $(\alpha _ 2 - \delta(\alpha)) \ + \ $ \\ \hskip6.5em $\beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip6.00em $-\gamma,-(\alpha - \alpha_2),(\beta-\beta_2)$)
+      \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta)) \ +$ \\ \hskip6.25em $(\gamma - \delta(\gamma))$, \\ \hskip6.5em $\alpha,-\beta_2,-(\gamma-\gamma_2)$)
+      \State \hskip2.0em  Gilbert3D($p  +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ + \ $ \\ \hskip6.5em $\beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip6.00em $-\gamma,-(\alpha - \alpha_2),(\beta-\beta_2)$)
     \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma _ 2,-(\alpha - \alpha_2)$)
+
+    \vskip0.5em
 
 %    \EndFunction
 
