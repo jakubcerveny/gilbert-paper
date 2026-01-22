@@ -42,10 +42,9 @@
   used for linearizing 2D and 3D data. In their discrete form, however, the standard
   Hilbert construction applies most naturally to square or cubic grids with side lengths
   that are exact powers of two.
-  We present the \emph{Gilbert curve}, a simple recursive, Hilbert-like construction that
-  produces paths on 2D rectangles and 3D rectangular cuboids.
-  Our construction explicitly manages endpoint parity constraints, which allows us to extend naturally
-  from 2D to 3D.
+  We present the \emph{Gilbert curve}, a simple recursive, Hilbert-like discrete space-filling
+  curve that produces Hamiltonian paths on all even-sized 2D rectangles and 3D rectangular cuboids,
+  and relaxed traversals on odd-sized domains.
 \end{abstract}
 
 
@@ -60,9 +59,6 @@ In practical settings, however, underlying grids might not be square or cubic wi
 power-of-two side lengths. Images and volumes can come in arbitrary dimensions.
 Tiling, padding, or resampling to fit a power-of-two Hilbert curve introduces overhead
 and can harm locality near boundaries.
-
-    %\caption{2D Gilbert curves for i) $8\times 8$, ii) $18\times 6$, iii) $13\times 8$ (with notch), iv) $14\times 14$.}
-    %\caption{3D Gilbert curves for i) $4 \times 4 \times 4$, ii) $6 \times 6 \times 6$, iii) $8 \times 4 \times 4$, iv) $5  \times 4 \times 4$ (with notch).}
 
 \begin{figure}[!htb]
   \begin{minipage}{0.48\textwidth}
@@ -87,45 +83,38 @@ and reduces to a Hilbert curve in the power-of-two square/cube cases.
 In this paper, we:
 
 \begin{itemize}
-  \item We describe a simple recursive construction of Hilbert-like paths on arbitrary 2D rectangular grids
-  \item We formalize a parity condition on corner endpoints and use it to guide valid recursive subdivisions
-  \item We extend the same construction principles naturally to arbitrary 3D cuboid grids
+  \item Describe a simple recursive construction of Hilbert-like paths on arbitrary 2D rectangular grids
+  \item Formalize a parity condition on corner endpoints and use it to guide valid recursive subdivisions
+  \item Extend the same construction principles naturally to arbitrary 3D cuboid grids
 \end{itemize}
 
-In certain conditions, combinations of side length sizes and the parity of path endpoints 
+In certain conditions, combinations of side length sizes and the parity of path endpoints
 preclude a strict non self-intersecting path that visits every cell exactly once (a \textit{Hamiltonian path})
-without any diagonal moves.
-We will briefly address the conditions under which the Gilbert curve algorithm introduces diagonal moves throughout this paper.
+without any diagonal steps.
+We will briefly address the conditions under which the Gilbert curve algorithm introduces diagonal steps throughout this paper.
 
+\vspace{-0.75em}
 
 \section*{Related Work}
 
-%Hilbert introduced his eponymous curve as a continuous mapping from the unit interval to the unit square \cite{hilbert1891}.
-%Many discrete variants exist; 
-%the most common recursive discretization applies most directly to
-%power-of-two square (2D) and cubic (3D) grids.
-
-%Hilbert defined a space filling curve, which has been since named the \textit{Hilbert curve}, as a continuous map from the unit interval to the unit square \cite{hilbert1891}.
-Hilbert defined a continuous, space filling curve that maps the unit interval to the unit square, which as been since named the \textit{Hilbet curve} \cite{hilbert1891}.
-One discretization variant applies to square (2D) and cubic (3D) grids with equal sides that are powers of two.
+Hilbert introduced a continuous space-filling curve from the unit interval to the unit square, known as the Hilbert curve \cite{hilbert1891}.
+Its standard discrete form applies to square (2D) and cubic (3D) grids with equal power-of-two side lengths.
 
 In a website application and scanned note, Tautenhahn \cite{lutanho2003} presented a 2D construction for arbitrary sizes based on combining
 $3\times3$ Peano and $2\times2$ Hilbert block types.
 While Tautenhahn's approach is 2D only and has non-uniform subdivision schemes dependent on side length parity,
 it motivates an important endpoint-parity constraint that we make explicit.
 
-%While that approach is 2D-only and not purely uniform across scales,
-
 Zhang, Kamata, and Ueshige \cite{zhang2006} propose a pseudo-Hilbert scan for arbitrary rectangles.
 Compared to our construction, their method follows a more intricate case structure and does not
 suggest a direct extension to 3D.
+
+\vspace{-0.75em}
 
 \section*{Parity Constraints on Corner Endpoints}
 \label{sec:parity}
 
 We use a parity argument to determine whether a Hamiltonian path is possible between two grid corner endpoints.
-%We will repeatedly need to know when a Hamiltonian path is possible between two corners of a grid.
-%The key constraint is parity.
 If we consider the standard checkerboard coloring of an $m\times n$ grid graph (or an $m\times n\times p$ grid graph in 3D),
 then adjacent vertices always have opposite color.
 Any path alternates colors at every step, so the parity of the endpoints is constrained by the total number of visited vertices.
@@ -144,26 +133,8 @@ If $N$ is odd, then $N-1$ is even and the endpoints must have the same color. If
 \end{proof}
 
 We call a pair of endpoints \emph{color compatible} if they satisfy Lemma \ref{lemma:colorCompatibility}.
-%Figure~\ref{fig:exampleHampath} illustrates the constraint for small 2D grids.
 Color compatibility is necessary, in general, for Hamiltonicity. For the specific family of corner-to-corner subproblems produced by our construction,
-it is also sufficient, and we implicitly use it to choose endpoints and subregions for the recursion.
-
-%For a path starting at $(0,0,0)$ and ending $|\alpha|$ steps in one of the axis-aligned dimensions,
-%then Table \ref{table:pathTable} enumerates this condition under which a valid path is possible.
-
-%Assuming a curve starts from position $p_s=(0,0,0)$ and has proposed
-%endpoint at $p_e=((w-1),0,0)$, with a cuboid region as $\alpha = (w,0,0), \beta = (0,h,0), \gamma = (0,0,d)$.
-
-%We focus on optimizing for providing a notch-free path when all side lengths are even and allow notches when $|\alpha|$ is odd in 2D
-%or when one of the side lengths is odd in 3D.
-
-%The 2D Gilbert curve limits the number of notches to one.
-%The 3D Gilbert curve's subdivision strategy creates a notch when the distance between endpoints is odd,
-%potentially creating more than one notch.
-%
-%In both the 2D and 3D case, when the original side lengths are all even, no notches will be present.
-%
-
+it is also sufficient: a trivial linear zig-zag path connecting color compatible corners is always possible.
 
 
 \begin{figure}[!htb]
@@ -194,17 +165,23 @@ it is also sufficient, and we implicitly use it to choose endpoints and subregio
 
 \end{figure}
 
+\vspace{-0.75em}
+
 \section*{Algorithms}
 \label{sec:algorithms}
 
 Algorithms~\ref{alg:gilbert2d} and~\ref{alg:gilbert3d} give pseudocode for the 2D and 3D Gilbert curve constructions.
+Both algorithms enumerate a Gilbert curve by repeated calls, returning a resolved point
+at every yield statement, then saving state so that it can continue when called again.
+
 We represent an oriented grid-aligned rectangle or cuboid by an origin $p\in\mathbb{Z}^d$ and axis vectors
 $\alpha,\beta,\gamma\in\mathbb{Z}^d$, $d \in \{2,3\}$, whose nonzero components encode the side lengths and directions.
 The function $\delta(\cdot)$ returns the unit axis direction of its argument, and $\text{div}(\cdot,\cdot)$ denotes
 integer division (rounding toward zero).
-To make things more concise, a convenience function is used,
-$(\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=} (\textit{ if } (|\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2) \to \delta(\rho), \textit{ else } \to 0))$,
-to help coerce values to be even in the the non-degenerate case.
+To make things more concise, a convenience function is used to help coerce values to be even in the the non-degenerate case:
+$\Delta( \rho_2,\rho ) \overset{\mathrm{def}}{=}
+%(\textit{ if } (|\rho _ 2| \equiv 1 \bmod{2} \text{ and } |\rho| > 2) \to \delta(\rho), \textit{ else } \to 0))$,
+\delta(\rho)$ if ($|\rho_2|$ is odd and $|\rho|>2$), and $0$ otherwise.
 
 The next sections go into detail about the 2D construction and its extension to 3D.
 
@@ -226,18 +203,18 @@ representing a snapshot of the current frame of reference.
 
 When dividing into subregions, we choose integral side lengths and prefer an even local width-like length for the first region
 (e.g. region $A$ in Figures \ref{fig:main2dsubdiv}, \ref{fig:main2dsubdivExample}) to satisfy the
-parity constraints of Lemma \ref{lemma:colorCompatibility}. %Section~\ref{sec:parity}.
+parity constraint of Lemma \ref{lemma:colorCompatibility}. %Section~\ref{sec:parity}.
 Each subregion is solved recursively and then stitched to its neighbors.
 Figure \ref{fig:gilbert2d_bulk} shows a color coded subdivision template and Figure \ref{fig:gilbert2d_bulk_example} shows a color coded example with stitched endpoints highlighted.
 %Figure~\ref{fig:production2d} summarizes the main parity-driven cases.
 
 As a heuristic to keep subregions square like,
-the parent region is bisected 
-if the aspect ratio of width to height exceeds a $(3/2)$ threshold.
+the parent region is bisected
+if the aspect ratio of width to height exceeds a $3/2$ threshold.
 After bisection, the algorithm recursively proceeds on each half as normal.
 See Figure \ref{fig:eccentric_2d_alg} for the subdivision template and Figure \ref{fig:eccentric_2d_example_alg} for an example of the bisection subdivision.
 
-If the width like side length is odd with the height even, a diagonal move is forced as the endpoints won't be
+If the width-like side length is odd with the height even, a diagonal move is forced as the endpoints won't be
 color compatible anymore.
 In such a case, there will be a single diagonal move in the resulting path and it will be guided to appear in the upper right
 hand corner, as the $B$ region (Figure \ref{fig:main2dsubdiv}) will retain the odd width and even height.
@@ -318,6 +295,8 @@ Algorithm~\ref{alg:gilbert2d} gives pseudo code for the 2D Gilbert curve.
 
 \end{minipage}
 
+\vspace{-0.45em}
+
 \section*{Extension to 3D}
 \label{sec:3d}
 
@@ -325,15 +304,22 @@ In the basic case, a subdivision scheme is used to split the cuboid into five re
 Two cube like regions are partitioned where the path starts and stops, and three oblong cuboid regions are partitioned
 for the middle portion of the path.
 Figure \ref{fig:gilbert3DJSplit} provides an exploded view of the main subdivision and where endpoints connect.
-See also Figure \ref{fig:gilbert3d_bulk_template} for the template and Figure \ref{fig:gilbert3d_bulk_example}
+%See also Figure \ref{fig:gilbert3d_bulk_template} for the template and Figure \ref{fig:gilbert3d_bulk_example}
+See also Figure \ref{fig:gilbert3d_alg_fig} (\textit{g}) for the template and Figure \ref{fig:gilbert3d_alg_fig} (\textit{h})
 for a $10 \times 10 \times 10$ example, with each region color coded.
 
-During the course of subdivision, if the cuboid has an aspect ratio of width to either height or depth that exceeds $(3/2)$,
-a horizontal bisection is done.
-Two other anisotropic cases are tested for when the aspect ratio of height to depth or depth to height exceeds a $(4/3)$ threshold.
-The reader is referred to Algorithm \ref{alg:gilbert3d} for further details.
+% During the course of subdivision, if the cuboid has an aspect ratio of width to either height or depth that exceeds $(3/2)$,
+% a horizontal bisection is done.
+% Two other anisotropic cases are tested for when the aspect ratio of height to depth or depth to height exceeds a $(4/3)$ threshold.
+% The reader is referred to Algorithm \ref{alg:gilbert3d} for further details.
 
-%If subregions have aspect ratio that 
+During subdivision, if the cuboid’s aspect ratio between width and either height or depth exceeds $3/2$,
+a horizontal bisection is performed. Two additional anisotropic cases are handled analogously when the aspect
+ratio between height and depth, or depth and height, exceeds a threshold of $4/3$.
+These thresholds were chosen empirically; a principled derivation and further optimization are left for future work.
+See Figure \ref{fig:gilbert3d_alg_fig} (\textit{a}-\textit{f}) for color coded templates and color coded examples.
+
+%If subregions have aspect ratio that
 %During the course of sub-division, if the width like dimension ($\alpha$) is much larger, the curve is split in half along
 %the $\alpha$ length (Figure \ref{fig:gilbert3d_eccentric_alpha}, \ref{fig:gilbert3d_eccentric_alpha_example}).
 %If the $\alpha$ eccentric split is not triggered, the height-like dimension, $\beta$, is then compared to the depth-like dimension, $\gamma$
@@ -348,7 +334,7 @@ has completed.
 In the case all side lengths are even, the subdivision will always choose an even length until the base case is
 encountered, ensuring a Hamiltonian path and a realization free from diagonal moves.
 As with the 2D Gilbert curve, when side dimensions are equal and exact powers of two, the resulting curve is identical to
-one variant of the 3D Hilbert curve.
+the standard 3D Hilbert curve.
 
 
 \begin{minipage}[ht]{0.5\linewidth}
@@ -399,65 +385,71 @@ one variant of the 3D Hilbert curve.
 \end{minipage}\hfill
 \begin{minipage}[ht]{0.5\linewidth}
 
-  \vspace{12.0em}
+    \centering
+    \includegraphics[width=\linewidth]{gilbert3d_alg_fig2.pdf}
+    \captionof{figure}{ }
+    \label{fig:gilbert3d_alg_fig}
 
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_eccentric_alpha}
-	\end{minipage}\hfill
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_eccentric_alpha_example}
-	\end{minipage}
 
-  \vspace{3.0em}
-
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_simple.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_eccentric_beta}
-	\end{minipage}\hfill
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_example.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_eccentric_beta_example}
-	\end{minipage}
-
-  \vspace{3.0em}
-
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_simple.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_eccentric_gamma}
-	\end{minipage}\hfill
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_example.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_eccentric_gamma_example}
-	\end{minipage}
-
-  \vspace{3.0em}
-
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_bulk_template.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_bulk_template}
-	\end{minipage}\hfill
-	\begin{minipage}{0.49\textwidth}
-		\centering
-		\includegraphics[width=\linewidth]{gilbert3d_bulk_example.pdf}
-		\captionof{figure}{ }
-		\label{fig:gilbert3d_bulk_example}
-	\end{minipage}
+%  \vspace{12.0em}
+%
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_eccentric_alpha}
+%  \end{minipage}\hfill
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_alpha_example.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_eccentric_alpha_example}
+%  \end{minipage}
+%
+%  \vspace{3.0em}
+%
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_simple.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_eccentric_beta}
+%  \end{minipage}\hfill
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_beta_example.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_eccentric_beta_example}
+%  \end{minipage}
+%
+%  \vspace{3.0em}
+%
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_simple.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_eccentric_gamma}
+%  \end{minipage}\hfill
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_eccentric_gamma_example.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_eccentric_gamma_example}
+%  \end{minipage}
+%
+%  \vspace{3.0em}
+%
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_bulk_template.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_bulk_template}
+%  \end{minipage}\hfill
+%  \begin{minipage}{0.49\textwidth}
+%    \centering
+%    \includegraphics[width=\linewidth]{gilbert3d_bulk_example.pdf}
+%    \captionof{figure}{ }
+%    \label{fig:gilbert3d_bulk_example}
+%  \end{minipage}
 
 \end{minipage}
 
@@ -469,11 +461,17 @@ As such, with the subdivision scheme presented, the number of diagonal moves in 
 \section*{Summary and Conclusions}
 \label{sec:outlook}
 
-The Gilbert curve provides a practical alternative to discrete Hilbert curves when the target grid has
-arbitrary rectangular dimensions. This avoids padding or resampling that is otherwise required to fit
-power-of-two constructions, while maintaining a recursive, locality-preserving traversal.
-Such layouts are useful for cache-coherent image/volume traversal, spatial indexing, and visualization
-of 1D data on 2D/3D grids \cite{anders2009, bohm2021, cortesi2011, moon2001}.
+The Gilbert curve provides locality-preserving traversals in rectangular grids of arbitrary dimensions.
+For even side lengths, the construction yields uniform, defect-free Hamiltonian paths in both two and three dimensions,
+providing a natural generalization of classical discrete Hilbert curves beyond power-of-two domains.
+For grids with odd dimensions, the resulting curves may contain diagonal steps, but still retain strong
+locality properties and remain suitable for practical use in applications such as cache-coherent traversal and image or volume compression.
+
+% The Gilbert curve provides a practical alternative to discrete Hilbert curves when the target grid has
+% arbitrary rectangular dimensions. This avoids padding or resampling that is otherwise required to fit
+% power-of-two constructions, while maintaining a recursive, locality-preserving traversal.
+% Such layouts are useful for cache-coherent image/volume traversal, spatial indexing, and visualization
+% of 1D data on 2D/3D grids \cite{anders2009, bohm2021, cortesi2011, moon2001}.
 
 %There are several natural directions for future work.
 %First, while our anisotropic-split thresholds are simple and work well in practice, one can define more
@@ -482,13 +480,14 @@ of 1D data on 2D/3D grids \cite{anders2009, bohm2021, cortesi2011, moon2001}.
 %the occurrence of forced diagonal steps when one or more side lengths are odd.
 %Finally, more refined choices of subdivision schemes could be explored that focus on regularity metrics and/or perceptual quality.
 
-While our anisotropic-split thresholds are simple and work well in practice, future work could define more
-explicit optimization criteria for when and how to switch subdivision templates.
+While the anisotropic split thresholds are empirically chosen, they work well in practice; future work could formalize optimization criteria for selecting subdivision templates.
+%While our anisotropic-split thresholds are simple and work well in practice, future work could define more
+%explicit optimization criteria for when and how to switch subdivision templates.
 In 3D, relaxing subproblem endpoint constraints may allow constructions that further reduce
 the occurrence of forced diagonal steps when one or more side lengths are odd.
 
-A libre/free/open implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
-repository \footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/gilbert} }.
+An open source implementation for the Gilbert curve in 2D and 3D has been developed and can be downloaded from its
+repository\footnote{ \label{gilbert-url} \url{https://github.com/jakubcerveny/gilbert} }.
 
 \section*{Acknowledgments}
 
