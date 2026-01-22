@@ -240,7 +240,6 @@ Algorithm~\ref{alg:gilbert2d} gives pseudo code for the 2D Gilbert curve.
       \State \hskip1.0em \textbf{if }$(|\beta| \equiv 1)$
         \State \hskip2.0em \textbf{print} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\alpha|$
       %\ElsIf{ $(|\alpha| \equiv 1)$ }
-      \vskip0.5em
       \State \hskip1.0em \textbf{else if }$(|\alpha| \equiv 1)$
         \State \hskip2.0em \textbf{print} $p + i \cdot \delta(\beta)$ \textbf{forall} $i \in |\beta|$
       %\ElsIf{ $(2 |\alpha| > 3 |\beta|)$ }
@@ -265,9 +264,12 @@ Algorithm~\ref{alg:gilbert2d} gives pseudo code for the 2D Gilbert curve.
         %\EndIf
         %\State Gilbert2D($p$, \\ \hskip7.35em $\beta_2, \alpha_2$)
         \vskip0.5em
-        \State \hskip2.0em Gilbert2D($p, \beta_2, \alpha_2$)
+        %\State \hskip2.0em Gilbert2D($p, \beta_2, \alpha_2$)
+        \State \hskip2.0em Gilbert2D($p,$ \\ \hskip6.45em $\beta_2, \alpha_2$)
         \State \hskip2.0em Gilbert2D($p + \beta_2$, \\ \hskip6.45em $\alpha, (\beta - \beta_2)$)
-        \State \hskip2.0em Gilbert2D($p + (\alpha - \delta(\alpha)) \ +$ \\ \hskip6.45em $(\beta_2 - \delta(\beta))$, \\ \hskip6.2em $-\beta_2, -(\alpha - \alpha_2)$)
+        %\State \hskip2.0em Gilbert2D($p + (\alpha - \delta(\alpha)) \ +$ \\ \hskip6.45em $(\beta_2 - \delta(\beta))$, \\ \hskip6.2em $-\beta_2, -(\alpha - \alpha_2)$)
+        \State \hskip2.0em Gilbert2D($p + (\alpha - \delta(\alpha))  + (\beta_2 - \delta(\beta))$, \\ \hskip6.2em $-\beta_2, -(\alpha - \alpha_2)$)
+      \vskip0.5em
       %\EndIf
     %\EndFunction
 
