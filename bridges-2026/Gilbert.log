@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 JAN 2026 17:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 JAN 2026 17:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -881,19 +881,19 @@ on: multiple pdfs with page group included in a single page
 pdfTeX warning: pdflatex (file ./gilbert3d_explode.pdf): PDF inclusion: multipl
 e pdfs with page group included in a single page
 >]
-<gilbert3d_alg_fig2.pdf, id=181, 526.96875pt x 1355.0625pt>
-File: gilbert3d_alg_fig2.pdf Graphic file (type pdf)
-<use gilbert3d_alg_fig2.pdf>
-Package pdftex.def Info: gilbert3d_alg_fig2.pdf  used on input line 467.
+<gilbert3d_alg_fig3.pdf, id=181, 526.96875pt x 1355.0625pt>
+File: gilbert3d_alg_fig3.pdf Graphic file (type pdf)
+<use gilbert3d_alg_fig3.pdf>
+Package pdftex.def Info: gilbert3d_alg_fig3.pdf  used on input line 480.
 (pdftex.def)             Requested size: 236.01561pt x 606.89845pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 468.
+(caption)                particular \caption on input line 481.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (21.6812pt too wide) in paragraph at lines 364--472
+Overfull \hbox (21.6812pt too wide) in paragraph at lines 364--485
 []$[]$ $[]$ 
  []
 
@@ -909,23 +909,23 @@ dfs with page group included in a single page
 
 pdfTeX warning: pdflatex (file ./gilbert2d_bulk_example.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
->] [5 <./gilbert3d_alg_fig2.pdf>]
+>] [5 <./gilbert3d_alg_fig3.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+ntxsups on input lin
-e 492.
+e 505.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
 File: t1ntxsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 10.95pt on input line 492.
+(Font)              scaled to size 10.95pt on input line 505.
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 9.0pt on input line 492.
+(Font)              scaled to size 9.0pt on input line 505.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 492.
+(Font)              scaled to size 9.0pt on input line 505.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 492.
+(Font)              scaled to size 7.3pt on input line 505.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 492.
+(Font)              scaled to size 5.5pt on input line 505.
  [6] (./Gilbert.aux)
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -933,7 +933,7 @@ Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 Here is how much of TeX's memory you used:
  17348 strings out of 480171
  265510 string characters out of 5894489
- 546050 words of memory out of 5000000
+ 545050 words of memory out of 5000000
  34990 multiletter control sequences out of 15000+600000
  550293 words of font info for 148 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
@@ -951,7 +951,7 @@ c/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txs
 ys.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (6 pages, 561372 bytes).
+Output written on Gilbert.pdf (6 pages, 561615 bytes).
 PDF statistics:
  354 PDF objects out of 1000 (max. 8388607)
  257 compressed objects within 3 object streams

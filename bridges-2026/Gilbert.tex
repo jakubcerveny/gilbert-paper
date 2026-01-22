@@ -376,7 +376,7 @@ the standard 3D Hilbert curve.
     \State \hskip1.0em $\beta_2 \leftarrow \text{div}(\beta,2) + \Delta(\beta _ 2, \beta)$
     \State \hskip1.0em $\gamma_2 \leftarrow \text{div}(\gamma,2) + \Delta(\gamma _ 2, \gamma)$
 
-    \vskip0.5em
+    \vskip0.75em
 
     \State \hskip1.0em \textbf{if }$(|\beta| \equiv 1)$ \textbf{ and } $(|\gamma| \equiv 1)$
       \State \hskip2.0em \textbf{print} $p + i \cdot \delta(\alpha)$ \textbf{forall} $i \in |\alpha|$
@@ -385,36 +385,49 @@ the standard 3D Hilbert curve.
     \State \hskip1.0em \textbf{else if }$(|\alpha| \equiv 1)$ \textbf{ and } $(|\beta| \equiv 1)$
       \State \hskip2.0em \textbf{print} $p + i \cdot \delta(\gamma)$ \textbf{forall} $i \in |\gamma|$
 
-    \vskip0.5em
+    \vskip0.75em
 
     \State \hskip1.0em \textbf{else if }$(2 |\alpha|>3|\beta|) \text{ and } (2|\alpha|>3|\gamma|))$
-      \State \hskip2.0em  Gilbert3D($p,\alpha _ 2,\beta,\gamma$)
-      \State \hskip2.0em  Gilbert3D($p + \alpha _ 2,\alpha - \alpha _ 2,\beta,\gamma$)
+      %\State \hskip2.0em  Gilbert3D($p,\alpha _ 2,\beta,\gamma$)
+      \State \hskip2.0em  Gilbert3D($p,$ \\ \hskip6.75em $\alpha _ 2,\beta,\gamma$)
+      %\State \hskip2.0em  Gilbert3D($p + \alpha _ 2,\alpha - \alpha _ 2,\beta,\gamma$)
+      \State \hskip2.0em  Gilbert3D($p + \alpha _ 2,$ \\ \hskip6.75em $\alpha - \alpha _ 2,\beta,\gamma$)
 
-    \vskip0.5em
+    \vskip0.75em
 
     \State \hskip1.0em \textbf{else if }$(3 |\beta| > 4 |\gamma|)$
-      \State \hskip2.0em  Gilbert3D($p,\beta _ 2,\gamma,\alpha _ 2$)
-      \State \hskip2.0em  Gilbert3D($p + \beta _ 2,\alpha,\beta - \beta _ 2,\gamma$)
-      \State \hskip2.0em  Gilbert3D($p \ + $ \\ \hskip6.255em $(\alpha - \delta(\alpha)) +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma,-(\alpha - \alpha _ 2)$)
+      %\State \hskip2.0em  Gilbert3D($p,\beta _ 2,\gamma,\alpha _ 2$)
+      \State \hskip2.0em  Gilbert3D($p,$ \\ \hskip6.75em $\beta _ 2,\gamma,\alpha _ 2$)
+      %\State \hskip2.0em  Gilbert3D($p + \beta _ 2,\alpha,\beta - \beta _ 2,\gamma$)
+      \State \hskip2.0em  Gilbert3D($p + \beta _ 2,$ \\ \hskip6.75em $\alpha,\beta - \beta _ 2,\gamma$)
+      %\State \hskip2.0em  Gilbert3D($p \ + $ \\ \hskip6.255em $(\alpha - \delta(\alpha)) +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma,-(\alpha - \alpha _ 2)$)
+      \State \hskip2.0em  Gilbert3D($p  + (\alpha - \delta(\alpha)) + (\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma,-(\alpha - \alpha _ 2)$)
 
-    \vskip0.5em
+    \vskip0.75em
 
     \State \hskip1.0em \textbf{else if }$(3 |\gamma| > 4 |\beta|)$
-      \State \hskip2.0em  Gilbert3D($p,\gamma _ 2,\alpha _ 2,\beta$)
-      \State \hskip2.0em  Gilbert3D($p + \gamma _ 2,\alpha, \beta, \gamma - \gamma _ 2$)
-      \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ +$ \\ \hskip6.25em $(\gamma_2 - \delta(\gamma))$, \\ \hskip6.0em $-\gamma _ 2,-(\alpha-\alpha _ 2), \beta$)
+      %\State \hskip2.0em  Gilbert3D($p,\gamma _ 2,\alpha _ 2,\beta$)
+      \State \hskip2.0em  Gilbert3D($p,$ \\ \hskip6.75em $\gamma _ 2,\alpha _ 2,\beta$)
+      %\State \hskip2.0em  Gilbert3D($p + \gamma _ 2,\alpha, \beta, \gamma - \gamma _ 2$)
+      \State \hskip2.0em  Gilbert3D($p + \gamma _ 2,$ \\ \hskip6.75em $\alpha, \beta, \gamma - \gamma _ 2$)
+      %\State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ +$ \\ \hskip6.25em $(\gamma_2 - \delta(\gamma))$, \\ \hskip6.0em $-\gamma _ 2,-(\alpha-\alpha _ 2), \beta$)
+      \State \hskip2.0em  Gilbert3D($p  + (\alpha - \delta(\alpha))  + (\gamma_2 - \delta(\gamma))$, \\ \hskip6.0em $-\gamma _ 2,-(\alpha-\alpha _ 2), \beta$)
 
-    \vskip0.5em
+    \vskip0.75em
 
     \State \hskip1.0em \textbf{else }
-      \State \hskip2.0em  Gilbert3D($p, \beta _ 2, \gamma _ 2, \alpha _ 2$)
-      \State \hskip2.0em  Gilbert3D($p + \beta _ 2,\gamma,\alpha _ 2,(\beta - \beta _ 2)$)
-      \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta)) \ +$ \\ \hskip6.25em $(\gamma - \delta(\gamma))$, \\ \hskip6.5em $\alpha,-\beta_2,-(\gamma-\gamma_2)$)
-      \State \hskip2.0em  Gilbert3D($p  +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ + \ $ \\ \hskip6.5em $\beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip6.00em $-\gamma,-(\alpha - \alpha_2),(\beta-\beta_2)$)
-    \State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma _ 2,-(\alpha - \alpha_2)$)
+      %\State \hskip2.0em  Gilbert3D($p, \beta _ 2, \gamma _ 2, \alpha _ 2$)
+      \State \hskip2.0em  Gilbert3D($p,$ \\ \hskip6.75em $\beta _ 2, \gamma _ 2, \alpha _ 2$)
+      %\State \hskip2.0em  Gilbert3D($p + \beta _ 2,\gamma,\alpha _ 2,(\beta - \beta _ 2)$)
+      \State \hskip2.0em  Gilbert3D($p + \beta _ 2,$, \\ \hskip6.75em $\gamma,\alpha _ 2,(\beta - \beta _ 2)$)
+      %\State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta)) \ +$ \\ \hskip6.25em $(\gamma - \delta(\gamma))$, \\ \hskip6.5em $\alpha,-\beta_2,-(\gamma-\gamma_2)$)
+      \State \hskip2.0em  Gilbert3D($p  + (\beta _ 2 - \delta(\beta))  + (\gamma - \delta(\gamma))$, \\ \hskip6.5em $\alpha,-\beta_2,-(\gamma-\gamma_2)$)
+      %\State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ + \ $ \\ \hskip6.5em $\beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip6.00em $-\gamma,-(\alpha - \alpha_2),(\beta-\beta_2)$)
+      \State \hskip2.0em  Gilbert3D($p + (\alpha - \delta(\alpha)) + \beta _ 2 + (\gamma - \delta(\gamma))$, \\ \hskip6.00em $-\gamma,-(\alpha - \alpha_2),(\beta-\beta_2)$)
+      %\State \hskip2.0em  Gilbert3D($p \ +$ \\ \hskip6.25em $(\alpha - \delta(\alpha)) \ +$ \\ \hskip6.25em $(\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma _ 2,-(\alpha - \alpha_2)$)
+      \State \hskip2.0em  Gilbert3D($p + (\alpha - \delta(\alpha))  + (\beta _ 2 - \delta(\beta))$, \\ \hskip6.0em $-\beta _ 2,\gamma _ 2,-(\alpha - \alpha_2)$)
 
-    \vskip0.5em
+    \vskip1.0em
 
 %    \EndFunction
 
@@ -464,7 +477,7 @@ the standard 3D Hilbert curve.
 \begin{minipage}[ht]{0.5\linewidth}
 
     \centering
-    \includegraphics[width=\linewidth]{gilbert3d_alg_fig2.pdf}
+    \includegraphics[width=\linewidth]{gilbert3d_alg_fig3.pdf}
     \captionof{figure}{ }
     \label{fig:gilbert3d_alg_fig}
 
