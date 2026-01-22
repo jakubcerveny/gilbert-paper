@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 JAN 2026 12:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  22 JAN 2026 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -829,49 +829,47 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
  [2]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
 put line 229.
-LaTeX Font Info:    Font shape `T1/ntxtlf/m/sc' will be
-(Font)              scaled to size 10.95pt on input line 234.
 <gilbert2d_eccentric_alpha1.pdf, id=87, 316.18124pt x 225.84375pt>
 File: gilbert2d_eccentric_alpha1.pdf Graphic file (type pdf)
 <use gilbert2d_eccentric_alpha1.pdf>
-Package pdftex.def Info: gilbert2d_eccentric_alpha1.pdf  used on input line 264
+Package pdftex.def Info: gilbert2d_eccentric_alpha1.pdf  used on input line 305
 .
 (pdftex.def)             Requested size: 91.99745pt x 65.7101pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 265.
+(caption)                particular \caption on input line 306.
 See the caption package documentation for explanation.
 
 <gilbert2d_example_eccentric.pdf, id=88, 225.84375pt x 150.5625pt>
 File: gilbert2d_example_eccentric.pdf Graphic file (type pdf)
 <use gilbert2d_example_eccentric.pdf>
-Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 27
-2.
+Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 31
+3.
 (pdftex.def)             Requested size: 95.39613pt x 63.5988pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 273.
+(caption)                particular \caption on input line 314.
 See the caption package documentation for explanation.
 
 <gilbert2d_bulk.pdf, id=89, 338.76563pt x 248.42813pt>
 File: gilbert2d_bulk.pdf Graphic file (type pdf)
 <use gilbert2d_bulk.pdf>
-Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 281.
+Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 322.
 (pdftex.def)             Requested size: 178.35986pt x 130.802pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 282.
+(caption)                particular \caption on input line 323.
 See the caption package documentation for explanation.
 
 <gilbert2d_bulk_example.pdf, id=90, 338.76563pt x 248.42813pt>
 File: gilbert2d_bulk_example.pdf Graphic file (type pdf)
 <use gilbert2d_bulk_example.pdf>
-Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 290.
+Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 331.
 (pdftex.def)             Requested size: 192.82085pt x 141.40459pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 291.
+(caption)                particular \caption on input line 332.
 See the caption package documentation for explanation.
 
 [3 <./gilbert2d_mainsubdiv.pdf> <./gilbert2d_example_mainsubdiv.pdf
@@ -886,16 +884,16 @@ e pdfs with page group included in a single page
 <gilbert3d_alg_fig2.pdf, id=181, 526.96875pt x 1355.0625pt>
 File: gilbert3d_alg_fig2.pdf Graphic file (type pdf)
 <use gilbert3d_alg_fig2.pdf>
-Package pdftex.def Info: gilbert3d_alg_fig2.pdf  used on input line 401.
+Package pdftex.def Info: gilbert3d_alg_fig2.pdf  used on input line 465.
 (pdftex.def)             Requested size: 236.01561pt x 606.89845pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 402.
+(caption)                particular \caption on input line 466.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (21.6812pt too wide) in paragraph at lines 340--467
+Overfull \hbox (21.6812pt too wide) in paragraph at lines 364--470
 []$[]$ $[]$ 
  []
 
@@ -913,51 +911,50 @@ pdfTeX warning: pdflatex (file ./gilbert2d_bulk_example.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >] [5 <./gilbert3d_alg_fig2.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+ntxsups on input lin
-e 502.
+e 490.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
 File: t1ntxsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 10.95pt on input line 502.
+(Font)              scaled to size 10.95pt on input line 490.
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 9.0pt on input line 502.
+(Font)              scaled to size 9.0pt on input line 490.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 502.
+(Font)              scaled to size 9.0pt on input line 490.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 502.
+(Font)              scaled to size 7.3pt on input line 490.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 502.
+(Font)              scaled to size 5.5pt on input line 490.
  [6] (./Gilbert.aux)
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17376 strings out of 480171
- 265948 string characters out of 5894489
- 547050 words of memory out of 5000000
- 35017 multiletter control sequences out of 15000+600000
- 553340 words of font info for 149 fonts, out of 8000000 for 9000
+ 17348 strings out of 480171
+ 265510 string characters out of 5894489
+ 546050 words of memory out of 5000000
+ 34990 multiletter control sequences out of 15000+600000
+ 550293 words of font info for 148 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  84i,10n,131p,312b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntxsups_t1.enc}{/usr/sha
-re/texlive/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf-pc.enc}{/usr/share/texmf
-/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dv
-ips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/
-ntx-ec-tlf.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/newtx/ntxsups-Regular.pfb></usr/sha
-re/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
-blic/txfonts/txsya.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfont
-s/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txsys.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (6 pages, 564666 bytes).
+re/texmf/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texlive/texmf-dist/font
+s/enc/dvips/newtx/ntx-ot1-tlf.enc}{/usr/share/texlive/texmf-dist/fonts/enc/dvip
+s/newtx/ntx-ec-tlf.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/newtx/
+NewTXMI.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ntxsups-Regular.pfb><
+/usr/share/texmf/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/newtx/txmiaX.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/txfonts/txsya.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txs
+ys.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/newtx/ztmri.pfb>
+Output written on Gilbert.pdf (6 pages, 561389 bytes).
 PDF statistics:
- 358 PDF objects out of 1000 (max. 8388607)
- 260 compressed objects within 3 object streams
+ 354 PDF objects out of 1000 (max. 8388607)
+ 257 compressed objects within 3 object streams
  26 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
