@@ -27,7 +27,11 @@
 %\lstset{breaklines=true}
 
 \title{ A Generalized 2D and 3D Hilbert Curve }
-\author{ Jakub \v{C}erven\'{y} and Zzyv Zzyzek }
+\author{ Jakub \v{C}erven\'{y}\textsuperscript{1} and Zzyv Zzyzek\textsuperscript{2}
+\vspace{5pt}\\
+\textsuperscript{1}Prague, Czechia; jakub.cerveny@gmail.com\\
+\textsuperscript{2}Ithaca, New York, USA; zzyzek@thumpernet.com}
+
 
 \date{}
 
@@ -36,6 +40,8 @@
 \maketitle
 
 \thispagestyle{empty}
+
+\vspace{-1.75em}
 
 \begin{abstract}
   Hilbert curves are classic space-filling curves with strong locality properties, widely
@@ -49,6 +55,7 @@
 %  and relaxed traversals on odd-sized domains.
 \end{abstract}
 
+\vspace{-0.75em}
 
 \section*{Introduction}
 
@@ -61,6 +68,8 @@ In practical settings, however, underlying grids might not be square or cubic wi
 power-of-two side lengths. Images and volumes can come in arbitrary dimensions.
 Tiling, padding, or resampling to fit a power-of-two Hilbert curve introduces overhead
 and can harm locality near boundaries.
+
+\vspace{-0.75em}
 
 \begin{figure}[!htb]
   \begin{minipage}{0.48\textwidth}
@@ -77,6 +86,7 @@ and can harm locality near boundaries.
   \end{minipage}
 \end{figure}
 
+%\vspace{-0.75em}
 
 This paper presents the \emph{Gilbert curve}, a recursive construction that produces
 paths for 2D rectangles and 3D cuboids.
