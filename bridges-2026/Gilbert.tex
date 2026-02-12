@@ -27,7 +27,11 @@
 %\lstset{breaklines=true}
 
 \title{ A Generalized 2D and 3D Hilbert Curve }
-\author{ Jakub \v{C}erven\'{y} and Zzyv Zzyzek }
+\author{ Jakub \v{C}erven\'{y}\textsuperscript{1} and Zzyv Zzyzek\textsuperscript{2}
+\vspace{5pt}\\
+\textsuperscript{1}Prague, Czechia; jakub.cerveny@gmail.com\\
+\textsuperscript{2}Ithaca, New York, USA; zzyzek@thumpernet.com}
+
 
 \date{}
 
@@ -36,6 +40,8 @@
 \maketitle
 
 \thispagestyle{empty}
+
+\vspace{-1.75em}
 
 \begin{abstract}
   Hilbert curves are classic space-filling curves with strong locality properties, widely
@@ -49,6 +55,7 @@
 %  and relaxed traversals on odd-sized domains.
 \end{abstract}
 
+\vspace{-0.75em}
 
 \section*{Introduction}
 
@@ -61,6 +68,8 @@ In practical settings, however, underlying grids might not be square or cubic wi
 power-of-two side lengths. Images and volumes can come in arbitrary dimensions.
 Tiling, padding, or resampling to fit a power-of-two Hilbert curve introduces overhead
 and can harm locality near boundaries.
+
+\vspace{-0.75em}
 
 \begin{figure}[!htb]
   \begin{minipage}{0.48\textwidth}
@@ -77,6 +86,7 @@ and can harm locality near boundaries.
   \end{minipage}
 \end{figure}
 
+%\vspace{-0.75em}
 
 This paper presents the \emph{Gilbert curve}, a recursive construction that produces
 paths for 2D rectangles and 3D cuboids.
@@ -425,15 +435,15 @@ AI tools were used in assisting the language and readability of this paper.
 \raggedright        % no right justification for References
 \begin{thebibliography}{99}
 
-  \bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' \textit{Bioinformatics}, vol.~25, no.~10, pp. ~ 1231-1235, 2009.  \url{https://doi.org/10.1093/bioinformatics/btp152}
+  \bibitem{anders2009} S. Anders. ``Visualization of genomic data with the Hilbert curve.'' \textit{Bioinformatics}, vol.~25, no.~10, 2009, pp.~1231-1235.  \url{https://doi.org/10.1093/bioinformatics/btp152}
 
-  \bibitem{bohm2021} C. B{\"o}hm, M. Perdacher, and C. Plant ``A Novel Hilbert Curve for Cache-Locality Preserving Loops.'' \textit{IEEE Transactions on Big Data}, vol.~7, 2021, pp.~241-254
+  \bibitem{bohm2021} C. B{\"o}hm, M. Perdacher, and C. Plant. ``A Novel Hilbert Curve for Cache-Locality Preserving Loops.'' \textit{IEEE Transactions on Big Data}, vol.~7, 2021, pp.~241-254.
 
-  \bibitem{cortesi2011} A. Cortesi. \textit{Visualizing binaries with space-filling curves}. 2011. \url{https://corte.si/posts/visualisation/binvis/}.
+  \bibitem{cortesi2011} A. Cortesi. \textit{Visualizing binaries with space-filling curves}. 2011. \url{https://corte.si/posts/visualisation/binvis/}
 
   %\bibitem{sagan1994} H. Sagan. \textit{Space-Filling Curves}, 1994 ed. Springer, 1994.
 
-  \bibitem{hilbert1891} D. Hilbert. ``Ueber die stetige Abbildung einer Linie auf ein Fl{\"a}chenst{\"u}ck.'', \textit{Mathematische Annalen}, vol.~38, 1891, pp.~459-460
+  \bibitem{hilbert1891} D. Hilbert. ``Ueber die stetige Abbildung einer Linie auf ein Fl{\"a}chenst{\"u}ck.'' \textit{Mathematische Annalen}, vol.~38, 1891, pp.~459-460.
 
   %\bibitem{lee2025} S. Lee, K. Ma. ``HINTs: Sensemaking on large collections of documents with {\bf H}ypergraph vizualization and {\bf INT}elligent agents.'' \textit{IEEE Transactions on Visualization and Computer Graphics}, vol.~31, no.~9, 2025, pp.~5532-5546
 
@@ -443,7 +453,7 @@ AI tools were used in assisting the language and readability of this paper.
 
   %\bibitem{rong2021} Y. Rong, X. Zhang, and J. Lin. ``
 
-  \bibitem{lutanho2003} L. Tautenhahn. \textit{Draw a space-filling curve of arbitrary size}, 2003. \url{https://lutanho.net/pic2html/draw_sfc.html}.
+  \bibitem{lutanho2003} L. Tautenhahn. \textit{Draw a space-filling curve of arbitrary size}. 2003. \url{https://lutanho.net/pic2html/draw_sfc.html}
 
   \bibitem{zhang2006} J. Zhang, S. Kamata, and Y. Ueshige. ``A Pseudo-Hilbert Scan Algorithm for Arbitrarily-Sized Rectangle Region.'' \textit{Advances in Machine Vision, Image Processing, and Pattern Analysis}, Berlin, Heidelberg, 2006, pp. 290-299.
 \end{thebibliography}

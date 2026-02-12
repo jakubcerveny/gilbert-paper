@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.5.21)  27 JAN 2026 17:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.1.30)  11 FEB 2026 23:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -559,13 +559,13 @@ File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
 LaTeX Font Info:    Trying to load font information for T1+ntxtlf on input line
- 34.
+ 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtlf.fd
 File: t1ntxtlf.fd 2021/05/24 v1.1 font definition file for T1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 34.
+(Font)              scaled to size 10.95pt on input line 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
@@ -575,51 +575,51 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 (./Gilbert.aux)
 \openout1 = `Gilbert.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 34.
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 38.
 LaTeX Font Info:    Trying to load font information for OML+ntxmi on input line
- 34.
+ 38.
  (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
 File: omlntxmi.fd 2015/08/25 Fontinst v1.933 font definitions for OML/ntxmi.
 )
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 38.
 LaTeX Font Info:    Trying to load font information for U+ntxexa on input line 
-34.
+38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
 File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
 )
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for LMS/ntxsy/m/n on input line 38.
 LaTeX Font Info:    Trying to load font information for LMS+ntxsy on input line
- 34.
+ 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmsntxsy.fd
 File: lmsntxsy.fd 2016/07/02 Fontinst v1.933 font definitions for LMS/ntxsy.
 )
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 38.
 LaTeX Font Info:    Trying to load font information for LMX+ntxexx on input lin
-e 34.
+e 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/lmxntxexx.fd
 File: lmxntxexx.fd 2016/07/03 Fontinst v1.933 font definitions for LMX/ntxexx.
 )
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 38.
+LaTeX Font Info:    ... okay on input line 38.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -692,7 +692,7 @@ File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
 )
-Package hyperref Info: Link coloring ON on input line 34.
+Package hyperref Info: Link coloring ON on input line 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -705,9 +705,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count322
 )
-LaTeX Info: Redefining \ref on input line 34.
-LaTeX Info: Redefining \pageref on input line 34.
-LaTeX Info: Redefining \nameref on input line 34.
+LaTeX Info: Redefining \ref on input line 38.
+LaTeX Info: Redefining \pageref on input line 38.
+LaTeX Info: Redefining \nameref on input line 38.
 
 (./Gilbert.out) (./Gilbert.out)
 \@outlinefile=\write3
@@ -715,89 +715,91 @@ LaTeX Info: Redefining \nameref on input line 34.
 
 \c@lstlisting=\count323
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 16.0pt on input line 37.
+(Font)              scaled to size 16.0pt on input line 41.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 16.0pt on input line 37.
+(Font)              scaled to size 16.0pt on input line 41.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 37.
+(Font)              scaled to size 12.0pt on input line 41.
 LaTeX Font Info:    Trying to load font information for OT1+ntxtlf on input lin
-e 37.
+e 41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ot1ntxtlf.fd
 File: ot1ntxtlf.fd 2021/05/24 v1.0 font definition file for OT1/ntx/tlf
 )
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 12.0pt on input line 37.
+(Font)              scaled to size 12.0pt on input line 41.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 37.
+(Font)              scaled to size 8.8pt on input line 41.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 37.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 37.
+(Font)              scaled to size 6.6pt on input line 41.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 37.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+ntxmia on input line 
-37.
+41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
 File: untxmia.fd 2018/04/14 Fontinst v1.933 font definitions for U/ntxmia.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsym on input line 
-37.
+41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsym.fd
 File: untxsym.fd 2015/03/20 Fontinst v1.933 font definitions for U/ntxsym.
 )
 LaTeX Font Info:    Trying to load font information for U+ntxsyc on input line 
-37.
+41.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
 File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
 )
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 40.
+(Font)              scaled to size 8.8pt on input line 41.
+LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
+(Font)              scaled to size 9.0pt on input line 46.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 9.0pt on input line 40.
+(Font)              scaled to size 9.0pt on input line 46.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 40.
+(Font)              scaled to size 12.0pt on input line 46.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 9.0pt on input line 45.
+(Font)              scaled to size 9.0pt on input line 51.
 <gilbert2d_examples.pdf, id=9, 301.125pt x 225.84375pt>
 File: gilbert2d_examples.pdf Graphic file (type pdf)
 <use gilbert2d_examples.pdf>
-Package pdftex.def Info: gilbert2d_examples.pdf  used on input line 68.
+Package pdftex.def Info: gilbert2d_examples.pdf  used on input line 77.
 (pdftex.def)             Requested size: 226.57297pt x 169.93721pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 69.
+(Font)              scaled to size 10.95pt on input line 78.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/it' will be
-(Font)              scaled to size 10.95pt on input line 69.
+(Font)              scaled to size 10.95pt on input line 78.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 69.
+(Font)              scaled to size 10.95pt on input line 78.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 69.
+(Font)              scaled to size 8.0pt on input line 78.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 69.
+(Font)              scaled to size 6.1pt on input line 78.
 <gilbert3d_orig_examples.pdf, id=10, 474.27188pt x 398.99063pt>
 File: gilbert3d_orig_examples.pdf Graphic file (type pdf)
 <use gilbert3d_orig_examples.pdf>
-Package pdftex.def Info: gilbert3d_orig_examples.pdf  used on input line 74.
+Package pdftex.def Info: gilbert3d_orig_examples.pdf  used on input line 83.
 (pdftex.def)             Requested size: 217.13753pt x 182.66731pt.
 LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input lin
-e 88.
+e 98.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
 File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
 )
 LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 88.
+(Font)              scaled to size 10.95pt on input line 98.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./gilbert2d_examples.pdf> 
@@ -809,67 +811,67 @@ ultiple pdfs with page group included in a single page
 <gilbert2d_mainsubdiv.pdf, id=56, 526.96875pt x 263.48438pt>
 File: gilbert2d_mainsubdiv.pdf Graphic file (type pdf)
 <use gilbert2d_mainsubdiv.pdf>
-Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 148.
+Package pdftex.def Info: gilbert2d_mainsubdiv.pdf  used on input line 158.
 (pdftex.def)             Requested size: 259.6186pt x 129.81606pt.
 <gilbert2d_example_mainsubdiv.pdf, id=57, 210.7875pt x 150.5625pt>
 File: gilbert2d_example_mainsubdiv.pdf Graphic file (type pdf)
 <use gilbert2d_example_mainsubdiv.pdf>
 Package pdftex.def Info: gilbert2d_example_mainsubdiv.pdf  used on input line 1
-55.
+65.
 (pdftex.def)             Requested size: 168.7505pt x 120.53745pt.
 <gilbert3d_explode.pdf, id=58, 210.7875pt x 271.0125pt>
 File: gilbert3d_explode.pdf Graphic file (type pdf)
 <use gilbert3d_explode.pdf>
-Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 163.
+Package pdftex.def Info: gilbert3d_explode.pdf  used on input line 173.
 (pdftex.def)             Requested size: 212.41261pt x 273.10841pt.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 181.
+(Font)              scaled to size 8.0pt on input line 191.
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.1pt on input line 181.
+(Font)              scaled to size 6.1pt on input line 191.
  [2]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 231.
+put line 241.
 <gilbert2d_eccentric_alpha1.pdf, id=87, 316.18124pt x 225.84375pt>
 File: gilbert2d_eccentric_alpha1.pdf Graphic file (type pdf)
 <use gilbert2d_eccentric_alpha1.pdf>
-Package pdftex.def Info: gilbert2d_eccentric_alpha1.pdf  used on input line 271
+Package pdftex.def Info: gilbert2d_eccentric_alpha1.pdf  used on input line 281
 .
 (pdftex.def)             Requested size: 91.99745pt x 65.7101pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 272.
+(caption)                particular \caption on input line 282.
 See the caption package documentation for explanation.
 
 <gilbert2d_example_eccentric.pdf, id=88, 225.84375pt x 150.5625pt>
 File: gilbert2d_example_eccentric.pdf Graphic file (type pdf)
 <use gilbert2d_example_eccentric.pdf>
-Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 27
+Package pdftex.def Info: gilbert2d_example_eccentric.pdf  used on input line 28
 9.
 (pdftex.def)             Requested size: 95.39613pt x 63.5988pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 280.
+(caption)                particular \caption on input line 290.
 See the caption package documentation for explanation.
 
 <gilbert2d_bulk.pdf, id=89, 338.76563pt x 248.42813pt>
 File: gilbert2d_bulk.pdf Graphic file (type pdf)
 <use gilbert2d_bulk.pdf>
-Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 288.
+Package pdftex.def Info: gilbert2d_bulk.pdf  used on input line 298.
 (pdftex.def)             Requested size: 178.35986pt x 130.802pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 289.
+(caption)                particular \caption on input line 299.
 See the caption package documentation for explanation.
 
 <gilbert2d_bulk_example.pdf, id=90, 338.76563pt x 248.42813pt>
 File: gilbert2d_bulk_example.pdf Graphic file (type pdf)
 <use gilbert2d_bulk_example.pdf>
-Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 297.
+Package pdftex.def Info: gilbert2d_bulk_example.pdf  used on input line 307.
 (pdftex.def)             Requested size: 192.82085pt x 141.40459pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 298.
+(caption)                particular \caption on input line 308.
 See the caption package documentation for explanation.
 
 [3 <./gilbert2d_mainsubdiv.pdf> <./gilbert2d_example_mainsubdiv.pdf
@@ -884,16 +886,16 @@ e pdfs with page group included in a single page
 <gilbert3d_alg_fig3.pdf, id=181, 526.96875pt x 1355.0625pt>
 File: gilbert3d_alg_fig3.pdf Graphic file (type pdf)
 <use gilbert3d_alg_fig3.pdf>
-Package pdftex.def Info: gilbert3d_alg_fig3.pdf  used on input line 392.
+Package pdftex.def Info: gilbert3d_alg_fig3.pdf  used on input line 402.
 (pdftex.def)             Requested size: 236.01561pt x 606.89845pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 393.
+(caption)                particular \caption on input line 403.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (21.6812pt too wide) in paragraph at lines 331--397
+Overfull \hbox (21.6812pt too wide) in paragraph at lines 341--407
 []$[]$ $[]$ 
  []
 
@@ -911,31 +913,31 @@ pdfTeX warning: pdflatex (file ./gilbert2d_bulk_example.pdf): PDF inclusion: mu
 ltiple pdfs with page group included in a single page
 >] [5 <./gilbert3d_alg_fig3.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+ntxsups on input lin
-e 418.
+e 428.
 
 (/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxsups.fd
 File: t1ntxsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 10.95pt on input line 418.
+(Font)              scaled to size 10.95pt on input line 428.
 LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
-(Font)              scaled to size 9.0pt on input line 418.
+(Font)              scaled to size 9.0pt on input line 428.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 9.0pt on input line 418.
+(Font)              scaled to size 9.0pt on input line 428.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 7.3pt on input line 418.
+(Font)              scaled to size 7.3pt on input line 428.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 418.
+(Font)              scaled to size 5.5pt on input line 428.
  [6] (./Gilbert.aux)
 Package rerunfilecheck Info: File `Gilbert.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17348 strings out of 480171
- 265510 string characters out of 5894489
- 546050 words of memory out of 5000000
- 34990 multiletter control sequences out of 15000+600000
- 550293 words of font info for 148 fonts, out of 8000000 for 9000
+ 17349 strings out of 480171
+ 265527 string characters out of 5894489
+ 546160 words of memory out of 5000000
+ 34991 multiletter control sequences out of 15000+600000
+ 553101 words of font info for 149 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  84i,10n,131p,312b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/newtx/ntxsups_t1.enc}{/usr/sha
@@ -951,7 +953,7 @@ c/txfonts/txsyb.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/txs
 ys.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/newtx/ztmb.pfb></usr/s
 hare/texlive/texmf-dist/fonts/type1/public/newtx/ztmr.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on Gilbert.pdf (6 pages, 561632 bytes).
+Output written on Gilbert.pdf (6 pages, 562191 bytes).
 PDF statistics:
  354 PDF objects out of 1000 (max. 8388607)
  257 compressed objects within 3 object streams
